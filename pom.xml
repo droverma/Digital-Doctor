@@ -11,7 +11,7 @@
 	<groupId>com.stackroute</groupId>
 	<artifactId>digitaldoctor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DigitalDoctor</name>
+	<name>digitaldoctor</name>
 	<description>Digital Doctor</description>
 	<packaging>pom</packaging>
 	<properties>
