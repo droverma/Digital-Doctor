@@ -1,0 +1,96 @@
+{
+    "doctors": [{
+            "doctorEmail": "aashi@gmail.com",
+            "specialization": "Phyisican",
+            "yearsOfExperience": 2,
+            "doctorMobileNumber": 9877654210,
+            "doctorName": "Aashi Bansal",
+            "gender": "F",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
+            "dob": "1998-09-12",
+            "clinicName": "",
+            "clinicNumber": 90909090,
+            "clinicAddress": "Noida"
+        }, {
+            "doctorEmail": "drishti@gmail.com",
+            "specialization": "Phyisican",
+            "yearsOfExperience": 2,
+            "doctorMobileNumber": 988989898,
+            "doctorName": "Drishti Verma",
+            "gender": "F",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
+            "dob": "1998-09-12",
+            "clinicName": "",
+            "clinicNumber": 90909090,
+            "clinicAddress": "Noida"
+        },
+        {
+            "doctorEmail": "sai@gmail.com",
+            "specialization": "Ortho",
+            "yearsOfExperience": 2,
+            "doctorMobileNumber": 9877654210,
+            "doctorName": "Sai Chandra",
+            "gender": "M",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
+            "dob": "1998-09-12",
+            "clinicName": "",
+            "clinicNumber": 90909090,
+            "clinicAddress": "Noida"
+        },
+        {
+            "doctorEmail": "bhoomi@gmail.com",
+            "specialization": "Gynocologist",
+            "yearsOfExperience": 7,
+            "doctorMobileNumber": 9877654210,
+            "doctorName": "Bhoomika Verma ",
+            "gender": "F",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
+            "dob": "1998-09-12",
+            "clinicName": "",
+            "clinicNumber": 90909090,
+            "clinicAddress": "Noida"
+        },
+        {
+            "doctorEmail": "komal@gmail.com",
+            "specialization": "Gynocologist",
+            "yearsOfExperience": 4,
+            "doctorMobileNumber": 8989898099,
+            "doctorName": "Komal Gupta ",
+            "gender": "F",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
+            "dob": "1998-09-11",
+            "clinicName": "",
+            "clinicNumber": 99098888,
+            "clinicAddress": "Noida"
+        }
+    ],
+    "patients": [{
+        "patientEmail": "ashish@gmail.com",
+        "patientName": "Ashish",
+        "patient Mobile Number": 9876543210,
+        "password": "12345",
+        "city": "Noida",
+        "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL",
+        "age": 34,
+        "gender": "M"
+    }, {
+        "patientEmail": "jatin@gmail.com",
+        "patientName": "Jatin",
+        "patient Mobile Number": 9876543210,
+        "password": "12345",
+        "city": "Noida",
+        "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL",
+        "age": 34,
+        "gender": "M"
+    }]
+}
