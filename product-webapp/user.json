@@ -1,5 +1,6 @@
 {
-    "doctors": [{
+    "doctors": [
+        {
             "doctorEmail": "aashi@gmail.com",
             "specialization": "Phyisican",
             "yearsOfExperience": 2,
@@ -13,7 +14,8 @@
             "clinicName": "",
             "clinicNumber": 90909090,
             "clinicAddress": "Noida"
-        }, {
+        }, 
+        {
             "doctorEmail": "drishti@gmail.com",
             "specialization": "Phyisican",
             "yearsOfExperience": 2,
