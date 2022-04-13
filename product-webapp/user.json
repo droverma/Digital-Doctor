@@ -8,12 +8,9 @@
             "gender": "F",
             "password": "123456",
             "city": "Noida",
-            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
-            "dob": "1998-09-12",
-            "clinicName": "",
-            "clinicNumber": 90909090,
-            "clinicAddress": "Noida"
-        }, {
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
+        },
+        {
             "doctorEmail": "drishti@gmail.com",
             "specialization": "Phyisican",
             "yearsOfExperience": 2,
@@ -22,11 +19,7 @@
             "gender": "F",
             "password": "123456",
             "city": "Noida",
-            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
-            "dob": "1998-09-12",
-            "clinicName": "",
-            "clinicNumber": 90909090,
-            "clinicAddress": "Noida"
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
         },
         {
             "doctorEmail": "sai@gmail.com",
@@ -37,11 +30,7 @@
             "gender": "M",
             "password": "123456",
             "city": "Noida",
-            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
-            "dob": "1998-09-12",
-            "clinicName": "",
-            "clinicNumber": 90909090,
-            "clinicAddress": "Noida"
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
         },
         {
             "doctorEmail": "bhoomi@gmail.com",
@@ -52,11 +41,7 @@
             "gender": "F",
             "password": "123456",
             "city": "Noida",
-            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
-            "dob": "1998-09-12",
-            "clinicName": "",
-            "clinicNumber": 90909090,
-            "clinicAddress": "Noida"
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
         },
         {
             "doctorEmail": "komal@gmail.com",
@@ -67,30 +52,143 @@
             "gender": "F",
             "password": "123456",
             "city": "Noida",
-            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
-            "dob": "1998-09-11",
-            "clinicName": "",
-            "clinicNumber": 99098888,
-            "clinicAddress": "Noida"
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
+        },
+        {
+            "doctorEmail": "deeksha@gmail.com",
+            "specialization": "Dermatology",
+            "yearsOfExperience": 1,
+            "doctorMobileNumber": 8765422109,
+            "doctorName": "Deeksha Gupta ",
+            "gender": "F",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
+        },
+        {
+            "doctorEmail": "mayur@gmail.com",
+            "specialization": "General Surgery",
+            "yearsOfExperience": 8,
+            "doctorMobileNumber": 9765325790,
+            "doctorName": "Mayur Aggrawal ",
+            "gender": "M",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
+        },
+        {
+            "doctorEmail": "mohit@gmail.com",
+            "specialization": "Cardiologists",
+            "yearsOfExperience": 2,
+            "doctorMobileNumber": 8989898099,
+            "doctorName": "Mohit thakur ",
+            "gender": "M",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
+        },
+        {
+            "doctorEmail": "megha@gmail.com",
+            "specialization": "Neurologists",
+            "yearsOfExperience": 4,
+            "doctorMobileNumber": 7654432356,
+            "doctorName": "Megha Sharma ",
+            "gender": "F",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
+        },
+        {
+            "doctorEmail": "shobhit@gmail.com",
+            "specialization": "Pathologists",
+            "yearsOfExperience": 4,
+            "doctorMobileNumber": 6789876533,
+            "doctorName": "Shobhit Verma ",
+            "gender": "F",
+            "password": "123456",
+            "city": "Noida",
+            "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg"
         }
     ],
     "patients": [{
-        "patientEmail": "ashish@gmail.com",
-        "patientName": "Ashish",
-        "patient Mobile Number": 9876543210,
-        "password": "12345",
-        "city": "Noida",
-        "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL",
-        "age": 34,
-        "gender": "M"
-    }, {
-        "patientEmail": "jatin@gmail.com",
-        "patientName": "Jatin",
-        "patient Mobile Number": 9876543210,
-        "password": "12345",
-        "city": "Noida",
-        "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL",
-        "age": 34,
-        "gender": "M"
-    }]
+            "patientEmail": "ashish@gmail.com",
+            "patientName": "Ashish",
+            "patient Mobile Number": 9876543210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "jatin@gmail.com",
+            "patientName": "Jatin",
+            "patient Mobile Number": 5676543210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "monika@gmail.com",
+            "patientName": "Monika Sharma",
+            "patient Mobile Number": 6776543210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "priya@gmail.com",
+            "patientName": "Priya thakr",
+            "patient Mobile Number": 776543210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "chandrapal@gmail.com",
+            "patientName": "Chandrapal Singh",
+            "patient Mobile Number": 7654003210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "kanika@gmail.com",
+            "patientName": "Kanika Kansal",
+            "patient Mobile Number": 679543210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "khush@gmail.com",
+            "patientName": "Khush Gupta",
+            "patient Mobile Number": 7677655578,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "yati@gmail.com",
+            "patientName": "Yati Singh",
+            "patient Mobile Number": 9852143210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "yash@gmail.com",
+            "patientName": "Yash tyal",
+            "patient Mobile Number": 8888543210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        },
+        {
+            "patientEmail": "deepak@gmail.com",
+            "patientName": "Deepak",
+            "patient Mobile Number": 9876543210,
+            "password": "12345",
+            "city": "Noida",
+            "patientImage": "https://cms.wellcome.org/sites/default/files/styles/image_full_mobile/public/iStock_UnderstandingPatientDataLaunchesToday_201704006_1200x1200.png?itok=J1i1YXVL"
+        }
+    ]
 }

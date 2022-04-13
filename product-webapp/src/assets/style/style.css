@@ -1,0 +1,11 @@
+.modal-header .btn-close {
+    margin: 0 !important;
+}
+
+.modal-title {
+    margin: auto;
+}
+
+.modal-header {
+    border-bottom: 0px !important;
+}
