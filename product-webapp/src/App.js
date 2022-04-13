@@ -1,14 +1,20 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AvailableSlotsPatients from './components/availableSlotsPatients/AvailableSlotsPatients';
+import About from './components/landingPage/about/About';
+import Contact from './components/landingPage/contact/Contact';
 import Header from './container/header/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="main-content" />
+    <>
       <Header />
       <AvailableSlotsPatients />
-    </div>
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </>
   );
 }
 
