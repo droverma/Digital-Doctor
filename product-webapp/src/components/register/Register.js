@@ -1,59 +1,112 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Form, Image, Modal, NavLink, Row } from 'react-bootstrap';
 import loginImage from '../../assets/images/register.png';
 // import '../../assets/style/style.css';
+const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
 
 const Register = (props) => {
+    const [validated, setValidated] = useState({});
+    const [registerData, setRegisterData] = useState({
+        "email": "",
+        "password": "",
+        "confirmPassword": "",
+        "role": "",
+    })
+    const hanldeChange = (e) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case "email":
+                if (!emailExpresion.test(value))
+                    setValidated({ email: 'email is invalid' })
+                else {
+                    delete validated.email;
+                }
+                break;
+            default:
+                break;
+        }
+        console.log(registerData)
+        if (registerData.password === registerData.confirmPassword)
+            console.log(registerData)
+        else
+            setValidated({ 'pass': 'not matched' })
+        setRegisterData({ ...registerData, [name]: value })
+
+    }
+    const submit = (event) => {
+        event.preventDefault();
+        console.log(registerData)
+
+
+    }
 
     const openLoginModal = () => {
         props.handleModal();
         props.openLoginModal();
     }
+    const onHide = () => {
+        setRegisterData({})
+        setValidated({})
+        props.handleModal()
+    }
 
     return (
         <React.Fragment>
-            <Modal size='lg' show={props.show} onHide={props.handleModal}>
+            <Modal size='lg' show={props.show} onHide={onHide}>
                 <Modal.Header closeButton />
                 <Modal.Body>
-                    <Modal.Title style={{ textAlign: "center", fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important;' }}>Register for Digital Doctor</Modal.Title>
+                    <Modal.Title style={{ textAlign: "center", fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important' }}>Register for Digital Doctor</Modal.Title>
 
                     <Row className='d-flex'>
                         <Col md={5} xl={6} lg={6} className="my-5">
                             <Image src={loginImage} style={{ width: "23rem", height: '22rem' }} />
                         </Col>
                         <Col md={8} lg={7} xl={5} className="my-4">
-                            <Form>
-                                <Form.Group className="mb-3 row" >
-                                    <div className='col-md-8'> <Form.Check
+                            <Form onSubmit={submit}>
+                                <Form.Group className="mb-3"
+                                    onChange={hanldeChange}>
+                                    <Form.Check
                                         inline
-                                        label="Doctor"
-                                        name="group1"
+                                        label="Are you Doctor?"
+                                        name="role"
+                                        style={{ marginRight: '6px' }}
                                         type={'radio'}
-                                    /></div>
-                                    <div className='col-md-2'><Form.Check
+                                        value={'doctor'}
+                                        required
+                                        defaultChecked={registerData.role === 'doctor'}
+                                    />
+                                    <Form.Check
                                         inline
-                                        label="Patient"
-                                        name="group1"
+                                        label="Are you Patient?"
+                                        name="role"
                                         type={'radio'}
-                                    /></div>
+                                        value={'patient'}
+                                        required
+                                        defaultChecked={registerData.role === 'patient'}
+                                    />
 
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter your email" />
+                                    <Form.Label>Email*</Form.Label>
+                                    <Form.Control type="email" name="email" isInvalid={validated.email} onChange={hanldeChange} placeholder="Enter your email" required />
+                                    <Form.Control.Feedback type="invalid">
+                                        Please enter the valid email.
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                                 <br />
                                 <Form.Group>
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Enter your password" />
+                                    <Form.Label>Password*</Form.Label>
+                                    <Form.Control type="password" name="password" onChange={hanldeChange} placeholder="Enter your password" required />
                                 </Form.Group>
                                 <br />
                                 <Form.Group>
-                                    <Form.Label>Confirm Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Confirm your password" />
-                                </Form.Group>
+                                    <Form.Label>Confirm Password*</Form.Label>
+                                    <Form.Control type="password" name="confirmPassword" isInvalid={validated.pass} onChange={hanldeChange} placeholder="Confirm your password" required />
+                                    <Form.Control.Feedback type="invalid">
+                                        Those passwords didn't match. Try again.
+                                    </Form.Control.Feedback> </Form.Group>
                                 <br />
-                                <Button className='col-md-12 mb-2 ms-auto' type="submit" style={{ backgroundColor: '#0019FF', fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important;' }}>
+                                <Button className='col-md-12 mb-2 ms-auto' type="submit" disabled={Object.entries(validated).length > 0} style={{ backgroundColor: '#0019FF', fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important' }}>
                                     Register
                                 </Button>
                                 <Form.Text muted >
