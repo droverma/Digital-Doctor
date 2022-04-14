@@ -13,7 +13,7 @@
     text-align: center;
     border: 1px solid grey;
     border-radius: 40px;
-    background: #f1f0f0;
+    background: #E6E6E6;
 }
 .doctor-image{
     width: 300px;
@@ -24,5 +24,21 @@
     padding: 20px;
 }
 .book-appointment{
-    float: right;
+    text-align: end;
+    padding-right: 26px;
+}
+.react-calendar{
+    width: 78%;
+}
+.calender-container{
+    text-align: center;
+    margin-top: 1% !important;
+    padding-left: 10% !important;
+}
+.button-styling{
+    background: #E6E6E6 !important;
+    color: #096BEE !important   ;
+}
+.button-styling:hover{
+    background-color: #36f7ee7a  !important;
 }

@@ -32,7 +32,7 @@ function AvailableSlotsPatients() {
     return (
         <div className="container-fluid">
             <div className="row calender-doctor-details">
-                <div className="col">
+                <div className="col calender-container">
 
                     <Calendar onChange={changeDate} value={value} />
                 </div>
@@ -72,7 +72,7 @@ function AvailableSlotsPatients() {
                 }
             </div>
             <div className="book-appointment">
-                <Button className="btn-secondary" disabled>Book Appointment</Button>
+                <Button className="btn-secondary button-styling" disabled>Book Appointment</Button>
             </div>
 
         </div>

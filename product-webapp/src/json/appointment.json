@@ -127,6 +127,24 @@
             "slotStatus" : "AVAILABLE"
         },
         {
+            "slotId" : "15", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "Apr 16 2022",
+            "slotStartTime" : "7:45 PM",
+            "slotEndTime" : "8:45 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "15", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "Apr 16 2022",
+            "slotStartTime" : "7:45 PM",
+            "slotEndTime" : "8:45 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
             "slotId" : "16", 
             "doctorEmail" : "harshVardhan@gmail.com",
             "specialization" : "MBBS, MD Optimologist",
