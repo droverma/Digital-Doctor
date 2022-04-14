@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Image, Modal, NavLink, Row } from 'react-bootstrap';
 import loginImage from '../../assets/images/register.png';
+import AuthService from '../../services/Auth.service';
 // import '../../assets/style/style.css';
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
 
@@ -12,8 +13,10 @@ const Register = (props) => {
         "confirmPassword": "",
         "role": "",
     })
-    const hanldeChange = (e) => {
+
+    const handleChange = (e) => {
         const { name, value } = e.target;
+        setRegisterData({ ...registerData, [name]: value });
         switch (name) {
             case "email":
                 if (!emailExpresion.test(value))
@@ -22,21 +25,23 @@ const Register = (props) => {
                     delete validated.email;
                 }
                 break;
+            case "confirmPassword":
+                setRegisterData((state) => {
+                    if (state.password === state.confirmPassword) delete validated.pass;
+                    else
+                        setValidated({ pass: 'not matched' })
+                    return state;
+                });
+                break;
             default:
                 break;
         }
-        console.log(registerData)
-        if (registerData.password === registerData.confirmPassword)
-            console.log(registerData)
-        else
-            setValidated({ 'pass': 'not matched' })
-        setRegisterData({ ...registerData, [name]: value })
-
     }
+
     const submit = (event) => {
         event.preventDefault();
         console.log(registerData)
-
+        AuthService.register(registerData).then(res => console.log(res)).catch(err => console.log(err))
 
     }
 
@@ -64,7 +69,7 @@ const Register = (props) => {
                         <Col md={8} lg={7} xl={5} className="my-4">
                             <Form onSubmit={submit}>
                                 <Form.Group className="mb-3"
-                                    onChange={hanldeChange}>
+                                    onChange={handleChange}>
                                     <Form.Check
                                         inline
                                         label="Are you Doctor?"
@@ -88,7 +93,7 @@ const Register = (props) => {
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>Email*</Form.Label>
-                                    <Form.Control type="email" name="email" isInvalid={validated.email} onChange={hanldeChange} placeholder="Enter your email" required />
+                                    <Form.Control type="email" name="email" isInvalid={validated.email} onChange={handleChange} placeholder="Enter your email" required />
                                     <Form.Control.Feedback type="invalid">
                                         Please enter the valid email.
                                     </Form.Control.Feedback>
@@ -96,12 +101,12 @@ const Register = (props) => {
                                 <br />
                                 <Form.Group>
                                     <Form.Label>Password*</Form.Label>
-                                    <Form.Control type="password" name="password" onChange={hanldeChange} placeholder="Enter your password" required />
+                                    <Form.Control type="password" name="password" isInvalid={validated.pass} onChange={handleChange} placeholder="Enter your password" required />
                                 </Form.Group>
                                 <br />
                                 <Form.Group>
                                     <Form.Label>Confirm Password*</Form.Label>
-                                    <Form.Control type="password" name="confirmPassword" isInvalid={validated.pass} onChange={hanldeChange} placeholder="Confirm your password" required />
+                                    <Form.Control type="password" name="confirmPassword" isInvalid={validated.pass} onChange={handleChange} placeholder="Confirm your password" required />
                                     <Form.Control.Feedback type="invalid">
                                         Those passwords didn't match. Try again.
                                     </Form.Control.Feedback> </Form.Group>
