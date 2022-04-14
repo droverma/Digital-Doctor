@@ -11,7 +11,7 @@ public class PatientServiceImpl implements PatientService{
     private PatientRepository patientRepository;
     @Override
     public Patient savePatient(Patient patient) throws PatientAlreadyExistException {
-        return null;
+        return patientRepository.save(patient);
     }
 
     @Override
