@@ -7,7 +7,7 @@ function AvailableSlotschips(props) {
 
     return (
         <div className= "appointment-button col">
-        <Button className="btn-secondary">{props.slotStartTime} - {props.slotEndTime}</Button>
+        <Button className="btn-secondary button-styling">{props.slotStartTime} - {props.slotEndTime}</Button>
         </div> 
     )
 }
