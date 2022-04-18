@@ -1,232 +1,396 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import DoctorProfileService from "../../services/DoctorProfile.service";
+// import DoctorsForm from "../DoctorProfile";
+import { Form, Modal, Col, Row, Button } from "react-bootstrap";
 
-const DoctorProfile = () => {
-  const [fullName, setFullName] = useState("");
-  const [mobileNo, setMobileNo] = useState("");
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
-  // const [gender, setGender] = useState("");
-  const [yearsOfExperience, setYearsOfExperience] = useState("");
-  const [specialization, setSpecialization] = useState("");
-  const [image, setImage] = useState("");
-  const [clinicName, setClinicName] = useState("");
-  const [clinicPhoneNo, setClinicPhoneNo] = useState("");
-  const [clinicAddress, setClinicAddress] = useState("");
-  const [city, setCity] = useState("");
+const SpecializationList = [
+  { spV: "", spN: "None" },
+  { spV: "physician", spN: "Physician" },
+  {
+    spV: "gynecologist",
+    spN: "Gynecologist",
+  },
+  {
+    spV: "pediatrician",
+    spN: "Pediatrician",
+  },
+  {
+    spV: "orthopedician",
+    spN: "Orthopedician",
+  },
+  {
+    spV: "eye Specialist",
+    spN: "Eye Specialist",
+  },
+  {
+    spV: "psychotherapist",
+    spN: "Psychotherapist",
+  },
+  {
+    spV: "dentist",
+    spN: "Dentist",
+  },
+  {
+    spV: "neurosurgeon",
+    spN: "Neurosurgeon",
+  },
+  {
+    spV: "general Surgeon",
+    spN: "General Surgeon",
+  },
+];
 
-  const nameChangeHandler = (e) => {
-    console.log(e.target.value);
-    setFullName(e.target.value);
+const nameExpression = RegExp(/^[a-zA-Z_ .]+$/);
+const mobileNoExpression = RegExp(/^[0-9\b]+$/);
+const experienceExpression = RegExp(/^[0-9\b]+$/);
+const cityExpression = RegExp(/^[a-zA-Z]+$/);
+const DoctorProfile = (props) => {
+  const [validated, setValidated] = useState({});
+  const [updateDoctorData, setUpdateDoctorData] = useState({
+    doctorName: "",
+    doctorMobileNumber: "",
+    gender: "",
+    yearsOfExperience: "",
+    specialization: "",
+    doctorImage: "",
+    clinicName: "",
+    clinicPhoneNo: "",
+    clinicAddress: "",
+    city: "",
+  });
+  const submitHandler = (e) => {
+    e.preventDefault();
   };
-  const mobileNoChangeHandler = (e) => {
-    console.log(e.target.value);
-    setMobileNo(e.target.value);
-  };
-  const emailChangeHandler = (e) => {
-    console.log(e.target.value);
-    setEmailId(e.target.value);
+  const doctorChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setUpdateDoctorData({ ...updateDoctorData, [name]: value });
+    switch (name) {
+      case "doctorName":
+        if (!value) {
+          setValidated({ doctorName: "Name Cann't Be Empty!" });
+        }
+        if (typeof value !== "undefined") {
+          if (!nameExpression.test(value)) {
+            setValidated({
+              doctorName: "Name Contains Only Alphabates!",
+            });
+          } else if (value.length < 4) {
+            setValidated({
+              doctorName: "Name Should Be Atleast Four Letters",
+            });
+          } else {
+            delete validated.doctorName;
+          }
+        }
+
+        // if (!nameExpression.test(value))
+        //   setValidated({ doctorName: "Name  is invalid" });
+        // else {
+        //   delete validated.doctorName;
+        // }
+        break;
+
+      case "doctorMobileNumber":
+        if (!mobileNoExpression.test(value))
+          setValidated({ doctorMobileNumber: "Mobile No  is invalid" });
+        else {
+          delete validated.doctorMobileNumber;
+        }
+        break;
+
+      case "yearsOfExperience":
+        if (!experienceExpression.test(value))
+          setValidated({ yearsOfExperience: "Mobile No  is invalid" });
+        else {
+          delete validated.yearsOfExperience;
+        }
+        break;
+
+      case "city":
+        if (!cityExpression.test(value))
+          setValidated({ city: "City Name must be of Four Letters." });
+        else {
+          delete validated.city;
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    // console.log(updateDoctorData);
   };
 
-  const passwordChangeHandler = (e) => {
-    console.log(e.target.value);
-    setPassword(e.target.value);
+  const saveChangeHandler = (e) => {
+    DoctorProfileService.addDoctorProfile(updateDoctorData)
+      .then((res) => console.log())
+      .catch((err) => console.log(err));
   };
-  const yearsOfExperienceChangeHandler = (e) => {
-    console.log(e.target.value);
-    setYearsOfExperience(e.target.value);
-  };
-  const SpecializationChangeHandler = (e) => {
-    console.log(e.target.value);
-    setYearsOfExperience(e.target.value);
+  const getDoctorData = () => {
+    DoctorProfileService.doctorProfile()
+      .then((res) => {
+        console.log();
+        const da = res.data[0];
+        // console.log("da", da);
+        setUpdateDoctorData({
+          doctorName: da.doctorName,
+          doctorMobileNumber: da.doctorMobileNumber,
+          gender: da.gender,
+          yearsOfExperience: da.yearsOfExperience,
+          specialization: da.specialization,
+          // doctorImage: da.doctorImage,
+          clinicName: da.clinicName,
+          clinicPhoneNo: da.clinicPhoneNo,
+          clinicAddress: da.clinicAddress,
+          city: da.city,
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
-  const imageChangeHandler = (e) => {
-    console.log(e.target.value);
-    setImage(e.target.value);
-  };
-  const clinicNameChangeHandler = (e) => {
-    console.log(e.target.value);
-    setClinicName(e.target.value);
-  };
-  const clinicPhoneNoChangeHandler = (e) => {
-    console.log(e.target.value);
-    setClinicPhoneNo(e.target.value);
-  };
-  const clinicAddressChangeHandler = (e) => {
-    console.log(e.target.value);
-    setClinicAddress(e.target.value);
-  };
-  const cityChangeHandler = (e) => {
-    console.log(e.target.value);
-    setCity(e.target.value);
+  useEffect(() => {
+    getDoctorData();
+  }, []);
+
+  const clearFormHandler = () => {
+    setUpdateDoctorData({
+      doctorName: "",
+      doctorMobileNumber: "",
+      gender: "",
+      yearsOfExperience: "",
+      specialization: "",
+      doctorImage: "",
+      clinicName: "",
+      clinicPhoneNo: "",
+      clinicAddress: "",
+      city: "",
+    });
   };
 
   return (
     <>
-      <form>
-        <div className="mb-3">
-          <label className="form-label">Full Name:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="inputName"
-            placeholder="Enter Your Full Name"
-            value={fullName}
-            onChange={nameChangeHandler}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Mobile No:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="inputMobileNo"
-            placeholder="Enter Your Mobile No"
-            value={mobileNo}
-            onChange={mobileNoChangeHandler}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Email Address:</label>
-          <input
-            type="email"
-            className="form-control"
-            id="inputEmail"
-            placeholder="Enter Your Email Id"
-            value={emailId}
-            onChange={emailChangeHandler}
-          />
-        </div>
+      <div className="container-fluid">
+        <Form onSubmit={submitHandler}>
+          <Row>
+            <Col md={6} className=" mb-3">
+              <Form.Group>
+                <Form.Label>Full Name:</Form.Label>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  id="doctorName"
+                  name="doctorName"
+                  placeholder="Enter Your Full Name"
+                  value={updateDoctorData.doctorName}
+                  onChange={doctorChangeHandler}
+                  required
+                  isInvalid={validated.doctorName}
+                />
 
-        <div className="mb-3">
-          <label className="form-label">Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Enter Your Password"
-            value={password}
-            onChange={passwordChangeHandler}
-          />
-        </div>
-        {/* <div>
-          <form.Group className="mb-3 row">
-            <label className="form-label">Gender:</label>
-            <div className="col-md-3">
-              {" "}
-              <form.Check inline label="Male" name="gender" type={"radio"} />
-            </div>
-            <div className="col-md-3">
-              <form.Check inline label="Female" name="gender" type={"radio"} />
-            </div>
-          </form.Group>
-        </div> */}
-        <div className="mb-3">
-          <label className="form-label">Year's Of Experience:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="yearsOfExperience"
-            placeholder="Enter Your yearsOfExperience"
-            value={yearsOfExperience}
-            onChange={yearsOfExperienceChangeHandler}
-          />
-        </div>
+                <Form.Control.Feedback type="invalid">
+                  Please enter the valid Name.
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+            <Col md={6} className=" mb-3">
+              <Form.Group>
+                <Form.Label>Mobile No:</Form.Label>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  id="doctorMobileNumber"
+                  name="doctorMobileNumber"
+                  placeholder="Enter Your Mobile No"
+                  value={updateDoctorData.doctorMobileNumber}
+                  onChange={doctorChangeHandler}
+                  required
+                  isInvalid={validated.doctorMobileNumber}
+                />
 
-        <div className="mb-3">
-          <label className="form-label">Specialization:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="specialization"
-            placeholder="Select Your Specialization"
-            value={specialization}
-            onChange={SpecializationChangeHandler}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Upload Your Picture:</label>
-          <input
-            type="file"
-            className="form-control"
-            id="inagedata"
-            accept="image/*"
-            onChange={imageChangeHandler}
-          />
-        </div>
+                <Form.Control.Feedback type="invalid">
+                  Please enter the valid Mobile Number.
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <Form.Group>
+                <Row className="mb-3 " onChange={doctorChangeHandler}>
+                  <Form.Label>Gender:</Form.Label>
+                  <Col md={3}>
+                    <Form.Check
+                      inline
+                      label="Male"
+                      name="gender"
+                      style={{ marginRight: "6px" }}
+                      type={"radio"}
+                      value={"male"}
+                      required
+                      checked={updateDoctorData.gender === "male"}
+                    />
+                  </Col>
+                  <Col md={3}>
+                    <Form.Check
+                      inline
+                      label="Female"
+                      name="gender"
+                      type={"radio"}
+                      value={"female"}
+                      required
+                      checked={updateDoctorData.gender === "female"}
+                    />
+                  </Col>
+                </Row>
+              </Form.Group>
+            </Col>
 
-        <div className="mb-3">
-          <label className="form-label">Clinic Name:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="clinicName"
-            placeholder="Enter Your Clinic Name"
-            value={clinicName}
-            onChange={clinicNameChangeHandler}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Clinic Phone No:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="clinicPhoneNo"
-            placeholder="Enter Your Clinic Phone No"
-            value={clinicPhoneNo}
-            onChange={clinicPhoneNoChangeHandler}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Clinic Address:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="clinicAddress"
-            placeholder="Select Your Clinic Address"
-            value={clinicAddress}
-            onChange={clinicAddressChangeHandler}
-          />
-        </div>
+            <Col md={6} className=" mb-3">
+              <Form.Group>
+                <Form.Label>Upload Your Picture:</Form.Label>
+                <Form.Control
+                  type="file"
+                  className="form-control"
+                  id="doctorImage"
+                  name="doctorImage"
+                  accept="image/*"
+                  onChange={doctorChangeHandler}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6} className="col-md-6 mb-3">
+              <Form.Label className="form-label">
+                Year's Of Experience:
+              </Form.Label>
+              <Form.Control
+                type="text"
+                className="form-control"
+                name="yearsOfExperience"
+                id="yearsOfExperience"
+                placeholder="Enter Your Year's Of Experience"
+                value={updateDoctorData.yearsOfExperience}
+                onChange={doctorChangeHandler}
+                required
+                isInvalid={validated.yearsOfExperience}
+              />
 
-        <div className="mb-3">
-          <label className="form-label">City:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="city"
-            placeholder="Enter Your City"
-            value={city}
-            onChange={cityChangeHandler}
-          />
-        </div>
-        {/* <div style={{ justifyContent: "space-between", display: "flex" }}>
-          <button type="submit" className="btn btn-primary">
-            Sugn-Up
-          </button>
-          <button type="reset" className="btn btn-danger">
-            Cancel
-          </button>
-        </div> */}
-      </form>
+              <Form.Control.Feedback type="invalid">
+                Please enter the valid Years Of Experience.
+              </Form.Control.Feedback>
+            </Col>
+
+            <Col md={6}>
+              <Form.Group>
+                <Form.Label>Specialization:</Form.Label>
+                <Form.Select
+                  className="form-control slct"
+                  id="specialization"
+                  name="specialization"
+                  title="Select Your Specialization"
+                  value={updateDoctorData.specialization}
+                  onChange={doctorChangeHandler}
+                  required
+                >
+                  {SpecializationList.map((e) => {
+                    return (
+                      <option key={e.spV} value={e.spV}>
+                        {e.spN}
+                      </option>
+                    );
+                  })}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6} className=" mb-3">
+              <Form.Group>
+                <Form.Label>Clinic Name:</Form.Label>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  id="clinicName"
+                  name="clinicName"
+                  placeholder="Enter Your Clinic Name"
+                  value={updateDoctorData.clinicName}
+                  onChange={doctorChangeHandler}
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6} className=" mb-3">
+              <Form.Group>
+                <Form.Label>Clinic Phone No:</Form.Label>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  id="clinicPhoneNo"
+                  name="clinicPhoneNo"
+                  placeholder="Enter Your Clinic Phone No"
+                  value={updateDoctorData.clinicPhoneNo}
+                  onChange={doctorChangeHandler}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6} className=" mb-3">
+              <Form.Group>
+                <Form.Label>Clinic Address:</Form.Label>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  id="clinicAddress"
+                  name="clinicAddress"
+                  placeholder="Select Your Clinic Address"
+                  value={updateDoctorData.clinicAddress}
+                  onChange={doctorChangeHandler}
+                />
+              </Form.Group>
+            </Col>
+
+            <Col md={6} className=" mb-3">
+              <Form.Group>
+                <Form.Label>City:</Form.Label>
+                <Form.Control
+                  type="text"
+                  className="form-control"
+                  id="city"
+                  name="city"
+                  placeholder="Enter Your City"
+                  value={updateDoctorData.city}
+                  onChange={doctorChangeHandler}
+                  required
+                  isInvalid={validated.city}
+                />
+
+                <Form.Control.Feedback type="invalid">
+                  Please enter the Name Of Your City.
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+          </Row>
+          <div style={{ justifyContent: "space-between", display: "flex" }}>
+            <Button
+              type="reset"
+              className="btn btn-danger"
+              onClick={clearFormHandler}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="btn btn-primary"
+              onClick={saveChangeHandler}
+            >
+              Save
+            </Button>
+          </div>
+        </Form>
+      </div>
     </>
   );
 };
 
 export default DoctorProfile;
-
-// "": "aashi@gmail.com",
-// "": 9877654210,
-// "": "Aashi Bansal",
-
-// "specialization": "Phyisican",
-// "yearsOfExperience": 2,
-
-// "gender": "F",
-// "password": "123456",
-// "city": "Noida",
-// "doctorImage": "https://thumbs.dreamstime.com/b/smiling-female-doctor-holding-medical-records-lab-coat-her-office-clipboard-looking-camera-56673035.jpg",
-// "dob": "1998-09-12",
-// "clinicName": "",
-// "clinicNumber": 90909090,
-// "clinicAddress": "Noida"
