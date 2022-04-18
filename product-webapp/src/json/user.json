@@ -619,18 +619,25 @@
   ],
   "registerData": [
     {
-      "email": "drishti@gmail.com",
-      "password": "12345",
-      "confirmPassword": "12345",
-      "role": "patient",
-      "id": 1
-    },
-    {
       "role": "doctor",
       "email": "komal@gmail.com",
       "password": "1234",
       "confirmPassword": "1234",
       "id": 2
+    },
+    {
+      "email": "jatin@gmail.com",
+      "password": "123456`",
+      "confirmPassword": "123456`",
+      "role": "doctor",
+      "id": 7
+    },
+    {
+      "email": "vivek@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "role": "patient",
+      "id": 8
     }
   ]
 }

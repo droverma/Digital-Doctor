@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Col, Form, Image, Modal, NavLink, Row } from "react-bootstrap";
 import loginImage from "../../assets/images/register.png";
 import AuthService from "../../services/Auth.service";
-// import '../../assets/style/style.css';
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
 const Register = (props) => {
@@ -19,16 +18,22 @@ const Register = (props) => {
     setRegisterData({ ...registerData, [name]: value });
     switch (name) {
       case "email":
-        if (!emailExpresion.test(value))
-          setValidated({ email: "email is invalid" });
+        if (!emailExpresion.test(value)) setValidated({ email: "invalid" });
         else {
           delete validated.email;
         }
         break;
+      case "password":
+        if (value.length < 6) setValidated({ pass: "invalid" });
+        else {
+          delete validated.pass;
+        }
+        break;
       case "confirmPassword":
         setRegisterData((state) => {
-          if (state.password === state.confirmPassword) delete validated.pass;
-          else setValidated({ pass: "not matched" });
+          if (state.password === state.confirmPassword)
+            delete validated.con_pass;
+          else setValidated({ con_pass: "not matched" });
           return state;
         });
         break;
@@ -41,7 +46,10 @@ const Register = (props) => {
     event.preventDefault();
     console.log(registerData);
     AuthService.register(registerData)
-      .then((res) => console.log(res))
+      .then((res) => {
+        openLoginModal();
+        console.log(res);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -125,6 +133,9 @@ const Register = (props) => {
                     placeholder="Enter your password"
                     required
                   />
+                  <Form.Control.Feedback type="invalid">
+                    The password length must be equal & more than 6.
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <br />
                 <Form.Group>
@@ -132,7 +143,7 @@ const Register = (props) => {
                   <Form.Control
                     type="password"
                     name="confirmPassword"
-                    isInvalid={validated.pass}
+                    isInvalid={validated.con_pass}
                     onChange={handleChange}
                     placeholder="Confirm your password"
                     required
