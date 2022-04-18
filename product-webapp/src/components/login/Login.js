@@ -42,6 +42,7 @@ const Login = (props) => {
         setValidated(true)
         navigate('/updatedoctor')
         props.handleModal();
+        localStorage.setItem('user_email',data.email)
         // AuthService.login().then(res => console.log(res)).catch(err => console.log(err))
 
     }
