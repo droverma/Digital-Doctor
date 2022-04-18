@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Image, Modal, NavLink, Row } from 'react-bootstrap';
 import loginImage from '../../assets/images/loginImage.jpg';
+import { useNavigate } from "react-router-dom";
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
 
 const Login = (props) => {
+    let navigate = useNavigate();
     const [validated, setValidated] = useState(false);
     const [data, setData] = useState({
         "email": "",
@@ -25,13 +27,21 @@ const Login = (props) => {
             else {
                 delete validated.email;
             }
+        if (name === "password")
+            if (value.length < 6)
+                setValidated({ pass: 'invalid' })
+            else {
+                delete validated.pass;
+            }
         console.log(data, validated)
     }
-  
+
     const submit = (event) => {
         event.preventDefault();
         console.log(data)
         setValidated(true)
+        navigate('/updatedoctor')
+        props.handleModal();
         // AuthService.login().then(res => console.log(res)).catch(err => console.log(err))
 
     }
@@ -58,7 +68,10 @@ const Login = (props) => {
                                 <br />
                                 <Form.Group className="mb-3">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" name="password" placeholder="Enter your password" onChange={handleChange} required />
+                                    <Form.Control type="password" name="password" isInvalid={validated.pass} placeholder="Enter your password" onChange={handleChange} required />
+                                    <Form.Control.Feedback type="invalid">
+                                        The password length must be equal & more than 6.
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                                 <br />
                                 <Button className='col-md-12 ms-auto mb-3' type="submit" disabled={Object.entries(validated).length > 0} style={{ backgroundColor: '#0019FF', fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important' }}>
