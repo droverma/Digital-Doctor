@@ -8,16 +8,17 @@
     padding: 30px;
 }
 .doctors-details{
-    width: 100%;
-    height: 100%;
+    margin-left: 55px;
+    width: 90%;
+    height: 86%;
     text-align: center;
     border: 1px solid grey;
     border-radius: 40px;
     background: #E6E6E6;
 }
 .doctor-image{
-    width: 300px;
-    height: 266px;
+    width: 248px;
+    height: 190px;
     
 }
 .calender-doctor-details{
@@ -26,19 +27,51 @@
 .book-appointment{
     text-align: end;
     padding-right: 26px;
+    padding-bottom: 20px;
 }
 .react-calendar{
-    width: 78%;
+    width: 100%;
+}
+.react-calendar button{
+    margin-bottom: 20px ;
 }
 .calender-container{
     text-align: center;
     margin-top: 1% !important;
-    padding-left: 10% !important;
+    /* padding-left: 10% !important; */
 }
 .button-styling{
     background: #E6E6E6 !important;
-    color: #096BEE !important   ;
+    color: #096BEE !important;
+    border-radius: 20px !important;
+    width: 180px;
+    min-width: 160px;
 }
 .button-styling:hover{
     background-color: #36f7ee7a  !important;
+}
+.button-styling::after{
+    background-color: #36f7ee7a  !important;
+    color: black !important;
+}
+.react-calendar__navigation {
+    padding-top: 15px;
+}
+.react-calendar__month-view__weekdays{
+    margin-bottom: 20px;
+}
+.react-calendar__viewContainer{
+    padding: 20px;
+}
+.react-calendar__tile {
+    font-size: 24px;
+}
+.react-calendar__month-view__weekdays{
+    font-size: 24px;
+}
+.react-calendar__navigation__label__labelText{
+    font-size: 24px;
+}
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus{
+    background-color: white !important;
 }
