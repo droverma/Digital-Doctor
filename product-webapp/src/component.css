@@ -1,13 +1,14 @@
-.react-calendar{
+.react-calendar {
     width: 500px;
-} 
-.appointment-button{
-    
 }
-.button-container{
+
+.appointment-button {}
+
+.button-container {
     padding: 30px;
 }
-.doctors-details{
+
+.doctors-details {
     width: 100%;
     height: 100%;
     text-align: center;
@@ -15,30 +16,67 @@
     border-radius: 40px;
     background: #E6E6E6;
 }
-.doctor-image{
+
+.doctor-image {
     width: 300px;
     height: 266px;
-    
 }
-.calender-doctor-details{
+
+.calender-doctor-details {
     padding: 20px;
 }
-.book-appointment{
+
+.book-appointment {
     text-align: end;
     padding-right: 26px;
 }
-.react-calendar{
+
+.react-calendar {
     width: 78%;
 }
-.calender-container{
+
+.calender-container {
     text-align: center;
     margin-top: 1% !important;
     padding-left: 10% !important;
 }
-.button-styling{
+
+.button-styling {
     background: #E6E6E6 !important;
-    color: #096BEE !important   ;
+    color: #096BEE !important;
 }
-.button-styling:hover{
-    background-color: #36f7ee7a  !important;
+
+.button-styling:hover {
+    background-color: #36f7ee7a !important;
+}
+
+.modal-title {
+    text-align: center;
+    font-weight: bolder;
+}
+
+.loginImg {
+    width: 26rem;
+}
+
+#loginButton {
+    background-color: rgb(0, 25, 255);
+    font-weight: bolder;
+}
+
+#loginButton:hover {
+    background-color: #0148b3;
+    font-weight: bolder;
+}
+
+.nav-link {
+    border: 0px;
+    color: #1209a5!important;
+    padding: 0px !important;
+    display: inline !important;
+}
+
+.registerImg {
+    width: 23rem;
+    height: 22rem;
 }

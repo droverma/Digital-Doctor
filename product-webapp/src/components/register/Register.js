@@ -50,7 +50,7 @@ const Register = (props) => {
         AuthService.register(registerData).then(res => {
             openLoginModal();
             console.log(res)
-        }).catch(err => console.log(err))
+        }).catch(err => console.error(err))
 
     }
 
@@ -69,11 +69,11 @@ const Register = (props) => {
             <Modal size='lg' show={props.show} onHide={onHide}>
                 <Modal.Header closeButton />
                 <Modal.Body>
-                    <Modal.Title style={{ textAlign: "center", fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important' }}>Register for Digital Doctor</Modal.Title>
+                    <Modal.Title>Register for Digital Doctor</Modal.Title>
 
                     <Row className='d-flex'>
                         <Col md={5} xl={6} lg={6} className="my-5">
-                            <Image src={loginImage} style={{ width: "23rem", height: '22rem' }} />
+                            <Image src={loginImage} className="registerImg"/>
                         </Col>
                         <Col md={8} lg={7} xl={5} className="my-4">
                             <Form onSubmit={submit}>
@@ -123,12 +123,12 @@ const Register = (props) => {
                                         Those passwords didn't match. Try again.
                                     </Form.Control.Feedback> </Form.Group>
                                 <br />
-                                <Button className='col-md-12 mb-2 ms-auto' type="submit" disabled={Object.entries(validated).length > 0} style={{ backgroundColor: '#0019FF', fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important' }}>
+                                <Button className='col-md-12 mb-2 ms-auto' type="submit" disabled={Object.entries(validated).length > 0} id='loginButton'>
                                     Register
                                 </Button>
                                 <Form.Text muted >
                                     Already have an account? {' '}
-                                    <NavLink style={{ backgroundColor: '#ffffff', border: '0px', color: "#414BB2", padding: '0px', display: 'inline' }} onClick={openLoginModal}>
+                                    <NavLink onClick={openLoginModal}>
                                         {' '} <span>Login Here</span>
                                     </NavLink>
                                 </Form.Text>
