@@ -1,14 +1,15 @@
 package com.stackroute.service;
 
-import com.stackroute.Repository.DoctorRepository;
+import com.stackroute.repository.DoctorRepository;
 import com.stackroute.exceptionhandling.DoctorAlreadyExistException;
 import com.stackroute.exceptionhandling.DoctorDoesNotExistException;
 import com.stackroute.model.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+@Service
 
 public class DoctorServiceImpl implements DoctorService {
     @Autowired

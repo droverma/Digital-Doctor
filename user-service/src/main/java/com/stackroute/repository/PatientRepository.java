@@ -1,10 +1,8 @@
-package com.stackroute.Repository;
+package com.stackroute.repository;
 
 import com.stackroute.model.Patient;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 

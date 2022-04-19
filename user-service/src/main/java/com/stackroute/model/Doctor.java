@@ -21,7 +21,7 @@ public class Doctor {
     private String city;
     private String image;
 
-    }
+}
 
 
 
