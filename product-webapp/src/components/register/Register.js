@@ -9,8 +9,11 @@ const Register = (props) => {
   const [registerData, setRegisterData] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
     role: "",
+    yearsOfExperience: 0,
+    city: '',
+    specialization: '',
+    doctorName: '',
   });
 
   const handleChange = (e) => {
@@ -29,14 +32,14 @@ const Register = (props) => {
           delete validated.pass;
         }
         break;
-      case "confirmPassword":
-        setRegisterData((state) => {
-          if (state.password === state.confirmPassword)
-            delete validated.con_pass;
-          else setValidated({ con_pass: "not matched" });
-          return state;
-        });
-        break;
+      // case "confirmPassword":
+      //   setRegisterData((state) => {
+      //     if (state.password === state.confirmPassword)
+      //       delete validated.con_pass;
+      //     else setValidated({ con_pass: "not matched" });
+      //     return state;
+      //   });
+      //   break;
       default:
         break;
     }
