@@ -58,10 +58,9 @@
 .button-styling:hover {
     background-color: #36f7ee7a !important;
 }
-
-.button-styling::after {
-    background-color: #36f7ee7a !important;
-    color: black !important;
+.button-styling:focus{
+    background-color: #36f7ee7a  !important;
+    box-shadow: 0 0 0 0.25rem #b3b3b380 !important;
 }
 
 .react-calendar__navigation {
@@ -122,4 +121,39 @@
 .registerImg {
     width: 23rem;
     height: 22rem;
+}
+.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
+    background-color: yellow;
+}
+
+@media screen and (min-width:768px) and (max-width: 992px){
+    .doctor-image{
+        width: 180px;
+        height: 150px;  
+    } 
+    .doctors-details{
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width:768px){
+    .doctors-details{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+    }
+    .react-calendar__tile {
+        font-size: 20px;
+    }
+    .react-calendar__month-view__weekdays{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width:460px){
+    .react-calendar__month-view__weekdays{
+        font-size: 12px;
+    }
+    .doctor-image {
+        width: 180px;
+        height: 150px;
+    }
 }
