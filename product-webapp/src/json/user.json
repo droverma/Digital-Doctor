@@ -302,6 +302,18 @@
       "clinicAddress": "120 sec 23b gurgaon ",
       "city": "Gurgaon",
       "id": 25
+    },
+    {
+      "doctorName": "",
+      "doctorMobileNumber": "",
+      "gender": "male",
+      "yearsOfExperience": "",
+      "specialization": "",
+      "clinicName": "B. Dental Care",
+      "clinicPhoneNo": "",
+      "clinicAddress": "120 sec 23b gurgaon ",
+      "city": "Gurgaon",
+      "id": 26
     }
   ],
   "patients": [
