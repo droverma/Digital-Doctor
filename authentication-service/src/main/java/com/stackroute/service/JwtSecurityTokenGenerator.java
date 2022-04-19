@@ -21,4 +21,6 @@ public class JwtSecurityTokenGenerator implements SecurityTokenGenerator{
         map.put("message","authenticated user");
         return map;
     }
+
+
 }
