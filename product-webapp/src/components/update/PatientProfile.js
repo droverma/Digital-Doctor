@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import { Form } from "react-bootstrap";
-import { Button, Col, Form, Modal, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import PatientProfileService from "../../services/PatientProfile.service";
-
+import "../../assets/style/style.css";
 const bGrpData = [
   { bGrpKey: 1, bGrp: "None", bGrpValue: `` },
   { bGrpKey: 2, bGrp: "A+", bGrpValue: `a+` },
@@ -16,9 +16,7 @@ const bGrpData = [
 ];
 
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
-const dOBExpresion = RegExp(
-  /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/
-);
+
 const nameExpresion = RegExp(/^[a-zA-Z]+$/);
 const nameExpresion2 = RegExp(/^[a-zA-Z_. ]+$/);
 
@@ -136,7 +134,7 @@ const PatientProfile = () => {
             setValidated({
               patientMobileNo: "Mobile Number Contains Only Digits",
             });
-          } else if (value.length != 10) {
+          } else if (value.length !== 10) {
             setValidated({
               patientMobileNo: "Mobile Number Should Be Digits",
             });
@@ -149,10 +147,7 @@ const PatientProfile = () => {
       case "patientDOB":
         if (!value) {
           setValidated({ patientDOB: "Date Of Birth Cann't Be Empty!" });
-        }
-        // if (!dOBExpresion.test(value))
-        //   setValidated({ patientDOB: "Date Of Birth is invalid" });
-        else {
+        } else {
           delete validated.patientDOB;
         }
         break;
@@ -173,7 +168,7 @@ const PatientProfile = () => {
       .then((res) => {
         // console.log(res.data);
         const da = res.data[0];
-        console.log(da.patientImage);
+        // console.log(da.patientImage);
         setUpdatePatientData({
           patientFirstName: da.patientFirstName,
           patientLastName: da.patientLastName,
@@ -202,17 +197,17 @@ const PatientProfile = () => {
     <>
       <div className="container-fluid">
         <Form onSubmit={submitHandler}>
-          <Row className="mt-2">
-            <Col md={6} className=" mb-3">
+          <Row className=" mt-md-3 mb-md-5">
+            <Col md={6}>
               <Form.Group>
                 <Row className="mt-3">
-                  <Col md={3}>
-                    <Form.Label>First Name:</Form.Label>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">First Name:</Form.Label>
                   </Col>
-                  <Col md={9}>
+                  <Col md={9} className="areaHei ">
                     <Form.Control
                       type="text"
-                      className="form-control"
+                      className="fSize"
                       id="patientLastName"
                       name="patientFirstName"
                       placeholder="Enter Your First Name"
@@ -229,16 +224,16 @@ const PatientProfile = () => {
               </Form.Group>
             </Col>
 
-            <Col md={6} className=" mb-3">
+            <Col md={6}>
               <Form.Group>
                 <Row className="mt-3">
-                  <Col md={3}>
-                    <Form.Label>Last Name:</Form.Label>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">Last Name:</Form.Label>
                   </Col>
-                  <Col md={9}>
+                  <Col md={9} className="areaHei">
                     <Form.Control
                       type="text"
-                      className="form-control"
+                      className="fSize"
                       id="patientLastName"
                       name="patientLastName"
                       placeholder="Enter Your Last Name"
@@ -255,19 +250,16 @@ const PatientProfile = () => {
             </Col>
           </Row>
 
-          <Row>
+          <Row className=" mt-md-5 mb-md-5">
             <Col md={6}>
-              <Form.Group
-                className="mb-3 "
-                onChange={patientChangeHandler}
-                required
-              >
+              <Form.Group onChange={patientChangeHandler} required>
                 <Row>
-                  <Col md={3}>
-                    <Form.Label>Gender:</Form.Label>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">Gender:</Form.Label>
                   </Col>
-                  <Col md={3}>
+                  <Col md={3} className="areaHei">
                     <Form.Check
+                      className="fSize"
                       inline
                       label="Male"
                       name="patientGender"
@@ -278,8 +270,9 @@ const PatientProfile = () => {
                       checked={updatePatientData?.patientGender === "male"}
                     />
                   </Col>
-                  <Col md={3}>
+                  <Col md={3} className="areaHei">
                     <Form.Check
+                      className="fSize"
                       inline
                       label="Female"
                       name="patientGender"
@@ -290,8 +283,9 @@ const PatientProfile = () => {
                     />
                   </Col>
 
-                  <Col md={3}>
+                  <Col md={3} className="areaHei">
                     <Form.Check
+                      className="fSize"
                       inline
                       label="Other"
                       name="patientGender"
@@ -307,13 +301,15 @@ const PatientProfile = () => {
             <Col md={6}>
               <Form.Group>
                 <Row>
-                  <Col md={3}>
-                    <Form.Label>Upload Your Picture:</Form.Label>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">
+                      Upload Your Picture:
+                    </Form.Label>
                   </Col>
-                  <Col md={9}>
+                  <Col md={9} className="areaHei">
                     <Form.Control
+                      className="fSize"
                       type="file"
-                      className="form-control"
                       id="patientImage"
                       name="patientImage"
                       accept="image/*"
@@ -326,15 +322,16 @@ const PatientProfile = () => {
             </Col>
           </Row>
 
-          <Row className=" mt-2">
-            <Col md={6} className=" mb-3">
+          <Row className=" mt-md-5 mb-md-5">
+            <Col md={6}>
               <Form.Group>
-                <Row className="mt-3">
-                  <Col md={3}>
-                    <Form.Label>Date Of Birth</Form.Label>
+                <Row>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">Date Of Birth</Form.Label>
                   </Col>
-                  <Col md={9}>
+                  <Col md={9} className="areaHei">
                     <Form.Control
+                      className="fSize"
                       type="date"
                       name="patientDOB"
                       placeholder="DD-MM-YYYY"
@@ -352,16 +349,16 @@ const PatientProfile = () => {
               </Form.Group>
             </Col>
 
-            <Col md={6} className=" mb-3">
+            <Col md={6}>
               <Form.Group>
-                <Row className=" mt-3">
-                  <Col md={3}>
-                    <Form.Label>Email Id :</Form.Label>
+                <Row>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">Email Id :</Form.Label>
                   </Col>
-                  <Col md={9}>
+                  <Col md={9} className="areaHei">
                     <Form.Control
                       type="text"
-                      className="form-control"
+                      className="fSize"
                       id="patientEmail"
                       name="patientEmail"
                       placeholder="Enter Your Email Id"
@@ -380,16 +377,16 @@ const PatientProfile = () => {
             </Col>
           </Row>
 
-          <Row className=" mt-2">
-            <Col md={6} className=" mb-3">
+          <Row className=" mt-md-5 mb-md-5">
+            <Col md={6}>
               <Form.Group>
-                <Row className=" mt-3">
-                  <Col md={3}>
-                    <Form.Label>Blood Group</Form.Label>
+                <Row>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">Blood Group</Form.Label>
                   </Col>
-                  <Col md={9}>
-                    <select
-                      className="form-control slct"
+                  <Col md={9} className="areaHei">
+                    <Form.Select
+                      className="form-control slct fSize"
                       name="patientBloodGroup"
                       id="patientBloodGroup"
                       value={updatePatientData.patientBloodGroup}
@@ -402,21 +399,21 @@ const PatientProfile = () => {
                           </option>
                         );
                       })}
-                    </select>
+                    </Form.Select>
                   </Col>
                 </Row>
               </Form.Group>
             </Col>
-            <Col md={6} className=" mb-3">
+            <Col md={6}>
               <Form.Group>
-                <Row className=" mt-3">
-                  <Col md={3}>
-                    <Form.Label>Mobile No:</Form.Label>
+                <Row>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">Mobile No:</Form.Label>
                   </Col>
-                  <Col md={9}>
+                  <Col md={9} className="areaHei">
                     <Form.Control
                       type="text"
-                      className="form-control"
+                      className="fSize"
                       id="patientMobileNo"
                       name="patientMobileNo"
                       placeholder="Enter Your Mobile No"
@@ -434,17 +431,17 @@ const PatientProfile = () => {
             </Col>
           </Row>
 
-          <Row className=" mt-2">
-            <Col md={6} className=" mb-3">
+          <Row className=" mt-md-5 mb-md-5">
+            <Col md={6}>
               <Form.Group>
-                <Row className=" mt-3">
-                  <Col md={3}>
-                    <Form.Label>Height</Form.Label>
+                <Row>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">Height</Form.Label>
                   </Col>
 
-                  <Col md={9}>
+                  <Col md={9} className="areaHei">
                     <Form.Select
-                      className="form-control slct"
+                      className="form-control fSize slct"
                       id="patientHeight"
                       name="patientHeight"
                       value={updatePatientData.patientHeight}
@@ -462,15 +459,15 @@ const PatientProfile = () => {
                 </Row>
               </Form.Group>
             </Col>
-            <Col md={6} className=" mb-3">
+            <Col md={6}>
               <Form.Group>
-                <Row className=" mt-3">
-                  <Col md={3}>
-                    <Form.Label>Weight:</Form.Label>
+                <Row>
+                  <Col md={3} className="areaHei">
+                    <Form.Label className="fSize">Weight:</Form.Label>
                   </Col>
-                  <Col md={9}>
+                  <Col md={9} className="areaHei">
                     <Form.Select
-                      className="form-control slct"
+                      className="form-control fSize slct"
                       id="patientWeight"
                       name="patientWeight"
                       value={updatePatientData.patientWeight}
@@ -490,8 +487,12 @@ const PatientProfile = () => {
             </Col>
           </Row>
 
-          <div style={{ justifyContent: "space-between", display: "flex" }}>
+          <div
+            className="mt-md-5"
+            style={{ justifyContent: "end", display: "flex" }}
+          >
             <Button
+              style={{ marginRight: "10px", height: "50px", width: "120px" }}
               type="submit"
               className="btn btn-primary"
               onClick={submitPatientData}
@@ -499,6 +500,7 @@ const PatientProfile = () => {
               Save
             </Button>
             <Button
+              style={{ width: "120px" }}
               type="reset"
               className="btn btn-danger"
               onClick={clearPatientData}

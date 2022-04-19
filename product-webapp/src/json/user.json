@@ -266,6 +266,42 @@
       "clinicAddress": "120 sec 23b gurgaon ",
       "city": "Gurgaon",
       "id": 22
+    },
+    {
+      "doctorName": "hemant",
+      "doctorMobileNumber": "8687632876",
+      "gender": "male",
+      "yearsOfExperience": "7",
+      "specialization": "dentist",
+      "clinicName": "B. Dental Care",
+      "clinicPhoneNo": "768543628596",
+      "clinicAddress": "120 sec 23b gurgaon ",
+      "city": "Gurgaon",
+      "id": 23
+    },
+    {
+      "doctorName": "hemant",
+      "doctorMobileNumber": "8687632876",
+      "gender": "male",
+      "yearsOfExperience": "7",
+      "specialization": "",
+      "clinicName": "B. Dental Care",
+      "clinicPhoneNo": "768543628596",
+      "clinicAddress": "120 sec 23b gurgaon ",
+      "city": "Gurgaon",
+      "id": 24
+    },
+    {
+      "doctorName": "hemant",
+      "doctorMobileNumber": "8687632876",
+      "gender": "male",
+      "yearsOfExperience": "6",
+      "specialization": "dentist",
+      "clinicName": "B. Dental Care",
+      "clinicPhoneNo": "768543628596",
+      "clinicAddress": "120 sec 23b gurgaon ",
+      "city": "Gurgaon",
+      "id": 25
     }
   ],
   "patients": [
