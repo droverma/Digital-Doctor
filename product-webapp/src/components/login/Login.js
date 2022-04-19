@@ -52,10 +52,10 @@ const Login = (props) => {
             <Modal size='lg' show={props.show} onHide={props.handleModal}>
                 <Modal.Header closeButton />
                 <Modal.Body>
-                    <Modal.Title style={{ textAlign: "center", fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important' }}>Welcome to Digital Doctor</Modal.Title>
+                    <Modal.Title>Welcome to Digital Doctor</Modal.Title>
                     <Row className='d-flex'>
                         <Col md={5} xl={6} lg={6}>
-                            <Image src={loginImage} style={{ width: '26rem' }} />
+                            <Image src={loginImage} className="loginImg"/>
                         </Col>
                         <Col md={8} lg={7} xl={5} className="my-5">
                             <Form onSubmit={submit}>
@@ -75,12 +75,12 @@ const Login = (props) => {
                                     </Form.Control.Feedback>
                                 </Form.Group>
                                 <br />
-                                <Button className='col-md-12 ms-auto mb-3' type="submit" disabled={Object.entries(validated).length > 0} style={{ backgroundColor: '#0019FF', fontWeight: 'bold', fontFamily: 'OpenSans sans-serif !important' }}>
+                                <Button className='col-md-12 ms-auto mb-3' id='loginButton' type="submit" disabled={Object.entries(validated).length > 0}>
                                     Login
                                 </Button>
                                 <Form.Text muted >
                                     Don't have an account? {' '}
-                                    <NavLink style={{ backgroundColor: '#ffffff', border: '0px', color: "#414BB2", padding: '0px', display: 'inline' }} onClick={openRegisterModal}>
+                                    <NavLink onClick={openRegisterModal}>
                                         {' '} Register for free
                                     </NavLink>
                                 </Form.Text>
