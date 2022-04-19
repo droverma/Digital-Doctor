@@ -492,17 +492,22 @@ const PatientProfile = () => {
             style={{ justifyContent: "end", display: "flex" }}
           >
             <Button
-              style={{ marginRight: "10px", height: "50px", width: "120px" }}
+              style={{
+                marginRight: "10px",
+                height: "50px",
+                width: "120px",
+                borderRadius: "10px",
+              }}
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-primary fSize"
               onClick={submitPatientData}
             >
               Save
             </Button>
             <Button
-              style={{ width: "120px" }}
+              style={{ width: "120px", borderRadius: "10px" }}
               type="reset"
-              className="btn btn-danger"
+              className="btn btn-danger fSize"
               onClick={clearPatientData}
             >
               Cancel

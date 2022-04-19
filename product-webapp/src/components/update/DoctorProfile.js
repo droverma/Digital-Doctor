@@ -86,8 +86,8 @@ const DoctorProfile = () => {
             <Col
               md={6}
               style={{
-                border: `${page === 0 ? "2px solid lightgray" : ""}`,
-                color: `${page === 0 ? "smockwhite" : ""}`,
+                border: `${page === 0 ? "1px solid lightgray" : ""}`,
+                backgroundColor: `${page === 0 ? "lightblue" : ""}`,
                 textAlign: "center",
               }}
             >
@@ -96,8 +96,8 @@ const DoctorProfile = () => {
             <Col
               md={6}
               style={{
-                border: `${page === 1 ? "2px solid lightgray" : ""}`,
-                color: `${page === 0 ? "smockwhite" : ""}`,
+                border: `${page === 1 ? "1px solid lightgray" : ""}`,
+                backgroundColor: `${page === 1 ? "lightblue" : ""}`,
                 textAlign: "center",
               }}
             >
@@ -112,9 +112,13 @@ const DoctorProfile = () => {
             style={{ justifyContent: "end", display: "flex" }}
           >
             <Button
-              style={{ marginRight: "15px", width: "120px" }}
-              className={`btn btn-primary ${
-                page === 0 ? "btn btn-secondary" : ""
+              style={{
+                marginRight: "15px",
+                width: "120px",
+                borderRadius: "10px",
+              }}
+              className={`btn btn-primary fSize ${
+                page === 0 ? "btn btn-secondary fSize" : ""
               }`}
               disabled={page === 0}
               onClick={() => {
@@ -124,9 +128,14 @@ const DoctorProfile = () => {
               Prev
             </Button>
             <Button
-              style={{ marginRight: "5px", height: "50px", width: "120px" }}
+              style={{
+                marginRight: "5px",
+                height: "50px",
+                width: "120px",
+                borderRadius: "10px",
+              }}
               onClick={saveChangeHandler}
-              className="btn btn-primary"
+              className="btn btn-primary fSize"
             >
               {page === FormTitles.length - 1 ? "Save" : "Next"}
             </Button>
