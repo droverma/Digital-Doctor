@@ -5,6 +5,7 @@ import { Calendar } from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import '../../component.css';
 import AvailableSlotschips from "./AvailableSlotChips.js";
+import AppointmentService from "../../services/appointment.service";
 
 function AvailableSlotsPatients() {
 
@@ -13,6 +14,7 @@ function AvailableSlotsPatients() {
     const [date, setDate] = useState('');
     const [noSlots, setNoSlots] = useState(false);
     const [details, setDetails] = useState({});
+    const [bookedAppointments, setbookedAppointments] = useState([]);
 
     function changeDate(value, event) {
         let a = value.toString();
@@ -20,29 +22,38 @@ function AvailableSlotsPatients() {
         setDate(date);
     }
 
+    let appointmentService = new AppointmentService();
 
     useEffect(() => {
-        axios.get('http://localhost:3000/availableSlots').then((response) => {
+        appointmentService.getSlots().then((response) => {
             let data = response.data;
             setresult(data);
             setDetails(response.data[1]);
         })
-    }, [])
+    }, []);
+
+    const bookAppointment = () =>{
+        appointmentService.getBookedAppointment().then((response) =>{
+            let data = response.data;
+            setbookedAppointments = data;
+
+        })
+    }
 
     return (
         <div className="container-fluid">
             <div className="row calender-doctor-details">
-                <div className="col calender-container">
+                <div className="col-8 calender-container">
 
                     <Calendar onChange={changeDate} value={value} />
                 </div>
-                <div className="col">
+                <div className="col-4">
                     <div className="doctors-details column">
-                        <div className="col mb-4 mt-4">
+                        <div className="col mb-1 mt-4">
                             <img src="../Doctor_image.jpg"  className="doctor-image" />
                         </div>
                         <div className="col mb-4">
-                            <h2>Dr. Jatin Chugh</h2>
+                            <h6>Dr. Jatin Chugh</h6>
                         </div>
                         <div className="col mb-4">
                             {details.specialization}
@@ -72,7 +83,7 @@ function AvailableSlotsPatients() {
                 }
             </div>
             <div className="book-appointment">
-                <Button className="btn-secondary button-styling" disabled>Book Appointment</Button>
+                <Button className="btn-secondary button-styling" disabled onClick={bookAppointment} >Book Appointment</Button>
             </div>
 
         </div>
