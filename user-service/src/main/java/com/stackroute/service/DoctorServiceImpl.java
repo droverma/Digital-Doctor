@@ -7,6 +7,10 @@ import com.stackroute.model.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d786b1dbefe8444b56aaa2f43be9ad5c63bfe276
 import java.util.List;
 import java.util.Optional;
 @Service

@@ -7,10 +7,7 @@ import com.stackroute.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -25,9 +22,14 @@ public class UserController {
     private SecurityTokenGenerator securityTokenGenerator;
 
     @PostMapping("/register")
-    public User saveUser(@RequestBody User user) {
-        System.out.println("save user contrller");
+    public User saveUser(@RequestBody User user)  {
+        System.out.println("save user controller");
         return userService.saveUser(user);
+
+    }
+    @GetMapping("/docter")
+    public String doctorPage(){
+        return "doctors page";
 
     }
 
