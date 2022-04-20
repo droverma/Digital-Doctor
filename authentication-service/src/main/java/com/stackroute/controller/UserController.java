@@ -2,7 +2,6 @@ package com.stackroute.controller;
 
 import com.stackroute.exception.UserNotFoundException;
 import com.stackroute.models.User;
-import com.stackroute.models.UserRole;
 import com.stackroute.service.SecurityTokenGenerator;
 import com.stackroute.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
