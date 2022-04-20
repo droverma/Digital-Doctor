@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin("*")
 public class UserController {
     private ResponseEntity responseEntity;
     @Autowired
@@ -27,10 +28,11 @@ public class UserController {
      @PostMapping("/doctor")
     public ResponseEntity<Doctor>saveDoctor(@RequestBody Doctor doctor) {
       try{
+          doctor.setDoctorEmail(doctor.getDoctorEmail());
           responseEntity=new ResponseEntity<Doctor>(doctorService.saveDoctor(doctor), HttpStatus.CREATED);
       }
       catch(DoctorAlreadyExistException ex){
-          responseEntity= new ResponseEntity("Doctor Alread Exist",HttpStatus.INTERNAL_SERVER_ERROR);
+          responseEntity= new ResponseEntity("Doctor Already Exist",HttpStatus.INTERNAL_SERVER_ERROR);
 
       }
       return responseEntity;

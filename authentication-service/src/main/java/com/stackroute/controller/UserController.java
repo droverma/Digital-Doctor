@@ -2,6 +2,7 @@ package com.stackroute.controller;
 
 import com.stackroute.exception.UserNotFoundException;
 import com.stackroute.models.User;
+import com.stackroute.models.UserRole;
 import com.stackroute.service.SecurityTokenGenerator;
 import com.stackroute.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/user")
+@CrossOrigin("*")
 public class UserController {
 
     private ResponseEntity responseEntity;
@@ -23,11 +25,13 @@ public class UserController {
 
     @PostMapping("/register")
     public User saveUser(@RequestBody User user)  {
-        System.out.println("save user controller");
+//        user.setEmailId(user.getEmailId());
+        System.out.println(user.getRole());
+        System.out.println("Type: "+ user.getRole().getClass().getSimpleName());
         return userService.saveUser(user);
 
     }
-    @GetMapping("/docter")
+    @GetMapping("/doctor")
     public String doctorPage(){
         return "doctors page";
 

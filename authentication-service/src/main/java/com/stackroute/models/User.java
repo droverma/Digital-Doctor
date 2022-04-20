@@ -1,5 +1,7 @@
 package com.stackroute.models;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 @Entity
@@ -7,6 +9,7 @@ public class User {
     @Id
     private String emailId;
     private String password;
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     public User() {
