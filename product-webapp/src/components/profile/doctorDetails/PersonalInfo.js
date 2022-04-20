@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import "../../../assets/style/style.css";
 
@@ -42,8 +42,13 @@ const SpecializationList = [
 const nameExpression = RegExp(/^[a-zA-Z_ .]+$/);
 const mobileNoExpression = RegExp(/^[0-9\b]+$/);
 const experienceExpression = RegExp(/^[0-9\b]+$/);
-function PersonalInfo({ updateDoctorData, setUpdateDoctorData }) {
-  const [validated, setValidated] = useState({});
+function PersonalInfo({
+  updateDoctorData,
+  setUpdateDoctorData,
+  validated,
+  setValidated,
+}) {
+  // const [validated, setValidated] = useState({});
 
   const doctorChangeHandler = (e) => {
     const { name, value } = e.target;

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import "../../../assets/style/style.css";
 
 const cityExpression = RegExp(/^[a-zA-Z -]+$/);
-function ClinicInfo({ updateDoctorData, setUpdateDoctorData }) {
-  const [validated, setValidated] = useState({});
-
+function ClinicInfo({
+  updateDoctorData,
+  setUpdateDoctorData,
+  validated,
+  setValidated,
+}) {
   const doctorChangeHandler = (e) => {
     const { name, value } = e.target;
     setUpdateDoctorData({ ...updateDoctorData, [name]: value });

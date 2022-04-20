@@ -18,6 +18,7 @@ const DoctorProfile = () => {
     }
   };
 
+  const [validated, setValidated] = useState({});
   const [page, setPage] = useState(0);
   const [updateDoctorData, setUpdateDoctorData] = useState({
     doctorName: "",
@@ -59,13 +60,14 @@ const DoctorProfile = () => {
   }, []);
 
   const FormTitles = ["Personal Info", "Clinic Info"];
-
   const PageDisplay = () => {
     if (page === 0) {
       return (
         <PersonalInfo
           updateDoctorData={updateDoctorData}
           setUpdateDoctorData={setUpdateDoctorData}
+          validated={validated}
+          setValidated={setValidated}
         />
       );
     } else {
@@ -73,6 +75,8 @@ const DoctorProfile = () => {
         <ClinicInfo
           updateDoctorData={updateDoctorData}
           setUpdateDoctorData={setUpdateDoctorData}
+          validated={validated}
+          setValidated={setValidated}
         />
       );
     }
@@ -105,7 +109,7 @@ const DoctorProfile = () => {
             </Col>
             <hr />
           </Row>
-          <div>{PageDisplay()}</div>
+          <Row>{PageDisplay()}</Row>
 
           <div
             className="mt-md-5"
@@ -134,6 +138,7 @@ const DoctorProfile = () => {
                 width: "120px",
                 borderRadius: "10px",
               }}
+              disabled={Object.keys(validated).length !== 0}
               onClick={saveChangeHandler}
               className="btn btn-primary fSize"
             >
