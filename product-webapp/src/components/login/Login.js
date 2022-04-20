@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Col, Form, Image, Modal, NavLink, Row } from 'react-bootstrap';
 import loginImage from '../../assets/images/loginImage.jpg';
 import { useNavigate } from "react-router-dom";
+import AuthService from '../../services/Auth.service';
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
 
 const Login = (props) => {
@@ -10,6 +11,7 @@ const Login = (props) => {
     const [data, setData] = useState({
         "email": "",
         "password": "",
+        "role": ""
     })
 
     const openRegisterModal = () => {
@@ -40,10 +42,12 @@ const Login = (props) => {
         event.preventDefault();
         console.log(data)
         setValidated(true)
-        navigate('/updatedoctor')
-        props.handleModal();
-        localStorage.setItem('user_email',data.email)
-        // AuthService.login().then(res => console.log(res)).catch(err => console.log(err))
+        localStorage.setItem('user_email', data.email)
+        AuthService.login(data).then(res => {
+            console.log(res)
+            props.handleModal();
+            navigate('/updatedoctor')
+        }).catch(err => console.log(err))
 
     }
 
@@ -55,10 +59,33 @@ const Login = (props) => {
                     <Modal.Title>Welcome to Digital Doctor</Modal.Title>
                     <Row className='d-flex'>
                         <Col md={5} xl={6} lg={6}>
-                            <Image src={loginImage} className="loginImg"/>
+                            <Image src={loginImage} className="loginImg" />
                         </Col>
                         <Col md={8} lg={7} xl={5} className="my-5">
                             <Form onSubmit={submit}>
+                                <Form.Group className="mb-3"
+                                    onChange={handleChange}>
+                                    <Form.Check
+                                        inline
+                                        label="Are you Doctor?"
+                                        name="role"
+                                        style={{ marginRight: '6px' }}
+                                        type={'radio'}
+                                        value={'doctor'}
+                                        required
+                                        defaultChecked={data.role === 'doctor'}
+                                    />
+                                    <Form.Check
+                                        inline
+                                        label="Are you Patient?"
+                                        name="role"
+                                        type={'radio'}
+                                        value={'patient'}
+                                        required
+                                        defaultChecked={data.role === 'patient'}
+                                    />
+
+                                </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Email</Form.Label>
                                     <Form.Control type="email" name='email' isInvalid={validated.email} placeholder="Enter your email" onChange={handleChange} required />

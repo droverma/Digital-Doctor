@@ -4,8 +4,8 @@ import AvailableSlotsPatients from "./components/availableSlotsPatients/Availabl
 import About from "./components/landingPage/about/About";
 import Contact from "./components/landingPage/contact/Contact";
 import Header from "./container/header/Header";
-import DoctorProfile from "./components/update/DoctorProfile";
-import PatientProfile from "./components/update/PatientProfile";
+import DoctorProfile from "./components/profile/DoctorProfile";
+import PatientProfile from "./components/profile/PatientProfile";
 
 function App() {
   return (

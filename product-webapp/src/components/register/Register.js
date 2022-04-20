@@ -9,13 +9,18 @@ const Register = (props) => {
   const [registerData, setRegisterData] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
+    doctorImage: "",
     role: "",
+    specialization: '',
+    city: "",
+    yearsOfExperience: 0
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRegisterData({ ...registerData, [name]: value });
+    if (name !== 'confirmPassword')
+      setRegisterData({ ...registerData, [name]: value });
+
     switch (name) {
       case "email":
         if (!emailExpresion.test(value)) setValidated({ email: "invalid" });
@@ -31,7 +36,7 @@ const Register = (props) => {
         break;
       case "confirmPassword":
         setRegisterData((state) => {
-          if (state.password === state.confirmPassword)
+          if (state.password === value)
             delete validated.con_pass;
           else setValidated({ con_pass: "not matched" });
           return state;
@@ -45,11 +50,16 @@ const Register = (props) => {
   const submit = (event) => {
     event.preventDefault();
     console.log(registerData)
-    AuthService.register(registerData).then(res => {
-      openLoginModal();
-      console.log(res)
-    }).catch(err => console.error(err))
-
+    if (registerData.role === 'doctor')
+      AuthService.registerDoctor(registerData).then(res => {
+        openLoginModal();
+        console.log(res)
+      }).catch(err => console.error(err))
+    else
+      AuthService.registerPatient(registerData).then(res => {
+        openLoginModal();
+        console.log(res)
+      }).catch(err => console.error(err))
   }
 
   const openLoginModal = () => {

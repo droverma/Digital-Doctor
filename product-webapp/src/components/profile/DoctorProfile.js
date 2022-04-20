@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import DoctorProfileService from "../../services/DoctorProfile.service";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import PersonalInfo from "./DoctorDetails/PersonalInfo";
-import ClinicInfo from "./DoctorDetails/ClinicInfo";
+import PersonalInfo from "./doctorDetails/PersonalInfo";
+import ClinicInfo from "./doctorDetails/ClinicInfo";
 import "../../assets/style/style.css";
 
 const DoctorProfile = () => {
