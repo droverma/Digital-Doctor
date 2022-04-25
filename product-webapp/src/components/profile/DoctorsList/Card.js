@@ -1,35 +1,26 @@
 import React from "react";
-
+import { Col } from "react-bootstrap";
 const Card = (props) => {
-  var myObjData = [];
-  let { title, description, imageUrl, newsUrl, author, date } = props;
+  // var myObjData = [];
+  // let { title, description, imageUrl, newsUrl, author, date } = props;
 
   return (
     <>
-      <div className="my-3">
-        <div className="card">
-          <img src={imageUrl} className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h5 className="card-title">{title.slice(0, 42)}...</h5>
-            <p className="card-text">{description.slice(0, 60)}...</p>
+      <Col md={4}>
+        <div
+          className="card border-dark mb-3"
+          style={{ maxWidth: "18rem", borderRadius: "20px" }}
+        >
+          <div className="card-body text-dark">
+            <h5 className="card-title">Info card title</h5>
+            <hr />
             <p className="card-text">
-              <small className="text-muted">
-                By {author ? author : "unKnown"} on{" "}
-                {new Date(date).toGMTString()}
-              </small>
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
             </p>
-            <a
-              rel="noreferrer"
-              // href={newsUrl}
-              // target="_blank"
-              onClick={readLaterHandler}
-              className="btn btn-sm btn-primary"
-            >
-              Read Later
-            </a>
           </div>
         </div>
-      </div>
+      </Col>
     </>
   );
 };

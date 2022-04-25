@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProfileDetailsService from "../../../services/profileDetails.service";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "../../../assets/style/style.css";
+import Card from "./Card";
 
 const SpecializationList = [
   { spV: "", spN: "Select Specialization" },
@@ -81,10 +82,6 @@ const DoctorsList = () => {
       .catch((err) => console.log(err));
   };
 
-  // {list.forEach((e) => {
-  //   return console.log(e.doctorName);
-  // })}
-
   return (
     <React.Fragment>
       <Row>
@@ -146,21 +143,10 @@ const DoctorsList = () => {
       </Row>
 
       <Row>
-        <Col md={4}>
-          <div
-            className="card border-dark mb-3"
-            style={{ maxWidth: "18rem", borderRadius: "20px" }}
-          >
-            <div className="card-body text-dark">
-              <h5 className="card-title">Info card title</h5>
-              <hr />
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-            </div>
-          </div>
-        </Col>
+        {/* {list.forEach((e) => {
+     return console.log(e.doctorName);
+   })} */}
+        <Card />
       </Row>
     </React.Fragment>
   );
