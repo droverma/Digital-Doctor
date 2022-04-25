@@ -24,15 +24,7 @@ public class UserController {
 
     @PostMapping("/register")
     public User saveUser(@RequestBody User user)  {
-//        user.setEmailId(user.getEmailId());
-        System.out.println(user.getRole());
-        System.out.println("Type: "+ user.getRole().getClass().getSimpleName());
         return userService.saveUser(user);
-
-    }
-    @GetMapping("/doctor")
-    public String doctorPage(){
-        return "doctors page";
 
     }
 

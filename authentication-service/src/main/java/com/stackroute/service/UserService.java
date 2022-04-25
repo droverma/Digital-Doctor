@@ -13,4 +13,5 @@ public interface UserService {
     User findUserByEmailIdAndPassword(String emailId,String password) throws UserNotFoundException;
     User saveUser(User user) ;
     List<User> getAllUsers();
+
 }

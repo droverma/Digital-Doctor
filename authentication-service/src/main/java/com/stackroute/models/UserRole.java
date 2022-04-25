@@ -6,5 +6,9 @@ public enum UserRole {
     @JsonProperty("doctor")
     DOCTOR,
     @JsonProperty("patient")
-    PATIENT
+    PATIENT;
+
+    UserRole() {
+    }
+
 }

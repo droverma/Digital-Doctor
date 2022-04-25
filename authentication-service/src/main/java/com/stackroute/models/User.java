@@ -21,6 +21,8 @@ public class User {
         this.role = role;
     }
 
+
+
     public String getEmailId() {
         return emailId;
     }
@@ -42,6 +44,7 @@ public class User {
     }
 
     public void setRole(UserRole role) {
+
         this.role = role;
     }
 
