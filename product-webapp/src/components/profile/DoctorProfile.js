@@ -1,56 +1,45 @@
 import React, { useState, useEffect } from "react";
-import DoctorProfileService from "../../services/DoctorProfile.service";
+import ProfileDetailsService from "../../services/profileDetails.service";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import PersonalInfo from "./doctorDetails/PersonalInfo";
-import ClinicInfo from "./doctorDetails/ClinicInfo";
+// import ClinicInfo from "./doctorDetails/ClinicInfo";
 import "../../assets/style/style.css";
 
 const DoctorProfile = () => {
   const saveChangeHandler = (e) => {
-    if (page === FormTitles.length - 1) {
-      DoctorProfileService.addDoctorProfile(updateDoctorData)
-        .then((res) => console.log())
-        .catch((err) => console.log(err));
-      alert("FORM SUBMITTED");
-      console.log(updateDoctorData);
-    } else {
-      setPage((currPage) => currPage + 1);
-    }
+    ProfileDetailsService.addDoctorProfile(updateDoctorData, userId)
+      .then((res) => console.log())
+      .catch((err) => console.log(err));
+    alert("FORM SUBMITTED");
+    console.log(updateDoctorData);
   };
-
+  const [userId, setUserId] = useState("");
   const [validated, setValidated] = useState({});
-  const [page, setPage] = useState(0);
+  // const [page, setPage] = useState(0);
   const [updateDoctorData, setUpdateDoctorData] = useState({
     doctorName: "",
     doctorMobileNumber: "",
-    gender: "",
     yearsOfExperience: "",
     specialization: "",
     doctorImage: "",
-    clinicName: "",
-    clinicPhoneNo: "",
-    clinicAddress: "",
     city: "",
   });
 
   const getDoctorData = () => {
-    DoctorProfileService.doctorProfile()
+    ProfileDetailsService.doctorProfile()
       .then((res) => {
         console.log();
+        // console.log(res);
         const da = res.data[0];
         // console.log("da", da);
         setUpdateDoctorData({
           doctorName: da.doctorName,
           doctorMobileNumber: da.doctorMobileNumber,
-          gender: da.gender,
           yearsOfExperience: da.yearsOfExperience,
           specialization: da.specialization,
-          // doctorImage: da.doctorImage,
-          clinicName: da.clinicName,
-          clinicPhoneNo: da.clinicPhoneNo,
-          clinicAddress: da.clinicAddress,
           city: da.city,
         });
+        setUserId(da.id);
       })
       .catch((err) => console.log(err));
   };
@@ -59,27 +48,16 @@ const DoctorProfile = () => {
     getDoctorData();
   }, []);
 
-  const FormTitles = ["Personal Info", "Clinic Info"];
+  const FormTitles = "Personal Info";
   const PageDisplay = () => {
-    if (page === 0) {
-      return (
-        <PersonalInfo
-          updateDoctorData={updateDoctorData}
-          setUpdateDoctorData={setUpdateDoctorData}
-          validated={validated}
-          setValidated={setValidated}
-        />
-      );
-    } else {
-      return (
-        <ClinicInfo
-          updateDoctorData={updateDoctorData}
-          setUpdateDoctorData={setUpdateDoctorData}
-          validated={validated}
-          setValidated={setValidated}
-        />
-      );
-    }
+    return (
+      <PersonalInfo
+        updateDoctorData={updateDoctorData}
+        setUpdateDoctorData={setUpdateDoctorData}
+        validated={validated}
+        setValidated={setValidated}
+      />
+    );
   };
 
   return (
@@ -88,24 +66,14 @@ const DoctorProfile = () => {
         <div className="form-container">
           <Row className="Title-Bar areaHei">
             <Col
-              md={6}
+              md={12}
               style={{
-                border: `${page === 0 ? "1px solid lightgray" : ""}`,
-                backgroundColor: `${page === 0 ? "lightblue" : ""}`,
+                border: "1px solid lightgray",
+                backgroundColor: "lightblue",
                 textAlign: "center",
               }}
             >
-              <h1 className="fSize">{FormTitles[0]}</h1>
-            </Col>
-            <Col
-              md={6}
-              style={{
-                border: `${page === 1 ? "1px solid lightgray" : ""}`,
-                backgroundColor: `${page === 1 ? "lightblue" : ""}`,
-                textAlign: "center",
-              }}
-            >
-              <h1 className="fSize">{FormTitles[1]}</h1>
+              <h1 className="fSize">{FormTitles}</h1>
             </Col>
             <hr />
           </Row>
@@ -117,22 +85,6 @@ const DoctorProfile = () => {
           >
             <Button
               style={{
-                marginRight: "15px",
-                width: "120px",
-                borderRadius: "10px",
-              }}
-              className={`btn btn-primary fSize ${
-                page === 0 ? "btn btn-secondary fSize" : ""
-              }`}
-              disabled={page === 0}
-              onClick={() => {
-                setPage((currPage) => currPage - 1);
-              }}
-            >
-              Prev
-            </Button>
-            <Button
-              style={{
                 marginRight: "5px",
                 height: "50px",
                 width: "120px",
@@ -142,7 +94,7 @@ const DoctorProfile = () => {
               onClick={saveChangeHandler}
               className="btn btn-primary fSize"
             >
-              {page === FormTitles.length - 1 ? "Save" : "Next"}
+              Save
             </Button>
           </div>
         </div>
