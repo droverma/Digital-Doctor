@@ -6,6 +6,7 @@ import Contact from "./components/landingPage/contact/Contact";
 import Header from "./container/header/Header";
 import DoctorProfile from "./components/profile/DoctorProfile";
 import PatientProfile from "./components/profile/PatientProfile";
+import VideoMeeting from "./components/videoMeeting/VideoMeeting";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/updatedoctor" element={<DoctorProfile />} />
         <Route path="/updatepatient" element={<PatientProfile />} />
         <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
+        <Route path="/video" element={<VideoMeeting />} />
       </Routes>
     </>
   );
