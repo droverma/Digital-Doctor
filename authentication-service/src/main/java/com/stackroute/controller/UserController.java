@@ -13,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/user")
+@CrossOrigin("*")
 public class UserController {
 
     private ResponseEntity responseEntity;
@@ -23,11 +24,13 @@ public class UserController {
 
     @PostMapping("/register")
     public User saveUser(@RequestBody User user)  {
-        System.out.println("save user controller");
+//        user.setEmailId(user.getEmailId());
+        System.out.println(user.getRole());
+        System.out.println("Type: "+ user.getRole().getClass().getSimpleName());
         return userService.saveUser(user);
 
     }
-    @GetMapping("/docter")
+    @GetMapping("/doctor")
     public String doctorPage(){
         return "doctors page";
 

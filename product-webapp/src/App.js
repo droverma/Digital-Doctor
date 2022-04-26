@@ -8,6 +8,7 @@ import DoctorProfile from "./components/profile/DoctorProfile";
 import PatientProfile from "./components/profile/PatientProfile";
 import VideoMeeting from "./components/videoMeeting/VideoMeeting";
 
+import DoctorsList from "./components/profile/DoctorsList/DoctorsList";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/doctorslist" element={<DoctorsList />} />
         <Route path="/updatedoctor" element={<DoctorProfile />} />
         <Route path="/updatepatient" element={<PatientProfile />} />
         <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />

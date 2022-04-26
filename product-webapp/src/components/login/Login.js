@@ -9,7 +9,7 @@ const Login = (props) => {
     let navigate = useNavigate();
     const [validated, setValidated] = useState(false);
     const [data, setData] = useState({
-        "email": "",
+        "emailId": "",
         "password": "",
         "role": ""
     })
@@ -23,7 +23,7 @@ const Login = (props) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setData({ ...data, [name]: value });
-        if (name === "email")
+        if (name === "emailId")
             if (!emailExpresion.test(value))
                 setValidated({ email: 'email is invalid' })
             else {
@@ -42,9 +42,9 @@ const Login = (props) => {
         event.preventDefault();
         console.log(data)
         setValidated(true)
-        localStorage.setItem('user_email', data.email)
         AuthService.login(data).then(res => {
-            console.log(res)
+            localStorage.setItem("userEmail", data.emailId);
+            localStorage.setItem("jwt-token", res.data.token);
             props.handleModal();
             navigate('/updatedoctor')
         }).catch(err => console.log(err))
@@ -88,7 +88,7 @@ const Login = (props) => {
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Email</Form.Label>
-                                    <Form.Control type="email" name='email' isInvalid={validated.email} placeholder="Enter your email" onChange={handleChange} required />
+                                    <Form.Control type="email" name='emailId' isInvalid={validated.email} placeholder="Enter your email" onChange={handleChange} required />
                                     <Form.Control.Feedback type="invalid">
                                         Please enter the valid email.
                                     </Form.Control.Feedback>

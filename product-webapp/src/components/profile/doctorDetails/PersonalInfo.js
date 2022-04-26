@@ -42,6 +42,7 @@ const SpecializationList = [
 const nameExpression = RegExp(/^[a-zA-Z_ .]+$/);
 const mobileNoExpression = RegExp(/^[0-9\b]+$/);
 const experienceExpression = RegExp(/^[0-9\b]+$/);
+const cityExpression = RegExp(/^[a-zA-Z -]+$/);
 function PersonalInfo({
   updateDoctorData,
   setUpdateDoctorData,
@@ -92,6 +93,25 @@ function PersonalInfo({
             delete validated.doctorMobileNumber;
           }
         }
+        break;
+      case "city":
+        if (!value) {
+          setValidated({ city: "City Name Cann't Be Empty!" });
+        }
+        if (typeof value !== "undefined") {
+          if (!cityExpression.test(value)) {
+            setValidated({
+              city: "City Name Contains Only Alphabates!",
+            });
+          } else if (value.length < 4) {
+            setValidated({
+              city: "City Name Should Be Atleast Four Letters",
+            });
+          } else {
+            delete validated.city;
+          }
+        }
+
         break;
 
       case "yearsOfExperience":
@@ -170,40 +190,28 @@ function PersonalInfo({
           </Form.Group>
         </Col>
       </Row>
+
       <Row className=" mt-md-5 mb-md-5">
-        <Col md={6}>
+        <Col md={6} className=" mb-3">
           <Form.Group>
-            <Row className="mb-3 " onChange={doctorChangeHandler}>
-              <Form.Label className="areaHei fSize">Gender:</Form.Label>
-              <Col md={3}>
-                <Form.Check
-                  className="areaHei fSize"
-                  inline
-                  label="Male"
-                  name="gender"
-                  style={{ marginRight: "6px" }}
-                  type={"radio"}
-                  value={"male"}
-                  required
-                  checked={updateDoctorData.gender === "male"}
-                />
-              </Col>
-              <Col md={3}>
-                <Form.Check
-                  className="areaHei fSize"
-                  inline
-                  label="Female"
-                  name="gender"
-                  type={"radio"}
-                  value={"female"}
-                  required
-                  checked={updateDoctorData.gender === "female"}
-                />
-              </Col>
-            </Row>
+            <Form.Label className="areaHei fSize">City:</Form.Label>
+            <Form.Control
+              type="text"
+              className="areaHei fSize"
+              id="city"
+              name="city"
+              placeholder="Enter Your City"
+              value={updateDoctorData.city}
+              onChange={doctorChangeHandler}
+              required
+              isInvalid={validated.city}
+            />
+
+            <Form.Control.Feedback type="invalid">
+              Please enter the Name Of Your City.
+            </Form.Control.Feedback>
           </Form.Group>
         </Col>
-
         <Col md={6} className=" mb-3">
           <Form.Group>
             <Form.Label className="areaHei fSize">

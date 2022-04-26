@@ -6,14 +6,19 @@ const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
 const Register = (props) => {
   const [validated, setValidated] = useState({});
+  // const [registerData, setRegisterData] = useState({
+  //   doctorEmail: "",
+  //   specialization: '',
+  //   yearsOfExperience: 0,
+  //   doctorName: '',
+  //   password: "",
+  //   city: "",
+  //   image: ""
+  // });
   const [registerData, setRegisterData] = useState({
-    email: "",
+    emailId: "",
     password: "",
-    doctorImage: "",
-    role: "",
-    specialization: '',
-    city: "",
-    yearsOfExperience: 0
+    role: ""
   });
 
   const handleChange = (e) => {
@@ -22,7 +27,7 @@ const Register = (props) => {
       setRegisterData({ ...registerData, [name]: value });
 
     switch (name) {
-      case "email":
+      case "emailId":
         if (!emailExpresion.test(value)) setValidated({ email: "invalid" });
         else {
           delete validated.email;
@@ -110,7 +115,7 @@ const Register = (props) => {
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Email*</Form.Label>
-                  <Form.Control type="email" name="email" isInvalid={validated.email} onChange={handleChange} placeholder="Enter your email" required />
+                  <Form.Control type="email" name="emailId" isInvalid={validated.email} onChange={handleChange} placeholder="Enter your email" required />
                   <Form.Control.Feedback type="invalid">
                     Please enter the valid email.
                   </Form.Control.Feedback>
