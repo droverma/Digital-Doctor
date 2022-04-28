@@ -11,6 +11,9 @@ class AppointmentService {
     getDataAppointmentViewForPatients(){
         return axios.get('http://localhost:3000/appointmentsViewForPatients')
     }
+    getDataAppointmentViewForDoctors(){
+        return axios.get('http://localhost:3000/appointmentsViewForDoctors')
+    }
     deleteDataAppointmentViewForPatients(id){
         return axios.delete('http://localhost:3000/appointmentsViewForPatients:'+id)
     }

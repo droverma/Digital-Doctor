@@ -6,6 +6,7 @@ import moment from "moment";
 import Pagination from "../pagination/Pagination";
 import Posts from "../pagination/Posts";
 import ReactTooltip from "react-tooltip";
+import { Tooltip } from "@material-ui/core";
 
 
 function AppointmentViewForPatients() {
@@ -107,14 +108,14 @@ function AppointmentViewForPatients() {
 
     const filterPaginate = (arr) => {
 
-        if(arr.length > postsPerPage){
+        if (arr.length > postsPerPage) {
 
             console.log(arr);
             const indexOfLastPost = currentPage * postsPerPage;
             const indexOfFirstPost = indexOfLastPost - postsPerPage;
             const currentPosts = arr.slice(indexOfFirstPost, indexOfLastPost);
             setresult(currentPosts);
-        }else{
+        } else {
             setresult(arr);
         }
     }
@@ -122,84 +123,83 @@ function AppointmentViewForPatients() {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-5 col-md-5 filter-container-box">
-                    <div class="card card-with-image">
-                        <div>
-                            <img src="https://media2.giphy.com/media/EAkvNkimgOxvIryUzE/giphy.gif" class="card-img-top" alt="..." />
-                        </div>
-                        <div class="card-body search-fields">
-                            <h5 class="card-title mb-4">Search Fields</h5>
-                            <form onSubmit={handleSubmit}>
-                                <input type="search" className="form-control mb-4" placeholder="Search by Specialization"
-                                    name="specialization" value={filters.specialization} onChange={handleChange}
-                                    autoComplete="off   " />
-                                <input type="date" className="form-control mb-4"
-                                    name="date" value={filters.date} onChange={handleChange} />
-                                <div className="text-end">
-                                    <button type="button" className="btn btn-secondary" onClick={resetData}
-                                    data-tip data-for="reset-filter" >Reset</button>
-                                    <button type="submit" className="btn btn-secondary ms-4"
-                                    data-tip data-for="filter" >Filter</button>
-                                </div>
+        <div className="container-fluid row">
+            <div className="col-md-4 col-sm-12 filter-container-box">
+                <div class="card card-with-image">
+                    <div>
+                        <img src="https://media2.giphy.com/media/EAkvNkimgOxvIryUzE/giphy.gif" class="card-img-top" alt="..." />
+                    </div>
+                    <div class="card-body search-fields">
+                        <h5 class="card-title mb-4">Search Fields</h5>
+                        <form onSubmit={handleSubmit}>
+                            <input type="search" className="form-control mb-4" placeholder="Search by Specialization"
+                                name="specialization" value={filters.specialization} onChange={handleChange}
+                                autoComplete="off   " />
+                            <input type="date" className="form-control mb-4"
+                                name="date" value={filters.date} onChange={handleChange} />
+                            <div className="text-end">
+                                <Tooltip
+                                    title="Reset Filters"
+                                    placement="top">
+                                    <button type="button" className="btn btn-secondary buttons"
+                                     onClick={resetData}>Reset</button></Tooltip>
+                                 <Tooltip
+                                    title="Filter Results"
+                                    placement="top">
+                                 <button type="submit" className="btn btn-secondary buttons ms-4"
+                                        >Filter</button>
+                                </Tooltip>
+                            </div>
 
-                            </form>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
-                <div className="col-7 col-md-7 column m-2">
-                    <div className="text-end">
+            </div>
+            <div className="col-md-8 column m-2">
+                <div className="text-end">
                     <Posts posts={currentPosts} loading={loading} />
                     <Pagination
                         postsPerPage={postsPerPage}
                         totalPosts={totalPosts}
                         paginate={paginate}
-                        />
-                    </div>
-                    <div className="col mb-4">
-                        <nav>
-                            <div className="nav nav-tabs row" id="nav-tab" role="tablist">
-                                <button className={`nav-link ${activetab === "UPCOMING" ? 'active' : ''} col`} id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"
-                                    onClick={() => setactivetab("UPCOMING")}>Upcoming Appointments</button>
-                                <button className={`nav-link ${activetab === "PAST" ? 'active' : ''} col`} id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
-                                    onClick={() => setactivetab("PAST")}>Past Appointments</button>
-                                <button className={`nav-link ${activetab === "CANCELED" ? 'active' : ''} col`} id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"
-                                    onClick={() => setactivetab("CANCELED")}>Cancelled Appointments</button>
-                            </div>
-                        </nav>
-                    </div>
-                    <div className="tab-content" id="nav-tabContent">
-                        <div className="tab-pane fade show active row" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                            {
-                                result.map((response) => {
-                                    return (
-                                        <CardAppointmentVIewForPatients
-                                            doctorEmail={response.doctorEmail}
-                                            specialization={response.specialization}
-                                            appointmentDate={response.appointmentDate}
-                                            appointmentStartTime={response.appointmentStartTime}
-                                            appointmentEndTime={response.appointmentEndTime}
-                                            appointmentStatus={response.appointmentStatus}
-                                            appointmentId={response.appointmentId}
-                                            doctorImage = {response.doctorImage}
-                                        />
-                                    )
-                                })
-
-                            }
-
+                    />
+                </div>
+                <div className="col mb-4">
+                    <nav>
+                        <div className="nav nav-tabs row" id="nav-tab" role="tablist">
+                            <button className={`nav-link ${activetab === "UPCOMING" ? 'active' : ''} col`} id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"
+                                onClick={() => setactivetab("UPCOMING")}>Upcoming Appointments</button>
+                            <button className={`nav-link ${activetab === "PAST" ? 'active' : ''} col`} id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
+                                onClick={() => setactivetab("PAST")}>Past Appointments</button>
+                            <button className={`nav-link ${activetab === "CANCELED" ? 'active' : ''} col`} id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"
+                                onClick={() => setactivetab("CANCELED")}>Cancelled Appointments</button>
                         </div>
+                    </nav>
+                </div>
+                <div className="tab-content" id="nav-tabContent">
+                    <div className="tab-pane fade show active row" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        {
+                            result.map((response) => {
+                                return (
+                                    <CardAppointmentVIewForPatients
+                                        doctorEmail={response.doctorEmail}
+                                        specialization={response.specialization}
+                                        appointmentDate={response.appointmentDate}
+                                        appointmentStartTime={response.appointmentStartTime}
+                                        appointmentEndTime={response.appointmentEndTime}
+                                        appointmentStatus={response.appointmentStatus}
+                                        appointmentId={response.appointmentId}
+                                        doctorImage={response.doctorImage}
+                                    />
+                                )
+                            })
+
+                        }
+
                     </div>
                 </div>
             </div>
-            <ReactTooltip id="reset-filter" place="top" effect="solid" delayShow={400}>
-                     Reset Applied Filters
-            </ReactTooltip>
-            <ReactTooltip id="filter" place="top" effect="solid" delayShow={400}>
-                     Filter Results
-            </ReactTooltip>
         </div>
     )
 
