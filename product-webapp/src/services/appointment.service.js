@@ -8,6 +8,12 @@ class AppointmentService {
     getBookedAppointment() {
         return axios.post('api/v1/patient/appointmentSlots', {});
     }
+    getDataAppointmentViewForPatients(){
+        return axios.get('http://localhost:3000/appointmentsViewForPatients')
+    }
+    deleteDataAppointmentViewForPatients(id){
+        return axios.delete('http://localhost:3000/appointmentsViewForPatients:'+id)
+    }
 
 
 }
