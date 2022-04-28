@@ -36,9 +36,7 @@ const ContextProvider = ({ children }) => {
 
         //         myVideo.current.srcObject = currentStream;
         //     });
-        debugger
         socket.on('me', (id) => {
-            debugger
             setMe(id)
         });
         // if (webcamOn && !videoTrack) {
@@ -51,12 +49,6 @@ const ContextProvider = ({ children }) => {
             setCallerSignal(data.signal)
         })
     })
-
-    // useEffect(() => {
-    //     if (webcamOn && !videoTrack) {
-    //         getVideo();
-    //     }
-    // })
 
     const createId = () => {
         socket.on('me', (id) => setMe(id));

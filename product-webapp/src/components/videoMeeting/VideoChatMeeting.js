@@ -7,11 +7,8 @@ import { Button } from "@mui/material";
 import { red } from "@mui/material/colors";
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Modal, Row } from 'react-bootstrap';
-// import io from "socket.io-client";
 import { SocketContext } from '../../context/Context';
 import { JoiningMeeting } from "./JoiningMeeting";
-
-// const socket = io.connect('http://localhost:5000')
 
 const DoctorVideoChat = () => {
     const {
@@ -183,7 +180,7 @@ const DoctorVideoChat = () => {
     //     window.location.reload();
     // };
     return isMeetingStarted ? <Row className="m-md-0" style={{ backgroundColor: 'black' }}>
-        <Col md={callAccepted ? 5 : 9}>
+        <Col md={callAccepted ? 5 : 9} className="column">
             <audio ref={micRef} autoPlay muted />
 
             {webcamOn ?
@@ -193,7 +190,7 @@ const DoctorVideoChat = () => {
                             height={"100%"}
                             width={"100%"}
                             ref={myVideo}
-                            style={{ height: '33rem' }}
+                            className="video"
                             autoPlay
                             playsInline
                             muted
