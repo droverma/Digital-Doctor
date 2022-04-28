@@ -107,7 +107,7 @@ const Login = (props) => {
                                 </Button>
                                 <Form.Text muted >
                                     Don't have an account? {' '}
-                                    <NavLink onClick={openRegisterModal}>
+                                    <NavLink onClick={openRegisterModal} id='link' >
                                         {' '} Register for free
                                     </NavLink>
                                 </Form.Text>

@@ -6,7 +6,6 @@ import { SocketContext } from '../../context/Context';
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
 const Register = (props) => {
-  const { idToCall, setIdToCall, callUser } = useContext(SocketContext);
 
   const [validated, setValidated] = useState({});
   // const [registerData, setRegisterData] = useState({
@@ -134,17 +133,17 @@ const Register = (props) => {
                 <br />
                 <Form.Group>
                   <Form.Label>Confirm Password*</Form.Label>
-                  <Form.Control type="password" name="confirmPassword" isInvalid={validated.con_pass} onChange={(e) => setIdToCall(e.target.value)} placeholder="Confirm your password" required />
+                  <Form.Control type="password" name="confirmPassword" isInvalid={validated.con_pass} onChange={handleChange} placeholder="Confirm your password" required />
                   <Form.Control.Feedback type="invalid">
                     Those passwords didn't match. Try again.
                   </Form.Control.Feedback> </Form.Group>
                 <br />
-                <Button className='col-md-12 mb-2 ms-auto' type="submit" onClick={() => callUser(idToCall)} disabled={Object.entries(validated).length > 0} id='loginButton'>
+                <Button className='col-md-12 mb-2 ms-auto' type="submit" disabled={Object.entries(validated).length > 0} id='loginButton'>
                   Register
                 </Button>
                 <Form.Text muted >
                   Already have an account? {' '}
-                  <NavLink onClick={openLoginModal}>
+                  <NavLink onClick={openLoginModal} id="link">
                     {' '} <span>Login Here</span>
                   </NavLink>
                 </Form.Text>

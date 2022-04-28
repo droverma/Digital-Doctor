@@ -7,7 +7,7 @@ import Header from "./container/header/Header";
 import DoctorProfile from "./components/profile/DoctorProfile";
 import PatientProfile from "./components/profile/PatientProfile";
 import PatientVideoChat from "./components/videoMeeting/PatientVideoChat";
-import DoctorVideoChat from "./components/videoMeeting/DoctorVideoChat";
+import VideoChatMeeting from "./components/videoMeeting/VideoChatMeeting";
 import AppointmentViewForPatients from "./components/appointmentViewForPatients/AppointmentViewForPatients";
 import AppointmentViewForDoctors from "./components/appointmentViewForDoctors/AppointmentViewForDoctors";
 
@@ -25,7 +25,7 @@ function App() {
         <Route path="/updatepatient" element={<PatientProfile />} />
         <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
         <Route path="/video" element={<PatientVideoChat />} />
-        <Route path="/vid" element={<DoctorVideoChat />} />
+        <Route path="/vid" element={<VideoChatMeeting />} />
         <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
         <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
       </Routes>

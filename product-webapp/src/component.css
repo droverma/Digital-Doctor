@@ -1,6 +1,7 @@
 .react-calendar {
     width: 500px;
 }
+
 .button-container {
     padding: 30px;
 }
@@ -30,17 +31,20 @@
     padding-right: 26px;
     padding-bottom: 20px;
 }
-.bookedAvailableButton{
+
+.bookedAvailableButton {
     padding-bottom: 20px;
     padding-left: 20px !important;
 }
-.bookedButtonColor{
+
+.bookedButtonColor {
     height: 24px;
     width: 50px;
     background: red;
     margin-left: auto;
 }
-.availableButtonColor{
+
+.availableButtonColor {
     height: 24px;
     width: 50px;
     background: #a2dba2;
@@ -66,35 +70,42 @@
     width: 180px;
     min-width: 160px;
 }
-.appointment-button-styling{
+
+.appointment-button-styling {
     border-radius: 20px !important;
     width: 120px;
     min-width: 120px;
 }
+
 .appointment-button-styling:hover {
     background-color: #36f7ee7a !important;
 }
-.appointment-button-styling:focus{
-    background-color: #36f7ee7a  !important;
+
+.appointment-button-styling:focus {
+    background-color: #36f7ee7a !important;
     box-shadow: 0 0 0 0.25rem #b3b3b380 !important;
 }
 
 .button-styling:hover {
     background-color: #36f7ee7a !important;
 }
-.button-styling:focus{
-    background-color: #36f7ee7a  !important;
+
+.button-styling:focus {
+    background-color: #36f7ee7a !important;
     box-shadow: 0 0 0 0.25rem #b3b3b380 !important;
 }
-.appointment-button{
-     background: #E6E6E6 !important;
+
+.appointment-button {
+    background: #E6E6E6 !important;
     color: #096BEE !important;
 }
-.available-button-color{
+
+.available-button-color {
     color: black !important;
     background-color: #a2dba2 !important;
 }
-.booked-button-color{
+
+.booked-button-color {
     border-radius: 20px !important;
     width: 180px;
     min-width: 160px;
@@ -102,6 +113,7 @@
     color: white !important;
     cursor: not-allowed !important;
 }
+
 .react-calendar__navigation {
     padding-top: 15px;
 }
@@ -150,114 +162,140 @@
     font-weight: bolder;
 }
 
-.nav-link {
+#link {
     border: 0px;
     color: #1209a5!important;
     padding: 0px !important;
     display: inline !important;
+    font-size: 15px;
 }
 
 .registerImg {
     width: 23rem;
     height: 22rem;
 }
-.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
     background-color: yellow;
 }
-.filter-container{
+
+.filter-container {
     border: 1px solid blue;
 }
-.card{
+
+.card {
     width: 25rem;
     border-radius: 20px !important;
     box-shadow: 6px 7px 16px 5px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-
 }
-.card-with-image{
+
+.card-with-image {
     width: 28rem;
-    border-radius:0 !important;
+    border-radius: 0 !important;
     border: 1px !important;
 }
-.person-icon{
+
+.person-icon {
     width: 2em !important;
     height: 2em !important;
 }
-.container-fluid{
+
+.container-fluid {
     /* padding: 20px; */
 }
-    .tab-content>.active{
-        display: flex !important;
-    }
-.nav-link{
+
+.tab-content>.active {
+    display: flex !important;
+}
+
+.nav-link {
     font-size: 20px;
 }
-.nav-link.active{
+
+.nav-link.active {
     background-color: lightgrey !important;
 }
-.col-7{
+
+.col-7 {
     width: 56% !important;
 }
-.nav-link{
+
+.nav-link {
     color: black!important;
     font-weight: 500;
 }
-.card-img-top{
+
+.card-img-top {
     height: 300px;
 }
-.filter-container-box{
+
+.filter-container-box {
     padding-left: 50px !important;
     background: white;
 }
-.search-fields{
+
+.search-fields {
     background: #a6c1cb;
     /* background: #0091c9; */
 }
-.cancel-icon{
+
+.cancel-icon {
     height: 2rem !important;
     width: 2rem !important;
     color: red;
-    cursor: pointer;    
+    cursor: pointer;
 }
-.call-icon{
+
+.call-icon {
     height: 2rem !important;
     width: 2rem !important;
     color: blue;
     cursor: pointer;
 }
-.calendar-icon{
+
+.calendar-icon {
     color: #138b21;
 }
-.clock-icon{
+
+.clock-icon {
     color: #138b21;
 }
-.appointment-date{
+
+.appointment-date {
     padding: 0px !important;
 }
-.doctors-image{
+
+.doctors-image {
     height: 130px;
     width: 150px;
     border-radius: 12px;
 }
-.page-link{
+
+.page-link {
     cursor: pointer;
 }
+
 .page-link:focus:active {
     background-color: #e9ecef !important;
 }
-.page-selected:focus{
+
+.page-selected:focus {
     background-color: grey;
 }
-@media screen and (min-width:768px) and (max-width: 992px){
-    .doctor-image{
+
+@media screen and (min-width:768px) and (max-width: 992px) {
+    .doctor-image {
         width: 180px;
-        height: 150px;  
-    } 
-    .doctors-details{
+        height: 150px;
+    }
+    .doctors-details {
         margin-left: 20px;
     }
 }
-@media screen and (max-width:768px){
-    .doctors-details{
+
+@media screen and (max-width:768px) {
+    .doctors-details {
         margin-left: auto;
         margin-right: auto;
         margin-top: 50px;
@@ -265,12 +303,13 @@
     .react-calendar__tile {
         font-size: 20px;
     }
-    .react-calendar__month-view__weekdays{
+    .react-calendar__month-view__weekdays {
         font-size: 14px;
     }
 }
-@media screen and (max-width:460px){
-    .react-calendar__month-view__weekdays{
+
+@media screen and (max-width:460px) {
+    .react-calendar__month-view__weekdays {
         font-size: 12px;
     }
     .doctor-image {
