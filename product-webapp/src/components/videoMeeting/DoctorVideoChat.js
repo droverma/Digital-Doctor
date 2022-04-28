@@ -15,6 +15,7 @@ import { JoiningMeeting } from "./JoiningMeeting";
 
 const DoctorVideoChat = () => {
     const {
+        stream,
         callAccepted,
         myVideo,
         videoTrack,
@@ -30,7 +31,10 @@ const DoctorVideoChat = () => {
         micOn,
         userVideo,
         handleToggleMic,
-        handleToggleWebcam } = useContext(SocketContext);
+        handleToggleWebcam,
+        micRef,
+        getAudio,
+        audioTrack } = useContext(SocketContext);
 
     // const [me, setMe] = useState("")
     // const [stream, setStream] = useState()
@@ -54,20 +58,16 @@ const DoctorVideoChat = () => {
     // const connectionRef = useRef(null)
 
     useEffect(() => {
-        // socket.on("me", (id) => {
-        //     setMe(id)
-        // })
-
-        // socket.on("callUser", (data) => {
-        //     setReceivingCall(true)
-        //     setCaller(data.from)
-        //     setName(data.name)
-        //     setCallerSignal(data.signal)
-        // })
         if (webcamOn && !videoTrack) {
             getVideo();
         }
-    })
+    }, [webcamOn])
+
+    useEffect(() => {
+        if (micOn && !audioTrack) {
+            getAudio();
+        }
+    }, [webcamOn])
 
     // useEffect(() => {
     //     if (webcamOn && !videoTrack) {
@@ -184,15 +184,22 @@ const DoctorVideoChat = () => {
     // };
     return isMeetingStarted ? <Row className="m-md-0" style={{ backgroundColor: 'black' }}>
         <Col md={callAccepted ? 5 : 9}>
-            {console.log(webcamOn)}
+            <audio ref={micRef} autoPlay muted />
+
             {webcamOn ?
-                <video
-                    height={"100%"}
-                    width={"100%"}
-                    ref={myVideo}
-                    style={{ height: '33rem' }}
-                    autoPlay
-                /> : <div style={{
+                <>
+                    {stream &&
+                        <video
+                            height={"100%"}
+                            width={"100%"}
+                            ref={myVideo}
+                            style={{ height: '33rem' }}
+                            autoPlay
+                            playsInline
+                            muted
+                        />}
+                </>
+                : <div style={{
                     backgroundColor: "black",
                     color: 'white',
                     height: '33rem',
@@ -201,10 +208,11 @@ const DoctorVideoChat = () => {
                 }}> <h1>Name</h1> </div>}
 
         </Col>
-        {console.log(callAccepted, callEnded, userVideo)}
         {callAccepted && !callEnded ?
             <Col md={4}>
-                <video ref={userVideo} height={"100%"} width={"100%"} autoPlay style={{ height: '33rem' }} />
+                <audio ref={micRef} autoPlay />
+
+                <video id="user" muted playsInline ref={userVideo} height={"100%"} width={"100%"} autoPlay style={{ height: '33rem' }} />
             </Col> :
             null}
         {receivingCall && !callAccepted ? (

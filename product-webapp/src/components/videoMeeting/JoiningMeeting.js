@@ -76,7 +76,7 @@ export function JoiningMeeting({
                         muted
                         width={'100%'}
                         height={'100%'}
-                        style={{ width: '40rem', borderRadius: '10px' }}
+                        style={{ width: '33rem', borderRadius: '10px' }}
                         ref={videoPlayerRef}
                         controls={false}
                     />

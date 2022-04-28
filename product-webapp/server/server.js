@@ -27,10 +27,6 @@ io.on("connection", (socket) => {
 		io.to(to).emit("msgRcv", { name, msg, sender });
 	});
 	socket.on("answerCall", (data) => {
-		socket.broadcast.emit("updateUserMedia", {
-			type: data.type,
-			currentMediaStatus: data.myMediaStatus,
-		});
 		io.to(data.to).emit("callAccepted", data.signal)
 	})
 

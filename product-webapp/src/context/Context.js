@@ -18,12 +18,14 @@ const ContextProvider = ({ children }) => {
     const [callerSignal, setCallerSignal] = useState()
     const [receivingCall, setReceivingCall] = useState(false)
     const [videoTrack, setVideoTrack] = useState(null);
+    const [audioTrack, setAudioTrack] = useState(null);
     const [idToCall, setIdToCall] = useState("")
     const [micOn, setMicOn] = useState(true);
     const [webcamOn, setWebcamOn] = useState(true);
     const [chatOn, setChatOn] = useState(false);
 
     const myVideo = useRef();
+    const micRef = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
 
@@ -34,11 +36,14 @@ const ContextProvider = ({ children }) => {
 
         //         myVideo.current.srcObject = currentStream;
         //     });
-
-        socket.on('me', (id) => setMe(id));
-        if (webcamOn && !videoTrack) {
-            getVideo();
-        }
+        debugger
+        socket.on('me', (id) => {
+            debugger
+            setMe(id)
+        });
+        // if (webcamOn && !videoTrack) {
+        //     getVideo();
+        // }
         socket.on("callUser", (data) => {
             setReceivingCall(true)
             setCaller(data.from)
@@ -47,53 +52,83 @@ const ContextProvider = ({ children }) => {
         })
     })
 
-    useEffect(() => {
-        if (webcamOn && !videoTrack) {
-            getVideo();
-        }
-    })
+    // useEffect(() => {
+    //     if (webcamOn && !videoTrack) {
+    //         getVideo();
+    //     }
+    // })
 
     const createId = () => {
         socket.on('me', (id) => setMe(id));
     }
     const getVideo = async () => {
-        console.log(me)
-        if (myVideo.current) {
-            const videoConstraints = {
-                video: {
-                    width: 1280,
-                    height: 720,
-                },
-            };
+        console.log(me, 'id')
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then((currentStream) => {
+                setStream(currentStream);
+                myVideo.current.srcObject = currentStream;
+                const videoTracks = currentStream.getVideoTracks();
+                const videoTrack = videoTracks.length ? videoTracks[0] : null;
+                setVideoTrack(videoTrack);
+            });
+        // if (myVideo.current) {
+        //     const videoConstraints = {
+        //         video: {
+        //             width: 1280,
+        //             height: 720,
+        //         },
+        //     };
 
-            const stream = await navigator.mediaDevices.getUserMedia(
-                videoConstraints
-            );
-            const videoTracks = stream.getVideoTracks();
+        //     const stream = await navigator.mediaDevices.getUserMedia(
+        //         videoConstraints
+        //     );
+        //     const videoTracks = stream.getVideoTracks();
 
-            const videoTrack = videoTracks.length ? videoTracks[0] : null;
+        //     const videoTrack = videoTracks.length ? videoTracks[0] : null;
 
-            myVideo.current.srcObject = new MediaStream([videoTrack]);
-            // myVideo.current.play();
-            setStream(stream)
-            setVideoTrack(videoTrack);
+        //     myVideo.current.srcObject = new MediaStream([videoTrack]);
+        //     // myVideo.current.play();
+        //     setStream(stream)
+        //     setVideoTrack(videoTrack);
 
-        }
-        const peer = new Peer({
-            initiator: true,
-            trickle: false,
-            stream: stream
-        })
-        connectionRef.current = peer
+        // }
+        // const peer = new Peer({
+        //     initiator: true,
+        //     trickle: false,
+        //     stream: stream
+        // })
+        // connectionRef.current = peer
+
+    };
+    const getAudio = async () => {
+        console.log(me, 'id')
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then((currentStream) => {
+                setStream(currentStream);
+                micRef.current.srcObject = currentStream;
+                const audioTracks = currentStream.getAudioTracks();
+                const audioTrack = audioTracks.length ? audioTracks[0] : null;
+                setAudioTrack(audioTrack);
+                console.log(audioTrack, 'audioooo')
+            });
+
     };
 
 
-
     const handleToggleMic = () => {
+        if (!micOn) {
+            getAudio();
+        } else {
+            if (audioTrack) {
+                audioTrack.stop();
+                setAudioTrack(null);
+            }
+        }
         setMicOn(!micOn);
     };
 
     const handleToggleWebcam = () => {
+        console.log(videoTrack)
         if (!webcamOn) {
             getVideo();
         } else {
@@ -110,7 +145,6 @@ const ContextProvider = ({ children }) => {
     }
 
     const callUser = (id) => {
-        debugger
         const peer = new Peer({
             initiator: true,
             trickle: false,
@@ -126,7 +160,6 @@ const ContextProvider = ({ children }) => {
             })
         })
         peer.on("stream", (stream) => {
-
             userVideo.current.srcObject = stream
 
         })
@@ -186,7 +219,6 @@ const ContextProvider = ({ children }) => {
             answerCall,
             getVideo,
             videoTrack,
-            setReceivingCall,
             idToCall,
             leaveCall1,
             setCall,
@@ -198,7 +230,10 @@ const ContextProvider = ({ children }) => {
             setMicOn,
             handleToggleChat,
             handleToggleMic,
-            handleToggleWebcam
+            handleToggleWebcam,
+            micRef,
+            getAudio,
+            audioTrack
         }}
         >
             {children}

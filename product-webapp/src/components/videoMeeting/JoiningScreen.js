@@ -74,7 +74,7 @@ export function JoiningScreen({
             };
 
             const stream = await navigator.mediaDevices.getUserMedia(
-                videoConstraints
+                {video:true}
             );
             const videoTracks = stream.getVideoTracks();
 
