@@ -1,176 +1,437 @@
 {
-    "availableSlots": [
-        {
-            "slotId" : "1", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "14/04/2022",
-            "slotStartTime" : "9:00 AM",
-            "slotEndTime" : "10:00 AM",
-            "slotStatus" : "BOOKED"
-        },
-        {
-            "slotId" : "2", 
-            "doctorEmail" : "harshVardhan@gmail.com" ,
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "14/04/2022",
-            "slotStartTime" : "10:00 AM",
-            "slotEndTime" : "11:00 AM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "3", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "14/04/2022",
-            "slotStartTime" : "12:00 AM",
-            "slotEndTime" : "12:00 PM",
-            "slotStatus" : "BOOKED"
-        },
-        {
-            "slotId" : "4", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "14/04/2022",
-            "slotStartTime" : "5:00 PM",
-            "slotEndTime" : "6:00 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "5", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "14/04/2022",
-            "slotStartTime" : "7:00 PM",
-            "slotEndTime" : "8:00 PM",
-            "slotStatus" : "BOOKED"
-        },
-        {
-            "slotId" : "6", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "15/04/2022",
-            "slotStartTime" : "9:30 AM",
-            "slotEndTime" : "10:30 AM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "7", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "15/04/2022",
-            "slotStartTime" : "10:30 AM",
-            "slotEndTime" : "11:30 AM",
-            "slotStatus" : "BOOKED"
-        },
-        {
-            "slotId" : "9", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "15/04/2022",
-            "slotStartTime" : "5:30 PM",
-            "slotEndTime" : "6:30 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "10", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "15/04/2022",
-            "slotStartTime" : "7:30 PM",
-            "slotEndTime" : "8:30 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "12", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "16/04/2022",
-            "slotStartTime" : "9:45 AM",
-            "slotEndTime" : "10:45 AM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "12", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "16/04/2022",
-            "slotStartTime" : "10:45 AM",
-            "slotEndTime" : "11:45 AM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "13", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "16/04/2022",
-            "slotStartTime" : "11:45 AM",
-            "slotEndTime" : "12:45 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "14", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "16/04/2022",
-            "slotStartTime" : "5:45 PM",
-            "slotEndTime" : "6:45 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "15", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "16/04/2022",
-            "slotStartTime" : "6:45 PM",
-            "slotEndTime" : "7:45 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "15", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "16/04/2022",
-            "slotStartTime" : "7:45 PM",
-            "slotEndTime" : "8:45 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "15", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "16/04/2022",
-            "slotStartTime" : "8:45 PM",
-            "slotEndTime" : "9:45 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "16", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "01/04/2022",
-            "slotStartTime" : "5:15 PM",
-            "slotEndTime" : "6:15 PM",
-            "slotStatus" : "AVAILABLE"
-        },
-        {
-            "slotId" : "17", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "01/04/2022",
-            "slotStartTime" : "6:15 PM",
-            "slotEndTime" : "7:15 PM",
-            "slotStatus" : "BOOKED"
-        },
-        {
-            "slotId" : "18", 
-            "doctorEmail" : "harshVardhan@gmail.com",
-            "specialization" : "MBBS, MD Optimologist",
-            "slotDate" : "01/04/2022",
-            "slotStartTime" : "7:15 PM",
-            "slotEndTime" : "8:15 PM",
-            "slotStatus" : "AVAILABLE"
-        }
-    ]
-
+  "availableSlots": [
+    {
+      "slotId": "1",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "14/04/2022",
+      "slotStartTime": "9:00 AM",
+      "slotEndTime": "10:00 AM",
+      "slotStatus": "BOOKED"
+    },
+    {
+      "slotId": "2",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "14/04/2022",
+      "slotStartTime": "10:00 AM",
+      "slotEndTime": "11:00 AM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "3",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "14/04/2022",
+      "slotStartTime": "12:00 AM",
+      "slotEndTime": "12:00 PM",
+      "slotStatus": "BOOKED"
+    },
+    {
+      "slotId": "4",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "14/04/2022",
+      "slotStartTime": "5:00 PM",
+      "slotEndTime": "6:00 PM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "5",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "14/04/2022",
+      "slotStartTime": "7:00 PM",
+      "slotEndTime": "8:00 PM",
+      "slotStatus": "BOOKED"
+    },
+    {
+      "slotId": "6",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "15/04/2022",
+      "slotStartTime": "9:30 AM",
+      "slotEndTime": "10:30 AM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "7",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "15/04/2022",
+      "slotStartTime": "10:30 AM",
+      "slotEndTime": "11:30 AM",
+      "slotStatus": "BOOKED"
+    },
+    {
+      "slotId": "9",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "15/04/2022",
+      "slotStartTime": "5:30 PM",
+      "slotEndTime": "6:30 PM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "10",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "15/04/2022",
+      "slotStartTime": "7:30 PM",
+      "slotEndTime": "8:30 PM",
+      "slotStatus": "BOOKED"
+    },
+    {
+      "slotId": "12",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "16/04/2022",
+      "slotStartTime": "9:45 AM",
+      "slotEndTime": "10:45 AM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "12",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "16/04/2022",
+      "slotStartTime": "10:45 AM",
+      "slotEndTime": "11:45 AM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "13",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "16/04/2022",
+      "slotStartTime": "11:45 AM",
+      "slotEndTime": "12:45 PM",
+      "slotStatus": "BOOKED"
+    },
+    {
+      "slotId": "14",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "16/04/2022",
+      "slotStartTime": "5:45 PM",
+      "slotEndTime": "6:45 PM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "15",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "16/04/2022",
+      "slotStartTime": "6:45 PM",
+      "slotEndTime": "7:45 PM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "15",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "16/04/2022",
+      "slotStartTime": "7:45 PM",
+      "slotEndTime": "8:45 PM",
+      "slotStatus": "BOOKED"
+    },
+    {
+      "slotId": "15",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "16/04/2022",
+      "slotStartTime": "8:45 PM",
+      "slotEndTime": "9:45 PM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "16",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "01/04/2022",
+      "slotStartTime": "5:15 PM",
+      "slotEndTime": "6:15 PM",
+      "slotStatus": "AVAILABLE"
+    },
+    {
+      "slotId": "17",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "01/04/2022",
+      "slotStartTime": "6:15 PM",
+      "slotEndTime": "7:15 PM",
+      "slotStatus": "BOOKED"
+    },
+    {
+      "slotId": "18",
+      "doctorEmail": "harshVardhan@gmail.com",
+      "specialization": "MBBS, MD Optimologist",
+      "slotDate": "01/04/2022",
+      "slotStartTime": "7:15 PM",
+      "slotEndTime": "8:15 PM",
+      "slotStatus": "AVAILABLE"
+    }
+  ],
+  "appointmentsViewForPatients": [
+    {
+      "appointmentId": "1",
+      "slotId": "1",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "25/04/2022",
+      "appointmentStartTime": "9:00AM",
+      "appointmentEndTime": "10:00AM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "22/04/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "2",
+      "slotId": "2",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "mohitkashyap@gmail.com",
+      "specialization": "MBBS,MD-Neurology",
+      "appointmentDate": "26/04/2022",
+      "appointmentStartTime": "10:00AM",
+      "appointmentEndTime": "11:00AM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "22/04/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "3",
+      "slotId": "3",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "bhimsaini@gmail.com",
+      "specialization": "MBBS,MD-Nephology",
+      "appointmentDate": "27/04/2022",
+      "appointmentStartTime": "11:00AM",
+      "appointmentEndTime": "12:00PM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "22/04/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "4",
+      "slotId": "4",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Oncology",
+      "appointmentDate": "28/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "22/04/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "5",
+      "slotId": "5",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "05/04/2022",
+      "appointmentStartTime": "9:00AM",
+      "appointmentEndTime": "10:00AM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "10/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "6",
+      "slotId": "6",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "mohitkashyap@gmail.com",
+      "specialization": "MBBS,MD-Neurology",
+      "appointmentDate": "06/04/2022",
+      "appointmentStartTime": "10:00AM",
+      "appointmentEndTime": "11:00AM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "10/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "7",
+      "slotId": "7",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "bhimsaini@gmail.com",
+      "specialization": "MBBS,MD-Nephology",
+      "appointmentDate": "08/04/2022",
+      "appointmentStartTime": "11:00AM",
+      "appointmentEndTime": "12:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "10/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "8",
+      "slotId": "8",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Laproscopy",
+      "appointmentDate": "08/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "10/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "9",
+      "slotId": "9",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "01/04/2022",
+      "appointmentStartTime": "9:00AM",
+      "appointmentEndTime": "10:00AM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "10",
+      "slotId": "10",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "mohitkashyap@gmail.com",
+      "specialization": "MBBS,MD-Neurology",
+      "appointmentDate": "02/04/2022",
+      "appointmentStartTime": "10:00AM",
+      "appointmentEndTime": "11:00AM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "11",
+      "slotId": "11",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "bhimsaini@gmail.com",
+      "specialization": "MBBS,MD-Nephology",
+      "appointmentDate": "03/04/2022",
+      "appointmentStartTime": "11:00AM",
+      "appointmentEndTime": "12:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "12",
+      "slotId": "12",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Oncology",
+      "appointmentDate": "15/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "13",
+      "slotId": "12",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Laproscopy",
+      "appointmentDate": "10/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "19",
+      "slotId": "12",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Oncology",
+      "appointmentDate": "06/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "14",
+      "slotId": "12",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "10/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "15",
+      "slotId": "12",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Oncology",
+      "appointmentDate": "11/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "16",
+      "slotId": "12",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Laproscopy",
+      "appointmentDate": "10/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "17",
+      "slotId": "12",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Oncology",
+      "appointmentDate": "04/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "18",
+      "slotId": "12",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Oncology",
+      "appointmentDate": "06/04/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "PAST",
+      "bookedOn": "3/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "appointmentId": "20",
+      "slotId": "13",
+      "patientEmail": "karan@gmail.com",
+      "doctorEmail": "harishmadan@gmail.com",
+      "specialization": "MBBS,MD-Oncology",
+      "appointmentDate": "28/03/2022",
+      "appointmentStartTime": "5:00PM",
+      "appointmentEndTime": "6:00PM",
+      "appointmentStatus": "CANCELED",
+      "bookedOn": "1/03/2022",
+      "doctorImage" : "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    }
+  ]
 }

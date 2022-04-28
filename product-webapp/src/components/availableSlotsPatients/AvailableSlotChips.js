@@ -6,8 +6,9 @@ import '../../component.css';
 function AvailableSlotschips(props) {
 
     return (
-        <div className= "appointment-button col mb-4">
-        <Button className="btn-secondary button-styling">{props.slotStartTime} - {props.slotEndTime}</Button>
+        <div className= "col mb-4">
+        <Button  className={ props.slotStatus === 'AVAILABLE' ? 'available-button-color btn-secondary button-styling'  : 
+        'booked-button-color btn-secondary' }>{props.slotStartTime} - {props.slotEndTime}</Button>
         </div> 
     )
 }

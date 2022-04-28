@@ -1,9 +1,6 @@
 .react-calendar {
     width: 500px;
 }
-
-.appointment-button {}
-
 .button-container {
     padding: 30px;
 }
@@ -21,6 +18,7 @@
 .doctor-image {
     width: 248px;
     height: 190px;
+    border-radius: 100px;
 }
 
 .calender-doctor-details {
@@ -31,6 +29,22 @@
     text-align: end;
     padding-right: 26px;
     padding-bottom: 20px;
+}
+.bookedAvailableButton{
+    padding-bottom: 20px;
+    padding-left: 20px !important;
+}
+.bookedButtonColor{
+    height: 24px;
+    width: 50px;
+    background: red;
+    margin-left: auto;
+}
+.availableButtonColor{
+    height: 24px;
+    width: 50px;
+    background: #a2dba2;
+    margin-left: auto;
 }
 
 .react-calendar {
@@ -48,11 +62,21 @@
 }
 
 .button-styling {
-    background: #E6E6E6 !important;
-    color: #096BEE !important;
     border-radius: 20px !important;
     width: 180px;
     min-width: 160px;
+}
+.appointment-button-styling{
+    border-radius: 20px !important;
+    width: 120px;
+    min-width: 120px;
+}
+.appointment-button-styling:hover {
+    background-color: #36f7ee7a !important;
+}
+.appointment-button-styling:focus{
+    background-color: #36f7ee7a  !important;
+    box-shadow: 0 0 0 0.25rem #b3b3b380 !important;
 }
 
 .button-styling:hover {
@@ -62,7 +86,22 @@
     background-color: #36f7ee7a  !important;
     box-shadow: 0 0 0 0.25rem #b3b3b380 !important;
 }
-
+.appointment-button{
+     background: #E6E6E6 !important;
+    color: #096BEE !important;
+}
+.available-button-color{
+    color: black !important;
+    background-color: #a2dba2 !important;
+}
+.booked-button-color{
+    border-radius: 20px !important;
+    width: 180px;
+    min-width: 160px;
+    background-color: red !important;
+    color: white !important;
+    cursor: not-allowed !important;
+}
 .react-calendar__navigation {
     padding-top: 15px;
 }
@@ -125,7 +164,89 @@
 .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
     background-color: yellow;
 }
+.filter-container{
+    border: 1px solid blue;
+}
+.card{
+    width: 25rem;
+    border-radius: 20px !important;
+    box-shadow: 6px 7px 16px 5px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 
+}
+.card-with-image{
+    width: 28rem;
+    border-radius:0 !important;
+    border: 1px !important;
+}
+.person-icon{
+    width: 2em !important;
+    height: 2em !important;
+}
+.container-fluid{
+    /* padding: 20px; */
+}
+    .tab-content>.active{
+        display: flex !important;
+    }
+.nav-link{
+    font-size: 20px;
+}
+.nav-link.active{
+    background-color: lightgrey !important;
+}
+.col-7{
+    width: 56% !important;
+}
+.nav-link{
+    color: black!important;
+    font-weight: 500;
+}
+.card-img-top{
+    height: 300px;
+}
+.filter-container-box{
+    padding-left: 50px !important;
+    background: white;
+}
+.search-fields{
+    background: #a6c1cb;
+    /* background: #0091c9; */
+}
+.cancel-icon{
+    height: 2rem !important;
+    width: 2rem !important;
+    color: red;
+    cursor: pointer;    
+}
+.call-icon{
+    height: 2rem !important;
+    width: 2rem !important;
+    color: blue;
+    cursor: pointer;
+}
+.calendar-icon{
+    color: #138b21;
+}
+.clock-icon{
+    color: #138b21;
+}
+.appointment-date{
+    padding: 0px !important;
+}
+.doctors-image{
+    height: 130px;
+    width: 150px;
+    border-radius: 12px;
+}
+.page-link{
+    cursor: pointer;
+}
+.page-link:focus:active {
+    background-color: #e9ecef !important;
+}
+.page-selected:focus{
+    background-color: grey;
+}
 @media screen and (min-width:768px) and (max-width: 992px){
     .doctor-image{
         width: 180px;

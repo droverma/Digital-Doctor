@@ -8,6 +8,8 @@ import DoctorProfile from "./components/profile/DoctorProfile";
 import PatientProfile from "./components/profile/PatientProfile";
 import PatientVideoChat from "./components/videoMeeting/PatientVideoChat";
 import DoctorVideoChat from "./components/videoMeeting/DoctorVideoChat";
+import AppointmentViewForPatients from "./components/appointmentViewForPatients/AppointmentViewForPatients";
+import AppointmentViewForDoctors from "./components/appointmentViewForDoctors/AppointmentViewForDoctors";
 
 
 import DoctorsList from "./components/profile/DoctorsList/DoctorsList";
@@ -24,6 +26,8 @@ function App() {
         <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
         <Route path="/video" element={<PatientVideoChat />} />
         <Route path="/vid" element={<DoctorVideoChat />} />
+        <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
+        <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
       </Routes>
     </>
   );
