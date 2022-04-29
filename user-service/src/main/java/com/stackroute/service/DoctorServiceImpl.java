@@ -2,6 +2,7 @@ package com.stackroute.service;
 
 import com.stackroute.config.Producer;
 import com.stackroute.rabbitmq.DoctorDto;
+import com.stackroute.rabbitmq.UserDTO;
 import com.stackroute.repository.DoctorRepository;
 import com.stackroute.exceptionhandling.DoctorAlreadyExistException;
 import com.stackroute.exceptionhandling.DoctorDoesNotExistException;
@@ -19,10 +20,11 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor saveDoctor(Doctor doctor) throws DoctorAlreadyExistException {
-            DoctorDto doctorDTO=new DoctorDto();
-            doctorDTO.setEmail(doctor.getDoctorEmail());
-            doctorDTO.setPassword(doctor.getPassword());
-            producer.sendMessageToRabbitMq(doctorDTO);
+            UserDTO userDTO=new UserDTO();
+            userDTO.setEmailId(doctor.getDoctorEmail());
+            userDTO.setPassword(doctor.getPassword());
+            userDTO.setUserRole("doctor");
+            producer.sendMessageToRabbitMq(userDTO);
             doctor.setPassword("");
             return doctorRepository.save(doctor);
         }
