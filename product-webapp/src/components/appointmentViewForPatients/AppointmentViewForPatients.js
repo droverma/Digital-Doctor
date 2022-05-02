@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import '../../component.css';
 import CardAppointmentVIewForPatients from "./CardAppointmentVIewForPatients";
 import AppointmentService from "../../services/appointment.service";
 import moment from "moment";
 import Pagination from "../pagination/Pagination";
 import Posts from "../pagination/Posts";
-import ReactTooltip from "react-tooltip";
 import { Tooltip } from "@material-ui/core";
+import '../pagination/Pagination.scss'
+import ReactPaginate from "react-paginate";
 
 
 function AppointmentViewForPatients() {
@@ -74,6 +75,8 @@ function AppointmentViewForPatients() {
 
     const filterResult = () => {
 
+        setCurrentPage(1);
+
         filters.date = moment(filters.date).format('YYYY-MM-DD');
         let date = moment(filters.date).format('DD/MM/YYYY');
         let filteredData;
@@ -106,21 +109,46 @@ function AppointmentViewForPatients() {
         filters.date = "";
     }
 
-    const filterPaginate = (arr) => {
+    // const filterPaginate = (arr) => {
 
-        if (arr.length > postsPerPage) {
+    //     if (arr.length > postsPerPage) {
 
-            console.log(arr);
-            const indexOfLastPost = currentPage * postsPerPage;
-            const indexOfFirstPost = indexOfLastPost - postsPerPage;
-            const currentPosts = arr.slice(indexOfFirstPost, indexOfLastPost);
-            setresult(currentPosts);
-        } else {
-            setresult(arr);
-        }
-    }
+    //         console.log(arr);
+    //         const indexOfLastPost = currentPage * postsPerPage;
+    //         const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    //         const currentPosts = arr.slice(indexOfFirstPost, indexOfLastPost);
+    //         setresult(currentPosts);
+    //     } else {
+    //         setresult(arr);
+    //     }
+    // }
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
+
+    const setPastTab = () => {
+        setactivetab("PAST");
+        setCurrentPage(1);
+    }
+    const setUpcomingTab = () => {
+        setactivetab("UPCOMING");
+        setCurrentPage(1);
+    }
+    const setCancelledTab = () => {
+        setactivetab("CANCELED");
+        setCurrentPage(1);
+    }
+
+    const filterPaginate = (arr) => {
+        if (arr.length > postsPerPage) {
+            const firstPageIndex = (currentPage - 1) * postsPerPage;
+            const lastPageIndex = firstPageIndex + postsPerPage;
+            const currentPosts =  arr.slice(firstPageIndex, lastPageIndex);
+            setresult(currentPosts);
+        }else{
+            setresult(arr);
+        }
+       
+    }
 
     return (
         <div className="container-fluid row">
@@ -142,12 +170,12 @@ function AppointmentViewForPatients() {
                                     title="Reset Filters"
                                     placement="top">
                                     <button type="button" className="btn btn-secondary buttons"
-                                     onClick={resetData}>Reset</button></Tooltip>
-                                 <Tooltip
+                                        onClick={resetData}>Reset</button></Tooltip>
+                                <Tooltip
                                     title="Filter Results"
                                     placement="top">
-                                 <button type="submit" className="btn btn-secondary buttons ms-4"
-                                        >Filter</button>
+                                    <button type="submit" className="btn btn-secondary buttons ms-4"
+                                    >Filter</button>
                                 </Tooltip>
                             </div>
 
@@ -157,23 +185,30 @@ function AppointmentViewForPatients() {
                 </div>
             </div>
             <div className="col-md-8 column m-2">
-                <div className="text-end">
-                    <Posts posts={currentPosts} loading={loading} />
-                    <Pagination
+                <div className="text-end mb-4">
+                    {/* <Posts posts={currentPosts} loading={loading} /> */}
+                    {/* <Pagination
                         postsPerPage={postsPerPage}
                         totalPosts={totalPosts}
                         paginate={paginate}
+                    /> */}
+                    <Pagination
+                        className="pagination-bar"
+                        currentPage={currentPage}
+                        totalCount={totalPosts ? totalPosts : 4}
+                        pageSize={postsPerPage}
+                        onPageChange={(page) => setCurrentPage(page)}
                     />
                 </div>
                 <div className="col mb-4">
                     <nav>
                         <div className="nav nav-tabs row" id="nav-tab" role="tablist">
                             <button className={`nav-link ${activetab === "UPCOMING" ? 'active' : ''} col`} id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"
-                                onClick={() => setactivetab("UPCOMING")}>Upcoming Appointments</button>
+                                onClick={setUpcomingTab}>Upcoming Appointments</button>
                             <button className={`nav-link ${activetab === "PAST" ? 'active' : ''} col`} id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
-                                onClick={() => setactivetab("PAST")}>Past Appointments</button>
+                                onClick={setPastTab}>Past Appointments</button>
                             <button className={`nav-link ${activetab === "CANCELED" ? 'active' : ''} col`} id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"
-                                onClick={() => setactivetab("CANCELED")}>Cancelled Appointments</button>
+                                onClick={setCancelledTab}>Cancelled Appointments</button>
                         </div>
                     </nav>
                 </div>

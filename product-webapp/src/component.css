@@ -5,6 +5,45 @@
 .button-container {
     padding: 30px;
 }
+.create-slot-button{
+    width: 100% !important;
+    border-radius: 12px !important;
+    min-width: 160px;
+}
+.create-slot-button-container{
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+
+}
+.create-slots-container{
+    width: 100%;
+    text-align: center;
+}
+.slot-fields-box{
+    width: 60%;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 60px;
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,.125);
+    box-shadow: 6px 7px 16px 5px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+.create-slot-input-fields{
+    width: 100%;
+    height: 50px;
+}
+.create-slot-booked-button{
+    border-radius: 12px !important;
+    width: 100% !important;
+    min-width: 160px;
+    background-color: red !important;
+    color: white !important;
+    cursor: not-allowed !important;
+}
+.slots-container{
+    min-height: 500px;
+    height: 520px;
+}
 
 .doctors-details {
     margin-left: 55px;
@@ -164,7 +203,7 @@
 
 #link {
     border: 0px;
-    color: #1209a5!important;
+    color: #1209a5 !important;
     padding: 0px !important;
     display: inline !important;
     font-size: 15px;
@@ -189,9 +228,10 @@
     border-radius: 20px !important;
     box-shadow: 6px 7px 16px 5px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
-.card-with-image{
+
+.card-with-image {
     width: 100%;
-    border-radius:0 !important;
+    border-radius: 0 !important;
     border: 1px !important;
 }
 
@@ -215,11 +255,12 @@
 .nav-link.active {
     background-color: lightgrey !important;
 }
+
 /* .col-7{
     width: 56% !important;
 } */
-.nav-link{
-    color: black!important;
+.nav-link {
+    color: black !important;
     font-weight: 500;
 }
 
@@ -274,18 +315,21 @@
     cursor: pointer;
 }
 
-.page-link:focus:active {
+.page-link:focus {
     background-color: #e9ecef !important;
 }
 
-.page-selected:focus {
+.page-link:active:focus:visited:focus-visible:hover:target:focus-within {
     background-color: grey;
+    border: red;
 }
-.buttons{
+
+.buttons {
     background: rgb(42, 210, 217) !important;
     border-color: rgb(42, 210, 217) !important;
 }
-.search-fields-Doctor-view{
+
+.search-fields-Doctor-view {
     background: #e9f3de;
 }
 
@@ -294,6 +338,7 @@
         width: 180px;
         height: 150px;
     }
+
     .doctors-details {
         margin-left: 20px;
     }
@@ -305,13 +350,16 @@
         margin-right: auto;
         margin-top: 50px;
     }
+
     .react-calendar__tile {
         font-size: 20px;
     }
+
     .react-calendar__month-view__weekdays {
         font-size: 14px;
     }
-    .filter-container-box{
+
+    .filter-container-box {
         width: 100% !important;
     }
 }
@@ -320,6 +368,7 @@
     .react-calendar__month-view__weekdays {
         font-size: 12px;
     }
+
     .doctor-image {
         width: 180px;
         height: 150px;
@@ -348,9 +397,9 @@
 .footer__inner {
     width: 100%;
     height: 100%;
-    display: -webkit-box!important;
-    display: -ms-flexbox!important;
-    display: flex!important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -468,15 +517,18 @@
     .column {
         height: 37rem;
     }
+
     #wc-container-right {
         color: #666;
         position: relative;
         background-color: #fff;
         height: 36.8rem;
     }
+
     .video {
         height: 37rem;
     }
+
     .chat-container {
         background: #fff;
         width: 24rem;

@@ -10,9 +10,10 @@ import PatientVideoChat from "./components/videoMeeting/PatientVideoChat";
 import VideoChatMeeting from "./components/videoMeeting/VideoChatMeeting";
 import AppointmentViewForPatients from "./components/appointmentViewForPatients/AppointmentViewForPatients";
 import AppointmentViewForDoctors from "./components/appointmentViewForDoctors/AppointmentViewForDoctors";
-
-
 import DoctorsList from "./components/profile/DoctorsList/DoctorsList";
+import CreateSlotViewDoctor from "./components/createSlotsViewDoctor/CreateSlotsViewDoctor";
+
+
 function App() {
   return (
     <>
@@ -28,6 +29,7 @@ function App() {
         <Route path="/vid" element={<VideoChatMeeting />} />
         <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
         <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
+        <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
       </Routes>
     </>
   );

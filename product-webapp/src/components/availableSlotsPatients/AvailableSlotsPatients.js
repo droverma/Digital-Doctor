@@ -52,7 +52,7 @@ function AvailableSlotsPatients() {
                     <Calendar onChange={changeDate} value={value} />
                 </div>
                 <div className="col-md-4 col-sm-12">
-                    <div className="doctors-details column">
+                    <div className="doctors-details">
                         <div className="col mb-1 mt-4">
                             <img src="../Doctor_image.jpg" className="doctor-image" alt="" />
                         </div>

@@ -6,7 +6,6 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import AppointmentService from "../../services/appointment.service";
-import ReactTooltip from "react-tooltip";
 import { Tooltip } from "@material-ui/core";
 
 
