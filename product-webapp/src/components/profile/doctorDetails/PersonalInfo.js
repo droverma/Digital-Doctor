@@ -51,6 +51,26 @@ function PersonalInfo({
 }) {
   // const [validated, setValidated] = useState({});
 
+  const imageChangeHandler = (e) => {
+    const files = e.target.files;
+    const file = files[0];
+    getBase64(file);
+  };
+
+  const getBase64 = (file) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoad(reader.result);
+    };
+  };
+
+  const onLoad = (fileString) => {
+    // console.log(fileString);
+    setUpdateDoctorData({ ...updateDoctorData, doctorImage: fileString });
+    // console.log(updateDoctorData);
+  };
+
   const doctorChangeHandler = (e) => {
     const { name, value } = e.target;
     setUpdateDoctorData({ ...updateDoctorData, [name]: value });
@@ -148,128 +168,161 @@ function PersonalInfo({
   };
   return (
     <div className="Personal-Info-container">
-      <Row className=" mt-md-5 mb-md-5">
-        <Col md={6} className=" mb-3">
-          <Form.Group>
-            <Form.Label className="areaHei fSize">Full Name:</Form.Label>
-            <Form.Control
-              type="text"
-              className="areaHei fSize"
-              id="doctorName"
-              name="doctorName"
-              placeholder="Enter Your Full Name"
-              value={updateDoctorData.doctorName}
-              onChange={doctorChangeHandler}
-              required
-              isInvalid={validated.doctorName}
+      <Row className="outerRow ">
+        <Col
+          md={4}
+          className=" mb-3 ms-1 imgshow"
+          // style={{ border: "1px solid red" }}
+        >
+          {" "}
+          <div className="ms-1 imgdiv">
+            <img
+              style={{ borderRadius: "20px" }}
+              className="imgDoc"
+              src="https://media2.giphy.com/media/aGDK7Pck40dZN7w1NG/giphy.gif"
+              alt="doctor"
             />
-
-            <Form.Control.Feedback type="invalid">
-              Please enter the valid Name.
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-        <Col md={6} className=" mb-3">
+          </div>
+        </Col>{" "}
+        <Col md={8} className="contentshow">
           <Form.Group>
-            <Form.Label className="areaHei fSize">Mobile No:</Form.Label>
-            <Form.Control
-              type="text"
-              className="areaHei fSize"
-              id="doctorMobileNumber"
-              name="doctorMobileNumber"
-              placeholder="Enter Your Mobile No"
-              value={updateDoctorData.doctorMobileNumber}
-              onChange={doctorChangeHandler}
-              required
-              isInvalid={validated.doctorMobileNumber}
-            />
+            <Row className="rowMbt">
+              <Col md={3} className="areaHei  contWidth">
+                <Form.Label className="fSize">Full Name:</Form.Label>
+              </Col>
+              <Col md={9} className="areaHei colWidth">
+                <Form.Control
+                  type="text"
+                  className=" fSize"
+                  id="doctorName"
+                  name="doctorName"
+                  placeholder="Enter Your Full Name"
+                  value={updateDoctorData.doctorName}
+                  onChange={doctorChangeHandler}
+                  required
+                  isInvalid={validated.doctorName}
+                />
 
-            <Form.Control.Feedback type="invalid">
-              Please enter the valid Mobile Number.
-            </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  Please enter the valid Name.
+                </Form.Control.Feedback>
+              </Col>
+            </Row>
           </Form.Group>
-        </Col>
-      </Row>
-
-      <Row className=" mt-md-5 mb-md-5">
-        <Col md={6} className=" mb-3">
           <Form.Group>
-            <Form.Label className="areaHei fSize">City:</Form.Label>
-            <Form.Control
-              type="text"
-              className="areaHei fSize"
-              id="city"
-              name="city"
-              placeholder="Enter Your City"
-              value={updateDoctorData.city}
-              onChange={doctorChangeHandler}
-              required
-              isInvalid={validated.city}
-            />
+            <Row className="rowMbt">
+              <Col md={3} className="areaHei contWidth">
+                <Form.Label className="fSize">Mobile No:</Form.Label>
+              </Col>
+              <Col md={9} className="areaHei colWidth">
+                <Form.Control
+                  type="text"
+                  className=" fSize"
+                  id="doctorMobileNumber"
+                  name="doctorMobileNumber"
+                  placeholder="Enter Your Mobile No"
+                  value={updateDoctorData.doctorMobileNumber}
+                  onChange={doctorChangeHandler}
+                  required
+                  isInvalid={validated.doctorMobileNumber}
+                />
 
-            <Form.Control.Feedback type="invalid">
-              Please enter the Name Of Your City.
-            </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  Please enter the valid Mobile Number.
+                </Form.Control.Feedback>
+              </Col>
+            </Row>
           </Form.Group>
-        </Col>
-        <Col md={6} className=" mb-3">
           <Form.Group>
-            <Form.Label className="areaHei fSize">
-              Upload Your Picture:
-            </Form.Label>
-            <Form.Control
-              className="areaHei fSize"
-              type="file"
-              id="doctorImage"
-              name="doctorImage"
-              accept="image/*"
-              onChange={doctorChangeHandler}
-            />
+            <Row className="rowMbt">
+              <Col md={3} className="areaHei contWidth">
+                <Form.Label className="fSize">City :</Form.Label>
+              </Col>
+              <Col md={9} className="areaHei colWidth">
+                <Form.Control
+                  type="text"
+                  className=" fSize"
+                  id="city"
+                  name="city"
+                  placeholder="Enter Your City"
+                  value={updateDoctorData.city}
+                  onChange={doctorChangeHandler}
+                  required
+                  isInvalid={validated.city}
+                />
+
+                <Form.Control.Feedback type="invalid">
+                  Please enter the Name Of Your City.
+                </Form.Control.Feedback>
+              </Col>
+            </Row>
           </Form.Group>
-        </Col>
-      </Row>
-      <Row className=" mt-md-5 mb-md-5">
-        <Col md={6} className="col-md-6 mb-3">
-          <Form.Label className="areaHei fSize">
-            Year's Of Experience:
-          </Form.Label>
-          <Form.Control
-            type="text"
-            className="areaHei fSize"
-            name="yearsOfExperience"
-            id="yearsOfExperience"
-            placeholder="Enter Your Year's Of Experience"
-            value={updateDoctorData.yearsOfExperience}
-            onChange={doctorChangeHandler}
-            required
-            isInvalid={validated.yearsOfExperience}
-          />
-
-          <Form.Control.Feedback type="invalid">
-            Please enter the valid Years Of Experience.
-          </Form.Control.Feedback>
-        </Col>
-
-        <Col md={6}>
           <Form.Group>
-            <Form.Label className="areaHei fSize">Specialization:</Form.Label>
-            <Form.Select
-              className="areaHei fSize"
-              id="specialization"
-              name="specialization"
-              title="Select Your Specialization"
-              value={updateDoctorData.specialization}
-              onChange={doctorChangeHandler}
-              required
-            >
-              {SpecializationList.map((e) => {
-                return (
-                  <option key={e.spV} value={e.spV}>
-                    {e.spN}
-                  </option>
-                );
-              })}
-            </Form.Select>
+            <Row className="rowMbt">
+              <Col md={3} className="areaHei contWidth">
+                <Form.Label className="fSize">Upload Your Picture :</Form.Label>
+              </Col>
+              <Col md={9} className="areaHei colWidth">
+                <Form.Control
+                  className=" fSize"
+                  type="file"
+                  id="doctorImage"
+                  name="doctorImage"
+                  accept="image/*"
+                  onChange={imageChangeHandler}
+                />
+              </Col>
+            </Row>
+          </Form.Group>
+          <Form.Group>
+            <Row className="rowMbt">
+              <Col md={3} className="areaHei contWidth">
+                <Form.Label className="fSize">Year's Of Experience:</Form.Label>
+              </Col>
+              <Col md={9} className="areaHei colWidth">
+                <Form.Control
+                  type="text"
+                  className=" fSize"
+                  name="yearsOfExperience"
+                  id="yearsOfExperience"
+                  placeholder="Enter Your Year's Of Experience"
+                  value={updateDoctorData.yearsOfExperience}
+                  onChange={doctorChangeHandler}
+                  required
+                  isInvalid={validated.yearsOfExperience}
+                />
+
+                <Form.Control.Feedback type="invalid">
+                  Please enter the valid Years Of Experience.
+                </Form.Control.Feedback>
+              </Col>
+            </Row>
+          </Form.Group>
+          <Form.Group>
+            <Row className="rowMB">
+              <Col md={3} className="areaHei contWidth">
+                <Form.Label className="fSize">Specialization :</Form.Label>
+              </Col>
+              <Col md={9} className="areaHei colWidth">
+                <Form.Select
+                  className=" fSize"
+                  id="specialization"
+                  name="specialization"
+                  title="Select Your Specialization"
+                  value={updateDoctorData.specialization}
+                  onChange={doctorChangeHandler}
+                  required
+                >
+                  {SpecializationList.map((e) => {
+                    return (
+                      <option key={e.spV} value={e.spV}>
+                        {e.spN}
+                      </option>
+                    );
+                  })}
+                </Form.Select>
+              </Col>
+            </Row>
           </Form.Group>
         </Col>
       </Row>
