@@ -1,4 +1,5 @@
 package com.stackroute.config;
+import com.stackroute.exception.UserAlreadyExists;
 import com.stackroute.exceptionhandling.DoctorAlreadyExistException;
 import com.stackroute.model.Doctor;
 import com.stackroute.model.Patient;
@@ -22,14 +23,15 @@ public class Consumer {
 
 
     @RabbitListener(queues="user_queue")
-    public void getUserDtoFromRabbitMq(UserDTO userDTO)
+    public void getUserDtoFromRabbitMq(UserDTO userDTO) throws UserAlreadyExists
     {
-        System.out.println(userDTO.toString());
+        System.out.println(userDTO.getUserRole());
         User user = new User();
         user.setEmailId(userDTO.getEmailId());
         user.setPassword(userDTO.getPassword());
         String enumValue = userDTO.getUserRole();
-        user.setRole(UserRole.valueOf(enumValue));
+//        user.setRole(userDTO.getUserRole());
+        user.setRole(UserRole.valueOf(enumValue.toUpperCase()));
         userService.saveUser(user);
     }
 

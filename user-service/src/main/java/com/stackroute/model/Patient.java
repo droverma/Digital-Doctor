@@ -1,6 +1,5 @@
 package com.stackroute.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +16,7 @@ public class Patient {
     @Id
     private String patientEmail;
     private String patientName;
-    private long patientmobileNumber;
+    private long patientMobileNumber;
     private String password;
     private String city;
     private String patientImage;
