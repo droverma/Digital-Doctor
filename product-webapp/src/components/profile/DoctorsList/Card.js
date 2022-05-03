@@ -31,7 +31,14 @@ const Card = (props) => {
           >
             <div style={{ display: "flex" }}>
               <p className="chrSize fw-bold ms-4">Name: </p>
-              <p className="chrSize ms-2  ">{props.doctorName}</p>
+              <pre className="chrSize ms-2  ">
+                {props.doctorName.length <= 5
+                  ? `${props.doctorName
+                      .replace(/^\s+|\s+$/gm, "")
+                      .split(" ")[0]
+                      .concat("     ")}`
+                  : props.doctorName.replace(/^s+|s+$/gm, "").split(" ")[0]}
+              </pre>
             </div>
             <div style={{ display: "flex" }}>
               <p className="chrSize fw-bold">City: </p>
