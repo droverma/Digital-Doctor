@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProfileDetailsService from "../../services/profileDetails.service";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import PersonalInfo from "./doctorDetails/PersonalInfo";
 // import ClinicInfo from "./doctorDetails/ClinicInfo";
 import "../../assets/style/style.css";
@@ -10,8 +10,8 @@ const DoctorProfile = () => {
     ProfileDetailsService.addDoctorProfile(updateDoctorData, userId)
       .then((res) => console.log())
       .catch((err) => console.log(err));
-    alert("FORM SUBMITTED");
-    console.log(updateDoctorData);
+    alert("Doctor's Profile Update Submitted");
+    // console.log(updateDoctorData);
   };
   const [userId, setUserId] = useState("");
   const [validated, setValidated] = useState({});
@@ -22,6 +22,7 @@ const DoctorProfile = () => {
     yearsOfExperience: "",
     specialization: "",
     doctorImage: "",
+
     city: "",
   });
 
@@ -35,6 +36,7 @@ const DoctorProfile = () => {
         setUpdateDoctorData({
           doctorName: da.doctorName,
           doctorMobileNumber: da.doctorMobileNumber,
+          doctorEmail: da.doctorEmail,
           yearsOfExperience: da.yearsOfExperience,
           specialization: da.specialization,
           city: da.city,
@@ -80,10 +82,10 @@ const DoctorProfile = () => {
           <Row>{PageDisplay()}</Row>
 
           <div
-            className="mt-md-5"
+            className="mt-md-3"
             style={{ justifyContent: "end", display: "flex" }}
           >
-            <Button
+            <button
               style={{
                 marginRight: "5px",
                 height: "50px",
@@ -92,10 +94,10 @@ const DoctorProfile = () => {
               }}
               disabled={Object.keys(validated).length !== 0}
               onClick={saveChangeHandler}
-              className="btn btn-primary fSize"
+              className="btn btn-outline-primary fSize btnSave"
             >
               Save
-            </Button>
+            </button>
           </div>
         </div>
       </Form>

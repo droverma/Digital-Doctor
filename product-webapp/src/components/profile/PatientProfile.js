@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { Form } from "react-bootstrap";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import ProfileDetailsService from "../../services/profileDetails.service";
 import "../../assets/style/style.css";
 import { useNavigate } from "react-router-dom";
@@ -16,19 +16,40 @@ const PatientProfile = () => {
   const [userId, setUserId] = useState("");
   const [updatePatientData, setUpdatePatientData] = useState({
     patientName: "",
-    patientImage: null,
+    patientImage: "",
     patientEmail: "",
     patientMobileNo: "",
     city: "",
   });
+
   const clearPatientData = () => {
     setUpdatePatientData({
       patientName: "",
-      patientImage: null,
+      patientImage: "",
       patientEmail: "",
       patientMobileNo: "",
       city: "",
     });
+  };
+
+  const imageChangeHandler = (e) => {
+    const files = e.target.files;
+    const file = files[0];
+    getBase64(file);
+  };
+
+  const getBase64 = (file) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoad(reader.result);
+    };
+  };
+
+  const onLoad = (fileString) => {
+    // console.log(fileString);
+    setUpdatePatientData({ ...updatePatientData, patientImage: fileString });
+    // console.log(updatePatientData);
   };
 
   const patientChangeHandler = (e) => {
@@ -108,12 +129,16 @@ const PatientProfile = () => {
     }
   };
   const submitPatientData = (e) => {
-    ProfileDetailsService.addPatientProfile(updatePatientData, userId)
-      .then((res) => {
-        console.log();
-      })
-      .catch((err) => console.log(err));
-    navigate("/doctorslist");
+    setTimeout(() => {
+      // console.log(updatePatientData);
+      ProfileDetailsService.addPatientProfile(updatePatientData, userId)
+        .then((res) => {
+          console.log();
+        })
+        .catch((err) => console.log(err));
+      alert("Patient's Profile Update Submitted");
+      navigate("/doctorslist");
+    }, 1000);
   };
 
   const getPatientData = () => {
@@ -124,7 +149,7 @@ const PatientProfile = () => {
         // console.log(da.patientImage);
         setUpdatePatientData({
           patientName: da.patientName,
-          // patientImage: da.patientImage,
+          patientImage: da.patientImage,
           patientEmail: da.patientEmail,
           patientMobileNo: da.patientMobileNo,
           city: da.city,
@@ -146,14 +171,25 @@ const PatientProfile = () => {
     <>
       <div className="container-fluid">
         <Form onSubmit={submitHandler}>
-          <Row className=" mt-md-3 mb-md-5">
-            <Col md={6}>
+          <Row className="outerRow">
+            <Col md={4} className=" mb-3 ms-1 imgshow">
+              {" "}
+              <div className="ms-1 imgdiv">
+                <img
+                  style={{ borderRadius: "20px" }}
+                  className="docImgSize"
+                  src="https://media2.giphy.com/media/aGDK7Pck40dZN7w1NG/giphy.gif"
+                  alt="doctor"
+                />
+              </div>
+            </Col>
+            <Col md={8} className="contentshow">
               <Form.Group>
-                <Row className="mt-3">
-                  <Col md={3} className="areaHei">
+                <Row className="rowMbt">
+                  <Col md={3} className="areaHei contWidth">
                     <Form.Label className="fSize">First Name:</Form.Label>
                   </Col>
-                  <Col md={9} className="areaHei ">
+                  <Col md={9} className="areaHei colWidth">
                     <Form.Control
                       type="text"
                       className="fSize"
@@ -171,15 +207,12 @@ const PatientProfile = () => {
                   </Col>
                 </Row>
               </Form.Group>
-            </Col>
-
-            <Col md={6}>
               <Form.Group>
-                <Row>
-                  <Col md={3} className="areaHei">
+                <Row className="rowMbt">
+                  <Col md={3} className="areaHei contWidth">
                     <Form.Label className="fSize">Email Id :</Form.Label>
                   </Col>
-                  <Col md={9} className="areaHei">
+                  <Col md={9} className="areaHei colWidth">
                     <Form.Control
                       type="text"
                       className="fSize"
@@ -198,17 +231,12 @@ const PatientProfile = () => {
                   </Col>
                 </Row>
               </Form.Group>
-            </Col>
-          </Row>
-
-          <Row className=" mt-md-5 mb-md-5">
-            <Col md={6}>
               <Form.Group onChange={patientChangeHandler} required>
-                <Row>
-                  <Col md={3} className="areaHei">
+                <Row className="rowMbt">
+                  <Col md={3} className="areaHei contWidth">
                     <Form.Label className=" fSize">City:</Form.Label>
                   </Col>
-                  <Col md={9} className="areaHei">
+                  <Col md={9} className="areaHei colWidth">
                     <Form.Control
                       type="text"
                       className="fSize"
@@ -227,16 +255,14 @@ const PatientProfile = () => {
                   </Col>
                 </Row>
               </Form.Group>
-            </Col>
-            <Col md={6}>
               <Form.Group>
-                <Row>
-                  <Col md={3} className="areaHei">
+                <Row className="rowMbt">
+                  <Col md={3} className="areaHei contWidth">
                     <Form.Label className="fSize">
                       Upload Your Picture:
                     </Form.Label>
                   </Col>
-                  <Col md={9} className="areaHei">
+                  <Col md={9} className="areaHei colWidth">
                     <Form.Control
                       className="fSize"
                       type="file"
@@ -244,22 +270,18 @@ const PatientProfile = () => {
                       name="patientImage"
                       accept="image/*"
                       // value={updatePatientData.patientImage}
-                      onChange={patientChangeHandler}
+                      onChange={imageChangeHandler}
                     />
                   </Col>
                 </Row>
               </Form.Group>
-            </Col>
-          </Row>
 
-          <Row className=" mt-md-5 mb-md-5">
-            <Col md={6}>
               <Form.Group>
-                <Row>
-                  <Col md={3} className="areaHei">
+                <Row className="rowMbt">
+                  <Col md={3} className="areaHei contWidth">
                     <Form.Label className="fSize">Mobile No:</Form.Label>
                   </Col>
-                  <Col md={9} className="areaHei">
+                  <Col md={9} className="areaHei colWidth">
                     <Form.Control
                       type="text"
                       className="fSize"
@@ -280,11 +302,8 @@ const PatientProfile = () => {
             </Col>
           </Row>
 
-          <div
-            className="mt-md-5"
-            style={{ justifyContent: "end", display: "flex" }}
-          >
-            <Button
+          <div style={{ justifyContent: "end", display: "flex" }}>
+            <button
               disabled={Object.keys(validated).length !== 0}
               style={{
                 marginRight: "10px",
@@ -293,19 +312,19 @@ const PatientProfile = () => {
                 borderRadius: "10px",
               }}
               type="submit"
-              className="btn btn-primary fSize"
+              className="btn btn-outline-primary fSize "
               onClick={submitPatientData}
             >
               Save
-            </Button>
-            <Button
+            </button>
+            <button
               style={{ width: "120px", borderRadius: "10px" }}
               type="reset"
-              className="btn btn-danger fSize"
+              className="btn btn-outline-danger fSize btnSave"
               onClick={clearPatientData}
             >
               Cancel
-            </Button>
+            </button>
           </div>
         </Form>
       </div>

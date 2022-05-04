@@ -3,6 +3,7 @@ import "./App.css";
 import AppointmentViewForDoctors from "./components/appointmentViewForDoctors/AppointmentViewForDoctors";
 import AppointmentViewForPatients from "./components/appointmentViewForPatients/AppointmentViewForPatients";
 import AvailableSlotsPatients from "./components/availableSlotsPatients/AvailableSlotsPatients";
+import CreateSlotViewDoctor from "./components/createSlotsViewDoctor/CreateSlotsViewDoctor";
 import About from "./components/landingPage/about/About";
 import Contact from "./components/landingPage/contact/Contact";
 import DoctorProfile from "./components/profile/DoctorProfile";
@@ -28,6 +29,7 @@ function App() {
         <Route path="/video" element={<VideoChat />} />
         <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
         <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
+        <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
       </Routes>
     </>
   );

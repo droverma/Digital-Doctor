@@ -6,7 +6,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import AppointmentService from "../../services/appointment.service";
-import ReactTooltip from "react-tooltip";
+import { Tooltip } from "@material-ui/core";
 
 
 function CardAppointmentVIewForPatients(props) {
@@ -25,7 +25,7 @@ function CardAppointmentVIewForPatients(props) {
             <div className="card ">
                 <div className="card-body">
                     <div className="row">
-                        <div className="col">
+                        <div className="col mb-3">
                             <img src={props.doctorImage} className="doctors-image" />
                         </div>
                         <div className="col">
@@ -49,8 +49,12 @@ function CardAppointmentVIewForPatients(props) {
                     <div className="row mb-4">
                         <div className="row col">
                             <div className="col-3">
+                            <Tooltip
+                                    title="Appointment Date"
+                                    placement="top">
                                 <CalendarMonthIcon className="calendar-icon"
-                                data-tip data-for="appointment-date" />
+                                  />
+                            </Tooltip>
                             </div>
                             <div className="col-9">
                                 <p>
@@ -61,8 +65,12 @@ function CardAppointmentVIewForPatients(props) {
                         </div>
                         <div className="row col">
                             <div className="col-3">
+                            <Tooltip
+                                    title="Appointment Time"
+                                    placement="top">
                                 <AccessAlarmIcon className="clock-icon"
-                                data-tip data-for="appointment-time" />
+                                  />
+                            </Tooltip>
                             </div>
                             <div className="col-9 appointment-date">
                                 <p>
@@ -75,31 +83,27 @@ function CardAppointmentVIewForPatients(props) {
                         <div className="col text-center" >
                             {
                                 props.appointmentStatus !== "CANCELED" && props.appointmentStatus !== "PAST" &&
+                                <Tooltip
+                                title="Cancel Appointment"
+                                placement="top">
                                 <ClearOutlinedIcon className="cancel-icon" onClick={cancelClicked}
-                                data-tip data-for="cancel" />
+                                 />
+                                </Tooltip>
                             }
                         </div>
                         <div className="col text-center">
                             {
                                 props.appointmentStatus !== "CANCELED" && props.appointmentStatus !== "PAST" &&
-                                <AddIcCallIcon className="call-icon" data-tip data-for="call" />
+                                <Tooltip
+                                title="Call Doctor"
+                                placement="top">
+                                <AddIcCallIcon className="call-icon" />
+                                </Tooltip>
                             }
                         </div>
                     </div>
                 </div>
             </div>
-            <ReactTooltip id="call" place="top" effect="solid" delayShow={400}>
-                     Call Doctor
-            </ReactTooltip>
-            <ReactTooltip id="cancel" place="top" effect="solid" delayShow={400}>
-                     Cancel Appointment
-            </ReactTooltip>
-            <ReactTooltip id="appointment-date" place="top" effect="solid" delayShow={400}>
-                     Appointment Date
-            </ReactTooltip>
-            <ReactTooltip id="appointment-time" place="top" effect="solid" delayShow={400}>
-                     Appointment Time
-            </ReactTooltip>
         </div>
     )
 }
