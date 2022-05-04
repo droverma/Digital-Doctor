@@ -6,9 +6,11 @@ import { SocketContext } from '../../context/Context';
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
 const Register = (props) => {
-  const { idToCall, setIdToCall, callUser } = useContext(SocketContext);
+  const { callUser } = useContext(SocketContext);
 
   const [validated, setValidated] = useState({});
+  const [idToCall, setIdToCall] = useState("")
+
   // const [registerData, setRegisterData] = useState({
   //   doctorEmail: "",
   //   specialization: '',

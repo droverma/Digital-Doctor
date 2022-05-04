@@ -10,223 +10,215 @@ const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [stream, setStream] = useState();
-    const [name, setName] = useState('');
+    const [chat, setChat] = useState([]);
+    const [name, setName] = useState("");
     const [call, setCall] = useState({});
-    const [me, setMe] = useState('');
+    const [me, setMe] = useState("");
+    const [userName, setUserName] = useState("");
     const [otherUser, setOtherUser] = useState("");
-    const [caller, setCaller] = useState("")
-    const [callerSignal, setCallerSignal] = useState()
+    const [myVdoStatus, setMyVdoStatus] = useState(true);
+    const [userVdoStatus, setUserVdoStatus] = useState();
+    const [myMicStatus, setMyMicStatus] = useState(true);
+    const [userMicStatus, setUserMicStatus] = useState();
+    const [msgRcv, setMsgRcv] = useState("");
     const [receivingCall, setReceivingCall] = useState(false)
-    const [videoTrack, setVideoTrack] = useState(null);
-    const [audioTrack, setAudioTrack] = useState(null);
-    const [idToCall, setIdToCall] = useState("")
-    const [micOn, setMicOn] = useState(true);
-    const [webcamOn, setWebcamOn] = useState(true);
-    const [chatOn, setChatOn] = useState(false);
+
 
     const myVideo = useRef();
-    const micRef = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
 
     useEffect(() => {
-        // navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        // navigator.mediaDevices
+        //     .getUserMedia({ video: true, audio: true })
         //     .then((currentStream) => {
         //         setStream(currentStream);
-
         //         myVideo.current.srcObject = currentStream;
         //     });
-        socket.on('me', (id) => {
-            setMe(id)
-        });
-        // if (webcamOn && !videoTrack) {
-        //     getVideo();
+        // if (localStorage.getItem("name")) {
+        //     setName(localStorage.getItem("name"));
         // }
-        socket.on("callUser", (data) => {
-            setReceivingCall(true)
-            setCaller(data.from)
-            setName(data.name)
-            setCallerSignal(data.signal)
-        })
-    })
+        socket.on("me", (id) => setMe(id));
+        socket.on("endCall", () => {
+            window.location.reload();
+        });
 
-    const createId = () => {
-        socket.on('me', (id) => setMe(id));
-    }
-    const getVideo = async () => {
-        console.log(me, 'id')
-        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        socket.on("updateUserMedia", ({ type, currentMediaStatus }) => {
+            if (currentMediaStatus !== null || currentMediaStatus !== []) {
+                switch (type) {
+                    case "video":
+                        setUserVdoStatus(currentMediaStatus);
+                        break;
+                    case "mic":
+                        setUserMicStatus(currentMediaStatus);
+                        break;
+                    default:
+                        setUserMicStatus(currentMediaStatus[0]);
+                        setUserVdoStatus(currentMediaStatus[1]);
+                        break;
+                }
+            }
+        });
+
+        socket.on("callUser", ({ from, name: callerName, signal }) => {
+            setReceivingCall(true)
+            setCall({ isReceivingCall: true, from, name: callerName, signal });
+        });
+
+        socket.on("msgRcv", ({ name, msg: value, sender }) => {
+            setMsgRcv({ value, sender });
+            setTimeout(() => {
+                setMsgRcv({});
+            }, 2000);
+        });
+    }, []);
+
+    // useEffect(() => {
+    //     console.log(chat);
+    // }, [chat]);
+    const getVideoAudio = () => {
+        console.log(me)
+        navigator.mediaDevices
+            .getUserMedia({ video: true, audio: true })
             .then((currentStream) => {
                 setStream(currentStream);
                 myVideo.current.srcObject = currentStream;
-                const videoTracks = currentStream.getVideoTracks();
-                const videoTrack = videoTracks.length ? videoTracks[0] : null;
-                setVideoTrack(videoTrack);
             });
-        // if (myVideo.current) {
-        //     const videoConstraints = {
-        //         video: {
-        //             width: 1280,
-        //             height: 720,
-        //         },
-        //     };
-
-        //     const stream = await navigator.mediaDevices.getUserMedia(
-        //         videoConstraints
-        //     );
-        //     const videoTracks = stream.getVideoTracks();
-
-        //     const videoTrack = videoTracks.length ? videoTracks[0] : null;
-
-        //     myVideo.current.srcObject = new MediaStream([videoTrack]);
-        //     // myVideo.current.play();
-        //     setStream(stream)
-        //     setVideoTrack(videoTrack);
-
-        // }
-        // const peer = new Peer({
-        //     initiator: true,
-        //     trickle: false,
-        //     stream: stream
-        // })
-        // connectionRef.current = peer
-
-    };
-    const getAudio = async () => {
-        console.log(me, 'id')
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then((currentStream) => {
-                setStream(currentStream);
-                micRef.current.srcObject = currentStream;
-                const audioTracks = currentStream.getAudioTracks();
-                const audioTrack = audioTracks.length ? audioTracks[0] : null;
-                setAudioTrack(audioTrack);
-                console.log(audioTrack, 'audioooo')
-            });
-
-    };
-
-
-    const handleToggleMic = () => {
-        if (!micOn) {
-            getAudio();
-        } else {
-            if (audioTrack) {
-                audioTrack.stop();
-                setAudioTrack(null);
-            }
-        }
-        setMicOn(!micOn);
-    };
-
-    const handleToggleWebcam = () => {
-        console.log(videoTrack)
-        if (!webcamOn) {
-            getVideo();
-        } else {
-            if (videoTrack) {
-                videoTrack.stop();
-                setVideoTrack(null);
-            }
-        }
-        setWebcamOn(!webcamOn);
-    };
-
-    const handleToggleChat = () => {
-        setChatOn(!chatOn);
     }
 
+    const answerCall = () => {
+        setCallAccepted(true);
+        setOtherUser(call.from);
+        const peer = new Peer({ initiator: false, trickle: false, stream });
+
+        peer.on("signal", (data) => {
+            socket.emit("answerCall", {
+                signal: data,
+                to: call.from,
+                userName: name,
+                type: "both",
+                myMediaStatus: [myMicStatus, myVdoStatus],
+            });
+        });
+
+        peer.on("stream", (currentStream) => {
+            userVideo.current.srcObject = currentStream;
+        });
+
+        peer.signal(call.signal);
+
+        connectionRef.current = peer;
+        console.log(connectionRef.current);
+    };
+
     const callUser = (id) => {
-        const peer = new Peer({
-            initiator: true,
-            trickle: false,
-            stream: stream
-        })
+        const peer = new Peer({ initiator: true, trickle: false, stream });
         setOtherUser(id);
         peer.on("signal", (data) => {
             socket.emit("callUser", {
                 userToCall: id,
                 signalData: data,
                 from: me,
-                name: name
-            })
-        })
-        peer.on("stream", (stream) => {
-            userVideo.current.srcObject = stream
+                name,
+            });
+        });
 
-        })
-        socket.on("callAccepted", (signal) => {
-            setCallAccepted(true)
-            peer.signal(signal)
-        })
+        peer.on("stream", (currentStream) => {
+            userVideo.current.srcObject = currentStream;
+        });
 
-        connectionRef.current = peer
-    }
+        socket.on("callAccepted", ({ signal, userName }) => {
+            setCallAccepted(true);
+            setUserName(userName);
+            peer.signal(signal);
+            socket.emit("updateMyMedia", {
+                type: "both",
+                currentMediaStatus: [myMicStatus, myVdoStatus],
+            });
+        });
 
-    const answerCall = () => {
-        setCallAccepted(true)
-        setOtherUser(caller);
-        const peer = new Peer({
-            initiator: false,
-            trickle: false,
-            stream: stream
-        })
-        peer.on("signal", (data) => {
-            socket.emit("answerCall", { signal: data, to: caller })
-        })
-        peer.on("stream", (stream) => {
-            userVideo.current.srcObject = stream
-        })
+        connectionRef.current = peer;
+        console.log(connectionRef.current);
+    };
 
-        peer.signal(callerSignal)
-        connectionRef.current = peer
-    }
+    const updateVideo = () => {
+        setMyVdoStatus((currentStatus) => {
+            socket.emit("updateMyMedia", {
+                type: "video",
+                currentMediaStatus: !currentStatus,
+            });
+            stream.getVideoTracks()[0].enabled = !currentStatus;
+            return !currentStatus;
+        });
+    };
 
+    const updateMic = () => {
+        setMyMicStatus((currentStatus) => {
+            socket.emit("updateMyMedia", {
+                type: "mic",
+                currentMediaStatus: !currentStatus,
+            });
+            stream.getAudioTracks()[0].enabled = !currentStatus;
+            return !currentStatus;
+        });
+    };
     const leaveCall = () => {
-        setCallEnded(true)
+        setCallEnded(true);
+
         connectionRef.current.destroy();
         socket.emit("endCall", { id: otherUser });
         window.location.reload();
-    }
-    const leaveCall1 = () => {
-        socket.emit("endCall", { id: me });
-        window.location.reload();
     };
 
+    const leaveCall1 = () => {
+        socket.emit("endCall", { id: otherUser });
+    };
+    const sendMessage = (value) => {
+        socket.emit("msgUser", { name, to: otherUser, msg: value, sender: name });
+        let msg = {};
+        msg.msg = value;
+        msg.type = "sent";
+        msg.timestamp = Date.now();
+        msg.sender = name;
+        setChat([...chat, msg]);
+    };
     return (
-        <SocketContext.Provider value={{
-            createId,
-            call,
-            callAccepted,
-            myVideo,
-            userVideo,
-            stream,
-            name,
-            setName,
-            callEnded,
-            me,
-            setMe,
-            callUser,
-            leaveCall,
-            answerCall,
-            getVideo,
-            videoTrack,
-            idToCall,
-            leaveCall1,
-            setCall,
-            receivingCall,
-            setIdToCall,
-            webcamOn,
-            setWebcamOn,
-            micOn,
-            setMicOn,
-            handleToggleChat,
-            handleToggleMic,
-            handleToggleWebcam,
-            micRef,
-            getAudio,
-            audioTrack
-        }}
+        <SocketContext.Provider
+            value={{
+                call,
+                callAccepted,
+                myVideo,
+                userVideo,
+                stream,
+                name,
+                setName,
+                callEnded,
+                me,
+                callUser,
+                leaveCall,
+                answerCall,
+                sendMessage,
+                msgRcv,
+                chat,
+                setChat,
+                setMsgRcv,
+                setOtherUser,
+                leaveCall1,
+                userName,
+                myVdoStatus,
+                setMyVdoStatus,
+                userVdoStatus,
+                setUserVdoStatus,
+                updateVideo,
+                myMicStatus,
+                setMyMicStatus,
+                userMicStatus,
+                updateMic,
+                getVideoAudio,
+                receivingCall,
+                setReceivingCall,
+                socket
+            }}
         >
             {children}
         </SocketContext.Provider>

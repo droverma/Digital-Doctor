@@ -12,9 +12,17 @@ const io = require("socket.io")(server, {
 io.on("connection", (socket) => {
 	socket.emit("me", socket.id)
 
+	// socket.on("disconnect", () => {
+	// 	io.broadcast.emit("callEnded")
+	// })
 	socket.on("disconnect", () => {
-		socket.broadcast.emit("callEnded")
-	})
+		console.log("User Disconnected", socket.id);
+	});
+
+	socket.on("join_room", (data) => {
+		socket.join(data);
+		console.log(`User with ID: ${socket.id} joined room: ${data}`);
+	});
 
 	socket.on("callUser", (data) => {
 		io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
@@ -23,13 +31,18 @@ io.on("connection", (socket) => {
 		console.log("updateMyMedia");
 		socket.broadcast.emit("updateUserMedia", { type, currentMediaStatus });
 	});
+
 	socket.on("msgUser", ({ name, to, msg, sender }) => {
 		io.to(to).emit("msgRcv", { name, msg, sender });
 	});
-	socket.on("answerCall", (data) => {
-		io.to(data.to).emit("callAccepted", data.signal)
-	})
 
+	socket.on("answerCall", (data) => {
+		socket.broadcast.emit("updateUserMedia", {
+			type: data.type,
+			currentMediaStatus: data.myMediaStatus,
+		});
+		io.to(data.to).emit("callAccepted", data);
+	});
 	socket.on("endCall", ({ id }) => {
 		io.to(id).emit("endCall");
 	});

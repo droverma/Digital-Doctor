@@ -1,43 +1,11 @@
-import {
-    Box,
-    Button, Grid,
-    makeStyles, Tooltip, useTheme
-} from "@material-ui/core";
 import MicIcon from '@mui/icons-material/Mic';
 import MicOffIcon from '@mui/icons-material/MicOff';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import VideocamOffIcon from '@mui/icons-material/VideocamOff';
-import { red } from "@mui/material/colors";
-// import makeStyles from "@emotion/styled";
+import { TextField } from '@mui/material';
+import { red, grey } from "@mui/material/colors";
 import React, { useEffect, useRef, useState } from "react";
-import useResponsiveSize from "./utils/UseResponsiveSize";
-// import { MeetingDetailsScreen } from "./MeetingDetailsScreen";
-
-const useStyles = makeStyles((theme) => ({
-    video: {
-        borderRadius: "10px",
-        backgroundColor: "#1c1c1c",
-        height: "100%",
-        width: "100%",
-        objectFit: "cover",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-
-    toggleButton: {
-        borderRadius: "100%",
-        minWidth: "auto",
-        width: "44px",
-        height: "44px",
-    },
-
-    previewBox: {
-        width: "100%",
-        height: "45vh",
-        position: "relative",
-    },
-}));
+import { Col, Container, Row, Button } from "react-bootstrap";
 
 export function JoiningScreen({
     setWebcamOn,
@@ -45,16 +13,10 @@ export function JoiningScreen({
     micOn,
     webcamOn,
     onClickStartMeeting,
+    name,
+    setName
 }) {
-    const theme = useTheme();
-    const styles = useStyles(theme);
-    const padding = useResponsiveSize({
-        xl: 6,
-        lg: 6,
-        md: 6,
-        sm: 4,
-        xs: 1.5,
-    });
+
     const videoPlayerRef = useRef();
     const [videoTrack, setVideoTrack] = useState(null);
 
@@ -74,7 +36,7 @@ export function JoiningScreen({
             };
 
             const stream = await navigator.mediaDevices.getUserMedia(
-                {video:true}
+                videoConstraints
             );
             const videoTracks = stream.getVideoTracks();
 
@@ -103,130 +65,115 @@ export function JoiningScreen({
         setWebcamOn(!webcamOn);
     };
     return (
-        <Box
-            style={{
-                display: "flex",
-                flex: 1,
-                flexDirection: "column",
-                height: "80vh",
-                alignItems: "center",
-                backgroundColor: theme.palette.background.default,
-                padding: padding,
-            }}>
-
-            <Grid
-                item
-                xs={12}
-                md={6}
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flex: 1,
-                    alignItems: "center",
-                    justifyContent: "center",
+        <Container>
+            <Row>
+                <Col md={12} style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    display: 'flex',
+                    marginTop: '1rem'
                 }}>
-                <Box
-                    m={6}
-                    style={{
-                        display: "flex",
-                        flex: 1,
-                        width: "100%",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: padding,
-                    }}>
-                    <Box className={styles.previewBox}>
+                    <video
+                        autoPlay
+                        playsInline
+                        muted
+                        width={'100%'}
+                        height={'100%'}
+                        style={{ width: '33rem', borderRadius: '10px' }}
+                        ref={videoPlayerRef}
+                        controls={false}
+                    />
+                </Col>
+            </Row>
+            <Row>
+                <Col md={6} style={{
+                    alignItems: 'flex-end',
+                    justifyContent: 'flex-end',
+                    display: 'flex',
+                    marginTop: '1rem'
+                }}>
+                    <Button
+                        onClick={() => handleToggleMic()}
+                        variant="contained"
+                        style={
+                            micOn
+                                ? {
+                                    borderRadius: "20px",
+                                    backgroundColor: grey[500]
+                                }
+                                : {
+                                    backgroundColor: red[500],
+                                    borderRadius: "20px",
+                                    color: "white",
+                                }
+                        }>
+                        {micOn ? <MicIcon /> : <MicOffIcon />}
+                    </Button>
+                </Col>
+                <Col md={6} style={{
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-start',
+                    display: 'flex',
+                    marginTop: '1rem'
+                }}>
 
-                        <video
-                            autoPlay
-                            playsInline
-                            muted
-                            ref={videoPlayerRef}
-                            controls={false}
-                            className={styles.video + " flip"}
-                        />
-                        <Box
-                            position="absolute"
-                            bottom={theme.spacing(2)}
-                            marginTop="1rem"
-                            left="0"
-                            right="0">
-                            <Grid
-                                container
-                                alignItems="center"
-                                justify="center"
-                                spacing={2}>
-                                <Grid item>
-                                    <Tooltip
-                                        title={micOn ? "Turn off mic" : "Turn on mic"}
-                                        arrow
-                                        placement="top">
-                                        <Button
-                                            onClick={() => handleToggleMic()}
-                                            variant="contained"
-                                            style={
-                                                micOn
-                                                    ? {}
-                                                    : {
-                                                        backgroundColor: red[500],
-                                                        color: "white",
-                                                    }
-                                            }
-                                            className={styles.toggleButton}>
-                                            {micOn ? <MicIcon /> : <MicOffIcon />}
-                                        </Button>
-                                    </Tooltip>
-                                </Grid>
-                                <Grid item>
-                                    <Tooltip
-                                        title={webcamOn ? "Turn off camera" : "Turn on camera"}
-                                        arrow
-                                        placement="top">
-                                        <Button
-                                            onClick={() => handleToggleWebcam()}
-                                            variant="contained"
-                                            style={
-                                                webcamOn
-                                                    ? {}
-                                                    : {
-                                                        backgroundColor: red[500],
-                                                        color: "white",
-                                                    }
-                                            }
-                                            className={styles.toggleButton}>
-                                            {webcamOn ? <VideocamIcon /> : <VideocamOffIcon />}
-                                        </Button>
-                                    </Tooltip>
-                                </Grid>
-                            </Grid>
-                            <Grid
-                                container
-                                alignItems="center"
-                                justify="center"
-                                spacing={2}>
-
-                                <Grid item>
-                                    <Button
-                                        color="primary"
-                                        variant="contained"
-                                        onClick={(e) => {
-                                            if (videoTrack) {
-                                                videoTrack.stop();
-                                                setVideoTrack(null);
-                                            }
-                                            onClickStartMeeting();
-                                        }}
-                                        id={"btnJoin"}>
-                                        Start
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Box>
-                    </Box>
-                </Box>
-            </Grid>
-        </Box>
+                    <Button
+                        onClick={() => handleToggleWebcam()}
+                        variant="contained"
+                        style={
+                            webcamOn
+                                ? {
+                                    borderRadius: "20px",
+                                    backgroundColor: grey[500]
+                                }
+                                : {
+                                    backgroundColor: red[500],
+                                    color: "white",
+                                    borderRadius: "20px",
+                                }
+                        }>
+                        {webcamOn ? <VideocamIcon /> : <VideocamOffIcon />}
+                    </Button>
+                </Col>
+            </Row>
+            <Row>
+                <Col style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    display: 'flex',
+                    marginTop: '1rem'
+                }}>
+                    <Button
+                        variant="primary"
+                        onClick={(e) => {
+                            if (videoTrack) {
+                                videoTrack.stop();
+                                setVideoTrack(null);
+                            }
+                            onClickStartMeeting();
+                        }}
+                        style={{ width: '17%' }}>
+                        Start Meeting
+                    </Button>
+                </Col>
+            </Row>
+            <Row>
+                <Col style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    display: 'flex',
+                    marginTop: '1rem'
+                }}>
+                    <TextField
+                        label="Name"
+                        variant="filled"
+                        value={name}
+                        onChange={(event) => {
+                            setName(event.target.value);
+                        }}
+                    />
+                </Col>
+            </Row>
+        </Container>
     );
 }
