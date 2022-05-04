@@ -1,50 +1,9 @@
 .react-calendar {
     width: 500px;
 }
-
 .button-container {
     padding: 30px;
 }
-.create-slot-button{
-    width: 100% !important;
-    border-radius: 12px !important;
-    min-width: 160px;
-}
-.create-slot-button-container{
-    padding-left: 5% !important;
-    padding-right: 5% !important;
-
-}
-.create-slots-container{
-    width: 100%;
-    text-align: center;
-}
-.slot-fields-box{
-    width: 60%;
-    margin: auto;
-    border-radius: 20px;
-    margin-top: 60px;
-    padding: 20px;
-    border: 1px solid rgba(0,0,0,.125);
-    box-shadow: 6px 7px 16px 5px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-}
-.create-slot-input-fields{
-    width: 100%;
-    height: 50px;
-}
-.create-slot-booked-button{
-    border-radius: 12px !important;
-    width: 100% !important;
-    min-width: 160px;
-    background-color: red !important;
-    color: white !important;
-    cursor: not-allowed !important;
-}
-.slots-container{
-    min-height: 500px;
-    height: 520px;
-}
-
 .doctors-details {
     margin-left: 55px;
     width: 90%;
@@ -155,6 +114,7 @@
 
 .react-calendar__navigation {
     padding-top: 15px;
+    margin-bottom: unset !important;
 }
 
 .react-calendar__month-view__weekdays {

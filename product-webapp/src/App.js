@@ -11,27 +11,38 @@ import DoctorsList from "./components/profile/DoctorsList/DoctorsList";
 import PatientProfile from "./components/profile/PatientProfile";
 import VideoChat from "./components/videoMeeting/VideoChat";
 import VideoChatMeeting from "./components/videoMeeting/VideoChatMeeting";
+import ResponsiveDrawer from "./container/sideNav/SideNav";
 import Header from "./container/header/Header";
+// import ResponsiveDrawer from "./container/sideNav/Sidebar";
 
 
 function App() {
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/doctorslist" element={<DoctorsList />} />
-        <Route path="/updatedoctor" element={<DoctorProfile />} />
-        <Route path="/updatepatient" element={<PatientProfile />} />
-        <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
-        <Route path="/vid" element={<VideoChatMeeting />} />
-        <Route path="/video" element={<VideoChat />} />
-        <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
-        <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
-        <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
-      </Routes>
-    </>
+      <div className="row app-margin">
+        <div className="col-md-2">
+          <ResponsiveDrawer />
+        </div>
+        <div className="col-md-10 column">
+          <div className="col">
+            <Header />
+          </div>
+          <div className="col">
+            <Routes>
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/doctorslist" element={<DoctorsList />} />
+              <Route path="/updatedoctor" element={<DoctorProfile />} />
+              <Route path="/updatepatient" element={<PatientProfile />} />
+              <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
+              {/* <Route path="/video" element={<PatientVideoChat />} /> */}
+              <Route path="/vid" element={<VideoChatMeeting />} />
+              <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
+              <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
+              <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
   );
 }
 

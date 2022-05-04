@@ -26,7 +26,11 @@ function CreateSlotChips(props) {
                     </span>
 
                     <span className="col-md-2">
-                        <CancelIcon />
+                        <Tooltip
+                            title="Cancel Slot"
+                            placement="top">
+                            <CancelIcon />
+                        </Tooltip>
                     </span>
                 </div>
 
