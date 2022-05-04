@@ -48,7 +48,7 @@ public class PatientServiceImpl implements PatientService{
             patient1.setPatientImage(patient.getPatientImage());
             patient1.setPassword(patient.getPassword());
             patient1.setCity(patient.getCity());
-            patient1.setPatientmobileNumber(patient.getPatientmobileNumber());
+            patient1.setPatientMobileNumber(patient.getPatientMobileNumber());
             return patient1;
         }
         catch(PatientDoesNotExistException e){

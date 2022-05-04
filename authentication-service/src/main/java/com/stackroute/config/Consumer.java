@@ -1,15 +1,9 @@
 package com.stackroute.config;
 import com.stackroute.exception.UserAlreadyExists;
-import com.stackroute.exceptionhandling.DoctorAlreadyExistException;
-import com.stackroute.model.Doctor;
-import com.stackroute.model.Patient;
 import com.stackroute.models.User;
 import com.stackroute.models.UserRole;
-import com.stackroute.rabbitmq.DoctorDto;
-import com.stackroute.rabbitmq.PatientDto;
 import com.stackroute.rabbitmq.UserDTO;
 import com.stackroute.service.*;
-import lombok.SneakyThrows;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

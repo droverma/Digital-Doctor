@@ -1,12 +1,10 @@
 package com.stackroute.config;
 
-import com.stackroute.rabbitmq.DoctorDto;
-import com.stackroute.rabbitmq.PatientDto;
+
 import com.stackroute.rabbitmq.UserDTO;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Component
