@@ -1,5 +1,7 @@
 package com.stackroute.service;
 
+import com.stackroute.config.Producer;
+import com.stackroute.rabbitmq.UserDTO;
 import com.stackroute.repository.DoctorRepository;
 import com.stackroute.exceptionhandling.DoctorAlreadyExistException;
 import com.stackroute.exceptionhandling.DoctorDoesNotExistException;
@@ -9,15 +11,24 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 @Service
-
 public class DoctorServiceImpl implements DoctorService {
+    @Autowired
+    Producer producer;
     @Autowired
     private DoctorRepository doctorRepository;
 
     @Override
     public Doctor saveDoctor(Doctor doctor) throws DoctorAlreadyExistException {
-        return doctorRepository.save(doctor);
-    }
+            UserDTO userDTO=new UserDTO();
+            userDTO.setEmailId(doctor.getDoctorEmail());
+            userDTO.setPassword(doctor.getPassword());
+            userDTO.setUserRole("doctor");
+            producer.sendMessageToRabbitMq(userDTO);
+            doctor.setPassword("");
+            return doctorRepository.save(doctor);
+        }
+
+
 
     @Override
     public Doctor getDoctorByEmail(String email) throws DoctorDoesNotExistException {

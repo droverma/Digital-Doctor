@@ -1,20 +1,29 @@
 package com.stackroute.service;
 
+import com.stackroute.config.Producer;
+import com.stackroute.rabbitmq.UserDTO;
 import com.stackroute.repository.PatientRepository;
 import com.stackroute.exceptionhandling.PatientAlreadyExistException;
 import com.stackroute.exceptionhandling.PatientDoesNotExistException;
 import com.stackroute.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
-@Service
 
+@Service
 public class PatientServiceImpl implements PatientService{
+
+    @Autowired
+    Producer producer;
     @Autowired
     private PatientRepository patientRepository;
     @Override
     public Patient savePatient(Patient patient) throws PatientAlreadyExistException {
+        UserDTO userDTO=new UserDTO();
+        userDTO.setEmailId(patient.getPatientEmail());
+        userDTO.setPassword(patient.getPassword());
+        userDTO.setUserRole("patient");
+        producer.sendMessageToRabbitMq(userDTO);
         return patientRepository.save(patient);
     }
 
@@ -39,7 +48,7 @@ public class PatientServiceImpl implements PatientService{
             patient1.setPatientImage(patient.getPatientImage());
             patient1.setPassword(patient.getPassword());
             patient1.setCity(patient.getCity());
-            patient1.setPatientmobileNumber(patient.getPatientmobileNumber());
+            patient1.setPatientMobileNumber(patient.getPatientMobileNumber());
             return patient1;
         }
         catch(PatientDoesNotExistException e){
