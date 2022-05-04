@@ -50,11 +50,11 @@
 }
 
 .react-calendar {
-    width: 100%;
+    width: 100% !important;
 }
 
 .react-calendar button {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 
 .calender-container {
@@ -118,7 +118,7 @@
 }
 
 .react-calendar__month-view__weekdays {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 
 .react-calendar__viewContainer {
@@ -130,7 +130,7 @@
 }
 
 .react-calendar__month-view__weekdays {
-    font-size: 24px;
+    font-size: 24px !important;
 }
 
 .react-calendar__navigation__label__labelText {
@@ -176,7 +176,7 @@
 
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
-    background-color: yellow;
+    background-color: yellow !important;
 }
 
 .filter-container {
