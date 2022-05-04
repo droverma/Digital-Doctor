@@ -1,5 +1,6 @@
 package com.stackroute;
 
+import com.stackroute.exception.UserNotFoundException;
 import com.stackroute.models.User;
 import com.stackroute.repository.UserRepository;
 import com.stackroute.service.UserServiceImpl;
@@ -24,20 +25,20 @@ public class UserServiceMockitoTestCase {
     @Mock
     private UserRepository userRepository;
 
-    private List<User>userList=new ArrayList<>();
+    private List<User>userList=new ArrayList<User>();
 
     private User user;
 
 
-    /* @Test
-    public void test_postuser(){
+   /*  @Test
+    public void test_postuser() throws UserNotFoundException {
 
         List<User> myUsers = new ArrayList<User>();
         myUsers.add(new User("srikumar@gmail.com","srikumar",DOCTOR));
        String email = "srikumar@gmail.com";
-      // String Password = "Srikumar";
+      //String Password = "Srikumar";
         when(userRepository.findByEmailIdAndPassword("srikumar@gmail.com", "srikumar")).thenReturn((User) myUsers);
-       assertEquals(email,userService.findUserByEmailIdAndPassword(email).getEmailId());
+       assertEquals(email,userService.findUserByEmailIdAndPassword("srikumar@gmail.com","srikumar").getEmailId());
 
     }*/
 }

@@ -33,8 +33,6 @@ public class AuthenticationServiceApplication {
 				.apiInfo(apiDetails());
 	}
 
-
-
 	private ApiInfo apiDetails() {
 		return new ApiInfo(
 				"Authentication api",
