@@ -28,7 +28,7 @@ const Header = () => {
                                 <AccountCircleIcon />
                             </Navbar.Brand>
                             <NavDropdown title="" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Logout</NavDropdown.Item>
+                                <NavDropdown.Item >Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
