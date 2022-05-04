@@ -18,15 +18,15 @@ import Header from "./container/header/Header";
 
 function App() {
   return (
-      <div className="row app-margin">
-        <div className="col-md-2">
+      <div className="app-container app-margin">
+        <div className="app-side-bar">
           <ResponsiveDrawer />
         </div>
-        <div className="col-md-10 column">
-          <div className="col">
+        <div className="app-content">
+          <div className="">
             <Header />
           </div>
-          <div className="col">
+          <div className="">
             <Routes>
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />

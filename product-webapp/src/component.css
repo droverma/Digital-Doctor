@@ -13,6 +13,10 @@
     border-radius: 40px;
     background: #E6E6E6;
 }
+.card:hover {
+    transform: none !important;
+  }
+  
 
 .doctor-image {
     width: 248px;

@@ -9,6 +9,16 @@
 .app-margin{
     margin: 0px !important;
 }
+.app-container{
+    display: flex;
+    flex-direction: row;
+}
+.app-side-bar{
+    width: 240px;
+}
+.app-content{
+    width: calc(100% - 240px);
+}
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;
