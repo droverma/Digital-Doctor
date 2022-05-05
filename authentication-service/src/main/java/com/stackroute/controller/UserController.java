@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/user")
 @CrossOrigin("*")
+@RequestMapping("/api/v1/")
 public class UserController {
 
     private ResponseEntity responseEntity;
@@ -22,13 +22,14 @@ public class UserController {
     @Autowired
     private SecurityTokenGenerator securityTokenGenerator;
 
-    @PostMapping("/register")
+    @PostMapping("/user/register")
     public User saveUser(@RequestBody User user)  {
         return userService.saveUser(user);
 
     }
 
-    @PostMapping("/login")
+
+    @PostMapping("/user/login")
     public ResponseEntity login(@RequestBody User user) throws UserNotFoundException {
         Map<String, String> map = null;
         try {
@@ -42,7 +43,7 @@ public class UserController {
             throw new UserNotFoundException();
         }
         catch (Exception e) {
-            responseEntity = new ResponseEntity("error ouccured", HttpStatus.INTERNAL_SERVER_ERROR);
+            responseEntity = new ResponseEntity("error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
         return responseEntity;

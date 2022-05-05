@@ -1,7 +1,6 @@
 package com.stackroute.service;
 
 import com.stackroute.config.Producer;
-import com.stackroute.rabbitmq.DoctorDto;
 import com.stackroute.rabbitmq.UserDTO;
 import com.stackroute.repository.DoctorRepository;
 import com.stackroute.exceptionhandling.DoctorAlreadyExistException;

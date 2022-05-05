@@ -15,7 +15,11 @@
 	<description>Api Gateway for Digital Doctor</description>
 	<properties>
 		<java.version>11</java.version>
+<<<<<<< HEAD
 		<spring-cloud.version>2020.0.2</spring-cloud.version>
+=======
+		<spring-cloud.version>2020.0.4</spring-cloud.version>
+>>>>>>> 56ad7a698a12cb7d9c20678451ed2b55d3f08f50
 	</properties>
 	<dependencies>
 		<dependency>
@@ -24,7 +28,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
+<<<<<<< HEAD
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+=======
+			<artifactId>spring-cloud-starter-gateway</artifactId>
+>>>>>>> 56ad7a698a12cb7d9c20678451ed2b55d3f08f50
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,6 +51,10 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 56ad7a698a12cb7d9c20678451ed2b55d3f08f50
 	<build>
 		<plugins>
 			<plugin>

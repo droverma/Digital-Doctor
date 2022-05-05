@@ -1,19 +1,19 @@
-package com.stackroute.model;
+package com.stackroute.meetingdetails.models;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@ToString
 @Setter
-@Document
-public class Chat {
+@Getter
+public class MeetingDetails {
     @Id
-    private String chatId;
-    private String patientId;
-    private String doctorId;
-    private Message message;
+    private String appointmentId;
+    private String meetingId;
 }
+
