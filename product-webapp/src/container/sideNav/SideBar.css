@@ -9,3 +9,16 @@
     margin-left: 30px;
     margin-top: 20px;
 }
+@media screen and (max-width:600px){
+    .css-zxtyt4-MuiPaper-root-MuiAppBar-root{
+        background-color: rgb(42, 210, 217) !important;
+        right: unset !important;
+        width: 9% !important;
+        color: black !important;
+        text-align: center !important;
+        position: absolute !important;
+    }
+    .css-6iz4mj-MuiButtonBase-root-MuiIconButton-root{
+        margin-right: unset !important;
+    }
+}

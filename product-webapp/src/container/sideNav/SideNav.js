@@ -40,7 +40,7 @@ function ResponsiveDrawer(props) {
       <List>
         {
         SidebarData.map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem button key={index}>
             <ListItemIcon className='icon'>
               {text.icon}
             </ListItemIcon>

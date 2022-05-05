@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Login from '../../components/login/Login';
 import Register from '../../components/register/Register';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import './Header.css';
 
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false);
