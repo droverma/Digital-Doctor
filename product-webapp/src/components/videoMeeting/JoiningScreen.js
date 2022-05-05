@@ -39,14 +39,9 @@ export function JoiningScreen({
                 videoConstraints
             );
             const videoTracks = stream.getVideoTracks();
-
             const videoTrack = videoTracks.length ? videoTracks[0] : null;
-
             videoPlayerRef.current.srcObject = new MediaStream([videoTrack]);
-            videoPlayerRef.current.play();
-
             setVideoTrack(videoTrack);
-
         }
     };
     const handleToggleMic = () => {

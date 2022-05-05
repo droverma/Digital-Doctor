@@ -1,5 +1,5 @@
 import { Tooltip } from "@material-ui/core";
-import { Send, Mic, MicOff, Videocam, VideocamOff, Person } from "@mui/icons-material";
+import { Send, Mic, MicOff, Videocam, VideocamOff } from "@mui/icons-material";
 
 import { Button, FilledInput, FormControl, IconButton, InputAdornment, InputLabel } from "@mui/material";
 import { red } from "@mui/material/colors";
@@ -20,6 +20,7 @@ const VideoChat = () => {
     callEnded,
     me,
     leaveCall,
+    leaveCall1,
     answerCall,
     sendMessage,
     chat,
@@ -78,7 +79,17 @@ const VideoChat = () => {
       <Row className="m-md-0" style={{ backgroundColor: '#161616' }}>
         <Col md={callAccepted ? 5 : 9} className="column">
           {stream &&
-            <div>
+            < >
+              <div style={{
+                color: 'white',
+                opacity: `${myVdoStatus ? "-1" : "2"}`,
+                position: 'absolute',
+                marginLeft: `${!callAccepted ? "32%" : "15%"}`,
+                marginTop: `${!callAccepted ? "15%" : "17%"}`,
+                fontSize: 'xxx-large'
+              }}>
+                {name}
+              </div>
               <video
                 height={"100%"}
                 width={"100%"}
@@ -87,92 +98,25 @@ const VideoChat = () => {
                 autoPlay
                 playsInline
                 muted
-                style={{
-                  opacity: `${myVdoStatus ? "1" : "0"}`,
-                }}
               />
-              <div style={{
-                color: 'white',
-                backgroundColor: "#116",
-                position: "absolute",
-                opacity: `${myVdoStatus ? "-1" : "2"}`,
-              }}>
-                {name}
-              </div>
-            </div>
+
+            </>
           }
-          {/* {myVdoStatus ?
-            <>
-              {stream &&
-                <>
-                  <div style={{
-                    textAlign: 'center',
-                    fontSize: 'large',
-                    color: 'white'
-                  }}>
-                    {name}
-                  </div>
-                  <video
-                    height={"100%"}
-                    width={"100%"}
-                    ref={myVideo}
-                    className="video"
-                    autoPlay
-                    playsInline
-                    muted
-                  />
-
-                </>
-              }
-            </>
-            :
-            <div
-              style={{
-                backgroundColor: "black",
-                color: 'white',
-                height: '33rem',
-                textAlign: 'center',
-                fontSize: 'xxx-large',
-              }}>
-              <h1>{name}</h1>
-            </div>
-          } */}
-          {/* 
-          {stream ? (
-            <>
-              <div style={{ height: "2rem" }}>
-                <h3>{myVdoStatus && name}</h3>
-              </div>
-              <video
-                playsInline
-                muted
-                onClick={fullScreen}
-                ref={myVideo}
-                autoPlay
-                className="video-active"
-                style={{
-                  opacity: `${myVdoStatus ? "1" : "0"}`,
-                }}
-              />
-
-              <PersonIcon>
-                {name}
-              </PersonIcon>
-            </>
-          ) : (
-            <div style={{
-              backgroundColor: "black",
-              color: 'white',
-              height: '33rem',
-              textAlign: 'center',
-              fontSize: 'xxx-large',
-            }}> <h1>{name}</h1> </div>
-          )} */}
-
         </Col>
 
         {callAccepted && !callEnded && (
           <Col md={4}>
+            <div style={{
+              color: 'white',
+              opacity: `${userVdoStatus ? "-1" : "2"}`,
+              position: 'absolute',
+              marginLeft: "11%",
+              marginTop: "17%",
+              fontSize: 'xxx-large'
+            }}>
+              {!userMicStatus && <MicOff style={{ color: 'red' }} />}
+              {userName || call.name}
+            </div>
 
             <video
               id="user"
@@ -181,26 +125,11 @@ const VideoChat = () => {
               autoPlay
               height={"100%"}
               width={"100%"}
-              style={{ height: '33rem' }}
+              style={{
+                height: '33rem',
+                opacity: `${userVdoStatus ? "1" : "0"}`,
+              }}
             />
-            <Person>
-              {userName || call.name}
-            </Person>
-
-            {!userMicStatus && (
-              <i
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  left: "0",
-                  padding: "0.3rem",
-                  backgroundColor: "#fefefebf",
-                }}
-                className="fad fa-volume-mute fa-2x"
-                aria-hidden="true"
-                aria-label="microphone muted"
-              ></i>
-            )}
           </Col>
         )}
         {receivingCall && !callAccepted ? (
@@ -352,7 +281,7 @@ const VideoChat = () => {
                     </div> */}
             </div>
             <div className="footer-leave-btn-container">
-              <Button variant="contained" color="error" onClick={leaveCall}>
+              <Button variant="contained" color="error" onClick={leaveCall1}>
                 Leave
               </Button>
             </div>
@@ -367,8 +296,8 @@ const VideoChat = () => {
         setName={setName}
         name={name}
         onClickStartMeeting={() => {
-          setMeetingStarted(true)
-          // getVideo()
+          setMeetingStarted(true);
+          getVideoAudio();
         }}
         startMeeting={isMeetingStarted}
       />
