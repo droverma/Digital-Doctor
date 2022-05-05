@@ -57,7 +57,8 @@ const DoctorsList = () => {
     getDoctorsList(filterData.city, filterData.specialization);
   };
   const getPatientCity = () => {
-    ProfileDetailsService.patientCity()
+    let patientEmail = localStorage.get("userEmail");
+    ProfileDetailsService.patientProfile(patientEmail)
       .then((res) => {
         // console.log(res);
         const patientCity = res.data[0].city;

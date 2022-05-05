@@ -29,7 +29,8 @@ function AppointmentViewForPatients() {
     const [filters, setFilters] = useState({ specialization: '', date: moment().format('YYYY-MM-DD') });
 
     useEffect(() => {
-        appointmentService.getDataAppointmentViewForPatients().then((response) => {
+        let patientEmail = localStorage.getItem("userEmail");
+        appointmentService.getDataAppointmentViewForPatients(patientEmail).then((response) => {
             let data = response.data;
             // setresult(data);
             setDefaultData(data);
