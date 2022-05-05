@@ -152,7 +152,7 @@ function AppointmentViewForPatients() {
 
     return (
         <div className="container-fluid row">
-            <div className="col-md-4 col-sm-12 filter-container-box">
+            <div className="col-lg-4 col-sm-12 filter-container-box">
                 <div class="card card-with-image">
                     <div>
                         <img src="https://media2.giphy.com/media/EAkvNkimgOxvIryUzE/giphy.gif" class="card-img-top" alt="..." />
@@ -184,7 +184,7 @@ function AppointmentViewForPatients() {
                     </div>
                 </div>
             </div>
-            <div className="col-md-8 column m-2">
+            <div className="col-lg-8 column m-2 appointments">
                 <div className="text-end mb-4">
                     {/* <Posts posts={currentPosts} loading={loading} /> */}
                     {/* <Pagination

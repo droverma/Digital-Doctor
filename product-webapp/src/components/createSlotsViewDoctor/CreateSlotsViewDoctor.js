@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import '../../component.css';
 import { Calendar } from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import AppointmentService from "../../services/appointment.service";
 import CreateSlotChips from "./CreateSlotChips";
+import './CreateSlotsViewDoctor.css'
 
 function CreateSlotViewDoctor() {
 
@@ -29,6 +29,7 @@ function CreateSlotViewDoctor() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        
     }
 
     let appointmentService = new AppointmentService();
@@ -48,10 +49,10 @@ function CreateSlotViewDoctor() {
                     <button className="nav-link col" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-create-slots" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Create Slots</button>
                 </div>
             </nav>
-            <div className="tab-content" id="nav-tabContent">
+            <div className="tab-content mt-4" id="nav-tabContent">
                 <div className="tab-pane fade show active row" id="nav-my-calendar" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div className="col-md-6">
-                        <Calendar onChange={changeDate} value={value} />
+                        <Calendar onChange={changeDate} value={value} className="calendar-create-slots" />
                     </div>
                     <div className="col-md-6 column button-container create-slot-button-container">
                         <div className="slots-container">

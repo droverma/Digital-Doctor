@@ -11,26 +11,36 @@ import DoctorsList from "./components/profile/DoctorsList/DoctorsList";
 import PatientProfile from "./components/profile/PatientProfile";
 import VideoChat from "./components/videoMeeting/VideoChat";
 import Header from "./container/header/Header";
+import ResponsiveDrawer from "./container/sideNav/SideNav";
+// import ResponsiveDrawer from "./container/sideNav/Sidebar";
 
 
 function App() {
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/doctorslist" element={<DoctorsList />} />
-        <Route path="/updatedoctor" element={<DoctorProfile />} />
-        <Route path="/updatepatient" element={<PatientProfile />} />
-        <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
-        {/* <Route path="/vid" element={<VideoChatMeeting />} /> */}
-        <Route path="/video" element={<VideoChat />} />
-        <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
-        <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
-        <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
-      </Routes>
-    </>
+    <div className="app-container app-margin">
+      <div className="app-side-bar">
+        <ResponsiveDrawer />
+      </div>
+      <div className="app-content">
+        <div className="">
+          <Header />
+        </div>
+        <div className="">
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/doctorslist" element={<DoctorsList />} />
+            <Route path="/updatedoctor" element={<DoctorProfile />} />
+            <Route path="/updatepatient" element={<PatientProfile />} />
+            <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
+            <Route path="/video" element={<VideoChat />} />
+            <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
+            <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
+            <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
+          </Routes>
+        </div>
+      </div>
+    </div>
   );
 }
 
