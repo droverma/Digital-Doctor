@@ -10,6 +10,7 @@ const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [stream, setStream] = useState();
+    const [userStream, setUserStream] = useState();
     const [chat, setChat] = useState([]);
     const [name, setName] = useState("");
     const [call, setCall] = useState({});
@@ -79,6 +80,7 @@ const ContextProvider = ({ children }) => {
         }
     }
     const updateVideo = () => {
+        debugger
         setMyVdoStatus((currentStatus) => {
             socket.emit("updateMyMedia", {
                 type: "video",
@@ -87,6 +89,13 @@ const ContextProvider = ({ children }) => {
             stream.getVideoTracks()[0].enabled = !currentStatus;
             return !currentStatus;
         });
+
+        // if (userVideo)
+        //     setUserVdoStatus((currentStatus) => {
+               
+        //         userStream.getVideoTracks()[0].enabled = !currentStatus;
+        //         return !currentStatus;
+        //     })
     };
 
     const updateMic = () => {
@@ -113,6 +122,7 @@ const ContextProvider = ({ children }) => {
         });
 
         peer.on("stream", (currentStream) => {
+            setUserStream(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
@@ -131,6 +141,7 @@ const ContextProvider = ({ children }) => {
     };
 
     const answerCall = () => {
+        debugger
         setCallAccepted(true);
         setOtherUser(call.from);
         const peer = new Peer({ initiator: false, trickle: false, stream });
@@ -146,6 +157,7 @@ const ContextProvider = ({ children }) => {
         });
 
         peer.on("stream", (currentStream) => {
+            setUserStream(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 

@@ -108,16 +108,18 @@ const VideoChat = () => {
           <Col md={4}>
             <div style={{
               color: 'white',
-              opacity: `${userVdoStatus ? "-1" : "2"}`,
+              // opacity: `${userVdoStatus ? "-1" : "2"}`,
               position: 'absolute',
-              marginLeft: "11%",
-              marginTop: "17%",
-              fontSize: 'xxx-large'
+              marginLeft: "0%",
+              marginTop: "27%",
+              fontSize: 'small',
+              backgroundColor: 'grey',
+              padding: `${userMicStatus ? '1.5px' : '4.5px'}`,
             }}>
               {!userMicStatus && <MicOff style={{ color: 'red' }} />}
               {userName || call.name}
             </div>
-
+            {console.log(userVdoStatus, userMicStatus)}
             <video
               id="user"
               playsInline
