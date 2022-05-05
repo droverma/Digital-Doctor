@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
@@ -7,9 +7,14 @@ import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import AppointmentService from "../../services/appointment.service";
 import { Tooltip } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
+import { SocketContext } from '../../context/Context';
 
 
 function CardAppointmentVIewForPatients(props) {
+    const { createMeeting } = useContext(SocketContext);
+
+    let navigate = useNavigate();
 
     let appointmentService = new AppointmentService();
 
@@ -20,6 +25,11 @@ function CardAppointmentVIewForPatients(props) {
         })
 
     }
+    const startMeeting = () => {
+        createMeeting();
+        navigate('/video')
+    }
+
     return (
         <div className="col-md-6 mb-4">
             <div className="card ">
@@ -49,12 +59,12 @@ function CardAppointmentVIewForPatients(props) {
                     <div className="row mb-4">
                         <div className="row col">
                             <div className="col-3">
-                            <Tooltip
+                                <Tooltip
                                     title="Appointment Date"
                                     placement="top">
-                                <CalendarMonthIcon className="calendar-icon"
-                                  />
-                            </Tooltip>
+                                    <CalendarMonthIcon className="calendar-icon"
+                                    />
+                                </Tooltip>
                             </div>
                             <div className="col-9">
                                 <p>
@@ -65,12 +75,12 @@ function CardAppointmentVIewForPatients(props) {
                         </div>
                         <div className="row col">
                             <div className="col-3">
-                            <Tooltip
+                                <Tooltip
                                     title="Appointment Time"
                                     placement="top">
-                                <AccessAlarmIcon className="clock-icon"
-                                  />
-                            </Tooltip>
+                                    <AccessAlarmIcon className="clock-icon"
+                                    />
+                                </Tooltip>
                             </div>
                             <div className="col-9 appointment-date">
                                 <p>
@@ -84,10 +94,10 @@ function CardAppointmentVIewForPatients(props) {
                             {
                                 props.appointmentStatus !== "CANCELED" && props.appointmentStatus !== "PAST" &&
                                 <Tooltip
-                                title="Cancel Appointment"
-                                placement="top">
-                                <ClearOutlinedIcon className="cancel-icon" onClick={cancelClicked}
-                                 />
+                                    title="Cancel Appointment"
+                                    placement="top">
+                                    <ClearOutlinedIcon className="cancel-icon" onClick={cancelClicked}
+                                    />
                                 </Tooltip>
                             }
                         </div>
@@ -95,9 +105,9 @@ function CardAppointmentVIewForPatients(props) {
                             {
                                 props.appointmentStatus !== "CANCELED" && props.appointmentStatus !== "PAST" &&
                                 <Tooltip
-                                title="Call Doctor"
-                                placement="top">
-                                <AddIcCallIcon className="call-icon" />
+                                    title="Call Doctor"
+                                    placement="top">
+                                    <AddIcCallIcon className="call-icon" onClick={startMeeting} />
                                 </Tooltip>
                             }
                         </div>

@@ -84,8 +84,8 @@ const VideoChat = () => {
                 color: 'white',
                 opacity: `${myVdoStatus ? "-1" : "2"}`,
                 position: 'absolute',
-                marginLeft: `${!callAccepted ? "32%" : "15%"}`,
-                marginTop: `${!callAccepted ? "15%" : "17%"}`,
+                marginLeft: `${!callAccepted ? "25%" : "12%"}`,
+                marginTop: `${!callAccepted ? "17%" : "18%"}`,
                 fontSize: 'xxx-large'
               }}>
                 {name}
@@ -106,20 +106,23 @@ const VideoChat = () => {
 
         {callAccepted && !callEnded && (
           <Col md={4}>
-            <div style={{
-              color: 'white',
-              // opacity: `${userVdoStatus ? "-1" : "2"}`,
-              position: 'absolute',
-              marginLeft: "0%",
-              marginTop: "27%",
-              fontSize: 'small',
-              backgroundColor: 'grey',
-              padding: `${userMicStatus ? '1.5px' : '4.5px'}`,
-            }}>
+            <div
+              className={userMicStatus?'namebutton':'mutebutton'}
+            // style={{
+            //   color: 'white',
+            //   // opacity: `${userVdoStatus ? "-1" : "2"}`,
+            //   position: 'absolute',
+            //   marginLeft: "0%",
+            //   marginTop: `${!userMicStatus ? "19.5rem" : "19.7rem"}`,
+            //   fontSize: 'small',
+            //   backgroundColor: 'grey',
+            //   padding: '1.5px',
+            // }}
+            >
               {!userMicStatus && <MicOff style={{ color: 'red' }} />}
+
               {userName || call.name}
             </div>
-            {console.log(userVdoStatus, userMicStatus)}
             <video
               id="user"
               playsInline
@@ -128,7 +131,6 @@ const VideoChat = () => {
               height={"100%"}
               width={"100%"}
               style={{
-                height: '33rem',
                 opacity: `${userVdoStatus ? "1" : "0"}`,
               }}
             />
@@ -150,7 +152,7 @@ const VideoChat = () => {
           </Modal>
         ) : null}
         <Col md={3} style={{ padding: 0 }}>
-          <div id="wc-container-right" style={{ width: '20rem' }}>
+          <div id="wc-container-right" style={{ width: '16.2rem' }}>
             <div className="chat-container window-content-bottom chat-container--normal">
               <div className="chat-header__header">
                 <div className="chat-header__title">Chat</div>
@@ -224,7 +226,7 @@ const VideoChat = () => {
             </div>
           </div>
         </Col>
-        <footer className="footer">
+        <div className="footer">
           <div className="footer__inner">
             <div style={{ display: 'flex', margin: '8px' }}>
               <div>
@@ -288,7 +290,7 @@ const VideoChat = () => {
               </Button>
             </div>
           </div>
-        </footer>
+        </div>
       </Row> :
       <JoiningScreen
         setMicOn={setMyMicStatus}

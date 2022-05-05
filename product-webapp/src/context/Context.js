@@ -30,7 +30,7 @@ const ContextProvider = ({ children }) => {
     const connectionRef = useRef();
 
     useEffect(() => {
-        socket.on("me", (id) => setMe(id));
+        createMeeting()
         socket.on("endCall", () => {
             window.location.reload();
         });
@@ -65,8 +65,13 @@ const ContextProvider = ({ children }) => {
         });
     }, []);
 
+    const createMeeting = async() => {
+      await  socket.on("me", (id) => {
+            console.log(id,'id')
+            setMe(id)});
+    }
     const getVideoAudio = async () => {
-        console.log(me)
+        console.log(me,'id')
         try {
             await navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
                 setStream(currentStream);
@@ -78,9 +83,9 @@ const ContextProvider = ({ children }) => {
         } catch (err) {
             console.log(err);
         }
-    }
+    };
+
     const updateVideo = () => {
-        debugger
         setMyVdoStatus((currentStatus) => {
             socket.emit("updateMyMedia", {
                 type: "video",
@@ -92,7 +97,7 @@ const ContextProvider = ({ children }) => {
 
         // if (userVideo)
         //     setUserVdoStatus((currentStatus) => {
-               
+
         //         userStream.getVideoTracks()[0].enabled = !currentStatus;
         //         return !currentStatus;
         //     })
@@ -141,7 +146,6 @@ const ContextProvider = ({ children }) => {
     };
 
     const answerCall = () => {
-        debugger
         setCallAccepted(true);
         setOtherUser(call.from);
         const peer = new Peer({ initiator: false, trickle: false, stream });
@@ -225,7 +229,8 @@ const ContextProvider = ({ children }) => {
                 getVideoAudio,
                 receivingCall,
                 setReceivingCall,
-                socket
+                socket,
+                createMeeting
             }}
         >
             {children}
