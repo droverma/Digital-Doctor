@@ -131,7 +131,8 @@ const PatientProfile = () => {
   const submitPatientData = (e) => {
     setTimeout(() => {
       // console.log(updatePatientData);
-      ProfileDetailsService.addPatientProfile(updatePatientData, userId)
+      let patientEmail = localStorage.get("userEmail");
+      ProfileDetailsService.addPatientProfile(updatePatientData, patientEmail)
         .then((res) => {
           console.log();
         })
@@ -142,7 +143,8 @@ const PatientProfile = () => {
   };
 
   const getPatientData = () => {
-    ProfileDetailsService.patientProfile()
+    let patientEmail = localStorage.get("userEmail");
+    ProfileDetailsService.patientProfile(patientEmail)
       .then((res) => {
         // console.log(res.data);
         const da = res.data[0];
