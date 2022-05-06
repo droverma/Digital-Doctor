@@ -76,7 +76,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-<<<<<<< HEAD
 		<dependency>
 			<groupId>com.stackroute</groupId>
 			<artifactId>user-service</artifactId>
@@ -87,8 +86,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-=======
->>>>>>> 56ad7a698a12cb7d9c20678451ed2b55d3f08f50
 
 	</dependencies>
 	<dependencyManagement>

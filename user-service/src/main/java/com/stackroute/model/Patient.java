@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Patient {
     @Id
-    private String patientEmail;
+    private String emailId;
     private String patientName;
     private long patientMobileNumber;
     private String password;

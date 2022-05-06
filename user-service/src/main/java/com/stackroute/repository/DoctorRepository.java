@@ -13,7 +13,6 @@ import java.util.List;
 public interface DoctorRepository extends MongoRepository<Doctor,String>{
 
     List<Doctor> findBySpecializationAndCity(String specialization, String city);
-     @Query
-    List<Doctor> findByDoctorEmail();
+
 
 }

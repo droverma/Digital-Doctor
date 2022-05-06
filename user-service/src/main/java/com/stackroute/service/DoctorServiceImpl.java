@@ -20,7 +20,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Doctor saveDoctor(Doctor doctor) throws DoctorAlreadyExistException {
             UserDTO userDTO=new UserDTO();
-            userDTO.setEmailId(doctor.getDoctorEmail());
+            userDTO.setEmailId(doctor.getEmailId());
             userDTO.setPassword(doctor.getPassword());
             userDTO.setUserRole("doctor");
             producer.sendMessageToRabbitMq(userDTO);
@@ -50,14 +50,14 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Doctor updateDoctor(Doctor doctor) {
         try{
-           Doctor doctor1 =doctorRepository.findById(doctor.getDoctorEmail()).get();
+           Doctor doctor1 =doctorRepository.findById(doctor.getEmailId()).get();
            doctor1.setDoctorName(doctor.getDoctorName());
            doctor1.setSpecialization(doctor.getSpecialization());
            doctor1.setYearsOfExperience(doctor.getYearsOfExperience());
            doctor1.setCity(doctor.getCity());
            doctor1.setImage(doctor.getImage());
            doctor1.setPassword(doctor.getPassword());
-           doctor1.setDoctorEmail(doctor.getDoctorEmail());
+           doctor1.setEmailId(doctor.getEmailId());
            doctorRepository.save(doctor1);
            return doctor1;
         }

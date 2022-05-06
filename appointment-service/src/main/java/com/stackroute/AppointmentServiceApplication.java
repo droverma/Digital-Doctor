@@ -2,14 +2,7 @@ package com.stackroute;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-<<<<<<< HEAD
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-@SpringBootApplication
-@EnableEurekaClient
-@EnableWebMvc
-=======
 import org.springframework.context.annotation.Bean;
 
 import springfox.documentation.builders.PathSelectors;
@@ -25,7 +18,7 @@ import java.time.ZonedDateTime;
 
 @SpringBootApplication
 @EnableSwagger2
->>>>>>> 56ad7a698a12cb7d9c20678451ed2b55d3f08f50
+@EnableEurekaClient
 public class AppointmentServiceApplication {
 
 	public static void main(String[] args) {

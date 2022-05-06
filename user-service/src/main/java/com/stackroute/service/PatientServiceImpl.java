@@ -20,7 +20,7 @@ public class PatientServiceImpl implements PatientService{
     @Override
     public Patient savePatient(Patient patient) throws PatientAlreadyExistException {
         UserDTO userDTO=new UserDTO();
-        userDTO.setEmailId(patient.getPatientEmail());
+        userDTO.setEmailId(patient.getEmailId());
         userDTO.setPassword(patient.getPassword());
         userDTO.setUserRole("patient");
         producer.sendMessageToRabbitMq(userDTO);
@@ -42,9 +42,9 @@ public class PatientServiceImpl implements PatientService{
     @Override
     public Patient updatePatient(Patient patient) {
         try{
-            Patient patient1 =patientRepository.findById(patient.getPatientEmail()).get();
+            Patient patient1 =patientRepository.findById(patient.getEmailId()).get();
             patient1.setPatientName(patient.getPatientName());
-            patient1.setPatientEmail(patient.getPatientEmail());
+            patient1.setEmailId(patient.getEmailId());
             patient1.setPatientImage(patient.getPatientImage());
             patient1.setPassword(patient.getPassword());
             patient1.setCity(patient.getCity());

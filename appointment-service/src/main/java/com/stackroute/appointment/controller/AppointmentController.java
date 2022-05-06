@@ -53,10 +53,7 @@ public class AppointmentController {
 
 
     @GetMapping("/appointmentDetails/{appointmentDate}/{specialization}")
-    List<AppointmentSlot> getAppointmentDetailsBYDateAndSpec(@PathVariable String specialization , @PathVariable (name = "appointmentDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate appointmentDate){
+    List<AppointmentSlot> getAppointmentDetailsByDateAndSpec(@PathVariable String specialization , @PathVariable (name = "appointmentDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate appointmentDate){
         return appointmentSlotImpl.getAppointmentDetailsBYDateAndSpec(appointmentDate,specialization);
     }
-
-
-
 }

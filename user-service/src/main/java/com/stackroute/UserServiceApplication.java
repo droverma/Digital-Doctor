@@ -4,11 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
-<<<<<<< HEAD
-//import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-=======
->>>>>>> 56ad7a698a12cb7d9c20678451ed2b55d3f08f50
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -22,7 +17,6 @@ import java.util.Collections;
 @SpringBootApplication
 @EnableSwagger2
 @EnableEurekaClient
-@EnableWebMvc
 public class UserServiceApplication {
 
 	public static void main(String[] args) {
