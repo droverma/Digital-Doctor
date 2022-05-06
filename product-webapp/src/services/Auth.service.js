@@ -3,7 +3,7 @@ import axios from "axios";
 class AuthService {
     //actual end-points
     login(data) {
-        return axios.post('http://localhost:8095/api/v1/user/login',data)
+        return axios.post('http://localhost:8080/api/v1/user/login',data)
     }
     registerDoctor(data){
         return axios.post('http://localhost:8080/api/v1/doctor',data)

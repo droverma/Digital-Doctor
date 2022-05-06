@@ -17,7 +17,7 @@ class ProfileDetailsService {
   patientProfile(patientEmail) {
     // const emailId = "hemant123@gmail.com";
     // return axios.get(`http://localhost:3000/patients?patientEmail=${emailId}`);
-    return axios.get('http://localhost:8080/api/v1/patient'+ patientEmail);
+    return axios.get('http://localhost:8080/api/v1/patient/'+ patientEmail);
   }
   // update the profile details of patients
   addPatientProfile(data, userId) {

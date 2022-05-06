@@ -143,7 +143,7 @@ const PatientProfile = () => {
   };
 
   const getPatientData = () => {
-    let patientEmail = localStorage.get("userEmail");
+    let patientEmail = localStorage.getItem("userEmail");
     ProfileDetailsService.patientProfile(patientEmail)
       .then((res) => {
         // console.log(res.data);

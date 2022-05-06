@@ -46,7 +46,15 @@ const Login = (props) => {
             localStorage.setItem("userEmail", data.emailId);
             localStorage.setItem("jwt-token", res.data.token);
             props.handleModal();
-            navigate('/updatedoctor')
+            if(data.role === "doctor"){
+                console.log("doctor logged in");
+                navigate('/updatedoctor')
+            }
+            else if (data.role === "patient"){
+                console.log("patient logged in");
+                navigate('/updatepatient')
+            }
+            
         }).catch(err => console.log(err))
 
     }

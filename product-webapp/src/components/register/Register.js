@@ -25,11 +25,18 @@ const Register = (props) => {
     password: "",
     role: ""
   });
+  const [doctorData, setDoctorData] = useState({
+    emailId: "",
+    password: ""
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name !== 'confirmPassword')
+    if (name !== 'confirmPassword'){
       setRegisterData({ ...registerData, [name]: value });
+      setDoctorData({ ...doctorData, [name]: value});
+    }
+      
 
     switch (name) {
       case "emailId":
@@ -60,13 +67,15 @@ const Register = (props) => {
   const submit = (event) => {
     event.preventDefault();
     console.log(registerData)
-    if (registerData.role === 'doctor')
-      AuthService.registerDoctor(registerData).then(res => {
+    console.log("doctorData", doctorData);
+    if (registerData.role === 'doctor'){
+      AuthService.registerDoctor(doctorData).then(res => {
         openLoginModal();
         console.log(res)
       }).catch(err => console.error(err))
+    }
     else
-      AuthService.registerPatient(registerData).then(res => {
+      AuthService.registerPatient(doctorData).then(res => {
         openLoginModal();
         console.log(res)
       }).catch(err => console.error(err))

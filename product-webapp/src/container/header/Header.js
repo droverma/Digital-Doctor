@@ -2,16 +2,25 @@ import React, { useState } from 'react';
 import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Login from '../../components/login/Login';
+import { useNavigate } from "react-router-dom";
 import Register from '../../components/register/Register';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './Header.css';
 
 const Header = () => {
+    let navigate = useNavigate();
+
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
 
     const handleLoginModal = () => setShowLogin(!showLogin)
     const handleRegisterModal = () => setShowRegister(!showRegister);
+
+    const logout = () => {
+        localStorage.setItem("userEmail", "");
+        localStorage.setItem("jwt-token", "");
+        navigate('/');
+    }
 
     return (
         <React.Fragment>
@@ -29,7 +38,7 @@ const Header = () => {
                                 <AccountCircleIcon />
                             </Navbar.Brand>
                             <NavDropdown title="" id="collasible-nav-dropdown">
-                                <NavDropdown.Item >Logout</NavDropdown.Item>
+                                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>

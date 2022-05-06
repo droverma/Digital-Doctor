@@ -27,7 +27,7 @@ const DoctorProfile = () => {
   });
 
   const getDoctorData = () => {
-    let doctorEmail = localStorage.get("userEmail");
+    let doctorEmail = localStorage.getItem("userEmail");
     ProfileDetailsService.doctorProfile(doctorEmail)
       .then((res) => {
         console.log();
