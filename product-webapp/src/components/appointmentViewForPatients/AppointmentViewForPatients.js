@@ -24,12 +24,14 @@ function AppointmentViewForPatients() {
     const [currentPosts, setcurrentPosts] = useState([]);
     const [paginateData, setpaginateData] = useState([]);
     const [activeTabData, setactiveTabData] = useState([]);
+    const [patientEmail, setpatientEmail] = useState('');
 
 
     const [filters, setFilters] = useState({ specialization: '', date: moment().format('YYYY-MM-DD') });
 
     useEffect(() => {
-        let patientEmail = localStorage.getItem("userEmail");
+        let email = localStorage.getItem("userEmail");
+        setpatientEmail(email);
         appointmentService.getDataAppointmentViewForPatients(patientEmail).then((response) => {
             let data = response.data;
             // setresult(data);
