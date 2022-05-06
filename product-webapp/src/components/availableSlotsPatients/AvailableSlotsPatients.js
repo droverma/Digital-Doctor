@@ -14,6 +14,7 @@ function AvailableSlotsPatients() {
     const [value] = useState(new Date());
     const [date, setDate] = useState('');
     const [details, setDetails] = useState({});
+    const [patientEmail, setpatientEmail] = useState('');
     // const [bookedAppointments, setbookedAppointments] = useState([]);
 
     function changeDate(value, event) {
@@ -30,7 +31,8 @@ function AvailableSlotsPatients() {
 
     useEffect(() => {
         let email = localStorage.getItem("userEmail");
-        appointmentService.getSlots(email).then((response) => {
+        setpatientEmail(email);
+        appointmentService.getSlots(patientEmail).then((response) => {
             let data = response.data;
             setresult(data);
             setDetails(response.data[1]);

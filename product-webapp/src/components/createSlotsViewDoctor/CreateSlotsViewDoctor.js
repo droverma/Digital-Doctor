@@ -12,6 +12,7 @@ function CreateSlotViewDoctor() {
     const [value] = useState(new Date());
     const [date, setDate] = useState('');
     const [fields, setfields] = useState({ slotDate: '', slotStartTime: '', slotEndTime: '' });
+    const [patientEmail, setpatientEmail] = useState('');
 
     function changeDate(value, event) {
         let momentDate = moment(value).format('DD/MM/YYYY');
@@ -29,17 +30,45 @@ function CreateSlotViewDoctor() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(fields);
+        let slotDate = moment(fields.slotDate).format('DD/MM/YYYY');
+        let slotStartTime = fields.slotStartTime;
+        let slotEndTime = fields.slotEndTime;
+        let slotStatus = "AVAILABLE";
+        let data ={
+            slotId: '',
+            doctorEmail: '',
+            specialization: '',
+            slotDate: slotDate,
+            slotStartTime: slotStartTime,
+            slotEndTime: slotEndTime,
+            slotStatus: slotStatus
+            
+        }
+        appointmentService.addSlots(data).then((response) =>{   
+            if(response){
+                getSlots();
+            }else{
+                console.log('No data found');
+            }
+        })
         
     }
 
     let appointmentService = new AppointmentService();
 
     useEffect(() => {
-        appointmentService.getSlots().then((response) => {
+        getSlots();
+    }, []);
+
+    const getSlots = () => {
+        let email = localStorage.getItem("userEmail");
+        setpatientEmail(email);
+        appointmentService.getSlots(patientEmail).then((response) => {
             let data = response.data;
             setresult(data);
         })
-    }, []);
+    }
 
     return (
         <div className="container-fluid">
