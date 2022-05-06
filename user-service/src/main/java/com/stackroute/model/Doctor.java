@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Doctor {
     @Id
-    private String doctorEmail;
+    private String emailId;
     private String specialization;
     private double yearsOfExperience;
     private String doctorName;

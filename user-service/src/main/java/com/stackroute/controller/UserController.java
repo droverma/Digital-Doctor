@@ -28,7 +28,7 @@ public class UserController {
      @PostMapping("/doctor")
     public ResponseEntity<Doctor>saveDoctor(@RequestBody Doctor doctor) {
       try{
-          doctor.setDoctorEmail(doctor.getDoctorEmail());
+          doctor.setEmailId(doctor.getEmailId());
           responseEntity=new ResponseEntity<Doctor>(doctorService.saveDoctor(doctor), HttpStatus.CREATED);
       }
       catch(DoctorAlreadyExistException ex){

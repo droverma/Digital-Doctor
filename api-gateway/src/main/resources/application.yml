@@ -1,0 +1,44 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+server:
+  port: 9090
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            exposedHeaders: "*"
+      routes:
+        - id: user-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/***
+          filters:
+            - RewritePath=/userservice(?<segment>/?.*), $\{segment}
+
+        - id: authentication
+          uri: http://localhost:8095
+          predicates:
+            - Path=/api/v1/user/**
+          filters:
+            - RewritePath=/authentication(?<segment>/?.*), $\{segment}
+
+        - id: appointment-service
+          uri: http://localhost:8060
+          predicates:
+            - Path=/api/v1/**
+          filters:
+            - RewritePath=/appointment-service(?<segment>/?.*), $\{segment}
