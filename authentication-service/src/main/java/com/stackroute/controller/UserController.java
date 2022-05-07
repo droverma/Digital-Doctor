@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1")
 public class UserController {
 
     private ResponseEntity responseEntity;
