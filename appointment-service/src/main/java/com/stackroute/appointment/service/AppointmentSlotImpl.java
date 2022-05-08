@@ -2,6 +2,8 @@ package com.stackroute.appointment.service;
 
 import com.stackroute.appointment.models.AppointmentSlot;
 import com.stackroute.appointment.repository.AppointmentRepository;
+import com.stackroute.config.Producer;
+import com.stackroute.rabitmq.AppointmentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +16,13 @@ public class AppointmentSlotImpl implements AppointmentSlotService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
-
-
+    @Autowired
+    Producer producer;
     @Override
     public AppointmentSlot createAppointment(AppointmentSlot appointmentSlot) {
+        AppointmentDto appointmentDto = new AppointmentDto();
+        appointmentDto.setPatientEmail(appointmentSlot.getPatientEmail());
+        producer.sendMessageToRabbitMq(appointmentDto);
         return appointmentRepository.save(appointmentSlot);
     }
 
