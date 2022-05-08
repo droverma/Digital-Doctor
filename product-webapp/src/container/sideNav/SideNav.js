@@ -33,7 +33,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div>
-        <img src="../Digital_doctor_logo.png" className='image' />
+        <img src="../Digital_doctor_logo.png" className='image' onClick={()=> navigate('/')} />
       </div>
       <Toolbar />
       <Divider />

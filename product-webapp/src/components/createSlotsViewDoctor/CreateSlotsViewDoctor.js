@@ -35,7 +35,7 @@ function CreateSlotViewDoctor() {
         let slotStartTime = fields.slotStartTime;
         let slotEndTime = fields.slotEndTime;
         let slotStatus = "AVAILABLE";
-        let data ={
+        let data = {
             slotId: '',
             doctorEmail: '',
             specialization: '',
@@ -43,16 +43,16 @@ function CreateSlotViewDoctor() {
             slotStartTime: slotStartTime,
             slotEndTime: slotEndTime,
             slotStatus: slotStatus
-            
+
         }
-        appointmentService.addSlots(data).then((response) =>{   
-            if(response){
+        appointmentService.addSlots(data).then((response) => {
+            if (response) {
                 getSlots();
-            }else{
+            } else {
                 console.log('No data found');
             }
         })
-        
+
     }
 
     let appointmentService = new AppointmentService();
@@ -84,7 +84,19 @@ function CreateSlotViewDoctor() {
                         <Calendar onChange={changeDate} value={value} className="calendar-create-slots" />
                     </div>
                     <div className="col-md-6 column button-container create-slot-button-container">
+
                         <div className="slots-container">
+                            <div>
+                                {
+                                    result.length ===0 && 
+                                        <div>
+                               
+                                                No Slots Available
+
+
+                                        </div>
+                                }
+                            </div>
                             {
                                 result.map((response) => {
 
@@ -138,7 +150,7 @@ function CreateSlotViewDoctor() {
                                     </div>
                                     <div className="col">
                                         <input type="date" placeholder="Select Slot Date"
-                                            name="slotDate" value={fields.slotDate} onChange={handleChange} 
+                                            name="slotDate" value={fields.slotDate} onChange={handleChange}
                                             className="create-slot-input-fields" />
                                     </div>
 
@@ -162,7 +174,7 @@ function CreateSlotViewDoctor() {
                                     </div>
                                     <div className="col">
                                         <input type="time" placeholder="Slot End Time"
-                                            name="slotEndTime" value={fields.slotEndTime} onChange={handleChange} 
+                                            name="slotEndTime" value={fields.slotEndTime} onChange={handleChange}
                                             className="create-slot-input-fields" />
                                     </div>
 

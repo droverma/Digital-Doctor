@@ -269,6 +269,26 @@
       "slotEndTime": "12:00",
       "slotStatus": "AVAILABLE",
       "id": "qxllDWg"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "12/05/2022",
+      "slotStartTime": "09:10",
+      "slotEndTime": "10:10",
+      "slotStatus": "AVAILABLE",
+      "id": "0WFPS0m"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "20/05/2022",
+      "slotStartTime": "20:00",
+      "slotEndTime": "21:00",
+      "slotStatus": "AVAILABLE",
+      "id": "wy2oCco"
     }
   ],
   "appointmentsViewForPatients": [

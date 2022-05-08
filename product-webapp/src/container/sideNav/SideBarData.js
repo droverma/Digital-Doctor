@@ -28,5 +28,10 @@ export const SidebarData = [
     title: "Appointments Patients",
     path: "/appointmentViewForPatients",
     icon: <CalendarMonthIcon />,
+  },
+  {
+    title: "Available Slots and Book Appointment",
+    path: "/availableSlotsPatients",
+    icon: <CalendarMonthIcon />,
   }
 ];
