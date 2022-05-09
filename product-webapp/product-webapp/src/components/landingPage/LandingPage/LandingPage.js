@@ -8,7 +8,7 @@ import Cough from '../../../assets/images/Cough.png';
 import covid19 from '../../../assets/images/covid19.png';
 import Fever from '../../../assets/images/Fever.png';
 import Diabetes from '../../../assets/images/Diabetes.png';
-import './LandingPage.css'
+import './LandingPage.css';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -105,7 +105,7 @@ const LandingPage = () => {
                                 itemClass="carousel-item-padding-40-px"
                             >
                                 {Specialists.length && Specialists.map((img, index) => {
-                                    return <div className='card' key={index}>
+                                    return <div className='card card-properties' key={index}>
                                         <img src={img.img} class="w-60 h-20" alt="..." />
                                         <div class="card-body">
                                             <h5 class="card-title">{img.title}</h5>
@@ -124,7 +124,6 @@ const LandingPage = () => {
                                 autoPlay={true}
                                 swipeable={false}
                                 draggable={false}
-                                showDots={true}
                                 ssr={true} // means to render carousel on server-side.
                                 infinite={true}
                                 autoPlaySpeed={2000}
@@ -137,7 +136,7 @@ const LandingPage = () => {
                                 itemClass="carousel-item-padding-40-px"
                             >
                                 {commonSymptoms.length && commonSymptoms.map((img, index) => {
-                                    return <div className='card' key={index}>
+                                    return <div className='card card-properties' key={index}>
                                         <img src={img.img} class="w-60 h-20" alt="..." />
                                         <div class="card-body">
                                             <h5 class="card-title">{img.title}</h5>
