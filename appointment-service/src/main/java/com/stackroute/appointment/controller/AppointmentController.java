@@ -30,10 +30,15 @@ public class AppointmentController {
        return appointmentSlotImpl.createAppointment(appointmentSlot);
    }
 
-    @GetMapping("/appointmentSlot/{patientEmail}")
+    @GetMapping("/appointmentSlot/patient/{patientEmail}")
     public List<AppointmentSlot> getAllAppointmentsByPatient(@PathVariable String patientEmail ){
         System.out.println("patient Email");
         return appointmentSlotImpl.getAllAppointmentsByPatient(patientEmail);
+    }
+    @GetMapping("/appointmentSlot/{doctorEmail}")
+    public List<AppointmentSlot> getAllAppointmentsByDoctor(@PathVariable String doctorEmail ){
+        System.out.println("doctor Email");
+        return appointmentSlotImpl.getAllAppointmentsByDoctor(doctorEmail);
     }
 
     @GetMapping("/appointmentDetails/{appointmentId}")
@@ -56,4 +61,5 @@ public class AppointmentController {
     List<AppointmentSlot> getAppointmentDetailsByDateAndSpec(@PathVariable String specialization , @PathVariable (name = "appointmentDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate appointmentDate){
         return appointmentSlotImpl.getAppointmentDetailsBYDateAndSpec(appointmentDate,specialization);
     }
+
 }

@@ -20,4 +20,7 @@ public interface AppointmentRepository extends MongoRepository<AppointmentSlot, 
 
     List<AppointmentSlot> findAppointmentBySpecialization(String specialization);
 
+    List<AppointmentSlot> findAppointmentsByDoctorEmail(String doctorEmail);
+
+
 }

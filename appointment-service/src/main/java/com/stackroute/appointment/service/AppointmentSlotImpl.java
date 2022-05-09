@@ -30,6 +30,9 @@ public class AppointmentSlotImpl implements AppointmentSlotService {
     public List<AppointmentSlot> getAllAppointmentsByPatient(String patientEmail) {
         return appointmentRepository.findAppointmentsByPatientEmail(patientEmail);
     }
+    public List<AppointmentSlot> getAllAppointmentsByDoctor(String doctorEmail) {
+        return appointmentRepository.findAppointmentsByDoctorEmail(doctorEmail);
+    }
 
     public Optional<AppointmentSlot> getAppointmentDetails(String appointmentId) {
         return appointmentRepository.findById(appointmentId);
@@ -48,4 +51,5 @@ public class AppointmentSlotImpl implements AppointmentSlotService {
         return appointmentRepository.findAppointmentBySpecialization(specialization);
     }
 
-}
+
+    }

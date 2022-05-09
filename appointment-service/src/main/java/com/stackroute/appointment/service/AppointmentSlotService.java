@@ -14,5 +14,4 @@ public interface AppointmentSlotService {
      Optional<AppointmentSlot> getAppointmentDetails(String appointmentId);
 
 
-
 }

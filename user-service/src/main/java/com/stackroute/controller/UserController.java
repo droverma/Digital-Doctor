@@ -47,6 +47,17 @@ public class UserController {
          }
          return responseEntity;
     }
+    @GetMapping("/doctor/{city}")
+    public ResponseEntity<List<Doctor>>getAllDoctorsByCity(@PathVariable String city){
+        try{
+            responseEntity =new ResponseEntity<List<Doctor>>(doctorService.getAllDoctorsByCity(city),HttpStatus.OK);
+        }
+        catch(Exception ex){
+            responseEntity= new ResponseEntity("error occured",HttpStatus.EXPECTATION_FAILED);
+        }
+        return responseEntity;
+    }
+
     @PutMapping("/doctor/{doctorEmail}")
     public ResponseEntity<Doctor>updateDoctor(@PathVariable String doctorEmail,@RequestBody Doctor doctor){
          return new ResponseEntity<Doctor>(doctorService.updateDoctor(doctor),HttpStatus.OK);

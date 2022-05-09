@@ -14,5 +14,7 @@ public interface DoctorRepository extends MongoRepository<Doctor,String>{
 
     List<Doctor> findBySpecializationAndCity(String specialization, String city);
 
+    List<Doctor>  findByCity( String city);
+
 
 }

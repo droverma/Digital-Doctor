@@ -11,5 +11,7 @@ public interface DoctorService{
     Doctor getDoctorByEmail(String email)throws DoctorDoesNotExistException;
     List<Doctor> getAllDoctorsBasedOnSpecializationAndCity(String specialization,String city);
     Doctor updateDoctor(Doctor doctor);
+
+    public List<Doctor> getAllDoctorsByCity( String city);
 }
 

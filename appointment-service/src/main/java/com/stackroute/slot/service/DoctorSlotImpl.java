@@ -6,6 +6,7 @@ import com.stackroute.slot.repository.DoctorSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -30,8 +31,13 @@ public class DoctorSlotImpl implements DoctorSlotService {
     public List<DoctorSlot> getAllSlotsByDoctor(String doctorEmail) {
         return doctorSlotRepository.findSlotByDoctorEmailId(doctorEmail);
     }*/
+    @Override
     public List<DoctorSlot> getAllSlotsByDoctor(String doctorEmailId) {
-        return doctorSlotRepository.findSlotByDoctorEmailId(doctorEmailId);
+        return doctorSlotRepository.findAllByDoctorEmailId(doctorEmailId);
+    }
+    @Override
+    public List<DoctorSlot> getSlotsByDate(LocalDate slotDate) {
+        return doctorSlotRepository.findAllBySlotDate(slotDate);
     }
 
     @Override

@@ -46,6 +46,11 @@ public class DoctorServiceImpl implements DoctorService {
        return doctorRepository.findBySpecializationAndCity(specialization,city);
 
     }
+    public List<Doctor> getAllDoctorsByCity( String city) {
+        return doctorRepository.findByCity(city);
+
+    }
+
 
     @Override
     public Doctor updateDoctor(Doctor doctor) {
