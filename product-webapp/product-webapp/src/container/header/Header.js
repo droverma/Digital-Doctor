@@ -15,7 +15,10 @@ const Header = () => {
         <React.Fragment>
             <Navbar style={{ backgroundColor: '#2AD2D9' }}>
                 <Container>
-                    <Navbar.Brand href="/">Digital Doctor</Navbar.Brand>
+                    <Navbar.Brand href="/">
+                    <img src="../Digital_doctor_logo.png" style={{width:'5rem'}}/>
+                            
+                    </Navbar.Brand>
                     <Navbar.Collapse className="justify-content-end">
                         <Nav>
                            <Link to={'/about'} style={{padding:'10px'}}>About</Link> 

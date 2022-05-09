@@ -6,7 +6,7 @@ import { SocketContext } from '../../context/Context';
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
 const Register = (props) => {
-  const { callUser } = useContext(SocketContext);
+  // const { callUser } = useContext(SocketContext);
 
   const [validated, setValidated] = useState({});
   const [idToCall, setIdToCall] = useState("")
@@ -150,7 +150,7 @@ const Register = (props) => {
                     Those passwords didn't match. Try again.
                   </Form.Control.Feedback> </Form.Group>
                 <br />
-                <Button className='col-md-12 mb-2 ms-auto' type="submit" onClick={() => callUser(idToCall)} disabled={Object.entries(validated).length > 0} id='loginButton'>
+                <Button className='col-md-12 mb-2 ms-auto' type="submit"  disabled={Object.entries(validated).length > 0} id='loginButton'>
                   Register
                 </Button>
                 <Form.Text muted >
