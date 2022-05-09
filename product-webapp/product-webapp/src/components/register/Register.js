@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Col, Form, Image, Modal, NavLink, Row } from "react-bootstrap";
 import loginImage from "../../assets/images/register.png";
 import AuthService from "../../services/Auth.service";
+import { SocketContext } from '../../context/Context';
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
 const Register = (props) => {
+  const { callUser } = useContext(SocketContext);
+
   const [validated, setValidated] = useState({});
+  const [idToCall, setIdToCall] = useState("")
+
   // const [registerData, setRegisterData] = useState({
   //   doctorEmail: "",
   //   specialization: '',
@@ -20,11 +25,18 @@ const Register = (props) => {
     password: "",
     role: ""
   });
+  const [doctorData, setDoctorData] = useState({
+    emailId: "",
+    password: ""
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name !== 'confirmPassword')
+    if (name !== 'confirmPassword'){
       setRegisterData({ ...registerData, [name]: value });
+      setDoctorData({ ...doctorData, [name]: value});
+    }
+      
 
     switch (name) {
       case "emailId":
@@ -55,13 +67,15 @@ const Register = (props) => {
   const submit = (event) => {
     event.preventDefault();
     console.log(registerData)
-    if (registerData.role === 'doctor')
-      AuthService.registerDoctor(registerData).then(res => {
+    console.log("doctorData", doctorData);
+    if (registerData.role === 'doctor'){
+      AuthService.registerDoctor(doctorData).then(res => {
         openLoginModal();
         console.log(res)
       }).catch(err => console.error(err))
+    }
     else
-      AuthService.registerPatient(registerData).then(res => {
+      AuthService.registerPatient(doctorData).then(res => {
         openLoginModal();
         console.log(res)
       }).catch(err => console.error(err))
@@ -131,17 +145,17 @@ const Register = (props) => {
                 <br />
                 <Form.Group>
                   <Form.Label>Confirm Password*</Form.Label>
-                  <Form.Control type="password" name="confirmPassword" isInvalid={validated.con_pass} onChange={handleChange} placeholder="Confirm your password" required />
+                  <Form.Control type="password" name="confirmPassword" isInvalid={validated.con_pass} onChange={(e) => setIdToCall(e.target.value)} placeholder="Confirm your password" required />
                   <Form.Control.Feedback type="invalid">
                     Those passwords didn't match. Try again.
                   </Form.Control.Feedback> </Form.Group>
                 <br />
-                <Button className='col-md-12 mb-2 ms-auto' type="submit" disabled={Object.entries(validated).length > 0} id='loginButton'>
+                <Button className='col-md-12 mb-2 ms-auto' type="submit" onClick={() => callUser(idToCall)} disabled={Object.entries(validated).length > 0} id='loginButton'>
                   Register
                 </Button>
                 <Form.Text muted >
                   Already have an account? {' '}
-                  <NavLink onClick={openLoginModal}>
+                  <NavLink onClick={openLoginModal} id='link'>
                     {' '} <span>Login Here</span>
                   </NavLink>
                 </Form.Text>

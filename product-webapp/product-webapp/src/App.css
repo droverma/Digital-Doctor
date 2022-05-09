@@ -6,7 +6,19 @@
     height: 40vmin;
     pointer-events: none;
 }
-
+.app-margin{
+    margin: 0px !important;
+}
+.app-container{
+    display: flex;
+    flex-direction: row;
+}
+.app-side-bar{
+    width: 240px;
+}
+.app-content{
+    width: calc(100% - 240px);
+}
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;
@@ -38,5 +50,18 @@
     }
     to {
         transform: rotate(360deg);
+    }
+}
+@media screen and (max-width:600px){
+    .app-side-bar{
+        width: unset;
+    }
+    .app-content{
+        width: unset;
+    }
+}
+@media screen and (min-width:600px) and (max-width: 768px) {
+    .app-content{
+        width: 100%;
     }
 }

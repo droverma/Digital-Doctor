@@ -14,6 +14,7 @@ function AvailableSlotsPatients() {
     const [value] = useState(new Date());
     const [date, setDate] = useState('');
     const [details, setDetails] = useState({});
+    const [patientEmail, setpatientEmail] = useState('');
     // const [bookedAppointments, setbookedAppointments] = useState([]);
 
     function changeDate(value, event) {
@@ -29,15 +30,17 @@ function AvailableSlotsPatients() {
     let appointmentService = new AppointmentService();
 
     useEffect(() => {
-        appointmentService.getSlots().then((response) => {
+        let email = localStorage.getItem("userEmail");
+        setpatientEmail(email);
+        appointmentService.getSlots(patientEmail).then((response) => {
             let data = response.data;
             setresult(data);
             setDetails(response.data[1]);
         })
     }, []);
 
-    const bookAppointment = () =>{
-        appointmentService.getBookedAppointment().then((response) =>{
+    const bookAppointment = () => {
+        appointmentService.getBookedAppointment().then((response) => {
             // let data = response.data;
             // setbookedAppointments = data;
 
@@ -52,9 +55,9 @@ function AvailableSlotsPatients() {
                     <Calendar onChange={changeDate} value={value} />
                 </div>
                 <div className="col-md-4 col-sm-12">
-                    <div className="doctors-details column">
+                    <div className="doctors-details">
                         <div className="col mb-1 mt-4">
-                            <img src="../Doctor_image.jpg"  className="doctor-image" alt="" />
+                            <img src="../Doctor_image.jpg" className="doctor-image" alt="" />
                         </div>
                         <div className="col mb-4">
                             <h6>Dr. Jatin Chugh</h6>
@@ -80,19 +83,42 @@ function AvailableSlotsPatients() {
                                 <AvailableSlotschips
                                     slotStartTime={response.slotStartTime}
                                     slotEndTime={response.slotEndTime}
+                                    slotStatus={response.slotStatus}
                                 />
                             )
-                        }else{
-                            return(
-                               console.log('No slots found')
+                        } else {
+                            return (
+                                console.log('No slots found')
                             )
                         }
                     })
-                    
+
                 }
             </div>
-            <div className="book-appointment">
-                <Button className="btn-secondary button-styling" disabled onClick={bookAppointment} >Book Appointment</Button>
+            <div className="row">
+                <div className="col row bookedAvailableButton">
+                    <div className="col-lg-6 row">
+                        <div className="col text-end">
+                            <p className="bookedButtonColor"></p>
+                        </div>
+                        <div className="col">
+                            <span>BOOKED</span>
+                        </div>
+                    </div>
+                    <div className="col-lg-6 row">
+                        <div className="col text-end">
+                        <p className="availableButtonColor"></p>
+                        </div>
+                        <div className="col">
+                            <span>AVAILABLE</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="book-appointment col">
+                    <Button className="btn-secondary button-styling appointment-button" disabled onClick={bookAppointment} >Book Appointment</Button>
+
+                </div>
+
             </div>
 
         </div>
