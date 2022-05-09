@@ -7,6 +7,7 @@ import AvailableSlotsPatients from "./components/availableSlotsPatients/Availabl
 import CreateSlotViewDoctor from "./components/createSlotsViewDoctor/CreateSlotsViewDoctor";
 import About from "./components/landingPage/about/About";
 import Contact from "./components/landingPage/contact/Contact";
+import Carousel from "./components/landingPage/LandingPage/carousel";
 import LandingPage from "./components/landingPage/LandingPage/LandingPage";
 import DoctorProfile from "./components/profile/DoctorProfile";
 import DoctorsList from "./components/profile/DoctorsList/DoctorsList";
@@ -44,7 +45,7 @@ function App() {
           </div>
           <div className="">
             <Routes>
-              <Route path="/" element={<LandingPage />} />
+              <Route path="/" element={<LandingPage  />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/doctorslist" element={<DoctorsList />} />
