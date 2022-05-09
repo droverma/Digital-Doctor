@@ -12,11 +12,8 @@
 	<artifactId>product-webapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>product-webapp</name>
-<<<<<<< HEAD
+
 	<description>Frontend code</description>
-=======
-	<description>FrontEnd Code</description>
->>>>>>> 6874d5d9b75e24e4c794c89f2686f6754da02a82
 	<properties>
 		<java.version>11</java.version>
 	</properties>
