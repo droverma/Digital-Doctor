@@ -5,7 +5,48 @@ import Gynaecologist from '../../../assets/images/gynaecologist_image.png';
 import SkinSpecailist from '../../../assets/images/hair_care_image.png';
 import Orthopedician from '../../../assets/images/orthopedician_image.png';
 import './LandingPage.css'
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+const responsive = {
+    superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+    }
+};
+const Specialists = [
+    {
+        img: Physician,
+        title: 'Physician'
+    },
+    {
+        img: Gynaecologist,
+        title: 'Gynaecologist'
+    },
+    {
+        img: SkinSpecailist,
+        title: 'Skin & hair Specailist'
+    },
+    {
+        img: Orthopedician,
+        title: 'Orthopedician'
+    }
+]
 
 const LandingPage = () => {
 
@@ -30,68 +71,19 @@ const LandingPage = () => {
                         <p>Consult Specialists</p>
                     </div>
                     <div className='col'>
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="card">
-                                        <img src={Physician} class="d-block w-100" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title 2</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                                card's content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="card">
-                                        <img src={Gynaecologist} class="d-block w-100" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title 2</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                                card's content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="card">
-                                        <img src={SkinSpecailist} class="d-block w-100" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title 2</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                                card's content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="card">
-                                        <img src={Orthopedician} class="d-block w-100" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title 2</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                                card's content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
+                        <OwlCarousel className='owl-theme' loop margin={60} nav>
+                            {Specialists.length && Specialists.map((img, index) => {
+                                return  <div class='item'>
+                                <div className='card' key={index} style={{width:'20rem'}}>
+                                    <img src={img.img} className="w-100 h-25" alt="..." />
+                                    <div class="card-body">
+                                        <h5 class="card-title">{img.title}</h5>
                                     </div>
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
+                            })}
+                           
+                        </OwlCarousel>
                     </div>
                 </div>
                 <div className='col column'>
@@ -99,7 +91,18 @@ const LandingPage = () => {
                         <p>Common Symptoms</p>
                     </div>
                     <div className='col'>
-                        {/* Carousel */}
+                        <Carousel responsive={responsive} 
+                        autoPlay={true}
+                        >
+                            {Specialists.length && Specialists.map((img, index) => {
+                                return <div className='card' key={index}>
+                                    <img src={img.img} class="w-60 h-20" alt="..." />
+                                    <div class="card-body">
+                                        <h5 class="card-title">{img.title}</h5>
+                                    </div>
+                                </div>
+                            })}
+                        </Carousel>
                     </div>
                 </div>
                 <div className='col column'>
