@@ -12,9 +12,7 @@ import Diabetes from '../../../assets/images/Diabetes.png';
 import './LandingPage.css'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 const responsive = {
     superLargeDesktop: {
         // the naming can be any, depends on you.
@@ -85,13 +83,13 @@ const LandingPage = () => {
     }, []);
 
     return (
-        <div className='conatiner-fluid'>
+        <div className='conatiner-fluid margin-container'>
             <div className='column'>
                 <div className='col'>
                     <img src={landingPageImage} className='landing-page-image' />
                 </div>
                 <div className='col column'>
-                    <div className='col text-center fw-bold fs-3 mt-2 mb-2'>
+                    <div className='col text-center fw-bold fs-3 mt-4 mb-4'>
                         <p>Consult Specialists</p>
                     </div>
                     <div className='col'>
@@ -123,7 +121,7 @@ const LandingPage = () => {
                     </div>
                 </div>
                 <div className='col column'>
-                    <div className='col text-center fw-bold fs-3 mt-2 mb-2'>
+                    <div className='col text-center fw-bold fs-3 mt-4 mb-4'>
                         <p>Common Symptoms</p>
                     </div>
                     <div className='col'>
@@ -155,39 +153,36 @@ const LandingPage = () => {
                     </div>
                 </div>
                 <div className='col column'>
-                    <div className='col text-center fw-bold fs-3 mt-2 mb-2'>
+                    <div className='col text-center fw-bold fs-3 mt-4 mb-4'>
                         <p>How Does Online Consultation Work?</p>
                     </div>
                     <div className='col row m-4'>
-                        <div className='col consultation'>
-                            Choose a doctor
+                        <div className='col consultation text-center pt-4'>
+                            <p className=''>Choose a doctor</p>
                         </div>
-                        <div className='col'>
-
+                        <div className='col pt-4 text-center'>
+                            <ArrowForwardIcon />
                         </div>
-                        <div className='col consultation'>
-                            Choose Slot
+                        <div className='col consultation text-center pt-4'>
+                            <p>Choose Slot</p>
                         </div>
-                        <div className='col'>
-
+                        <div className='col pt-4 text-center'>
+                            <ArrowForwardIcon />
                         </div>
-                        <div className='col consultation'>
-                            Book Appointment
+                        <div className='col consultation text-center pt-4'>
+                            <p>Book Appointment</p>
                         </div>
-                        <div className='col'>
-
+                        <div className='col pt-4 text-center'>
+                            <ArrowForwardIcon />
                         </div>
-                        <div className='col consultation'>
-                            Online Consultation
+                        <div className='col consultation text-center pt-4'>
+                            <p>Online Consultation</p>
                         </div>
-                        <div className='col'>
-
+                        <div className='col pt-4 text-center'>
+                            <ArrowForwardIcon />
                         </div>
-                        <div className='col consultation'>
-                            Get Prescription
-                        </div>
-                        <div className='col'>
-
+                        <div className='col consultation text-center pt-4'>
+                            <p>Get Prescription</p>
                         </div>
                     </div>
                 </div>

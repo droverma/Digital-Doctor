@@ -51,13 +51,23 @@
 
   }
   .consultation{
-      height: 200px;
+      height: 100px;
       background: #414BB2;
       color: white;
       border-radius: 10px;
   }
   .row{
       margin: 0 !important;
+  }
+  .margin-container{
+    margin: 2.5rem !important;
+  }
+  .margin-auto{
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .pt-4{
+    padding-top: 2rem !important;
   }
   @media screen and (max-width: 767px) {
     .card .img-wrapper {
