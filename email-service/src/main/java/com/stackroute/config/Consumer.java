@@ -3,7 +3,6 @@ package com.stackroute.config;
 import com.stackroute.model.EmailDetails;
 import com.stackroute.rabbitmq.AppointmentDto;
 import com.stackroute.service.EmailService;
-import com.stackroute.service.EmailServiceImpl;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
