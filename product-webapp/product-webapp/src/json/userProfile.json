@@ -1,0 +1,192 @@
+{
+  "doctors": [
+    {
+      "doctorName": "Aashi Bansal",
+      "doctorMobileNumber": 9877654210,
+      "doctorEmail": "aashi@gmail.com",
+      "yearsOfExperience": 2,
+      "specialization": "orthopedician",
+      "city": "Gurgaon",
+      "id": 1,
+      "doctorImage": "https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
+    },
+    {
+      "id": 2,
+      "doctorEmail": "drishti@gmail.com",
+      "specialization": "Phyisican",
+      "yearsOfExperience": 2,
+      "doctorMobileNumber": 988989898,
+      "doctorName": "Drishti Verma",
+      "gender": "F",
+      "password": "123456",
+      "city": "Gurgaon",
+      "doctorImage": "https://www.healthpages.org/wp-content/uploads/2010/04/female-doctor-patient-chart-570x300.jpg"
+    },
+    {
+      "id": 3,
+      "doctorEmail": "sai@gmail.com",
+      "specialization": "Ortho",
+      "yearsOfExperience": 2,
+      "doctorMobileNumber": 9877654210,
+      "doctorName": "Sai Chandra",
+      "gender": "M",
+      "password": "123456",
+      "city": "Gurgaon",
+      "doctorImage": "https://image.shutterstock.com/image-photo/doctor-medical-mask-white-coat-260nw-1937093308.jpg"
+    },
+    {
+      "id": 4,
+      "doctorEmail": "bhoomi@gmail.com",
+      "specialization": "Gynocologist",
+      "yearsOfExperience": 7,
+      "doctorMobileNumber": 9877654210,
+      "doctorName": "Bhoomika Verma ",
+      "gender": "F",
+      "password": "123456",
+      "city": "Gurgaon",
+      "doctorImage": "https://image.shutterstock.com/image-photo/cheerful-mature-doctor-posing-smiling-260nw-1384243295.jpg"
+    },
+    {
+      "id": 5,
+      "doctorEmail": "komal@gmail.com",
+      "specialization": "Gynocologist",
+      "yearsOfExperience": 4,
+      "doctorMobileNumber": 8989898099,
+      "doctorName": "Komal Gupta ",
+      "gender": "F",
+      "password": "123456",
+      "city": "Gurgaon",
+      "doctorImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ4kTSe08CG7UC3T2pg0lIFLts9jLYT9nJ7b2GyYGIOrkTUXlrGKd0kQ8e8n1ErgbdIds&usqp=CAU"
+    },
+    {
+      "id": 6,
+      "doctorEmail": "deeksha@gmail.com",
+      "specialization": "Dermatology",
+      "yearsOfExperience": 1,
+      "doctorMobileNumber": 8765422109,
+      "doctorName": "Deeksha Gupta ",
+      "gender": "F",
+      "password": "123456",
+      "city": "delhi",
+      "doctorImage": "https://image.shutterstock.com/image-photo/portrait-shocked-senior-doctor-loupe-260nw-1698931294.jpg"
+    },
+    {
+      "id": 7,
+      "doctorEmail": "mayur@gmail.com",
+      "specialization": "General Surgery",
+      "yearsOfExperience": 8,
+      "doctorMobileNumber": 9765325790,
+      "doctorName": "Mayur Aggrawal ",
+      "gender": "M",
+      "password": "123456",
+      "city": "Gurgaon",
+      "doctorImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTWdeH6-FWSnUq1EH3idq8ATyBCLKdC5BQ3Z2-nhE7FQbesXR-6ZhDu9ddHjPQbRN3S_0&usqp=CAU"
+    },
+    {
+      "id": 8,
+      "doctorEmail": "mohit@gmail.com",
+      "specialization": "Cardiologists",
+      "yearsOfExperience": 2,
+      "doctorMobileNumber": 8989898099,
+      "doctorName": "Mohit thakur ",
+      "gender": "M",
+      "password": "123456",
+      "city": "Gurgaon",
+      "doctorImage": "https://www.healthpages.org/wp-content/uploads/2010/04/female-doctor-patient-chart-570x300.jpg"
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "patientEmail": "ashish@gmail.com",
+      "patientName": "Ashish ",
+      "patientMobileNo": 9876543210,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    },
+    {
+      "id": 2,
+      "patientEmail": "jatin@gmail.com",
+      "patientName": "Jatin ",
+      "patientMobileNo": 5676543210,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    },
+    {
+      "id": 3,
+      "patientEmail": "monika@gmail.com",
+      "patientName": "Monika ",
+      "patientMobileNo": 6776543210,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    },
+    {
+      "id": 4,
+      "patientEmail": "priya@gmail.com",
+      "patientName": "Priya ",
+      "patientMobileNo": 776543210,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    },
+    {
+      "id": 5,
+      "patientEmail": "chandrapal@gmail.com",
+      "patientName": "Chandrapal ",
+      "patientMobileNo": 7654003210,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    },
+    {
+      "id": 6,
+      "patientEmail": "kanika@gmail.com",
+      "patientName": "Kanika ",
+      "patientMobileNo": 679543210,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    },
+    {
+      "id": 7,
+      "patientEmail": "khush@gmail.com",
+      "patientName": "Khush ",
+      "patientMobileNo": 7677655578,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    },
+    {
+      "id": 8,
+      "patientEmail": "yati@gmail.com",
+      "patientName": "Yati ",
+      "patientMobileNo": 9852143210,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    },
+    {
+      "patientName": "Hemant",
+
+      "patientImage": "https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
+      "patientEmail": "hemant123@gmail.com",
+      "patientBloodGroup": "b+",
+      "patientMobileNo": "867324587652",
+      "patientHeight": "67",
+      "patientWeight": "59",
+      "id": 9
+    },
+    {
+      "id": 10,
+      "patientEmail": "yash@gmail.com",
+      "patientName": "Yash ",
+      "patientMobileNo": 8888543210,
+      "password": "12345",
+      "city": "Gurgaon",
+      "patientImage": "C:\\fakepath\\logo.png"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+spring:
+    cloud:
+        config:
+            uri: http://${CONFIG_URI:localhost}:8888
+    application:
+        name: apigatewayservice
+    main:
+        web-application-type: reactive
+management:
+    security:
+        enabled: false

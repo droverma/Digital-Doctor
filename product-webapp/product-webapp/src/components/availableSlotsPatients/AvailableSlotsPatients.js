@@ -1,0 +1,128 @@
+
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { Calendar } from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
+import '../../component.css';
+import AvailableSlotschips from "./AvailableSlotChips.js";
+import AppointmentService from "../../services/appointment.service";
+import moment from "moment";
+
+function AvailableSlotsPatients() {
+
+    const [result, setresult] = useState([]);
+    const [value] = useState(new Date());
+    const [date, setDate] = useState('');
+    const [details, setDetails] = useState({});
+    const [patientEmail, setpatientEmail] = useState('');
+    // const [bookedAppointments, setbookedAppointments] = useState([]);
+
+    function changeDate(value, event) {
+        let momentDate = moment(value).format('DD/MM/YYYY');
+        console.log(momentDate);
+        setDate(momentDate);
+
+        // let a = value.toString();
+        // let date = a.substring(4, 15);
+        // setDate(date);
+    }
+
+    let appointmentService = new AppointmentService();
+
+    useEffect(() => {
+        let email = localStorage.getItem("userEmail");
+        setpatientEmail(email);
+        appointmentService.getSlots(patientEmail).then((response) => {
+            let data = response.data;
+            setresult(data);
+            setDetails(response.data[1]);
+        })
+    }, []);
+
+    const bookAppointment = () => {
+        appointmentService.getBookedAppointment().then((response) => {
+            // let data = response.data;
+            // setbookedAppointments = data;
+
+        })
+    }
+
+    return (
+        <div className="container-fluid">
+            <div className="row calender-doctor-details">
+                <div className="col-md-8 col-sm-12 calender-container">
+
+                    <Calendar onChange={changeDate} value={value} />
+                </div>
+                <div className="col-md-4 col-sm-12">
+                    <div className="doctors-details">
+                        <div className="col mb-1 mt-4">
+                            <img src="../Doctor_image.jpg" className="doctor-image" alt="" />
+                        </div>
+                        <div className="col mb-4">
+                            <h6>Dr. Jatin Chugh</h6>
+                        </div>
+                        <div className="col mb-4">
+                            {details.specialization}
+                        </div>
+                        <div className="col mb-4">
+                            Email: {details.doctorEmail}
+                        </div>
+                        <div className="col mb-4">
+                            Phone: 9898457877
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="row button-container">
+                {
+                    result.map((response) => {
+
+                        if (response.slotDate === date) {
+                            return (
+                                <AvailableSlotschips
+                                    slotStartTime={response.slotStartTime}
+                                    slotEndTime={response.slotEndTime}
+                                    slotStatus={response.slotStatus}
+                                />
+                            )
+                        } else {
+                            return (
+                                console.log('No slots found')
+                            )
+                        }
+                    })
+
+                }
+            </div>
+            <div className="row">
+                <div className="col row bookedAvailableButton">
+                    <div className="col-lg-6 row">
+                        <div className="col text-end">
+                            <p className="bookedButtonColor"></p>
+                        </div>
+                        <div className="col">
+                            <span>BOOKED</span>
+                        </div>
+                    </div>
+                    <div className="col-lg-6 row">
+                        <div className="col text-end">
+                        <p className="availableButtonColor"></p>
+                        </div>
+                        <div className="col">
+                            <span>AVAILABLE</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="book-appointment col">
+                    <Button className="btn-secondary button-styling appointment-button" disabled onClick={bookAppointment} >Book Appointment</Button>
+
+                </div>
+
+            </div>
+
+        </div>
+    )
+}
+
+export default AvailableSlotsPatients;

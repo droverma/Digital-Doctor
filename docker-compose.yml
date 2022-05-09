@@ -1,0 +1,131 @@
+version: "3.8"
+services:
+  config-server:
+    container_name: config-server
+    build: config-server/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8888:8888
+    restart: always
+
+  eureka-server:
+    build: eureka-server/
+    container_name: eureka-server
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8761:8761
+    depends_on:
+      - config-server
+
+  api-gateway:
+    build: api-gateway/
+    container_name: api-gateway
+    depends_on:
+      - eureka-server
+      - config-server
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8080:8080
+
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    hostname: localhost
+    network_mode: "host"
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'Password'
+      MYSQL_DATABASE: authuser
+      MYSQL_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongo-container
+    network_mode: host
+    hostname: localhost
+    ports:
+      - 27017:27017
+
+
+  user-service:
+    container_name: user-service
+    build: user-service/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8075:8075
+    depends_on:
+      - mongodb
+      - eureka-server
+      - config-server
+    restart: always
+
+  authentication-service:
+    container_name: authentication-service
+    build: authentication-service/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8095:8095
+    depends_on:
+      - eureka-server
+      - config-server
+    restart: always
+
+  appointment-service:
+    container_name: appointment-service
+    build: appointment-service/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8060:8060
+    depends_on:
+      - mongodb
+      - eureka-server
+      - config-server
+    restart: always
+
+  email-service:
+    container_name: email-service
+    build: email-service/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 7777:7777
+    depends_on:
+      - eureka-server
+      - config-server
+    restart: always
+
+#  webapp:
+#    image: webapp
+#    build: webapp/
+#    restart: always
+#    env_file:
+#      - ./dockerenv/development/webapp.env
+#    volumes:
+#      - ./scripts:/temp/scripts
+#    entrypoint:
+#      - /temp/scripts/wait_for_service.sh
+#      - java -jar /usr/src/webapp.jar
+#    ports:
+#      - 4200:4200
+  #    depends-on:
+  #      - configserver
+  #      - discovery
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+
