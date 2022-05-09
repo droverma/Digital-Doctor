@@ -16,7 +16,6 @@ function CardAppointmentVIewForPatients(props) {
     const { createMeeting } = useContext(SocketContext);
 
     let navigate = useNavigate();
-
     let appointmentService = new AppointmentService();
 
     const cancelClicked = () => {
