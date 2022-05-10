@@ -5,6 +5,8 @@ import 'react-calendar/dist/Calendar.css';
 import AppointmentService from "../../services/appointment.service";
 import CreateSlotChips from "./CreateSlotChips";
 import './CreateSlotsViewDoctor.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CreateSlotViewDoctor() {
 
@@ -47,6 +49,16 @@ function CreateSlotViewDoctor() {
         }
         appointmentService.addSlots(data).then((response) => {
             if (response) {
+                debugger
+                toast.success('Slot Created Successfully!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 getSlots();
             } else {
                 console.log('No data found');
@@ -96,10 +108,10 @@ function CreateSlotViewDoctor() {
                         <div className="slots-container">
                             <div>
                                 {
-                                    result.filter(x => x.slotDate === date).length === 0 && 
-                                        <div className="no-slots">
-                                            <p>No Slots Available</p>
-                                        </div>
+                                    result.filter(x => x.slotDate === date).length === 0 &&
+                                    <div className="no-slots">
+                                        <p>No Slots Available</p>
+                                    </div>
                                 }
                             </div>
                             {
@@ -189,6 +201,19 @@ function CreateSlotViewDoctor() {
                                 <div className="mb-2 column col">
                                     <button type="submit" className="btn btn-primary">Create Slot</button>
                                 </div>
+                                <ToastContainer
+                                    position="top-right"
+                                    autoClose={5000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                />
+                                {/* Same as */}
+                                <ToastContainer />
                             </div>
 
                         </form>
@@ -196,6 +221,7 @@ function CreateSlotViewDoctor() {
                 </div>
             </div>
         </div>
+
     )
 
 }

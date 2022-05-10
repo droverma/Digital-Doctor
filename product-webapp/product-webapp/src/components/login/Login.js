@@ -41,10 +41,10 @@ const Login = (props) => {
     const submit = (event) => {
         event.preventDefault();
 
-        // localStorage.setItem("jwt-token", 'token');
-        // localStorage.setItem("role", data.role);
-        // props.handleModal();
-        // navigate('/updatedoctor')
+        localStorage.setItem("jwt-token", 'token');
+        localStorage.setItem("role", data.role);
+        props.handleModal();
+        navigate('/updatedoctor')
 
         setValidated(true)
         AuthService.login(data).then(res => {
