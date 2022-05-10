@@ -51,5 +51,10 @@ public class AppointmentSlotImpl implements AppointmentSlotService {
         return appointmentRepository.findAppointmentBySpecialization(specialization);
     }
 
-
+    @Override
+    public void deleteAppointmentById(String appointmentId) {
+        appointmentRepository.deleteById(appointmentId);
     }
+
+
+}

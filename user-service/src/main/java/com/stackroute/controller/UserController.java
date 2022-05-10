@@ -47,7 +47,7 @@ public class UserController {
          }
          return responseEntity;
     }
-    @GetMapping("/doctor/{city}")
+    @GetMapping("/doctorcity/{city}")
     public ResponseEntity<List<Doctor>>getAllDoctorsByCity(@PathVariable String city){
         try{
             responseEntity =new ResponseEntity<List<Doctor>>(doctorService.getAllDoctorsByCity(city),HttpStatus.OK);
