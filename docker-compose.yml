@@ -120,9 +120,7 @@ services:
       - java -jar /usr/src/product-webapp.jar
     ports:
       - 3000:3000
-    depends-on:
-      - configserver
-      - eureka-server
+   
 
   rabbitmq:
     image: rabbitmq:3-management
