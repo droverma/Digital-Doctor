@@ -13,7 +13,7 @@ services:
     build: eureka-server/
     container_name: eureka-server
     restart: always
-    network_mode: "host"
+    network_mode: host
     hostname: localhost
     ports:
       - 8761:8761
@@ -27,7 +27,7 @@ services:
       - eureka-server
       - config-server
     restart: always
-    network_mode: "host"
+    network_mode: host
     hostname: localhost
     ports:
       - 8080:8080
@@ -38,7 +38,7 @@ services:
     container_name: mysql
     restart: always
     hostname: localhost
-    network_mode: "host"
+    network_mode: host
     ports:
       - 3306:3306
     environment:
@@ -106,26 +106,27 @@ services:
       - config-server
     restart: always
 
-#  webapp:
-#    image: webapp
-#    build: webapp/
-#    restart: always
-#    env_file:
-#      - ./dockerenv/development/webapp.env
-#    volumes:
-#      - ./scripts:/temp/scripts
-#    entrypoint:
-#      - /temp/scripts/wait_for_service.sh
-#      - java -jar /usr/src/webapp.jar
-#    ports:
-#      - 4200:4200
-  #    depends-on:
-  #      - configserver
-  #      - discovery
+  product-webapp:
+    image: product-webapp
+    build: product-webapp/
+    restart: always
+    network_mode: host
+    env_file:
+      - ./dockerenv/development/product-webapp.env
+    volumes:
+      - ./scripts:/temp/scripts
+    entrypoint:
+      - /temp/scripts/wait_for_service.sh
+      - java -jar /usr/src/product-webapp.jar
+    ports:
+      - 3000:3000
+      depends-on:
+        - configserver
+        - eureka-server
+
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
       - 15672:15672
       - 5672:5672
-

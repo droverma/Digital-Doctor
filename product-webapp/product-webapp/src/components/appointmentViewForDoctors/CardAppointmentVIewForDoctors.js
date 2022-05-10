@@ -11,16 +11,17 @@ import { useNavigate } from "react-router-dom";
 import { SocketContext } from '../../context/Context';
 
 
-function CardAppointmentVIewForPatients(props) {
+function CardAppointmentVIewForDoctors(props) {
     console.log(props);
     const { createMeeting } = useContext(SocketContext);
 
     let navigate = useNavigate();
+
     let appointmentService = new AppointmentService();
 
     const cancelClicked = () => {
         console.log(props);
-        appointmentService.deleteDataAppointmentViewForPatients(props.id).then((response) => {
+        appointmentService.deleteDataAppointmentViewForDoctors(props.id).then((response) => {
             console.log(response);
             props.refreshApi()
         })
@@ -44,7 +45,7 @@ function CardAppointmentVIewForPatients(props) {
                                 {/* <div className="col-3 text-right">
                                     <PersonIcon className="person-icon" />
                                 </div> */}
-                                <div className="col pt-2 pe-0 ps-0">
+                                <div className="col pe-0 ps-0">
                                     <h4>Kamal Anand</h4>
                                 </div>
                             </div>
@@ -118,4 +119,4 @@ function CardAppointmentVIewForPatients(props) {
         </div>
     )
 }
-export default CardAppointmentVIewForPatients;
+export default CardAppointmentVIewForDoctors;

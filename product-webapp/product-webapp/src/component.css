@@ -2,8 +2,6 @@
     width: 500px;
 }
 
-.appointment-button {}
-
 .button-container {
     padding: 30px;
 }
@@ -18,9 +16,14 @@
     background: #E6E6E6;
 }
 
+.card:hover {
+    transform: none !important;
+}
+
 .doctor-image {
     width: 248px;
     height: 190px;
+    border-radius: 100px;
 }
 
 .calender-doctor-details {
@@ -33,12 +36,31 @@
     padding-bottom: 20px;
 }
 
+.bookedAvailableButton {
+    padding-bottom: 20px;
+    padding-left: 20px !important;
+}
+
+.bookedButtonColor {
+    height: 24px;
+    width: 50px;
+    background: red;
+    margin-left: auto;
+}
+
+.availableButtonColor {
+    height: 24px;
+    width: 50px;
+    background: #a2dba2;
+    margin-left: auto;
+}
+
 .react-calendar {
-    width: 100%;
+    width: 100% !important;
 }
 
 .react-calendar button {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 
 .calender-container {
@@ -48,27 +70,61 @@
 }
 
 .button-styling {
-    background: #E6E6E6 !important;
-    color: #096BEE !important;
     border-radius: 20px !important;
     width: 180px;
     min-width: 160px;
 }
 
+.appointment-button-styling {
+    border-radius: 20px !important;
+    width: 120px;
+    min-width: 120px;
+}
+
+.appointment-button-styling:hover {
+    background-color: #36f7ee7a !important;
+}
+
+.appointment-button-styling:focus {
+    background-color: #36f7ee7a !important;
+    box-shadow: 0 0 0 0.25rem #b3b3b380 !important;
+}
+
 .button-styling:hover {
     background-color: #36f7ee7a !important;
 }
-.button-styling:focus{
-    background-color: #36f7ee7a  !important;
+
+.button-styling:focus {
+    background-color: #36f7ee7a !important;
     box-shadow: 0 0 0 0.25rem #b3b3b380 !important;
+}
+
+.appointment-button {
+    background: #E6E6E6 !important;
+    color: #096BEE !important;
+}
+
+.available-button-color {
+    color: black !important;
+    background-color: #a2dba2 !important;
+}
+
+.booked-button-color {
+    border-radius: 20px !important;
+    width: 180px;
+    min-width: 160px;
+    background-color: red !important;
+    color: white !important;
+    cursor: not-allowed !important;
 }
 
 .react-calendar__navigation {
     padding-top: 15px;
+    margin-bottom: unset !important;
 }
 
 .react-calendar__month-view__weekdays {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 
 .react-calendar__viewContainer {
@@ -80,7 +136,7 @@
 }
 
 .react-calendar__month-view__weekdays {
-    font-size: 24px;
+    font-size: 24px !important;
 }
 
 .react-calendar__navigation__label__labelText {
@@ -111,32 +167,162 @@
     font-weight: bolder;
 }
 
-.nav-link {
+#link {
     border: 0px;
-    color: #1209a5!important;
+    color: #1209a5 !important;
     padding: 0px !important;
     display: inline !important;
+    font-size: 15px;
 }
 
 .registerImg {
     width: 23rem;
     height: 22rem;
 }
-.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
-    background-color: yellow;
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background-color: yellow !important;
 }
 
-@media screen and (min-width:768px) and (max-width: 992px){
-    .doctor-image{
+.filter-container {
+    border: 1px solid blue;
+}
+
+.card {
+    width: 100%;
+    border-radius: 20px !important;
+    box-shadow: 6px 7px 16px 5px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.card-with-image {
+    width: 100%;
+    border-radius: 0 !important;
+    border: 1px !important;
+}
+
+.person-icon {
+    width: 2em !important;
+    height: 2em !important;
+}
+
+
+/* .container-fluid {
+    padding: 20px;
+} */
+
+.tab-content>.active {
+    display: flex !important;
+}
+
+.nav-link {
+    font-size: 20px;
+}
+
+.nav-link.active {
+    background-color: lightgrey !important;
+}
+
+
+/* .col-7{
+    width: 56% !important;
+} */
+
+.nav-link {
+    color: black !important;
+    font-weight: 500;
+}
+
+.card-img-top {
+    height: 300px;
+}
+
+.filter-container-box {
+    /* padding-left: 50px !important; */
+    background: white;
+    width: 30% !important;
+}
+
+.search-fields {
+    background: #cdf7f3;
+    /* background: #0091c9; */
+}
+
+.cancel-icon {
+    height: 2rem !important;
+    width: 2rem !important;
+    color: red;
+    cursor: pointer;
+}
+
+.call-icon {
+    height: 2rem !important;
+    width: 2rem !important;
+    color: blue;
+    cursor: pointer;
+}
+
+.calendar-icon {
+    color: #138b21;
+}
+
+.clock-icon {
+    color: #138b21;
+}
+
+.appointment-date {
+    padding: 0px !important;
+}
+
+.doctors-image {
+    height: 130px;
+    width: 150px;
+    border-radius: 12px;
+}
+
+.page-link {
+    cursor: pointer;
+}
+
+.page-link:focus {
+    background-color: #e9ecef !important;
+}
+
+.page-link:active:focus:visited:focus-visible:hover:target:focus-within {
+    background-color: grey;
+    border: red;
+}
+
+.buttons {
+    background: rgb(42, 210, 217) !important;
+    border-color: rgb(42, 210, 217) !important;
+}
+
+.search-fields-Doctor-view {
+    background: #e9f3de;
+}
+
+@media screen and (min-width:768px) and (max-width: 992px) {
+    .doctor-image {
         width: 180px;
-        height: 150px;  
-    } 
-    .doctors-details{
+        height: 150px;
+    }
+    .doctors-details {
         margin-left: 20px;
     }
 }
-@media screen and (max-width:768px){
-    .doctors-details{
+
+@media screen and (min-width: 768px) and (max-width:992px) {
+    .filter-container-box {
+        width: 60% !important;
+    }
+    .appointments {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .doctors-details {
         margin-left: auto;
         margin-right: auto;
         margin-top: 50px;
@@ -144,16 +330,254 @@
     .react-calendar__tile {
         font-size: 20px;
     }
-    .react-calendar__month-view__weekdays{
+    .react-calendar__month-view__weekdays {
         font-size: 14px;
     }
+    .filter-container-box {
+        width: 100% !important;
+    }
 }
-@media screen and (max-width:460px){
-    .react-calendar__month-view__weekdays{
+
+@media screen and (max-width:460px) {
+    .react-calendar__month-view__weekdays {
         font-size: 12px;
     }
     .doctor-image {
         width: 180px;
         height: 150px;
+    }
+}
+
+.footer {
+    width: 100%;
+    height: 52px;
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .8);
+    -webkit-backdrop-filter: blur(48px);
+    backdrop-filter: blur(48px);
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, .5);
+    z-index: 20;
+    -webkit-transition: -webkit-transform .2s ease-out;
+    transition: -webkit-transform .2s ease-out;
+    -o-transition: transform .2s ease-out;
+    transition: transform .2s ease-out;
+    transition: transform .2s ease-out, -webkit-transform .2s ease-out;
+}
+
+.footer__inner {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+.footer-leave-btn-container {
+    max-width: 130px;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: 8px;
+}
+
+#wc-container-right {
+    z-index: 20;
+}
+
+#transcription-window,
+#wc-container-right {
+    color: #666;
+    position: relative;
+    background-color: #fff;
+    height: 33rem;
+}
+
+.chat-container--normal {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    min-height: 266px;
+    -webkit-box-flex: 5;
+    -ms-flex: 5;
+    flex: 5;
+}
+
+.chat-container {
+    background: #fff;
+    width: 16.2rem;
+}
+
+.window-content-bottom {
+    border-radius: 0 0 8px 8px;
+}
+
+.chat-header__header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #afadad;
+    padding: 8px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.chat-header__title {
+    margin: 0 auto;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    text-align: center;
+    font-size: large;
+}
+
+.chat-container__chat-list {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+
+.chat-box__chat-textarea {
+    width: 100%;
+    background: #fff;
+    border: none;
+    padding: 0 10px;
+    font-size: 13px;
+    resize: none;
+    height: 100px;
+}
+
+.window-content-bottom {
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid #afadad;
+}
+
+.column {
+    height: max-content;
+}
+
+.video {
+    height: 32rem;
+}
+
+#user {
+    height: 31rem;
+}
+
+.msg_flex>div {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    padding: 0.4rem;
+    margin-top: 0.4rem;
+    word-break: break-all;
+}
+
+.msg_flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    margin: 0.8rem;
+}
+
+.msg_flex::-webkit-scrollbar {
+    display: none;
+}
+
+.msg_sent {
+    background-color: lightblue;
+    align-self: flex-end;
+}
+
+.msg_rcv {
+    background-color: #a8e5a8;
+    align-self: flex-start;
+}
+
+.mutebutton {
+    color: white;
+    position: absolute;
+    margin-left: 0%;
+    margin-top: 19.7rem;
+    font-size: small;
+    background-color: grey;
+    padding: 1.5px,
+}
+
+.namebutton {
+    color: white;
+    position: absolute;
+    margin-left: 0%;
+    margin-top: 19.9rem;
+    font-size: small;
+    background-color: grey;
+    padding: 1.5px,
+}
+
+@media screen and (min-width:1370px) and (max-width:1600px) {
+    .column {
+        height: 36rem;
+    }
+    #wc-container-right {
+        color: #666;
+        position: relative;
+        background-color: #fff;
+        height: 36.8rem;
+    }
+    .video {
+        height: 36rem;
+    }
+    .chat-container {
+        background: #fff;
+        width: 21rem;
+    }
+    #user {
+        height: 36rem;
+    }
+    .mutebutton {
+        color: white;
+        position: absolute;
+        margin-left: 0%;
+        margin-top: 24rem;
+        font-size: small;
+        background-color: grey;
+        padding: 1.5px,
+    }
+    .namebutton {
+        color: white;
+        position: absolute;
+        margin-left: 0%;
+        margin-top: 24.2rem;
+        font-size: small;
+        background-color: grey;
+        padding: 1.5px,
     }
 }
