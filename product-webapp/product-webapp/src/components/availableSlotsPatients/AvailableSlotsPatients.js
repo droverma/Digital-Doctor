@@ -8,6 +8,9 @@ import AvailableSlotschips from "./AvailableSlotChips.js";
 import AppointmentService from "../../services/appointment.service";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function AvailableSlotsPatients() {
 
@@ -37,7 +40,7 @@ function AvailableSlotsPatients() {
     useEffect(() => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getSlots(patientEmail).then((response) => {
+        appointmentService.getSlots(email).then((response) => {
             let data = response.data;
             setresult(data);
             setDetails(response.data[1]);
@@ -64,15 +67,24 @@ function AvailableSlotsPatients() {
             bookedOn: value,
             doctorImage: "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
         }
-        if(startTime && endTime){
+        if (startTime && endTime) {
             appointmentService.getBookedAppointment(data).then((response) => {
-                if(response){
-                    navigate('/appointmentViewForPatients');
+                if (response) {
+                    toast.success('Appointment Booked Successfully!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    setTimeout(()=>{navigate('/appointmentViewForPatients')},2000)   
                 }
-    
+
             })
         }
-        
+
     }
 
     return (
@@ -155,6 +167,19 @@ function AvailableSlotsPatients() {
                     <Button className="btn-secondary button-styling appointment-button" onClick={bookAppointment} >Book Appointment</Button>
 
                 </div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                {/* Same as */}
+                <ToastContainer />
 
             </div>
 

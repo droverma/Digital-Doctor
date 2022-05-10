@@ -5,6 +5,7 @@ import { Button, FilledInput, FormControl, IconButton, InputAdornment, InputLabe
 import { red } from "@mui/material/colors";
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Modal, Row } from 'react-bootstrap';
+import { useLocation } from "react-router-dom";
 import { SocketContext } from '../../context/Context';
 import { JoiningScreen } from "./JoiningScreen";
 
@@ -38,9 +39,10 @@ const VideoChat = () => {
     setReceivingCall,
     setMyMicStatus,
     setMyVdoStatus,
-    createMeeting
+    callUser
   } = useContext(SocketContext);
 
+  const { state } = useLocation();
   const [currentMessage, setCurrentMessage] = useState("");
   const [isMeetingStarted, setMeetingStarted] = useState(false);
 
@@ -49,10 +51,10 @@ const VideoChat = () => {
     if (myVdoStatus)
       getVideoAudio();
   }, [myVdoStatus])
-  useEffect(() => {
-    createMeeting();
-  }, [])
-  
+  // useEffect(() => {
+  //   createMeeting();
+  // }, [])
+
   socket.on("msgRcv", ({ name, msg: value, sender }) => {
     let msg = {};
     msg.msg = value;
@@ -307,6 +309,9 @@ const VideoChat = () => {
         onClickStartMeeting={() => {
           setMeetingStarted(true);
           getVideoAudio();
+
+          if (state)
+            callUser(state);
         }}
         startMeeting={isMeetingStarted}
       />

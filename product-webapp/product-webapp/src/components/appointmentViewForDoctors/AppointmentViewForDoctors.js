@@ -41,7 +41,7 @@ function AppointmentViewForDoctors() {
     const refreshApi = () => {
         let email = localStorage.getItem("userEmail");
         setdoctorEmail(email);
-        appointmentService.getDataAppointmentViewForDoctors(doctorEmail).then((response) => {
+        appointmentService.getDataAppointmentViewForDoctors(email).then((response) => {
             let data = response.data;
             setDefaultData(data);
         })

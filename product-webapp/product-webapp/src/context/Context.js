@@ -66,9 +66,7 @@ const ContextProvider = ({ children }) => {
     }, []);
 
     const createMeeting = () => {
-        debugger
         socket.on("me", (id) => {
-          debugger
             console.log(id,'id')
             setMe(id)
         });

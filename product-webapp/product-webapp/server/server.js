@@ -10,18 +10,18 @@ const io = require("socket.io")(server, {
 })
 
 io.on("connection", (socket) => {
-	socket.emit("me", socket.id)
+	// socket.emit("me", socket.id)
 
 	// socket.on("disconnect", () => {
 	// 	io.broadcast.emit("callEnded")
 	// })
-	socket.on("disconnect", () => {
-		console.log("User Disconnected", socket.id);
-	});
+	// socket.on("disconnect", () => {
+	// 	debugger
+	// 	console.log("User Disconnected", socket.id);
+	// });
 
-	socket.on("join_room", (data) => {
-		socket.join(data);
-		console.log(`User with ID: ${socket.id} joined room: ${data}`);
+	socket.on("me", () => {
+		socket.emit("me", socket.id)
 	});
 
 	socket.on("callUser", (data) => {

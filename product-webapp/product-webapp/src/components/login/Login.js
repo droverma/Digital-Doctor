@@ -44,7 +44,14 @@ const Login = (props) => {
         // localStorage.setItem("jwt-token", 'token');
         // localStorage.setItem("role", data.role);
         // props.handleModal();
-        // navigate('/updatedoctor')
+        // if (data.role === "doctor") {
+        //     console.log("doctor logged in");
+        //     navigate('/updatedoctor')
+        // }
+        // else if (data.role === "patient") {
+        //     console.log("patient logged in");
+        //     navigate('/updatepatient')
+        // }
 
         setValidated(true)
         AuthService.login(data).then(res => {

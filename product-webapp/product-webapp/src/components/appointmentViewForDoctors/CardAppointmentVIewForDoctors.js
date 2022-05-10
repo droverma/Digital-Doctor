@@ -9,11 +9,12 @@ import AppointmentService from "../../services/appointment.service";
 import { Tooltip } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from '../../context/Context';
+import VideoChatService from "../../services/VideoChat.service";
 
 
 function CardAppointmentVIewForDoctors(props) {
     console.log(props);
-    const { createMeeting } = useContext(SocketContext);
+    const { socket, me, createMeeting } = useContext(SocketContext);
 
     let navigate = useNavigate();
 
@@ -28,8 +29,16 @@ function CardAppointmentVIewForDoctors(props) {
 
     }
     const startMeeting = () => {
+        socket.emit("me");
         createMeeting();
-        navigate('/video')
+        console.log(me)
+        if (me) {
+            navigate('/video')
+
+            VideoChatService.StartMeetingID(me)
+                .then(res => navigate('/video'))
+                .catch(err => console.log(err))
+        }
     }
 
     return (
