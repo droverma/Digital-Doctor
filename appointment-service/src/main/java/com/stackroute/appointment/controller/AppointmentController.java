@@ -36,7 +36,7 @@ public class AppointmentController {
         System.out.println("patient Email");
         return appointmentSlotService.getAllAppointmentsByPatient(patientEmail);
     }
-    @GetMapping("/appointmentSlot/{doctorEmail}")
+    @GetMapping("appointmentSlot/{doctorEmail}")
     public List<AppointmentSlot> getAllAppointmentsByDoctor(@PathVariable String doctorEmail ){
         System.out.println("doctor Email");
         return appointmentSlotService.getAllAppointmentsByDoctor(doctorEmail);

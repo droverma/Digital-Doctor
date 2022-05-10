@@ -1,40 +1,44 @@
-import { Tooltip } from "@material-ui/core";
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import AddIcCallIcon from '@mui/icons-material/AddIcCall';
+import React, { useContext } from "react";
+import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import CancelIcon from '@mui/icons-material/Cancel';
+import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import AppointmentService from "../../services/appointment.service";
+import { Tooltip } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
+import { SocketContext } from '../../context/Context';
 import VideoChatService from "../../services/VideoChat.service";
 
 
-function CardAppointmentVIewForPatients(props) {
+function CardAppointmentVIewForDoctors(props) {
+    console.log(props);
+    const { socket, me, createMeeting } = useContext(SocketContext);
 
     let navigate = useNavigate();
+
     let appointmentService = new AppointmentService();
 
     const cancelClicked = () => {
         console.log(props);
-        appointmentService.deleteDataAppointmentViewForPatients(props.id).then((response) => {
+        appointmentService.deleteDataAppointmentViewForDoctors(props.id).then((response) => {
             console.log(response);
             props.refreshApi()
         })
 
     }
-    const joinMeeting = () => {
-        // debugger
-        // const id = 'ecLVMtPuDFHzsg83AAAZ'
-        // navigate('/video', { state: id })
+    const startMeeting = () => {
+        socket.emit("me");
+        createMeeting();
+        console.log(me)
+        if (me) {
+            navigate('/video')
 
-
-        VideoChatService.joinMeetingID()
-            .then(res => {
-                console.log(res)
-                navigate('/video', { state: res })
-            })
-            .catch(err => console.log(err))
-
+            VideoChatService.StartMeetingID(me)
+                .then(res => navigate('/video'))
+                .catch(err => console.log(err))
+        }
     }
 
     return (
@@ -50,7 +54,7 @@ function CardAppointmentVIewForPatients(props) {
                                 {/* <div className="col-3 text-right">
                                     <PersonIcon className="person-icon" />
                                 </div> */}
-                                <div className="col pt-2 pe-0 ps-0">
+                                <div className="col pe-0 ps-0">
                                     <h4>Kamal Anand</h4>
                                 </div>
                             </div>
@@ -114,7 +118,7 @@ function CardAppointmentVIewForPatients(props) {
                                 <Tooltip
                                     title="Call Doctor"
                                     placement="top">
-                                    <AddIcCallIcon className="call-icon" onClick={joinMeeting} />
+                                    <AddIcCallIcon className="call-icon" onClick={startMeeting} />
                                 </Tooltip>
                             }
                         </div>
@@ -124,4 +128,4 @@ function CardAppointmentVIewForPatients(props) {
         </div>
     )
 }
-export default CardAppointmentVIewForPatients;
+export default CardAppointmentVIewForDoctors;

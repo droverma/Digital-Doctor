@@ -32,13 +32,23 @@ function AppointmentViewForPatients() {
     useEffect(() => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getDataAppointmentViewForPatients(patientEmail).then((response) => {
+        appointmentService.getDataAppointmentViewForPatients(email).then((response) => {
             let data = response.data;
             // setresult(data);
             setDefaultData(data);
 
         })
     }, []);
+
+    const refreshApi = () => {
+        let email = localStorage.getItem("userEmail");
+        setpatientEmail(email);
+        appointmentService.getDataAppointmentViewForPatients(email).then((response) => {
+            let data = response.data;
+
+            setDefaultData(data);
+        })
+    }
 
     useEffect(() => {
         setresult(defaultData);
@@ -145,12 +155,12 @@ function AppointmentViewForPatients() {
         if (arr.length > postsPerPage) {
             const firstPageIndex = (currentPage - 1) * postsPerPage;
             const lastPageIndex = firstPageIndex + postsPerPage;
-            const currentPosts =  arr.slice(firstPageIndex, lastPageIndex);
+            const currentPosts = arr.slice(firstPageIndex, lastPageIndex);
             setresult(currentPosts);
-        }else{
+        } else {
             setresult(arr);
         }
-       
+
     }
 
     return (
@@ -229,6 +239,8 @@ function AppointmentViewForPatients() {
                                         appointmentStatus={response.appointmentStatus}
                                         appointmentId={response.appointmentId}
                                         doctorImage={response.doctorImage}
+                                        id={response.id}
+                                        refreshApi={refreshApi}
                                     />
                                 )
                             })

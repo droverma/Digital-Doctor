@@ -40,21 +40,34 @@ const Login = (props) => {
 
     const submit = (event) => {
         event.preventDefault();
-        console.log(data)
+
+        // localStorage.setItem("jwt-token", 'token');
+        // localStorage.setItem("role", data.role);
+        // props.handleModal();
+        // if (data.role === "doctor") {
+        //     console.log("doctor logged in");
+        //     navigate('/updatedoctor')
+        // }
+        // else if (data.role === "patient") {
+        //     console.log("patient logged in");
+        //     navigate('/updatepatient')
+        // }
+
         setValidated(true)
         AuthService.login(data).then(res => {
             localStorage.setItem("userEmail", data.emailId);
             localStorage.setItem("jwt-token", res.data.token);
-            props.handleModal();
-            if(data.role === "doctor"){
+            localStorage.setItem("role", data.role);
+            if (data.role === "doctor") {
                 console.log("doctor logged in");
                 navigate('/updatedoctor')
             }
-            else if (data.role === "patient"){
+            else if (data.role === "patient") {
                 console.log("patient logged in");
                 navigate('/updatepatient')
             }
-            
+            props.handleModal();
+
         }).catch(err => console.log(err))
 
     }

@@ -37,8 +37,8 @@ public class UserController {
       }
       return responseEntity;
     }
-    @GetMapping("/doctor/{specialization}/{city}")
-    public ResponseEntity<List<Doctor>>getDoctorsBySpecializationAndCity(@PathVariable String specialization,@PathVariable String city){
+    @GetMapping("/doctor/{city}/{specialization}")
+    public ResponseEntity<List<Doctor>>getDoctorsBySpecializationAndCity(@PathVariable String city,@PathVariable String specialization){
          try{
              responseEntity =new ResponseEntity<List<Doctor>>(doctorService.getAllDoctorsBasedOnSpecializationAndCity(specialization,city),HttpStatus.OK);
          }

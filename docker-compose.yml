@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 services:
   config-server:
     container_name: config-server
@@ -10,10 +10,10 @@ services:
     restart: always
 
   eureka-server:
-    build: eureka-server/
     container_name: eureka-server
+    build: eureka-server
     restart: always
-    network_mode: "host"
+    network_mode: host
     hostname: localhost
     ports:
       - 8761:8761
@@ -21,13 +21,13 @@ services:
       - config-server
 
   api-gateway:
-    build: api-gateway/
     container_name: api-gateway
+    build: api-gateway
     depends_on:
       - eureka-server
       - config-server
     restart: always
-    network_mode: "host"
+    network_mode: host
     hostname: localhost
     ports:
       - 8080:8080
@@ -38,12 +38,11 @@ services:
     container_name: mysql
     restart: always
     hostname: localhost
-    network_mode: "host"
+    network_mode: host
     ports:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: 'Password'
-      MYSQL_DATABASE: authuser
       MYSQL_PASSWORD: root
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
@@ -106,26 +105,21 @@ services:
       - config-server
     restart: always
 
-#  webapp:
-#    image: webapp
-#    build: webapp/
-#    restart: always
-#    env_file:
-#      - ./dockerenv/development/webapp.env
-#    volumes:
-#      - ./scripts:/temp/scripts
-#    entrypoint:
-#      - /temp/scripts/wait_for_service.sh
-#      - java -jar /usr/src/webapp.jar
-#    ports:
-#      - 4200:4200
-  #    depends-on:
-  #      - configserver
-  #      - discovery
+  product-webapp:
+    container_name: product-webapp
+    build: product-webapp/
+    hostname: localhost
+    restart: always
+    network_mode: host
+    ports:
+      - 3000:3000
+   
+
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
     ports:
       - 15672:15672
       - 5672:5672
-
+    environment:
+      RABBITMQ_DEFAULT_USER: "root"
+      RABBITMQ_DEFAULT_PASS: "root123"

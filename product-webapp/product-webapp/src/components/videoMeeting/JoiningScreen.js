@@ -148,7 +148,12 @@ export function JoiningScreen({
                             onClickStartMeeting();
                         }}
                         style={{ width: '17%' }}>
-                        Start Meeting
+                        {localStorage.getItem('role') === 'doctor'
+                            ?
+                            'Start Meeting'
+                            :
+                            'Join'
+                        }
                     </Button>
                 </Col>
             </Row>
