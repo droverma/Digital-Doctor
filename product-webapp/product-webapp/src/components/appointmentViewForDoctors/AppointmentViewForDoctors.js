@@ -32,8 +32,8 @@ function AppointmentViewForDoctors() {
         let loggedInEmail = localStorage.getItem("userEmail");
         appointmentService.getDataAppointmentViewForDoctors(loggedInEmail).then((response) => {
             let data = response.data;
-            // setresult(data);
-            setDefaultData(data);
+            setresult(data);
+            // setDefaultData(data);
 
         })
     }, []);

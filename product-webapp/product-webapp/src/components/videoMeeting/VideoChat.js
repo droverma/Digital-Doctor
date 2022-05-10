@@ -38,16 +38,21 @@ const VideoChat = () => {
     setReceivingCall,
     setMyMicStatus,
     setMyVdoStatus,
+    createMeeting
   } = useContext(SocketContext);
 
   const [currentMessage, setCurrentMessage] = useState("");
   const [isMeetingStarted, setMeetingStarted] = useState(false);
 
   useEffect(() => {
+    // createMeeting();
     if (myVdoStatus)
       getVideoAudio();
   }, [myVdoStatus])
-
+  useEffect(() => {
+    createMeeting();
+  }, [])
+  
   socket.on("msgRcv", ({ name, msg: value, sender }) => {
     let msg = {};
     msg.msg = value;
@@ -107,7 +112,7 @@ const VideoChat = () => {
         {callAccepted && !callEnded && (
           <Col md={4}>
             <div
-              className={userMicStatus?'namebutton':'mutebutton'}
+              className={userMicStatus ? 'namebutton' : 'mutebutton'}
             // style={{
             //   color: 'white',
             //   // opacity: `${userVdoStatus ? "-1" : "2"}`,

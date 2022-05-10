@@ -10,7 +10,7 @@ const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 const nameExpresion = RegExp(/^[a-zA-Z_ .]+$/);
 const cityExpression = RegExp(/^[a-zA-Z -]+$/);
 
-const PatientProfile = () => {
+const PatientProfile = (props) => {
   let navigate = useNavigate();
   const [validated, setValidated] = useState({});
   const [userId, setUserId] = useState("");
@@ -162,6 +162,7 @@ const PatientProfile = () => {
   };
 
   useEffect(() => {
+    props.setisAuthenticated(true)
     getPatientData();
   }, []);
 

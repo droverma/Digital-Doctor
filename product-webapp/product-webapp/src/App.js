@@ -7,7 +7,6 @@ import AvailableSlotsPatients from "./components/availableSlotsPatients/Availabl
 import CreateSlotViewDoctor from "./components/createSlotsViewDoctor/CreateSlotsViewDoctor";
 import About from "./components/landingPage/about/About";
 import Contact from "./components/landingPage/contact/Contact";
-import Carousel from "./components/landingPage/LandingPage/carousel";
 import LandingPage from "./components/landingPage/LandingPage/LandingPage";
 import DoctorProfile from "./components/profile/DoctorProfile";
 import DoctorsList from "./components/profile/DoctorsList/DoctorsList";
@@ -17,44 +16,42 @@ import Header from "./container/header/Header";
 import ResponsiveDrawer from "./container/sideNav/SideNav";
 // import ResponsiveDrawer from "./container/sideNav/Sidebar";
 function App() {
-  const [isAuthenticated, setisAuthenticated] = useState('');
+  const [isAuthenticated, setisAuthenticated] = useState(false);
   useEffect(() => {
     let authToken = localStorage.getItem('jwt-token');
     if (authToken) {
       setisAuthenticated(authToken);
     }
   }, [])
+
   return (
-    <React.Fragment>
-      <div className={isAuthenticated ? `app-container app-margin` : ''}>
-        {isAuthenticated ?
-          <div className="app-side-bar">
-            <ResponsiveDrawer />
+      <React.Fragment>
+          <div className={isAuthenticated ? 'app-container app-margin' : ''}>
+              <div className="app-side-bar">
+                  <ResponsiveDrawer />
+              </div>
+              <div className={localStorage.getItem('jwt-token') ? 'app-content' : ''}>
+                  <div className="">
+                      <Header setisAuthenticated={(token)=>setisAuthenticated(token)}/>
+                  </div>
+                  <div className="">
+                      <Routes>
+                          <Route path="/" element={<LandingPage />} />
+                          <Route path="/about" element={<About />} />
+                          <Route path="/contact" element={<Contact />} />
+                          <Route path="/doctorslist" element={<DoctorsList />} />
+                          <Route path="/updatedoctor" element={<DoctorProfile setisAuthenticated={(token)=>setisAuthenticated(token)}/>} />
+                          <Route path="/updatepatient" element={<PatientProfile setisAuthenticated={(token)=>setisAuthenticated(token)}/>} />
+                          <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
+                          <Route path="/video" element={<VideoChat />} />
+                          <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
+                          <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
+                          <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
+                      </Routes>
+                  </div>
+              </div>
           </div>
-          : null
-        }
-        <div className={isAuthenticated ? `app-content` : '' }>
-          <div className="">
-            <Header />
-          </div>
-          <div className="">
-            <Routes>
-              <Route path="/" element={<LandingPage  />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/doctorslist" element={<DoctorsList />} />
-              <Route path="/updatedoctor" element={<DoctorProfile />} />
-              <Route path="/updatepatient" element={<PatientProfile />} />
-              <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
-              <Route path="/video" element={<VideoChat />} />
-              <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
-              <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
-              <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
-            </Routes>
-          </div>
-        </div>
-      </div>
-    </React.Fragment>
+      </React.Fragment>
   );
 }
 export default App;

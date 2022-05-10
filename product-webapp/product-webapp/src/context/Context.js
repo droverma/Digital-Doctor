@@ -30,7 +30,7 @@ const ContextProvider = ({ children }) => {
     const connectionRef = useRef();
 
     useEffect(() => {
-        createMeeting()
+        // createMeeting()
         socket.on("endCall", () => {
             window.location.reload();
         });
@@ -65,13 +65,16 @@ const ContextProvider = ({ children }) => {
         });
     }, []);
 
-    const createMeeting = async() => {
-      await  socket.on("me", (id) => {
+    const createMeeting = () => {
+        debugger
+        socket.on("me", (id) => {
+          debugger
             console.log(id,'id')
-            setMe(id)});
+            setMe(id)
+        });
     }
     const getVideoAudio = async () => {
-        console.log(me,'id')
+        console.log(me,'id vid')
         try {
             await navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
                 setStream(currentStream);

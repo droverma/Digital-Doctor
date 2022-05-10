@@ -5,7 +5,7 @@ import PersonalInfo from "./doctorDetails/PersonalInfo";
 // import ClinicInfo from "./doctorDetails/ClinicInfo";
 import "../../assets/style/style.css";
 
-const DoctorProfile = () => {
+const DoctorProfile = (props) => {
   const saveChangeHandler = (e) => {
     ProfileDetailsService.addDoctorProfile(updateDoctorData, userId)
       .then((res) => console.log())
@@ -48,6 +48,7 @@ const DoctorProfile = () => {
   };
 
   useEffect(() => {
+    props.setisAuthenticated(true);
     getDoctorData();
   }, []);
 
