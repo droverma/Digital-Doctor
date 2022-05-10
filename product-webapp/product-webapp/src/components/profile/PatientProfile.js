@@ -10,7 +10,7 @@ const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 const nameExpresion = RegExp(/^[a-zA-Z_ .]+$/);
 const cityExpression = RegExp(/^[a-zA-Z -]+$/);
 
-const PatientProfile = (props) => {
+const PatientProfile = () => {
   let navigate = useNavigate();
   const [validated, setValidated] = useState({});
   const [userId, setUserId] = useState("");
@@ -162,7 +162,6 @@ const PatientProfile = (props) => {
   };
 
   useEffect(() => {
-    props.setisAuthenticated(true)
     getPatientData();
   }, []);
 
@@ -181,7 +180,7 @@ const PatientProfile = (props) => {
                 <img
                   style={{ borderRadius: "20px" }}
                   className="docImgSize"
-                  src="https://media2.giphy.com/media/aGDK7Pck40dZN7w1NG/giphy.gif"
+                  src="https://media2.giphy.com/media/A9MftKr3J3lra/giphy.gif"
                   alt="doctor"
                 />
               </div>
