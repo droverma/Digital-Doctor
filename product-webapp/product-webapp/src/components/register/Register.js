@@ -2,24 +2,11 @@ import React, { useContext, useState } from "react";
 import { Button, Col, Form, Image, Modal, NavLink, Row } from "react-bootstrap";
 import loginImage from "../../assets/images/register.png";
 import AuthService from "../../services/Auth.service";
-import { SocketContext } from '../../context/Context';
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
 const Register = (props) => {
-  // const { callUser } = useContext(SocketContext);
 
   const [validated, setValidated] = useState({});
-  const [idToCall, setIdToCall] = useState("")
-
-  // const [registerData, setRegisterData] = useState({
-  //   doctorEmail: "",
-  //   specialization: '',
-  //   yearsOfExperience: 0,
-  //   doctorName: '',
-  //   password: "",
-  //   city: "",
-  //   image: ""
-  // });
   const [registerData, setRegisterData] = useState({
     emailId: "",
     password: "",
@@ -32,11 +19,11 @@ const Register = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name !== 'confirmPassword'){
+    if (name !== 'confirmPassword') {
       setRegisterData({ ...registerData, [name]: value });
-      setDoctorData({ ...doctorData, [name]: value});
+      setDoctorData({ ...doctorData, [name]: value });
     }
-      
+
 
     switch (name) {
       case "emailId":
@@ -68,7 +55,7 @@ const Register = (props) => {
     event.preventDefault();
     console.log(registerData)
     console.log("doctorData", doctorData);
-    if (registerData.role === 'doctor'){
+    if (registerData.role === 'doctor') {
       AuthService.registerDoctor(doctorData).then(res => {
         openLoginModal();
         console.log(res)
@@ -150,7 +137,7 @@ const Register = (props) => {
                     Those passwords didn't match. Try again.
                   </Form.Control.Feedback> </Form.Group>
                 <br />
-                <Button className='col-md-12 mb-2 ms-auto' type="submit"  disabled={Object.entries(validated).length > 0} id='loginButton'>
+                <Button className='col-md-12 mb-2 ms-auto' type="submit" disabled={Object.entries(validated).length > 0} id='loginButton'>
                   Register
                 </Button>
                 <Form.Text muted >

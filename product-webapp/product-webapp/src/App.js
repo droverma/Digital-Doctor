@@ -15,43 +15,44 @@ import VideoChat from "./components/videoMeeting/VideoChat";
 import Header from "./container/header/Header";
 import ResponsiveDrawer from "./container/sideNav/SideNav";
 // import ResponsiveDrawer from "./container/sideNav/Sidebar";
+import { ContextProvider } from './context/Context';
 function App() {
-  const [isAuthenticated, setisAuthenticated] = useState(false);
-  useEffect(() => {
-    let authToken = localStorage.getItem('jwt-token');
-    if (authToken) {
-      setisAuthenticated(authToken);
-    }
-  }, [])
+    const [isAuthenticated, setisAuthenticated] = useState(false);
+    useEffect(() => {
+        let authToken = localStorage.getItem('jwt-token');
+        if (authToken) {
+            setisAuthenticated(authToken);
+        }
+    }, [])
 
-  return (
-      <React.Fragment>
-          <div className={isAuthenticated ? 'app-container app-margin' : ''}>
-              <div className="app-side-bar">
-                  <ResponsiveDrawer />
-              </div>
-              <div className={localStorage.getItem('jwt-token') ? 'app-content' : ''}>
-                  <div className="">
-                      <Header setisAuthenticated={(token)=>setisAuthenticated(token)}/>
-                  </div>
-                  <div className="">
-                      <Routes>
-                          <Route path="/" element={<LandingPage />} />
-                          <Route path="/about" element={<About />} />
-                          <Route path="/contact" element={<Contact />} />
-                          <Route path="/doctorslist" element={<DoctorsList />} />
-                          <Route path="/updatedoctor" element={<DoctorProfile setisAuthenticated={(token)=>setisAuthenticated(token)}/>} />
-                          <Route path="/updatepatient" element={<PatientProfile setisAuthenticated={(token)=>setisAuthenticated(token)}/>} />
-                          <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
-                          <Route path="/video" element={<VideoChat />} />
-                          <Route path="/appointmentViewForPatients" element={<AppointmentViewForPatients />} />
-                          <Route path="/appointmentViewForDoctors" element={<AppointmentViewForDoctors />} />
-                          <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
-                      </Routes>
-                  </div>
-              </div>
-          </div>
-      </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <div className={isAuthenticated ? 'app-container app-margin' : ''}>
+                <div className="app-side-bar">
+                    <ResponsiveDrawer />
+                </div>
+                <div className={localStorage.getItem('jwt-token') ? 'app-content' : ''}>
+                    <div className="">
+                        <Header setisAuthenticated={(token) => setisAuthenticated(token)} />
+                    </div>
+                    <div className="">
+                        <Routes>
+                            <Route path="/" element={<LandingPage />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/contact" element={<Contact />} />
+                            <Route path="/doctorslist" element={<DoctorsList />} />
+                            <Route path="/updatedoctor" element={<DoctorProfile setisAuthenticated={(token) => setisAuthenticated(token)} />} />
+                            <Route path="/updatepatient" element={<PatientProfile setisAuthenticated={(token) => setisAuthenticated(token)} />} />
+                            <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
+                            <Route path="/video" element={<ContextProvider><VideoChat /></ContextProvider>} />
+                            <Route path="/appointmentViewForPatients" element={<ContextProvider><AppointmentViewForPatients /></ContextProvider>} />
+                            <Route path="/appointmentViewForDoctors" element={<ContextProvider><AppointmentViewForDoctors /></ContextProvider>} />
+                            <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
+                        </Routes>
+                    </div>
+                </div>
+            </div>
+        </React.Fragment>
+    );
 }
 export default App;
