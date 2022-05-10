@@ -145,7 +145,7 @@ const Register = (props) => {
                 <br />
                 <Form.Group>
                   <Form.Label>Confirm Password*</Form.Label>
-                  <Form.Control type="password" name="confirmPassword" isInvalid={validated.con_pass} onChange={(e) => setIdToCall(e.target.value)} placeholder="Confirm your password" required />
+                  <Form.Control type="password" name="confirmPassword" isInvalid={validated.con_pass} onChange={handleChange} placeholder="Confirm your password" required />
                   <Form.Control.Feedback type="invalid">
                     Those passwords didn't match. Try again.
                   </Form.Control.Feedback> </Form.Group>
