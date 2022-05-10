@@ -7,9 +7,11 @@ import '../../component.css';
 import AvailableSlotschips from "./AvailableSlotChips.js";
 import AppointmentService from "../../services/appointment.service";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 function AvailableSlotsPatients() {
 
+    let navigate = useNavigate();
     const [result, setresult] = useState([]);
     const [value] = useState(new Date());
     const [date, setDate] = useState('');
@@ -64,8 +66,9 @@ function AvailableSlotsPatients() {
         }
         if(startTime && endTime){
             appointmentService.getBookedAppointment(data).then((response) => {
-                // let data = response.data;
-                // setbookedAppointments = data;
+                if(response){
+                    navigate('/appointmentViewForPatients');
+                }
     
             })
         }

@@ -69,6 +69,14 @@ function CreateSlotViewDoctor() {
             setresult(data);
         })
     }
+    const refreshApi = () => {
+        let email = localStorage.getItem("userEmail");
+        setpatientEmail(email);
+        appointmentService.getSlots(patientEmail).then((response) => {
+            let data = response.data;
+            setresult(data);
+        })
+    }
 
     return (
         <div className="container-fluid">
@@ -103,6 +111,8 @@ function CreateSlotViewDoctor() {
                                                 slotStartTime={response.slotStartTime}
                                                 slotEndTime={response.slotEndTime}
                                                 slotStatus={response.slotStatus}
+                                                id={response.id}
+                                                refreshApi={refreshApi}
                                             />
                                         )
                                     } else {

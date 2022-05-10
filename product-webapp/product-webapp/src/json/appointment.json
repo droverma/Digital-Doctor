@@ -121,16 +121,6 @@
       "slotStatus": "BOOKED"
     },
     {
-      "id": "15",
-      "slotId": "15",
-      "doctorEmail": "harshVardhan@gmail.com",
-      "specialization": "MBBS, MD Optimologist",
-      "slotDate": "16/04/2022",
-      "slotStartTime": "5:45 PM",
-      "slotEndTime": "6:45 PM",
-      "slotStatus": "AVAILABLE"
-    },
-    {
       "id": "16",
       "slotId": "16",
       "doctorEmail": "harshVardhan@gmail.com",
@@ -244,41 +234,11 @@
       "slotId": "",
       "doctorEmail": "",
       "specialization": "",
-      "slotDate": "10/05/2022",
-      "slotStartTime": "10:00",
-      "slotEndTime": "11:00",
-      "slotStatus": "AVAILABLE",
-      "id": "yC23WVp"
-    },
-    {
-      "slotId": "",
-      "doctorEmail": "",
-      "specialization": "",
-      "slotDate": "06/05/2022",
-      "slotStartTime": "10:00",
-      "slotEndTime": "11:00",
-      "slotStatus": "AVAILABLE",
-      "id": "qDjsZz2"
-    },
-    {
-      "slotId": "",
-      "doctorEmail": "",
-      "specialization": "",
       "slotDate": "06/05/2022",
       "slotStartTime": "11:00",
       "slotEndTime": "12:00",
       "slotStatus": "AVAILABLE",
       "id": "qxllDWg"
-    },
-    {
-      "slotId": "",
-      "doctorEmail": "",
-      "specialization": "",
-      "slotDate": "12/05/2022",
-      "slotStartTime": "09:10",
-      "slotEndTime": "10:10",
-      "slotStatus": "AVAILABLE",
-      "id": "0WFPS0m"
     },
     {
       "slotId": "",
@@ -309,6 +269,16 @@
       "slotEndTime": "23:30",
       "slotStatus": "AVAILABLE",
       "id": "5BC02Al"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "12/05/2022",
+      "slotStartTime": "11:00",
+      "slotEndTime": "12:00",
+      "slotStatus": "AVAILABLE",
+      "id": "uYLe8bg"
     }
   ],
   "appointmentsViewForPatients": [
@@ -912,6 +882,48 @@
       "appointmentEndTime": "7:45 PM",
       "appointmentStatus": "UPCOMING",
       "bookedOn": "2022-05-09T20:19:48.487Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "vagXi6l",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "16/04/2022",
+      "appointmentStartTime": "8:45 PM",
+      "appointmentEndTime": "9:45 PM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T07:46:44.579Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "9hJjh34",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "16/04/2022",
+      "appointmentStartTime": "6:45 PM",
+      "appointmentEndTime": "7:45 PM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T07:47:19.608Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "EaRIrjJ",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "15/04/2022",
+      "appointmentStartTime": "9:30 AM",
+      "appointmentEndTime": "10:30 AM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T07:51:05.694Z",
       "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
     }
   ],
