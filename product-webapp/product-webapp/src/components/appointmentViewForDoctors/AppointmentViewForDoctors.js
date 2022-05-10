@@ -6,6 +6,7 @@ import Pagination from "../pagination/Pagination";
 import Posts from "../pagination/Posts";
 import { Tooltip } from "@material-ui/core";
 import CardAppointmentVIewForPatients from "../appointmentViewForPatients/CardAppointmentVIewForPatients";
+import CardAppointmentVIewForDoctors from "./CardAppointmentVIewForDoctors";
 
 
 function AppointmentViewForDoctors() {
@@ -22,6 +23,7 @@ function AppointmentViewForDoctors() {
     const [currentPosts, setcurrentPosts] = useState([]);
     const [paginateData, setpaginateData] = useState([]);
     const [activeTabData, setactiveTabData] = useState([]);
+    const [doctorEmail, setdoctorEmail] = useState('');
 
 
     const [filters, setFilters] = useState({ specialization: '', date: moment().format('YYYY-MM-DD') });
@@ -34,6 +36,15 @@ function AppointmentViewForDoctors() {
 
         })
     }, []);
+
+    const refreshApi = () => {
+        let email = localStorage.getItem("userEmail");
+        setdoctorEmail(email);
+        appointmentService.getDataAppointmentViewForDoctors(doctorEmail).then((response) => {
+            let data = response.data;
+            setDefaultData(data);
+        })
+    }
 
     useEffect(() => {
         setresult(defaultData);
@@ -215,7 +226,7 @@ function AppointmentViewForDoctors() {
                         {
                             result.map((response) => {
                                 return (
-                                    <CardAppointmentVIewForPatients
+                                    <CardAppointmentVIewForDoctors
                                         doctorEmail={response.doctorEmail}
                                         appointmentDate={response.appointmentDate}
                                         appointmentStartTime={response.appointmentStartTime}
@@ -223,6 +234,8 @@ function AppointmentViewForDoctors() {
                                         appointmentStatus={response.appointmentStatus}
                                         appointmentId={response.appointmentId}
                                         doctorImage={response.doctorImage}
+                                        id={response.id}
+                                        refreshApi={refreshApi}
                                     />
                                 )
                             })

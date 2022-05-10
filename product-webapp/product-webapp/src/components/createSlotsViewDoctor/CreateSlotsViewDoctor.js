@@ -88,12 +88,9 @@ function CreateSlotViewDoctor() {
                         <div className="slots-container">
                             <div>
                                 {
-                                    result.length ===0 && 
-                                        <div>
-                               
-                                                No Slots Available
-
-
+                                    result.filter(x => x.slotDate === date).length === 0 && 
+                                        <div className="no-slots">
+                                            <p>No Slots Available</p>
                                         </div>
                                 }
                             </div>
