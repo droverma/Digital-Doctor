@@ -16,10 +16,11 @@ class AppointmentService {
         
     }
     getDataAppointmentViewForPatients(email){
-        // return axios.get('http://localhost:3000/appointmentsViewForPatients')
+        // return axios.get('http://localhost:3001/appointmentsViewForPatients')
         return axios.get('http://localhost:8080/api/v1/appointmentSlot/'+email)
     }
     getDataAppointmentViewForDoctors(docEmail){
+        // return axios.get('http://localhost:3001/appointmentsViewForDoctors')
         return axios.get('http://localhost:8080/appointmentSlot/'+docEmail)
     }
     deleteDataAppointmentViewForPatients(id){
