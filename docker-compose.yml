@@ -10,8 +10,8 @@ services:
     restart: always
 
   eureka-server:
-    build: eureka-server/
     container_name: eureka-server
+    build: eureka-server
     restart: always
     network_mode: host
     hostname: localhost
@@ -21,8 +21,8 @@ services:
       - config-server
 
   api-gateway:
-    build: api-gateway/
     container_name: api-gateway
+    build: api-gateway
     depends_on:
       - eureka-server
       - config-server
@@ -43,7 +43,6 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: 'Password'
-      MYSQL_DATABASE: authuser
       MYSQL_PASSWORD: root
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
@@ -107,8 +106,9 @@ services:
     restart: always
 
   product-webapp:
-    image: product-webapp
+    container_name: product-webapp
     build: product-webapp/
+    hostname: localhost
     restart: always
     network_mode: host
     ports:
@@ -117,7 +117,9 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
     ports:
       - 15672:15672
       - 5672:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: "root"
+      RABBITMQ_DEFAULT_PASS: "root123"
