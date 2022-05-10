@@ -111,13 +111,6 @@ services:
     build: product-webapp/
     restart: always
     network_mode: host
-    env_file:
-      - ./dockerenv/development/product-webapp.env
-    volumes:
-      - ./scripts:/temp/scripts
-    entrypoint:
-      - /temp/scripts/wait_for_service.sh
-      - java -jar /usr/src/product-webapp.jar
     ports:
       - 3000:3000
    
