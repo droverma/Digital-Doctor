@@ -4,8 +4,20 @@ import '../../component.css';
 import { Tooltip } from "@material-ui/core";
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import CancelIcon from '@mui/icons-material/Cancel';
+import AppointmentService from "../../services/appointment.service";
 
 function CreateSlotChips(props) {
+
+    let appointmentService = new AppointmentService();
+
+    const cancelClicked = () => {
+        console.log(props);
+        appointmentService.deleteSlots(props.id).then((response) => {
+            console.log(response);
+            props.refreshApi()
+        })
+
+    }
 
     return (
         <div className="col mb-4">
@@ -29,7 +41,7 @@ function CreateSlotChips(props) {
                         <Tooltip
                             title="Cancel Slot"
                             placement="top">
-                            <CancelIcon />
+                            <CancelIcon onClick={cancelClicked} />
                         </Tooltip>
                     </span>
                 </div>

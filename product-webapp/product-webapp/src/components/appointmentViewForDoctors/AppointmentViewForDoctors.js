@@ -32,8 +32,8 @@ function AppointmentViewForDoctors() {
         let loggedInEmail = localStorage.getItem("userEmail");
         appointmentService.getDataAppointmentViewForDoctors(loggedInEmail).then((response) => {
             let data = response.data;
-            setresult(data);
-            // setDefaultData(data);
+            // setresult(data);
+            setDefaultData(data);
 
         })
     }, []);
@@ -41,7 +41,7 @@ function AppointmentViewForDoctors() {
     const refreshApi = () => {
         let email = localStorage.getItem("userEmail");
         setdoctorEmail(email);
-        appointmentService.getDataAppointmentViewForDoctors(doctorEmail).then((response) => {
+        appointmentService.getDataAppointmentViewForDoctors(email).then((response) => {
             let data = response.data;
             setDefaultData(data);
         })

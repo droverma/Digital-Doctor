@@ -121,16 +121,6 @@
       "slotStatus": "BOOKED"
     },
     {
-      "id": "15",
-      "slotId": "15",
-      "doctorEmail": "harshVardhan@gmail.com",
-      "specialization": "MBBS, MD Optimologist",
-      "slotDate": "16/04/2022",
-      "slotStartTime": "5:45 PM",
-      "slotEndTime": "6:45 PM",
-      "slotStatus": "AVAILABLE"
-    },
-    {
       "id": "16",
       "slotId": "16",
       "doctorEmail": "harshVardhan@gmail.com",
@@ -244,41 +234,11 @@
       "slotId": "",
       "doctorEmail": "",
       "specialization": "",
-      "slotDate": "10/05/2022",
-      "slotStartTime": "10:00",
-      "slotEndTime": "11:00",
-      "slotStatus": "AVAILABLE",
-      "id": "yC23WVp"
-    },
-    {
-      "slotId": "",
-      "doctorEmail": "",
-      "specialization": "",
-      "slotDate": "06/05/2022",
-      "slotStartTime": "10:00",
-      "slotEndTime": "11:00",
-      "slotStatus": "AVAILABLE",
-      "id": "qDjsZz2"
-    },
-    {
-      "slotId": "",
-      "doctorEmail": "",
-      "specialization": "",
       "slotDate": "06/05/2022",
       "slotStartTime": "11:00",
       "slotEndTime": "12:00",
       "slotStatus": "AVAILABLE",
       "id": "qxllDWg"
-    },
-    {
-      "slotId": "",
-      "doctorEmail": "",
-      "specialization": "",
-      "slotDate": "12/05/2022",
-      "slotStartTime": "09:10",
-      "slotEndTime": "10:10",
-      "slotStatus": "AVAILABLE",
-      "id": "0WFPS0m"
     },
     {
       "slotId": "",
@@ -309,6 +269,166 @@
       "slotEndTime": "23:30",
       "slotStatus": "AVAILABLE",
       "id": "5BC02Al"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "12/05/2022",
+      "slotStartTime": "11:00",
+      "slotEndTime": "12:00",
+      "slotStatus": "AVAILABLE",
+      "id": "uYLe8bg"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "18/05/2022",
+      "slotStartTime": "14:10",
+      "slotEndTime": "15:10",
+      "slotStatus": "AVAILABLE",
+      "id": "KMWL7Lt"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "18/05/2022",
+      "slotStartTime": "15:13",
+      "slotEndTime": "16:11",
+      "slotStatus": "AVAILABLE",
+      "id": "a6d3Tpa"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "19/05/2022",
+      "slotStartTime": "15:13",
+      "slotEndTime": "16:11",
+      "slotStatus": "AVAILABLE",
+      "id": "I2JbGN-"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "20/05/2022",
+      "slotStartTime": "15:13",
+      "slotEndTime": "16:11",
+      "slotStatus": "AVAILABLE",
+      "id": "SesQdMB"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "21/05/2022",
+      "slotStartTime": "15:13",
+      "slotEndTime": "16:11",
+      "slotStatus": "AVAILABLE",
+      "id": "klz0ncl"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "Invalid date",
+      "slotStartTime": "",
+      "slotEndTime": "",
+      "slotStatus": "AVAILABLE",
+      "id": "Rq5e8OU"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "Invalid date",
+      "slotStartTime": "",
+      "slotEndTime": "",
+      "slotStatus": "AVAILABLE",
+      "id": "VPkAuoX"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "22/05/2022",
+      "slotStartTime": "22:44",
+      "slotEndTime": "23:00",
+      "slotStatus": "AVAILABLE",
+      "id": "dhOmgbe"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "23/05/2022",
+      "slotStartTime": "22:44",
+      "slotEndTime": "23:00",
+      "slotStatus": "AVAILABLE",
+      "id": "LHcWFkO"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "24/05/2022",
+      "slotStartTime": "22:44",
+      "slotEndTime": "23:00",
+      "slotStatus": "AVAILABLE",
+      "id": "Nn2PP55"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "25/05/2022",
+      "slotStartTime": "22:44",
+      "slotEndTime": "23:00",
+      "slotStatus": "AVAILABLE",
+      "id": "RZa5C7H"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "25/05/2022",
+      "slotStartTime": "22:44",
+      "slotEndTime": "23:00",
+      "slotStatus": "AVAILABLE",
+      "id": "BqwajkO"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "26/05/2022",
+      "slotStartTime": "22:44",
+      "slotEndTime": "23:00",
+      "slotStatus": "AVAILABLE",
+      "id": "73extbr"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "27/05/2022",
+      "slotStartTime": "22:44",
+      "slotEndTime": "23:00",
+      "slotStatus": "AVAILABLE",
+      "id": "POeTnBx"
+    },
+    {
+      "slotId": "",
+      "doctorEmail": "",
+      "specialization": "",
+      "slotDate": "28/05/2022",
+      "slotStartTime": "20:00",
+      "slotEndTime": "21:00",
+      "slotStatus": "AVAILABLE",
+      "id": "8BKd8Wk"
     }
   ],
   "appointmentsViewForPatients": [
@@ -912,6 +1032,132 @@
       "appointmentEndTime": "7:45 PM",
       "appointmentStatus": "UPCOMING",
       "bookedOn": "2022-05-09T20:19:48.487Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "vagXi6l",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "16/04/2022",
+      "appointmentStartTime": "8:45 PM",
+      "appointmentEndTime": "9:45 PM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T07:46:44.579Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "9hJjh34",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "16/04/2022",
+      "appointmentStartTime": "6:45 PM",
+      "appointmentEndTime": "7:45 PM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T07:47:19.608Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "EaRIrjJ",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "15/04/2022",
+      "appointmentStartTime": "9:30 AM",
+      "appointmentEndTime": "10:30 AM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T07:51:05.694Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "RRgLyEH",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "19/05/2022",
+      "appointmentStartTime": "15:13",
+      "appointmentEndTime": "16:11",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T08:59:13.032Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "cEjfbeW",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "20/05/2022",
+      "appointmentStartTime": "15:13",
+      "appointmentEndTime": "16:11",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T09:01:52.769Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "mBCgVuh",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "20/05/2022",
+      "appointmentStartTime": "20:00",
+      "appointmentEndTime": "21:00",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T09:02:39.323Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "7HaaJtT",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "12/05/2022",
+      "appointmentStartTime": "11:00",
+      "appointmentEndTime": "12:00",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T09:02:39.323Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "RnaE9Yx",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "14/05/2022",
+      "appointmentStartTime": "20:00",
+      "appointmentEndTime": "21:00",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T09:08:08.910Z",
+      "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
+    },
+    {
+      "id": "U8k-_Z7",
+      "appointmentId": "",
+      "slotId": "",
+      "patientEmail": "anilgarg@gmail.com",
+      "doctorEmail": "anuraggarg@gmail.com",
+      "specialization": "MBBS,MD-Medicine",
+      "appointmentDate": "15/04/2022",
+      "appointmentStartTime": "5:30 PM",
+      "appointmentEndTime": "6:30 PM",
+      "appointmentStatus": "UPCOMING",
+      "bookedOn": "2022-05-10T09:08:34.934Z",
       "doctorImage": "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
     }
   ],
