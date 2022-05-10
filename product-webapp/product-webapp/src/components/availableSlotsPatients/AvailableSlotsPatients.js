@@ -40,7 +40,7 @@ function AvailableSlotsPatients() {
     useEffect(() => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getSlots(patientEmail).then((response) => {
+        appointmentService.getSlots(email).then((response) => {
             let data = response.data;
             setresult(data);
             setDetails(response.data[1]);

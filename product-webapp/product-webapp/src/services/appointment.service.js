@@ -34,7 +34,7 @@ class AppointmentService {
     }
     deleteDataAppointmentViewForDoctors(id){
         // return axios.patch('http://localhost:3000/appointmentsViewForDoctors/'+id,{"appointmentStatus": "CANCELED"})
-        return axios.patch('http://localhost:3000/appointmentSlot/doctor/'+id,{"appointmentStatus": "CANCELED"})
+        return axios.patch('http://localhost:8080/appointmentSlot/doctor/'+id,{"appointmentStatus": "CANCELED"})
     }
 
 

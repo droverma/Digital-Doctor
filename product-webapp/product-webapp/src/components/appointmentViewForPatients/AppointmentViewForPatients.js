@@ -32,7 +32,7 @@ function AppointmentViewForPatients() {
     useEffect(() => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getDataAppointmentViewForPatients(patientEmail).then((response) => {
+        appointmentService.getDataAppointmentViewForPatients(email).then((response) => {
             let data = response.data;
             // setresult(data);
             setDefaultData(data);
@@ -43,7 +43,7 @@ function AppointmentViewForPatients() {
     const refreshApi = () => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getDataAppointmentViewForPatients(patientEmail).then((response) => {
+        appointmentService.getDataAppointmentViewForPatients(email).then((response) => {
             let data = response.data;
 
             setDefaultData(data);

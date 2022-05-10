@@ -76,7 +76,7 @@ function CreateSlotViewDoctor() {
     const getSlots = () => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getSlots(patientEmail).then((response) => {
+        appointmentService.getSlots(email).then((response) => {
             let data = response.data;
             setresult(data);
         })
@@ -84,7 +84,7 @@ function CreateSlotViewDoctor() {
     const refreshApi = () => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getSlots(patientEmail).then((response) => {
+        appointmentService.getSlots(email).then((response) => {
             let data = response.data;
             setresult(data);
         })
