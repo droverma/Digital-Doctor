@@ -9,6 +9,7 @@ import { Tooltip } from "@material-ui/core";
 import '../pagination/Pagination.scss'
 import ReactPaginate from "react-paginate";
 import ProfileDetailsService from "../../services/profileDetails.service";
+import {useLocation} from 'react-router-dom'
 
 
 function AppointmentViewForPatients() {
@@ -26,7 +27,7 @@ function AppointmentViewForPatients() {
     const [paginateData, setpaginateData] = useState([]);
     const [activeTabData, setactiveTabData] = useState([]);
     const [patientEmail, setpatientEmail] = useState('');
-    const [docEmail, setdocEmail] = useState('');
+    const { state } = useLocation();
 
 
     const [filters, setFilters] = useState({ specialization: '', date: moment().format('YYYY-MM-DD') });
@@ -39,10 +40,10 @@ function AppointmentViewForPatients() {
             // setresult(data);
             setDefaultData(data);
             console.log(data[0].doctorEmail);
-            ProfileDetailsService.doctorProfileAvailableSlots(data[0].doctorEmail).then((response)=>{
-                setdocEmail(response);
+            // data.map((res) => {
                 
-            })
+            // })
+           
 
         })
     }, []);
@@ -245,9 +246,10 @@ function AppointmentViewForPatients() {
                                         appointmentEndTime={response.appointmentEndTime}
                                         appointmentStatus={response.appointmentStatus}
                                         appointmentId={response.appointmentId}
-                                        doctorImage={response.doctorImage}
+                
                                         id={response.id}
                                         refreshApi={refreshApi}
+
                                     />
                                 )
                             })

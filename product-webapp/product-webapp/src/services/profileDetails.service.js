@@ -20,6 +20,9 @@ class ProfileDetailsService {
     let patientEmailId = localStorage.getItem("userEmail");
     return axios.get(`${apiUrl}/api/v1/patient/` + patientEmailId);
   }
+  patientProfileForDoctorView(patientEmailId) {
+    return axios.get(`${apiUrl}/api/v1/patient/` + patientEmailId);
+  }
   // update the profile details of patients
   addPatientProfile(data) {
     let userId = localStorage.getItem("userEmail");

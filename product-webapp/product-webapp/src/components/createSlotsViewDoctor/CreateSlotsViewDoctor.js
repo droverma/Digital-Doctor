@@ -135,6 +135,7 @@ function CreateSlotViewDoctor() {
                                                 slotEndTime={response.slotEndTime}
                                                 slotStatus={response.slotStatus}
                                                 id={response.id}
+                                                slotId={response.slotId}
                                                 refreshApi={refreshApi}
                                             />
                                         )

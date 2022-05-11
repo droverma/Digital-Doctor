@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
@@ -10,11 +10,15 @@ import { Tooltip } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from '../../context/Context';
 import VideoChatService from "../../services/VideoChat.service";
+import ProfileDetailsService from "../../services/profileDetails.service";
+import PatientAvatar from '../../assets/images/patient_avatar.jpg';
+
 
 
 function CardAppointmentVIewForDoctors(props) {
     console.log(props);
     const { socket, me, createMeeting } = useContext(SocketContext);
+    const [patientBasicDetails, setpatientBasicDetails] = useState({});
 
     let navigate = useNavigate();
 
@@ -49,13 +53,20 @@ function CardAppointmentVIewForDoctors(props) {
         }
     }
 
+    useEffect(()=>{
+        ProfileDetailsService.patientProfileForDoctorView(props.patientEmail).then((response)=>{
+            console.log(response.data);
+            setpatientBasicDetails(response.data);  
+        })
+    },[])
+
     return (
         <div className="col-md-6 mb-4">
             <div className="card ">
                 <div className="card-body">
                     <div className="row">
                         <div className="col mb-3">
-                            <img src={props.doctorImage} className="doctors-image" />
+                            <img src={patientBasicDetails.patientImage ? patientBasicDetails.patientImage : PatientAvatar} className="doctors-image" />
                         </div>
                         <div className="col">
                             <div className="row mb-4">
@@ -63,14 +74,15 @@ function CardAppointmentVIewForDoctors(props) {
                                     <PersonIcon className="person-icon" />
                                 </div> */}
                                 <div className="col pe-0 ps-0">
-                                    <h4>Kamal Anand</h4>
+                                    {/* <h4>Kamal Anand</h4> */}
+                                    <h4>{patientBasicDetails.patientName ? patientBasicDetails.patientName : 'Patient'}</h4>
                                 </div>
                             </div>
                             <div className="text-right">
-                                <p>{props.specialization}</p>
+                                <p>{patientBasicDetails.city}</p>
                             </div>
                             <div className="text-right mb-4">
-                                <h6 className="card-title pe-4">Age: 32</h6>
+                                <h6 className="card-title pe-4">M: {patientBasicDetails.patientMobileNumber ? patientBasicDetails.patientMobileNumber : 'NA'}</h6>
 
                             </div>
                         </div>

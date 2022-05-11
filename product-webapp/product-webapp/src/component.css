@@ -543,9 +543,9 @@
 }
 
 @media screen and (min-width:1370px) and (max-width:1600px) {
-    .column {
+    /* .column {
         height: 36rem;
-    }
+    } */
     #wc-container-right {
         color: #666;
         position: relative;

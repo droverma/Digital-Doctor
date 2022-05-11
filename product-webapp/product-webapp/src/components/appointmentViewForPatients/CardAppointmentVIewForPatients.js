@@ -3,15 +3,18 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppointmentService from "../../services/appointment.service";
 import VideoChatService from "../../services/VideoChat.service";
 import { SocketContext } from '../../context/Context';
+import ProfileDetailsService from "../../services/profileDetails.service";
+import DoctorAvatar from '../../assets/images/doctor_avatar.jpg';
 
 
 function CardAppointmentVIewForPatients(props) {
     const { socket, me, createMeeting } = useContext(SocketContext);
+    const [doctorBasicDetails, setdoctorBasicDetails] = useState({});
 
     let navigate = useNavigate();
     let appointmentService = new AppointmentService();
@@ -27,8 +30,6 @@ function CardAppointmentVIewForPatients(props) {
             })
         })
             // console.log(response);
-           
-      
 
     }
     const joinMeeting = () => {
@@ -44,13 +45,20 @@ function CardAppointmentVIewForPatients(props) {
 
     }
 
+    useEffect(()=>{
+        ProfileDetailsService.doctorProfileAvailableSlots(props.doctorEmail).then((response)=>{
+            console.log(response.data);
+            setdoctorBasicDetails(response.data);  
+        })
+    },[])
+
     return (
         <div className="col-md-6 mb-4">
             <div className="card ">
                 <div className="card-body">
                     <div className="row">
                         <div className="col mb-3">
-                            <img src={props.doctorImage} className="doctors-image" />
+                            <img src={doctorBasicDetails.image ? doctorBasicDetails.image : DoctorAvatar} className="doctors-image" />
                         </div>
                         <div className="col">
                             <div className="row mb-4">
@@ -58,14 +66,16 @@ function CardAppointmentVIewForPatients(props) {
                                     <PersonIcon className="person-icon" />
                                 </div> */}
                                 <div className="col pt-2 pe-0 ps-0">
-                                    <h4>Kamal Anand</h4>
+                                    {/* <h4>Kamal Anand</h4> */}
+                                   <h4>{doctorBasicDetails.doctorName ? doctorBasicDetails.doctorName : 'Dr. Doctor'}</h4> 
                                 </div>
                             </div>
                             <div className="text-right">
                                 <p>{props.specialization}</p>
                             </div>
                             <div className="text-right mb-4">
-                                <h6 className="card-title pe-4">Age: 32</h6>
+                                {/* <h6 className="card-title pe-4">Age: 32</h6> */}
+                                <h6 className="card-title pe-4">Exp: {doctorBasicDetails.yearsOfExperience ? doctorBasicDetails.yearsOfExperience : '0'} yrs</h6>
 
                             </div>
                         </div>

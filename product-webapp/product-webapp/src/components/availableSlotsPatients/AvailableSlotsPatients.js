@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProfileDetailsService from "../../services/profileDetails.service";
-import {useLocation} from 'react-router-dom'
+import {useLocation} from 'react-router-dom';
+import DoctorImage from '../../assets/images/Doctor_image.jpg'
 
 
 function AvailableSlotsPatients() {
@@ -100,7 +101,7 @@ function AvailableSlotsPatients() {
                         draggable: true,
                         progress: undefined,
                     });
-                    setTimeout(()=>{navigate('/appointmentViewForPatients')},2000)   
+                    setTimeout(()=>{navigate('/appointmentViewForPatients', { state: state })},2000)   
                 }
 
             })
@@ -125,7 +126,7 @@ function AvailableSlotsPatients() {
                 <div className="col-md-4 col-sm-12">
                     <div className="doctors-details">
                         <div className="col mb-1 mt-4">
-                            <img src={details.image ? details.image : '../Doctor_image.jpg' } className="doctor-image" alt="" />
+                            <img src={details.image ? details.image : DoctorImage } className="doctor-image" alt="" />
                         </div>
                         <div className="col mb-4">
                             <h6>{details.doctorName ? details.doctorName : 'No name'}</h6>
@@ -137,7 +138,7 @@ function AvailableSlotsPatients() {
                             Email: {details.emailId ? details.emailId : 'No Email'}
                         </div>
                         <div className="col mb-4">
-                            Experience: {details.yearsOfExperience ? details.yearsOfExperience : '0'}
+                            Experience: {details.yearsOfExperience ? details.yearsOfExperience : '0'} years
                         </div>
                         <div className="col mb-4">
                             City: {details.city ? details.city : 'No City'}

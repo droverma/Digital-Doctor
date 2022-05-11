@@ -227,7 +227,7 @@ function AppointmentViewForDoctors() {
                             result.map((response) => {
                                 return (
                                     <CardAppointmentVIewForDoctors
-                                        doctorEmail={response.doctorEmail}
+                                        patientEmail={response.patientEmail}
                                         appointmentDate={response.appointmentDate}
                                         appointmentStartTime={response.appointmentStartTime}
                                         appointmentEndTime={response.appointmentEndTime}
