@@ -65,14 +65,17 @@ const ContextProvider = ({ children }) => {
         });
     }, []);
 
-    const createMeeting = () => {
-        socket.on("me", (id) => {
-            console.log(id,'id')
-            setMe(id)
-        });
+    const createMeeting = async () => {
+
+        await socket.on("me", async (id) => {
+
+            console.log(id, 'id')
+            await setMe(id)
+        }
+        );
     }
     const getVideoAudio = async () => {
-        console.log(me,'id vid')
+        console.log(me, 'id')
         try {
             await navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
                 setStream(currentStream);
@@ -95,13 +98,6 @@ const ContextProvider = ({ children }) => {
             stream.getVideoTracks()[0].enabled = !currentStatus;
             return !currentStatus;
         });
-
-        // if (userVideo)
-        //     setUserVdoStatus((currentStatus) => {
-
-        //         userStream.getVideoTracks()[0].enabled = !currentStatus;
-        //         return !currentStatus;
-        //     })
     };
 
     const updateMic = () => {
@@ -116,9 +112,11 @@ const ContextProvider = ({ children }) => {
     };
 
     const callUser = (id) => {
+
         const peer = new Peer({ initiator: true, trickle: false, stream });
         setOtherUser(id);
         peer.on("signal", (data) => {
+
             socket.emit("callUser", {
                 userToCall: id,
                 signalData: data,
@@ -128,11 +126,13 @@ const ContextProvider = ({ children }) => {
         });
 
         peer.on("stream", (currentStream) => {
+
             setUserStream(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
         socket.on("callAccepted", ({ signal, userName }) => {
+
             setCallAccepted(true);
             setUserName(userName);
             peer.signal(signal);
@@ -152,6 +152,7 @@ const ContextProvider = ({ children }) => {
         const peer = new Peer({ initiator: false, trickle: false, stream });
 
         peer.on("signal", (data) => {
+
             socket.emit("answerCall", {
                 signal: data,
                 to: call.from,

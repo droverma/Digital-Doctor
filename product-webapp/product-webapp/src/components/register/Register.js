@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, Image, Modal, NavLink, Row } from "react-bootstrap";
 import loginImage from "../../assets/images/register.png";
 import AuthService from "../../services/Auth.service";
@@ -40,8 +40,10 @@ const Register = (props) => {
         break;
       case "confirmPassword":
         setRegisterData((state) => {
-          if (state.password === value)
+          if (state.password === value) {
             delete validated.con_pass;
+            setValidated({})
+          }
           else setValidated({ con_pass: "not matched" });
           return state;
         });
@@ -49,6 +51,7 @@ const Register = (props) => {
       default:
         break;
     }
+
   };
 
   const submit = (event) => {

@@ -11,20 +11,19 @@ const io = require("socket.io")(server, {
 
 io.on("connection", (socket) => {
 	// socket.emit("me", socket.id)
-
 	// socket.on("disconnect", () => {
 	// 	io.broadcast.emit("callEnded")
 	// })
-	// socket.on("disconnect", () => {
-	// 	debugger
-	// 	console.log("User Disconnected", socket.id);
-	// });
+	socket.on("disconnect", () => {
+		console.log("User Disconnected", socket.id);
+	});
 
-	socket.on("me", () => {
+	socket.on("me", (data) => {
 		socket.emit("me", socket.id)
 	});
 
 	socket.on("callUser", (data) => {
+		console.log(data)
 		io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
 	})
 	socket.on("updateMyMedia", ({ type, currentMediaStatus }) => {

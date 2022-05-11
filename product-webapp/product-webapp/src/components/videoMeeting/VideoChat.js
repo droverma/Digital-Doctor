@@ -39,7 +39,8 @@ const VideoChat = () => {
     setReceivingCall,
     setMyMicStatus,
     setMyVdoStatus,
-    callUser
+    callUser,
+    createMeeting
   } = useContext(SocketContext);
 
   const { state } = useLocation();
@@ -84,35 +85,8 @@ const VideoChat = () => {
   return (
     isMeetingStarted ?
       <Row className="m-md-0" style={{ backgroundColor: '#161616' }}>
-        <Col md={callAccepted ? 5 : 9} className="column">
-          {stream &&
-            < >
-              <div style={{
-                color: 'white',
-                opacity: `${myVdoStatus ? "-1" : "2"}`,
-                position: 'absolute',
-                marginLeft: `${!callAccepted ? "25%" : "12%"}`,
-                marginTop: `${!callAccepted ? "17%" : "18%"}`,
-                fontSize: 'xxx-large'
-              }}>
-                {name}
-              </div>
-              <video
-                height={"100%"}
-                width={"100%"}
-                ref={myVideo}
-                className="video"
-                autoPlay
-                playsInline
-                muted
-              />
-
-            </>
-          }
-        </Col>
-
-        {callAccepted && !callEnded && (
-          <Col md={4}>
+         {callAccepted && !callEnded && (
+          <Col md={7}>
             <div
               className={userMicStatus ? 'namebutton' : 'mutebutton'}
             // style={{
@@ -143,6 +117,34 @@ const VideoChat = () => {
             />
           </Col>
         )}
+        <Col md={callAccepted ? 2 : 9} className="column">
+          {stream &&
+            < >
+              <div style={{
+                color: 'white',
+                opacity: `${myVdoStatus ? "-1" : "2"}`,
+                position: 'absolute',
+                marginLeft: `${!callAccepted ? "25%" : "3.2rem"}`,
+                marginTop: `${!callAccepted ? "17%" : "15rem"}`,
+                fontSize: 'large'
+              }}>
+                {name}
+              </div>
+              <video
+                height={"100%"}
+                width={"100%"}
+                ref={myVideo}
+                className="video"
+                autoPlay
+                playsInline
+                muted
+              />
+
+            </>
+          }
+        </Col>
+
+       
         {receivingCall && !callAccepted ? (
           <Modal size='sm' show={receivingCall && !callAccepted} onHide={!receivingCall && callAccepted}>
 
@@ -310,8 +312,9 @@ const VideoChat = () => {
           setMeetingStarted(true);
           getVideoAudio();
 
-          if (state)
+          if (state) {
             callUser(state);
+          }
         }}
         startMeeting={isMeetingStarted}
       />
