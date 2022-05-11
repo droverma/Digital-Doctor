@@ -1,18 +1,18 @@
 import axios from "axios";
 
+const apiUrl = 'http://localhost:8080/appointmentservice';
 class AppointmentService {
     getSlots(email) {
         // return axios.get('http://localhost:3000/availableSlots');
-        return axios.get('http://localhost:8080/api/v1/slot/'+email);
+        return axios.get(`${apiUrl}/api/v1/doctor/slotDetails/`+email);
     }
-    deleteSlots(id){
-        // return axios.delete('http://localhost:3000/availableSlots/'+id);
-        return axios.get('http://localhost:8080/api/v1/slot/'+id);
-    }
+    
+
     addSlots(data){
         // return axios.post('http://localhost:3000/availableSlots',data);
-        return axios.post('http://localhost:8080/api/v1/doctor/slot',data);
+        return axios.post(`${apiUrl}/api/v1/doctor/slot`,data);
     }
+    
     getBookedAppointment(data) {
         // return axios.post('http://localhost:3000/appointmentsViewForPatients', data);
         return axios.post('http://localhost:8080/api/v1/patient/appointmentSlots',data);
@@ -20,21 +20,32 @@ class AppointmentService {
     bookAppointment(){
         
     }
+
     getDataAppointmentViewForPatients(email){
-        return axios.get('http://localhost:3001/appointmentsViewForPatients')
-        // return axios.get('http://localhost:8080/api/v1/appointmentSlot/'+email)
+        // return axios.get('http://localhost:3001/appointmentsViewForPatients')
+        return axios.get(`${apiUrl}/api/v1/appointmentSlot/patient/`+email)
     }
+
     getDataAppointmentViewForDoctors(docEmail){
-        return axios.get('http://localhost:3001/appointmentsViewForDoctors')
-        // return axios.get('http://localhost:8080/appointmentSlot/'+docEmail)
+        // return axios.get('http://localhost:3000/appointmentsViewForDoctors')
+        return axios.get(`${apiUrl}/api/v1/appointmentSlot/`+docEmail)
     }
+
     deleteDataAppointmentViewForPatients(id){
         // return axios.patch('http://localhost:3000/appointmentsViewForPatients/'+id,{"appointmentStatus": "CANCELED"})
-        return axios.patch('http://localhost:8080/appointmentSlot/patient/'+id,{"appointmentStatus": "CANCELED"})
+        return axios.delete(`${apiUrl}/api/v1/user/appointment/`+id)
     }
     deleteDataAppointmentViewForDoctors(id){
         // return axios.patch('http://localhost:3000/appointmentsViewForDoctors/'+id,{"appointmentStatus": "CANCELED"})
-        return axios.patch('http://localhost:8080/appointmentSlot/doctor/'+id,{"appointmentStatus": "CANCELED"})
+        return axios.delete(`${apiUrl}/api/v1/user/appointment/`+id)
+    }
+
+    updateStatus(data) {
+        return axios.put(`${apiUrl}/api/v1/user/appointmentStatus`, data)
+    }
+
+    getAppointmentDetails(appointmentId) {
+        return axios.get(`${apiUrl}/api/v1/appointmentDetails/`+appointmentId)
     }
 
 

@@ -7,6 +7,7 @@ import CreateSlotChips from "./CreateSlotChips";
 import './CreateSlotsViewDoctor.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import profileDetailsService from "../../services/profileDetails.service";
 
 function CreateSlotViewDoctor() {
 
@@ -14,7 +15,7 @@ function CreateSlotViewDoctor() {
     const [value] = useState(new Date());
     const [date, setDate] = useState('');
     const [fields, setfields] = useState({ slotDate: '', slotStartTime: '', slotEndTime: '' });
-    const [patientEmail, setpatientEmail] = useState('');
+    const [specialization, setspecialization] = useState('');
 
     function changeDate(value, event) {
         let momentDate = moment(value).format('DD/MM/YYYY');
@@ -30,26 +31,33 @@ function CreateSlotViewDoctor() {
         setfields({ ...fields, [name]: value });
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event) => { 
+        let doctorEmail = localStorage.getItem("userEmail");
+        var doctorSpecialization = "";
+        profileDetailsService.doctorProfile(doctorEmail).then((res) => {
+            doctorSpecialization = res.specialization;
+            // setspecialization(res.specialization)
+
+        })
         event.preventDefault();
         console.log(fields);
-        let slotDate = moment(fields.slotDate).format('DD/MM/YYYY');
+        let slotDate = moment(fields.slotDate).format('YYYY-MM-DD');
         let slotStartTime = fields.slotStartTime;
         let slotEndTime = fields.slotEndTime;
         let slotStatus = "AVAILABLE";
         let data = {
-            slotId: '',
-            doctorEmail: '',
-            specialization: '',
+            doctorEmailId: doctorEmail,
+            specialization: doctorSpecialization,
             slotDate: slotDate,
             slotStartTime: slotStartTime,
             slotEndTime: slotEndTime,
             slotStatus: slotStatus
 
         }
+        
         appointmentService.addSlots(data).then((response) => {
             if (response) {
-                debugger
+                // debugger
                 toast.success('Slot Created Successfully!', {
                     position: "top-right",
                     autoClose: 5000,
@@ -68,6 +76,7 @@ function CreateSlotViewDoctor() {
     }
 
     let appointmentService = new AppointmentService();
+    
 
     useEffect(() => {
         getSlots();
@@ -75,7 +84,7 @@ function CreateSlotViewDoctor() {
 
     const getSlots = () => {
         let email = localStorage.getItem("userEmail");
-        setpatientEmail(email);
+        // setpatientEmail(email);
         appointmentService.getSlots(email).then((response) => {
             let data = response.data;
             setresult(data);
@@ -83,7 +92,7 @@ function CreateSlotViewDoctor() {
     }
     const refreshApi = () => {
         let email = localStorage.getItem("userEmail");
-        setpatientEmail(email);
+        // setpatientEmail(email);
         appointmentService.getSlots(email).then((response) => {
             let data = response.data;
             setresult(data);

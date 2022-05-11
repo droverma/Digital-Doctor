@@ -24,11 +24,8 @@ public class DoctorServiceImpl implements DoctorService {
             userDTO.setPassword(doctor.getPassword());
             userDTO.setUserRole("doctor");
             producer.sendMessageToRabbitMq(userDTO);
-            doctor.setPassword("");
             return doctorRepository.save(doctor);
-        }
-
-
+    }
 
     @Override
     public Doctor getDoctorByEmail(String email) throws DoctorDoesNotExistException {
@@ -63,8 +60,8 @@ public class DoctorServiceImpl implements DoctorService {
            doctor1.setImage(doctor.getImage());
            doctor1.setPassword(doctor.getPassword());
            doctor1.setEmailId(doctor.getEmailId());
-           doctorRepository.save(doctor1);
-           return doctor1;
+//           doctorRepository.save(doctor1);
+            return doctorRepository.save(doctor1);
         }
            catch (DoctorDoesNotExistException ex){
             throw new DoctorDoesNotExistException("DoctorDoesNotExistException");

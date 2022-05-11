@@ -42,7 +42,7 @@ public class SlotController {
         return doctorSlotImpl.getAllSlotsByDoctor(doctorEmail);
     }*/
 
-    @GetMapping("/doctor/slot/{doctorEmailId}")
+    @GetMapping("/doctor/slotDetails/{doctorEmailId}")
     public List<DoctorSlot> getAllSlotsByDoctor(@PathVariable String doctorEmailId){
         return doctorSlotImpl.getAllSlotsByDoctor(doctorEmailId);
 

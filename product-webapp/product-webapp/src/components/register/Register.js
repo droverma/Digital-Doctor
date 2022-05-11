@@ -68,7 +68,8 @@ const Register = (props) => {
       AuthService.registerPatient(doctorData).then(res => {
         openLoginModal();
         console.log(res)
-      }).catch(err => console.error(err))
+      })
+      .catch(err => console.error(err))
   }
 
   const openLoginModal = () => {

@@ -22,8 +22,12 @@ function CardAppointmentVIewForDoctors(props) {
 
     const cancelClicked = () => {
         console.log(props);
+        
         appointmentService.deleteDataAppointmentViewForDoctors(props.id).then((response) => {
             console.log(response);
+            appointmentService.getAppointmentDetails(props.id).then((res) => {
+                res.appointmentStatus = "CANCELLED";
+            })
             props.refreshApi()
         })
 

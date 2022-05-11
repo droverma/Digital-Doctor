@@ -10,24 +10,25 @@ const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 const nameExpresion = RegExp(/^[a-zA-Z_ .]+$/);
 const cityExpression = RegExp(/^[a-zA-Z -]+$/);
 
-const PatientProfile = (props) => {
+const PatientProfile = () => {
   let navigate = useNavigate();
   const [validated, setValidated] = useState({});
   const [userId, setUserId] = useState("");
   const [updatePatientData, setUpdatePatientData] = useState({
+    emailId: "jatin@gmail.com",
     patientName: "",
-    patientImage: "",
-    patientEmail: "",
-    patientMobileNo: "",
+    patientMobileNumber: "",
+    password: "123456",
     city: "",
+    patientImage: "",
   });
 
   const clearPatientData = () => {
     setUpdatePatientData({
       patientName: "",
       patientImage: "",
-      patientEmail: "",
-      patientMobileNo: "",
+      emailId: "",
+      patientMobileNumber: "",
       city: "",
     });
   };
@@ -95,32 +96,32 @@ const PatientProfile = (props) => {
         }
         break;
 
-      case "patientEmail":
+      case "emailId":
         if (!emailExpresion.test(value))
-          setValidated({ patientEmail: "Email is invalid" });
+          setValidated({ emailId: "Email is invalid" });
         else {
-          delete validated.patientEmail;
+          delete validated.emailId;
         }
         break;
 
-      case "patientMobileNo":
+      case "patientMobileNumber":
         if (!value) {
           setValidated({
-            patientMobileNo: "Mobile Number Cann't Be Empty!",
+            patientMobileNumber: "Mobile Number Cann't Be Empty!",
           });
         }
         if (typeof value !== "undefined") {
           var mobileNoExpresion = RegExp(/^[0-9\b]+$/);
           if (!mobileNoExpresion.test(value)) {
             setValidated({
-              patientMobileNo: "Mobile Number Contains Only Digits",
+              patientMobileNumber: "Mobile Number Contains Only Digits",
             });
           } else if (value.length !== 10) {
             setValidated({
-              patientMobileNo: "Mobile Number Should Be Digits",
+              patientMobileNumber: "Mobile Number Should Be Digits",
             });
           } else {
-            delete validated.patientMobileNo;
+            delete validated.patientMobileNumber;
           }
         }
         break;
@@ -130,9 +131,10 @@ const PatientProfile = (props) => {
   };
   const submitPatientData = (e) => {
     setTimeout(() => {
-      // console.log(updatePatientData);
-      let patientEmail = localStorage.get("userEmail");
-      ProfileDetailsService.addPatientProfile(updatePatientData, patientEmail)
+      console.log(updatePatientData);
+      let emailId = localStorage.getItem("userEmail");
+      console.log(emailId);
+      ProfileDetailsService.addPatientProfile(updatePatientData, emailId)
         .then((res) => {
           console.log();
         })
@@ -143,18 +145,20 @@ const PatientProfile = (props) => {
   };
 
   const getPatientData = () => {
-    let patientEmail = localStorage.getItem("userEmail");
-    ProfileDetailsService.patientProfile(patientEmail)
+    let patientEmailId = localStorage.getItem("userEmail");
+    console.log(patientEmailId);
+    ProfileDetailsService.patientProfile(patientEmailId)
       .then((res) => {
         // console.log(res.data);
         const da = res.data[0];
-        // console.log(da.patientImage);
+        console.log(da.password);
         setUpdatePatientData({
+          emailId: patientEmailId,
           patientName: da.patientName,
-          patientImage: da.patientImage,
-          patientEmail: da.patientEmail,
-          patientMobileNo: da.patientMobileNo,
+          patientMobileNumber: da.patientMobileNumber,
+          password:da.password,
           city: da.city,
+          patientImage: da.patientImage,
         });
         setUserId(da.id);
       })
@@ -162,7 +166,6 @@ const PatientProfile = (props) => {
   };
 
   useEffect(() => {
-    props.setisAuthenticated(true)
     getPatientData();
   }, []);
 
@@ -181,7 +184,7 @@ const PatientProfile = (props) => {
                 <img
                   style={{ borderRadius: "20px" }}
                   className="docImgSize"
-                  src="https://media2.giphy.com/media/aGDK7Pck40dZN7w1NG/giphy.gif"
+                  src="https://media2.giphy.com/media/A9MftKr3J3lra/giphy.gif"
                   alt="doctor"
                 />
               </div>
@@ -219,13 +222,13 @@ const PatientProfile = (props) => {
                     <Form.Control
                       type="text"
                       className="fSize"
-                      id="patientEmail"
-                      name="patientEmail"
+                      id="emailId"
+                      name="emailId"
                       placeholder="Enter Your Email Id"
-                      value={updatePatientData.patientEmail}
+                      value={updatePatientData.emailId}
                       onChange={patientChangeHandler}
                       readOnly
-                      isInvalid={validated.patientEmail}
+                      isInvalid={validated.emailId}
                     />
 
                     <Form.Control.Feedback type="invalid">
@@ -288,13 +291,13 @@ const PatientProfile = (props) => {
                     <Form.Control
                       type="text"
                       className="fSize"
-                      id="patientMobileNo"
-                      name="patientMobileNo"
+                      id="patientMobileNumber"
+                      name="patientMobileNumber"
                       placeholder="Enter Your Mobile No"
-                      value={updatePatientData.patientMobileNo}
+                      value={updatePatientData.patientMobileNumber}
                       onChange={patientChangeHandler}
                       required
-                      isInvalid={validated.patientMobileNo}
+                      isInvalid={validated.patientMobileNumber}
                     />
                     <Form.Control.Feedback type="invalid">
                       Please enter the valid Mobile Number.

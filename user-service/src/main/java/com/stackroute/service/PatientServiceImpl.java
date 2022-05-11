@@ -49,7 +49,7 @@ public class PatientServiceImpl implements PatientService{
             patient1.setPassword(patient.getPassword());
             patient1.setCity(patient.getCity());
             patient1.setPatientMobileNumber(patient.getPatientMobileNumber());
-            return patient1;
+            return patientRepository.save(patient1);
         }
         catch(PatientDoesNotExistException e){
             throw new PatientDoesNotExistException("PatientDoesNotExistException");
