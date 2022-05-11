@@ -60,7 +60,8 @@ public class DoctorServiceImpl implements DoctorService {
            doctor1.setImage(doctor.getImage());
            doctor1.setPassword(doctor.getPassword());
            doctor1.setEmailId(doctor.getEmailId());
-//           doctorRepository.save(doctor1);
+           doctor1.setDoctorMobileNumber(doctor.getDoctorMobileNumber());
+           //           doctorRepository.save(doctor1);
             return doctorRepository.save(doctor1);
         }
            catch (DoctorDoesNotExistException ex){

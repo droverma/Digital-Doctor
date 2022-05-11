@@ -1,43 +1,42 @@
 import axios from "axios";
 
-const apiUrl = 'http://localhost:8080/userservice';
+const apiUrl = "http://localhost:8080/userservice";
 class ProfileDetailsService {
   // get the profile details for doctor
-  doctorProfile(doctorEmail) {
-    // const emailId = "aashi@gmail.com";
-    // return axios.get(`http://localhost:3000/doctors?doctorEmail=${emailId}`);
+  doctorProfile() {
+    let doctorEmail = localStorage.getItem("userEmail");
     return axios.get(`${apiUrl}/api/v1/doctor/` + doctorEmail);
   }
   // update the profile details of Doctor
-  addDoctorProfile(data, userId) {
-    // console.log(userId);
-    // return axios.put(`http://localhost:3000/doctors/${userId}`, data);
-    return axios.put(`${apiUrl}/api/v1/doctor/profile/` +userId, data);
+  addDoctorProfile(data) {
+    let userId = localStorage.getItem("userEmail");
+    return axios.put(`${apiUrl}/api/v1/doctor/profile/` + userId, data);
   }
   // get the profile details for patients
-  patientProfile(patientEmail) {
-    // const emailId = "hemant123@gmail.com";
-    // return axios.get(`http://localhost:3000/patients?patientEmail=${emailId}`);
-    return axios.get(`${apiUrl}/api/v1/patient/` + patientEmail);
+  patientProfile() {
+    let patientEmailId = localStorage.getItem("userEmail");
+    return axios.get(`${apiUrl}/api/v1/patient/` + patientEmailId);
   }
   // update the profile details of patients
-  addPatientProfile(data,userId) {
-    console.log(data);
+  addPatientProfile(data) {
+    let userId = localStorage.getItem("userEmail");
     return axios.put(`${apiUrl}/api/v1/patient/details/${userId}`, data);
   }
 
   doctorsList(...patientData) {
+    console.log(patientData[0]);
+    console.log(patientData[1]);
     console.log(patientData[0].length);
     console.log(patientData[1].length);
     let patientCity = patientData[0];
     let specialization = patientData[1];
-    let apiUrl = `${apiUrl}/api/v1/doctorcity/`+patientCity
-
+    let apiUrls = `${apiUrl}/api/v1/doctorcity/` + patientCity;
+    console.log(apiUrls);
     if (patientData[1].length) {
-      apiUrl = apiUrl.concat("/"+specialization);
+      apiUrls = `${apiUrl}/api/v1/doctor/${patientCity}/` + specialization;
     }
-    console.log(apiUrl);
-    return axios.get(apiUrl);
+    console.log(apiUrls);
+    return axios.get(apiUrls);
   }
 }
 export default new ProfileDetailsService();

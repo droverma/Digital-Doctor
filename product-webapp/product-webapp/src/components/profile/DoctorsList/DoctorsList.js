@@ -5,8 +5,8 @@ import "../../../assets/style/style.css";
 import Spinner from "../../../assets/utill/Spinner";
 import Card from "./Card";
 
-const SpecializationList = [
-  { spV: "", spN: "Select Specialization" },
+const specializationList = [
+  { spV: "", spN: "Select specialization" },
   { spV: "physician", spN: "Physician" },
   {
     spV: "gynecologist",
@@ -57,18 +57,17 @@ const DoctorsList = () => {
     getDoctorsList(filterData.city, filterData.specialization);
   };
   const getPatientCity = () => {
-    let patientEmail = localStorage.getItem("userEmail");
-    ProfileDetailsService.patientProfile(patientEmail)
+    ProfileDetailsService.patientProfile()
       .then((res) => {
-        // console.log(res);
-        const patientCity = res.data[0].city;
+        console.log(res.data);
+        const patientCity = res.data.city;
+        // console.log(da.password);
         console.log("details", patientCity);
         setFilterData({ ...filterData, city: patientCity });
-        // getDoctorsList(patientCity);
-         getDoctorsList('Delhi');
-
+        getDoctorsList(patientCity);
       })
       .catch((err) => console.log(err));
+
     console.log(filterData);
   };
   useEffect(() => {
@@ -76,12 +75,11 @@ const DoctorsList = () => {
     getPatientCity();
   }, []);
 
-  const getDoctorsList = (patientsCityName) => {
+  const getDoctorsList = (patientCity) => {
     setLoading(true);
-    ProfileDetailsService.doctorsList(
-      patientsCityName,
-      filterData.specialization
-    )
+    // console.log(filterData);
+    // console.log(filterData.specialization);
+    ProfileDetailsService.doctorsList(patientCity, filterData.specialization)
 
       .then((res) => {
         // console.log(res);
@@ -113,12 +111,12 @@ const DoctorsList = () => {
               className="areaHei fSize me-5 ms-5 hvr"
               id="specialization"
               name="specialization"
-              title="Select Your Specialization"
+              title="Select Your specialization"
               value={filterData.specialization}
               onChange={listChangeHandler}
               required
             >
-              {SpecializationList.map((e) => {
+              {specializationList.map((e) => {
                 return (
                   <option key={e.spV} value={e.spV}>
                     {e.spN}
@@ -141,12 +139,12 @@ const DoctorsList = () => {
       <Row style={{ margin: "0 ", justifyContent: "center" }}>
         {loading && <Spinner />}
         {!loading &&
-          list.map((e) => {
+          list.map((e, index) => {
             return (
-              <Col style={{ width: "auto " }} md={3} key={e.id}>
+              <Col key={index} style={{ width: "auto " }} md={3}>
                 <Card
                   doctorName={e.doctorName}
-                  doctorEmail={e.doctorEmail}
+                  doctorEmail={e.emailId}
                   doctorImage={e.doctorImage ? e.doctorImage : ""}
                   doctorMobileNumber={
                     e.doctorMobileNumber ? e.doctorMobileNumber : "NA"

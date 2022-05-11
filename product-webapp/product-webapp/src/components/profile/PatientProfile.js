@@ -13,12 +13,12 @@ const cityExpression = RegExp(/^[a-zA-Z -]+$/);
 const PatientProfile = () => {
   let navigate = useNavigate();
   const [validated, setValidated] = useState({});
-  const [userId, setUserId] = useState("");
+  let patientEmailId = localStorage.getItem("userEmail");
+
   const [updatePatientData, setUpdatePatientData] = useState({
-    emailId: "jatin@gmail.com",
+    emailId: patientEmailId,
     patientName: "",
     patientMobileNumber: "",
-    password: "123456",
     city: "",
     patientImage: "",
   });
@@ -132,9 +132,7 @@ const PatientProfile = () => {
   const submitPatientData = (e) => {
     setTimeout(() => {
       console.log(updatePatientData);
-      let emailId = localStorage.getItem("userEmail");
-      console.log(emailId);
-      ProfileDetailsService.addPatientProfile(updatePatientData, emailId)
+      ProfileDetailsService.addPatientProfile(updatePatientData)
         .then((res) => {
           console.log();
         })
@@ -145,22 +143,19 @@ const PatientProfile = () => {
   };
 
   const getPatientData = () => {
-    let patientEmailId = localStorage.getItem("userEmail");
-    console.log(patientEmailId);
-    ProfileDetailsService.patientProfile(patientEmailId)
+    ProfileDetailsService.patientProfile()
       .then((res) => {
         // console.log(res.data);
-        const da = res.data[0];
-        console.log(da.password);
+        const da = res.data;
+        // console.log(da.password);
         setUpdatePatientData({
-          emailId: patientEmailId,
+          emailId: da.emailId,
           patientName: da.patientName,
           patientMobileNumber: da.patientMobileNumber,
-          password:da.password,
+          password: da.password,
           city: da.city,
           patientImage: da.patientImage,
         });
-        setUserId(da.id);
       })
       .catch((err) => console.log(err));
   };

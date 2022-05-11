@@ -50,7 +50,7 @@ function PersonalInfo({
   setValidated,
 }) {
   // const [validated, setValidated] = useState({});
-
+  // console.log(updateDoctorData);
   const imageChangeHandler = (e) => {
     const files = e.target.files;
     const file = files[0];
@@ -67,7 +67,7 @@ function PersonalInfo({
 
   const onLoad = (fileString) => {
     // console.log(fileString);
-    setUpdateDoctorData({ ...updateDoctorData, doctorImage: fileString });
+    setUpdateDoctorData({ ...updateDoctorData, image: fileString });
     // console.log(updateDoctorData);
   };
 
@@ -266,8 +266,8 @@ function PersonalInfo({
                 <Form.Control
                   className=" fSize"
                   type="file"
-                  id="doctorImage"
-                  name="doctorImage"
+                  id="image"
+                  name="image"
                   accept="image/*"
                   onChange={imageChangeHandler}
                 />

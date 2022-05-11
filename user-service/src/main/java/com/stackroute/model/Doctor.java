@@ -20,6 +20,7 @@ public class Doctor {
     private String password;
     private String city;
     private String image;
+    private Long doctorMobileNumber;
 
 }
 

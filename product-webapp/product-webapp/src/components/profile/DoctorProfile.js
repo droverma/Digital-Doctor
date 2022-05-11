@@ -6,41 +6,39 @@ import PersonalInfo from "./doctorDetails/PersonalInfo";
 import "../../assets/style/style.css";
 
 const DoctorProfile = () => {
-
   let navigate = useNavigate();
 
   const saveChangeHandler = (e) => {
-    let docEmailId = localStorage.getItem("userEmail");
-    ProfileDetailsService.addDoctorProfile(updateDoctorData, docEmailId)
+    e.preventDefault();
+    // console.log(updateDoctorData);
+    ProfileDetailsService.addDoctorProfile(updateDoctorData)
       .then((res) => {
-        navigate('/createSlotViewDoctor')
-        console.log("updated doctor",updateDoctorData);
+        navigate("/createSlotViewDoctor");
       })
       .catch((err) => console.log(err));
     // alert("Doctor's Profile Update Submitted");
     // console.log(updateDoctorData);
   };
-  const [userId, setUserId] = useState("");
   const [validated, setValidated] = useState({});
   // const [page, setPage] = useState(0);
+
+  let doctorEmail = localStorage.getItem("userEmail");
   const [updateDoctorData, setUpdateDoctorData] = useState({
-    emailId: "",
+    emailId: doctorEmail,
     specialization: "",
     yearsOfExperience: "",
     doctorName: "",
-    password: "",
     city: "",
-    image: "",
+    doctorMobileNumber: "",
   });
 
   const getDoctorData = () => {
-    let doctorEmail = localStorage.getItem("userEmail");
-    ProfileDetailsService.doctorProfile(doctorEmail)
+    ProfileDetailsService.doctorProfile()
       .then((res) => {
-        console.log("docEmail: "+doctorEmail);
-        console.log(res);
-        // console.log(res);
-        const da = res.data[0];
+        console.log();
+        // console.log(res.data);
+
+        const da = res.data;
         // console.log("da", da);
         setUpdateDoctorData({
           emailId: da.emailId,
@@ -49,8 +47,10 @@ const DoctorProfile = () => {
           doctorName: da.doctorName,
           password: da.password,
           city: da.city,
+          image: da.image,
+
+          doctorMobileNumber: da.doctorMobileNumber,
         });
-        setUserId(da.id);
       })
       .catch((err) => console.log(err));
   };

@@ -5,10 +5,11 @@ const Card = (props) => {
   // const [hover, setHover] = useState(false);
 
   const navigate = useNavigate();
-  const bookAppointmentHandler = (e) => {
+  const bookAppointmentHandler = (e, doctorEmail) => {
     e.preventDefault();
-    console.log(props.doctorEmail);
-    // navigate(`/availableSlots/${props.doctorEmail}`);
+    console.log(doctorEmail);
+    // navigate(`/availableSlotsPatients/${doctorEmail}`);
+    navigate("/availableSlotsPatients", { state: doctorEmail });
   };
   return (
     <React.Fragment>
@@ -41,7 +42,7 @@ const Card = (props) => {
             className="mb-1 mt-3"
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <p className="chrSize fw-bold ">Dr. {props.doctorName} </p>
+            <p className="chrSize fw-bold ">Dr. {props.doctorName}</p>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <span
@@ -97,7 +98,7 @@ const Card = (props) => {
             <button
               className="btn btn-outline-primary chrSize"
               type="button"
-              onClick={bookAppointmentHandler}
+              onClick={(e) => bookAppointmentHandler(e, props.doctorEmail)}
             >
               Schedule appointment
             </button>
