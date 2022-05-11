@@ -21,8 +21,9 @@ class ProfileDetailsService {
     return axios.get(`${apiUrl}/api/v1/patient/` + patientEmail);
   }
   // update the profile details of patients
-  addPatientProfile(userId, data) {
-    return axios.put(`${apiUrl}/api/v1/patient/details/` + userId, data);
+  addPatientProfile(data,userId) {
+    console.log(data);
+    return axios.put(`${apiUrl}/api/v1/patient/details/${userId}`, data);
   }
 
   doctorsList(...patientData) {

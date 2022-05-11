@@ -18,5 +18,10 @@ export const PatientSidebarData = [
     title: "Available Slots",
     path: "/availableSlotsPatients",
     icon: <CalendarMonthIcon />,
+  },
+  {
+    title: "Dashboard",
+    path: "/doctorslist",
+    icon: <CalendarMonthIcon />,
   }
 ];

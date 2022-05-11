@@ -57,14 +57,16 @@ const DoctorsList = () => {
     getDoctorsList(filterData.city, filterData.specialization);
   };
   const getPatientCity = () => {
-    let patientEmail = localStorage.get("userEmail");
+    let patientEmail = localStorage.getItem("userEmail");
     ProfileDetailsService.patientProfile(patientEmail)
       .then((res) => {
         // console.log(res);
         const patientCity = res.data[0].city;
         console.log("details", patientCity);
         setFilterData({ ...filterData, city: patientCity });
-        getDoctorsList(patientCity);
+        // getDoctorsList(patientCity);
+         getDoctorsList('Delhi');
+
       })
       .catch((err) => console.log(err));
     console.log(filterData);

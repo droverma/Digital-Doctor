@@ -31,7 +31,7 @@ function App() {
                 <div className="app-side-bar">
                     <ResponsiveDrawer />
                 </div>
-                <div className={localStorage.getItem('jwt-token') ? 'app-content' : ''}>
+                <div className={isAuthenticated ? 'app-content' : ''}>
                     <div className="">
                         <Header setisAuthenticated={(token) => setisAuthenticated(token)} />
                     </div>

@@ -15,19 +15,20 @@ const PatientProfile = () => {
   const [validated, setValidated] = useState({});
   const [userId, setUserId] = useState("");
   const [updatePatientData, setUpdatePatientData] = useState({
+    emailId: "jatin@gmail.com",
     patientName: "",
-    patientImage: "",
-    patientEmail: "",
-    patientMobileNo: "",
+    patientMobileNumber: "",
+    password: "123456",
     city: "",
+    patientImage: "",
   });
 
   const clearPatientData = () => {
     setUpdatePatientData({
       patientName: "",
       patientImage: "",
-      patientEmail: "",
-      patientMobileNo: "",
+      emailId: "",
+      patientMobileNumber: "",
       city: "",
     });
   };
@@ -95,32 +96,32 @@ const PatientProfile = () => {
         }
         break;
 
-      case "patientEmail":
+      case "emailId":
         if (!emailExpresion.test(value))
-          setValidated({ patientEmail: "Email is invalid" });
+          setValidated({ emailId: "Email is invalid" });
         else {
-          delete validated.patientEmail;
+          delete validated.emailId;
         }
         break;
 
-      case "patientMobileNo":
+      case "patientMobileNumber":
         if (!value) {
           setValidated({
-            patientMobileNo: "Mobile Number Cann't Be Empty!",
+            patientMobileNumber: "Mobile Number Cann't Be Empty!",
           });
         }
         if (typeof value !== "undefined") {
           var mobileNoExpresion = RegExp(/^[0-9\b]+$/);
           if (!mobileNoExpresion.test(value)) {
             setValidated({
-              patientMobileNo: "Mobile Number Contains Only Digits",
+              patientMobileNumber: "Mobile Number Contains Only Digits",
             });
           } else if (value.length !== 10) {
             setValidated({
-              patientMobileNo: "Mobile Number Should Be Digits",
+              patientMobileNumber: "Mobile Number Should Be Digits",
             });
           } else {
-            delete validated.patientMobileNo;
+            delete validated.patientMobileNumber;
           }
         }
         break;
@@ -130,9 +131,10 @@ const PatientProfile = () => {
   };
   const submitPatientData = (e) => {
     setTimeout(() => {
-      // console.log(updatePatientData);
-      let patientEmail = localStorage.get("userEmail");
-      ProfileDetailsService.addPatientProfile(updatePatientData, patientEmail)
+      console.log(updatePatientData);
+      let emailId = localStorage.getItem("userEmail");
+      console.log(emailId);
+      ProfileDetailsService.addPatientProfile(updatePatientData, emailId)
         .then((res) => {
           console.log();
         })
@@ -143,18 +145,20 @@ const PatientProfile = () => {
   };
 
   const getPatientData = () => {
-    let patientEmail = localStorage.getItem("userEmail");
-    ProfileDetailsService.patientProfile(patientEmail)
+    let patientEmailId = localStorage.getItem("userEmail");
+    console.log(patientEmailId);
+    ProfileDetailsService.patientProfile(patientEmailId)
       .then((res) => {
         // console.log(res.data);
         const da = res.data[0];
-        // console.log(da.patientImage);
+        console.log(da.password);
         setUpdatePatientData({
+          emailId: patientEmailId,
           patientName: da.patientName,
-          patientImage: da.patientImage,
-          patientEmail: da.patientEmail,
-          patientMobileNo: da.patientMobileNo,
+          patientMobileNumber: da.patientMobileNumber,
+          password:da.password,
           city: da.city,
+          patientImage: da.patientImage,
         });
         setUserId(da.id);
       })
@@ -218,13 +222,13 @@ const PatientProfile = () => {
                     <Form.Control
                       type="text"
                       className="fSize"
-                      id="patientEmail"
-                      name="patientEmail"
+                      id="emailId"
+                      name="emailId"
                       placeholder="Enter Your Email Id"
-                      value={updatePatientData.patientEmail}
+                      value={updatePatientData.emailId}
                       onChange={patientChangeHandler}
                       readOnly
-                      isInvalid={validated.patientEmail}
+                      isInvalid={validated.emailId}
                     />
 
                     <Form.Control.Feedback type="invalid">
@@ -287,13 +291,13 @@ const PatientProfile = () => {
                     <Form.Control
                       type="text"
                       className="fSize"
-                      id="patientMobileNo"
-                      name="patientMobileNo"
+                      id="patientMobileNumber"
+                      name="patientMobileNumber"
                       placeholder="Enter Your Mobile No"
-                      value={updatePatientData.patientMobileNo}
+                      value={updatePatientData.patientMobileNumber}
                       onChange={patientChangeHandler}
                       required
-                      isInvalid={validated.patientMobileNo}
+                      isInvalid={validated.patientMobileNumber}
                     />
                     <Form.Control.Feedback type="invalid">
                       Please enter the valid Mobile Number.
