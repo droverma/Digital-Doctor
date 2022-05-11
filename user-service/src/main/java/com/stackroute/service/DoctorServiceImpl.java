@@ -24,11 +24,8 @@ public class DoctorServiceImpl implements DoctorService {
             userDTO.setPassword(doctor.getPassword());
             userDTO.setUserRole("doctor");
             producer.sendMessageToRabbitMq(userDTO);
-            doctor.setPassword("");
             return doctorRepository.save(doctor);
-        }
-
-
+    }
 
     @Override
     public Doctor getDoctorByEmail(String email) throws DoctorDoesNotExistException {

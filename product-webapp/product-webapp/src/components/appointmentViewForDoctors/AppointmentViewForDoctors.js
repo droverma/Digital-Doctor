@@ -34,7 +34,6 @@ function AppointmentViewForDoctors() {
             let data = response.data;
             // setresult(data);
             setDefaultData(data);
-
         })
     }, []);
 

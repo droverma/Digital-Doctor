@@ -1,45 +1,53 @@
 import React, { useState, useEffect } from "react";
 import ProfileDetailsService from "../../services/profileDetails.service";
 import { Form, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import PersonalInfo from "./doctorDetails/PersonalInfo";
-// import ClinicInfo from "./doctorDetails/ClinicInfo";
 import "../../assets/style/style.css";
 
 const DoctorProfile = () => {
+
+  let navigate = useNavigate();
+
   const saveChangeHandler = (e) => {
-    ProfileDetailsService.addDoctorProfile(updateDoctorData, userId)
-      .then((res) => console.log())
+    let docEmailId = localStorage.getItem("userEmail");
+    ProfileDetailsService.addDoctorProfile(updateDoctorData, docEmailId)
+      .then((res) => {
+        navigate('/createSlotViewDoctor')
+        console.log("updated doctor",updateDoctorData);
+      })
       .catch((err) => console.log(err));
-    alert("Doctor's Profile Update Submitted");
+    // alert("Doctor's Profile Update Submitted");
     // console.log(updateDoctorData);
   };
   const [userId, setUserId] = useState("");
   const [validated, setValidated] = useState({});
   // const [page, setPage] = useState(0);
   const [updateDoctorData, setUpdateDoctorData] = useState({
-    doctorName: "",
-    doctorMobileNumber: "",
-    yearsOfExperience: "",
+    emailId: "",
     specialization: "",
-    doctorImage: "",
-
+    yearsOfExperience: "",
+    doctorName: "",
+    password: "",
     city: "",
+    image: "",
   });
 
   const getDoctorData = () => {
     let doctorEmail = localStorage.getItem("userEmail");
     ProfileDetailsService.doctorProfile(doctorEmail)
       .then((res) => {
-        console.log();
+        console.log("docEmail: "+doctorEmail);
+        console.log(res);
         // console.log(res);
         const da = res.data[0];
         // console.log("da", da);
         setUpdateDoctorData({
-          doctorName: da.doctorName,
-          doctorMobileNumber: da.doctorMobileNumber,
-          doctorEmail: da.doctorEmail,
-          yearsOfExperience: da.yearsOfExperience,
+          emailId: da.emailId,
           specialization: da.specialization,
+          yearsOfExperience: da.yearsOfExperience,
+          doctorName: da.doctorName,
+          password: da.password,
           city: da.city,
         });
         setUserId(da.id);

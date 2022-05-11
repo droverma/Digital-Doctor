@@ -23,4 +23,6 @@ public interface AppointmentSlotService {
     List<AppointmentSlot> getAppointmentDetailsBySpecialization(String specialization);
 
     void deleteAppointmentById(String appointmentId);
+
+    AppointmentSlot updateStatus(AppointmentSlot appointmentSlot);
 }

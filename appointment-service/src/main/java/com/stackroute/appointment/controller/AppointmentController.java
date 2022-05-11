@@ -68,5 +68,10 @@ public class AppointmentController {
         appointmentSlotService.deleteAppointmentById(appointmentId);
     }
 
+    @PutMapping("/user/appointmentStatus")
+    public AppointmentSlot updateSlotStatus(@RequestBody AppointmentSlot appointmentSlot) {
+       return appointmentSlotService.updateStatus(appointmentSlot);
+    }
+
 
 }

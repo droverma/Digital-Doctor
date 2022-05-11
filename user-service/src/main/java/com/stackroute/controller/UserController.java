@@ -58,10 +58,11 @@ public class UserController {
         return responseEntity;
     }
 
-    @PutMapping("/doctor/{doctorEmail}")
+    @PutMapping("/doctor/profile/{doctorEmail}")
     public ResponseEntity<Doctor>updateDoctor(@PathVariable String doctorEmail,@RequestBody Doctor doctor){
          return new ResponseEntity<Doctor>(doctorService.updateDoctor(doctor),HttpStatus.OK);
     }
+
     @GetMapping("/doctor/{doctorEmail}")
     public ResponseEntity <Doctor>getDoctorInfo(@PathVariable String doctorEmail){
          try {
@@ -84,7 +85,7 @@ public class UserController {
         }
         return responseEntity;
     }
-    @PutMapping("/patient/{patientEmail}")
+    @PutMapping("/patient/details/{patientEmail}")
     public ResponseEntity<Patient>updatePatient(@PathVariable String patientEmail,@RequestBody Patient patient){
         return new ResponseEntity<Patient>(patientService.updatePatient(patient),HttpStatus.OK);
     }
