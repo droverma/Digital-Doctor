@@ -34,7 +34,6 @@ function CardAppointmentVIewForDoctors(props) {
         console.log(me)
         if (me) {
             navigate('/video')
-
             VideoChatService.StartMeetingID(me)
                 .then(res => navigate('/video'))
                 .catch(err => console.log(err))

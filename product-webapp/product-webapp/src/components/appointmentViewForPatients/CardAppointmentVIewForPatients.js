@@ -3,13 +3,15 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AppointmentService from "../../services/appointment.service";
 import VideoChatService from "../../services/VideoChat.service";
+import { SocketContext } from '../../context/Context';
 
 
 function CardAppointmentVIewForPatients(props) {
+    const { socket, me, createMeeting } = useContext(SocketContext);
 
     let navigate = useNavigate();
     let appointmentService = new AppointmentService();
@@ -23,11 +25,9 @@ function CardAppointmentVIewForPatients(props) {
 
     }
     const joinMeeting = () => {
-        // debugger
-        // const id = 'ecLVMtPuDFHzsg83AAAZ'
-        // navigate('/video', { state: id })
-
-
+        socket.emit("me");
+        createMeeting();
+        navigate('/video', { state: 'I5QpnN6eyMXKMge5AAAt' })
         VideoChatService.joinMeetingID()
             .then(res => {
                 console.log(res)
