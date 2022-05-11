@@ -7,6 +7,9 @@ class ProfileDetailsService {
     let doctorEmail = localStorage.getItem("userEmail");
     return axios.get(`${apiUrl}/api/v1/doctor/` + doctorEmail);
   }
+  doctorProfileAvailableSlots(docEmail) {
+    return axios.get(`${apiUrl}/api/v1/doctor/` + docEmail);
+  }
   // update the profile details of Doctor
   addDoctorProfile(data) {
     let userId = localStorage.getItem("userEmail");

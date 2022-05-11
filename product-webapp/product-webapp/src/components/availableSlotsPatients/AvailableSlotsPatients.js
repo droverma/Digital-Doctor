@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProfileDetailsService from "../../services/profileDetails.service";
+import {useLocation} from 'react-router-dom'
 
 
 function AvailableSlotsPatients() {
@@ -25,6 +26,7 @@ function AvailableSlotsPatients() {
     const [endTime, setendTime] = useState('');
     const [slotId, setslotId] = useState('');
     const [doctorEmailId, setdoctorEmailId] = useState('');
+    const { state } = useLocation();
 
     // const [bookedAppointments, setbookedAppointments] = useState([]);
 
@@ -46,12 +48,16 @@ function AvailableSlotsPatients() {
     useEffect(() => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getSlots(email).then((response) => {
+        appointmentService.getSlots(state).then((response) => {
             let data = response.data;
             setresult(data);
             // setDetails(response.data[1]);
             console.log(response.data);
-            doctorsDetails(response.data[0].doctorEmailId);
+            console.log(response.data[0].doctorEmailId);
+            ProfileDetailsService.doctorProfileAvailableSlots(response.data[0].doctorEmailId).then((response)=>{
+                console.log(response);
+                setDetails(response.data)
+            })
         });
         
     }, []);
@@ -63,12 +69,12 @@ function AvailableSlotsPatients() {
         setdoctorEmailId(doctorEmailId);
         
     }
-    const doctorsDetails = (doctorEmail) =>{
-        ProfileDetailsService.doctorProfile(doctorEmail).then((response)=>{
-            console.log(response);
-            setDetails(response.data)
-        })
-    }
+    // const doctorsDetails = (doctorEmail) =>{
+    //     ProfileDetailsService.doctorProfile(doctorEmail).then((response)=>{
+    //         console.log(response);
+    //         setDetails(response.data)
+    //     })
+    // }
 
     const bookAppointment = () => {
         let data = {
