@@ -18,9 +18,9 @@ public class MeetingController {
     public MeetingDetails saveMeetingDetails(@RequestBody MeetingDetails meetingDetails){
         return meetingService.saveMeetingDetails(meetingDetails);
     }
-    @GetMapping("/meeting/{appointmentId}")
-    public MeetingDetails getMeetingDetails(@PathVariable String appointmentId){
-        return meetingService.getMeetingDetails(appointmentId);
+    @GetMapping("/meeting/{meetingId}")
+    public MeetingDetails getMeetingDetails(@PathVariable String meetingId){
+        return meetingService.getMeetingDetails(meetingId);
     }
 
 }

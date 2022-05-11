@@ -34,11 +34,11 @@ function CardAppointmentVIewForPatients(props) {
     const joinMeeting = () => {
         socket.emit("me");
         createMeeting();
-        navigate('/video', { state: 'I5QpnN6eyMXKMge5AAAt' })
-        VideoChatService.joinMeetingID()
+        // navigate('/video', { state: 'I5QpnN6eyMXKMge5AAAt' })
+        VideoChatService.joinMeetingID(props.appointmentId)
             .then(res => {
                 console.log(res)
-                navigate('/video', { state: res })
+                navigate('/video', { state: res.meetingId })
             })
             .catch(err => console.log(err))
 

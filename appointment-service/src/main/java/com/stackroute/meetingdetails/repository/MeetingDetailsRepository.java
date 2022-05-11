@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MeetingDetailsRepository extends MongoRepository<MeetingDetails,String> {
+    MeetingDetails findByMeetingId(String meetingId);
 
 }
