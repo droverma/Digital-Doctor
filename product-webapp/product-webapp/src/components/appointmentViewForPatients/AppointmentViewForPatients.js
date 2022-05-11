@@ -91,7 +91,7 @@ function AppointmentViewForPatients() {
         setCurrentPage(1);
 
         filters.date = moment(filters.date).format('YYYY-MM-DD');
-        let date = moment(filters.date).format('DD/MM/YYYY');
+        let date = moment(filters.date).format('YYYY-MM-DD');
         let filteredData;
         if (filters.specialization === "" && date !== "Invalid date") {
             filteredData = activeTabData.filter((response) => { return response.appointmentDate === date });
@@ -147,7 +147,7 @@ function AppointmentViewForPatients() {
         setCurrentPage(1);
     }
     const setCancelledTab = () => {
-        setactivetab("CANCELED");
+        setactivetab("CANCELLED");
         setCurrentPage(1);
     }
 
@@ -220,7 +220,7 @@ function AppointmentViewForPatients() {
                                 onClick={setUpcomingTab}>Upcoming Appointments</button>
                             <button className={`nav-link ${activetab === "PAST" ? 'active' : ''} col`} id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
                                 onClick={setPastTab}>Past Appointments</button>
-                            <button className={`nav-link ${activetab === "CANCELED" ? 'active' : ''} col`} id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"
+                            <button className={`nav-link ${activetab === "CANCELLED" ? 'active' : ''} col`} id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"
                                 onClick={setCancelledTab}>Cancelled Appointments</button>
                         </div>
                     </nav>

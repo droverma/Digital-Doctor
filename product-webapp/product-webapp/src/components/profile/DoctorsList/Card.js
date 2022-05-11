@@ -31,7 +31,7 @@ const Card = (props) => {
           <div className="text-center mt-3">
             <p className=" chrSize">
               <img
-                src={props.doctorImage}
+                src={props.image}
                 className="card-img-top imgView"
                 alt={props.doctorName}
               />

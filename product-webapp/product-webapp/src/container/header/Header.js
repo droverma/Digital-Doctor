@@ -41,12 +41,13 @@ const Header = (props) => {
                                 </>
                                 :
                                 <>
-                                    <Navbar.Brand className='ms-4 me-0  '>
+                                    {/* <Navbar.Brand className='ms-4 me-0  '>
                                         <AccountCircleIcon />
-                                    </Navbar.Brand>
-                                    <NavDropdown title="Drishti" id="collasible-nav-dropdown">
-                                        <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
-                                    </NavDropdown>
+                                    </Navbar.Brand> */}
+                                    {/* <NavDropdown title="Logout" id="collasible-nav-dropdown"> */}
+                                        {/* <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item> */}
+                                    <Button variant="warning" onClick={logout} style={{ fontWeight: 'bold' }}>Logout</Button>
+                                    {/* </NavDropdown> */}
                                 </>
                             }
 

@@ -10,6 +10,7 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProfileDetailsService from "../../services/profileDetails.service";
 
 
 function AvailableSlotsPatients() {
@@ -22,12 +23,17 @@ function AvailableSlotsPatients() {
     const [patientEmail, setpatientEmail] = useState('');
     const [startTime, setstartTime] = useState('');
     const [endTime, setendTime] = useState('');
+    const [slotId, setslotId] = useState('');
+    const [doctorEmailId, setdoctorEmailId] = useState('');
 
     // const [bookedAppointments, setbookedAppointments] = useState([]);
 
     function changeDate(value, event) {
-        let momentDate = moment(value).format('DD/MM/YYYY');
+        let momentDate = moment(value).format('YYYY-MM-DD');
         console.log(momentDate);
+        appointmentService.getSlotsUsingDate(momentDate).then((response)=>{
+            console.log(response);
+        })
         setDate(momentDate);
 
         // let a = value.toString();
@@ -43,29 +49,38 @@ function AvailableSlotsPatients() {
         appointmentService.getSlots(email).then((response) => {
             let data = response.data;
             setresult(data);
-            setDetails(response.data[1]);
-        })
+            // setDetails(response.data[1]);
+            console.log(response.data);
+            doctorsDetails(response.data[0].doctorEmailId);
+        });
+        
     }, []);
 
-    const currentTimings = (startTime, endTime) => {
+    const currentTimings = (startTime, endTime, slotId,doctorEmailId) => {
         setstartTime(startTime);
         setendTime(endTime);
+        setslotId(slotId);
+        setdoctorEmailId(doctorEmailId);
+        
+    }
+    const doctorsDetails = (doctorEmail) =>{
+        ProfileDetailsService.doctorProfile(doctorEmail).then((response)=>{
+            console.log(response);
+            setDetails(response.data)
+        })
     }
 
     const bookAppointment = () => {
         let data = {
-            id: "",
-            appointmentId: "",
-            slotId: "",
-            patientEmail: "anilgarg@gmail.com",
-            doctorEmail: "anuraggarg@gmail.com",
-            specialization: "MBBS,MD-Medicine",
+            slotId: slotId,
+            patientEmail: patientEmail,
+            doctorEmail: details.emailId,
+            specialization: details.specialization ? details.specialization : '',
             appointmentDate: date,
             appointmentStartTime: startTime,
             appointmentEndTime: endTime,
             appointmentStatus: "UPCOMING",
             bookedOn: value,
-            doctorImage: "https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
         }
         if (startTime && endTime) {
             appointmentService.getBookedAppointment(data).then((response) => {
@@ -83,6 +98,13 @@ function AvailableSlotsPatients() {
                 }
 
             })
+            appointmentService.getSlotDetails(slotId).then((response)=>{
+                response.data.slotStatus = "BOOKED";
+                appointmentService.updateSlotStatus(response.data).then((res)=>{
+                        console.log(res);
+                })
+            })
+            
         }
 
     }
@@ -97,19 +119,22 @@ function AvailableSlotsPatients() {
                 <div className="col-md-4 col-sm-12">
                     <div className="doctors-details">
                         <div className="col mb-1 mt-4">
-                            <img src="../Doctor_image.jpg" className="doctor-image" alt="" />
+                            <img src={details.image ? details.image : '../Doctor_image.jpg' } className="doctor-image" alt="" />
                         </div>
                         <div className="col mb-4">
-                            <h6>Dr. Jatin Chugh</h6>
+                            <h6>{details.doctorName ? details.doctorName : 'No name'}</h6>
                         </div>
                         <div className="col mb-4">
-                            {details.specialization}
+                            {details.specialization ? details.specialization : 'No Specialization'}
                         </div>
                         <div className="col mb-4">
-                            Email: {details.doctorEmail}
+                            Email: {details.emailId ? details.emailId : 'No Email'}
                         </div>
                         <div className="col mb-4">
-                            Phone: 9898457877
+                            Experience: {details.yearsOfExperience ? details.yearsOfExperience : '0'}
+                        </div>
+                        <div className="col mb-4">
+                            City: {details.city ? details.city : 'No City'}
                         </div>
                     </div>
                 </div>
@@ -133,6 +158,8 @@ function AvailableSlotsPatients() {
                                     slotEndTime={response.slotEndTime}
                                     slotStatus={response.slotStatus}
                                     currentTimings={currentTimings}
+                                    slotId={response.slotId}
+                                    doctorEmailId={response.doctorEmailId}
                                 />
                             )
                         } else {

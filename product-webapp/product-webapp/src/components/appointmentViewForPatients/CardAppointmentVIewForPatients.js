@@ -18,13 +18,17 @@ function CardAppointmentVIewForPatients(props) {
 
     const cancelClicked = () => {
         console.log(props);
-        appointmentService.deleteDataAppointmentViewForPatients(props.id).then((response) => {
-            console.log(response);
-            appointmentService.getAppointmentDetails(props.id).then((res) => {
-                res.appointmentStatus = "CANCELLED";
+        appointmentService.getAppointmentDetails(props.appointmentId).then((res) => {
+            res.data.appointmentStatus = "CANCELLED";
+            console.log(res);
+            appointmentService.updateStatus(res.data).then((response)=>{
+                console.log(response);
+                props.refreshApi();
             })
-            props.refreshApi()
         })
+            // console.log(response);
+           
+      
 
     }
     const joinMeeting = () => {
@@ -102,7 +106,7 @@ function CardAppointmentVIewForPatients(props) {
                     <div className="row">
                         <div className="col text-center" >
                             {
-                                props.appointmentStatus !== "CANCELED" && props.appointmentStatus !== "PAST" &&
+                                props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
                                 <Tooltip
                                     title="Cancel Appointment"
                                     placement="top">
@@ -113,7 +117,7 @@ function CardAppointmentVIewForPatients(props) {
                         </div>
                         <div className="col text-center">
                             {
-                                props.appointmentStatus !== "CANCELED" && props.appointmentStatus !== "PAST" &&
+                                props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
                                 <Tooltip
                                     title="Call Doctor"
                                     placement="top">

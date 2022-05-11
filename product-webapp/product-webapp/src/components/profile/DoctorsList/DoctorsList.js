@@ -145,7 +145,7 @@ const DoctorsList = () => {
                 <Card
                   doctorName={e.doctorName}
                   doctorEmail={e.emailId}
-                  doctorImage={e.doctorImage ? e.doctorImage : ""}
+                  image={e.image ? e.image : ""}
                   doctorMobileNumber={
                     e.doctorMobileNumber ? e.doctorMobileNumber : "NA"
                   }

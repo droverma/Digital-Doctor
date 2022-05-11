@@ -15,7 +15,7 @@ class AppointmentService {
     
     getBookedAppointment(data) {
         // return axios.post('http://localhost:3000/appointmentsViewForPatients', data);
-        return axios.post('http://localhost:8080/api/v1/patient/appointmentSlots',data);
+        return axios.post(`${apiUrl}/api/v1/patient/appointmentSlots`,data);
     }
     bookAppointment(){
         
@@ -46,6 +46,18 @@ class AppointmentService {
 
     getAppointmentDetails(appointmentId) {
         return axios.get(`${apiUrl}/api/v1/appointmentDetails/`+appointmentId)
+    }
+    getAppointmentUsingDate(appointmentDate){
+        return axios.get(`${apiUrl}/api/v1/appointmentDetails/patient/`+appointmentDate)
+    }
+    getSlotsUsingDate(slotDate){
+        return axios.get(`${apiUrl}/api/v1/slotDetails/doctor/`+slotDate)
+    }
+    updateSlotStatus(slotObject){
+        return axios.put(`${apiUrl}/api/v1/doctor/slot/status`, slotObject)
+    }   
+    getSlotDetails(slotId){
+        return axios.get(`${apiUrl}/api/v1/doctor/slot/`+slotId);
     }
 
 

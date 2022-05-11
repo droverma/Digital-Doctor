@@ -7,7 +7,7 @@ function AvailableSlotschips(props) {
 
     const currentTiming =() =>{
         console.log(props);
-        props.currentTimings(props.slotStartTime,props.slotEndTime)
+        props.currentTimings(props.slotStartTime,props.slotEndTime,props.slotId,props.doctorEmailId)
     }
 
     return (

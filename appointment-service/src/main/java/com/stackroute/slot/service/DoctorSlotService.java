@@ -16,7 +16,7 @@ public interface DoctorSlotService {
     Optional<DoctorSlot> getSlotDetails(String slotId);
 
 
-    DoctorSlot updateStatus(String slotId,DoctorSlot doctorSlot);
+    DoctorSlot updateStatus(DoctorSlot doctorSlot);
 
     void deleteSlotById(String slotId);
 

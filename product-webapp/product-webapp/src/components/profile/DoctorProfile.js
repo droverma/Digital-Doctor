@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import PersonalInfo from "./doctorDetails/PersonalInfo";
 import "../../assets/style/style.css";
 
-const DoctorProfile = () => {
+const DoctorProfile = (props) => {
+
   let navigate = useNavigate();
 
   const saveChangeHandler = (e) => {
@@ -56,6 +57,7 @@ const DoctorProfile = () => {
   };
 
   useEffect(() => {
+    props.setisAuthenticated(true)
     getDoctorData();
   }, []);
 

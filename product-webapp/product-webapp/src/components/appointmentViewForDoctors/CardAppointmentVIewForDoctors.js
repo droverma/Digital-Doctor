@@ -23,12 +23,13 @@ function CardAppointmentVIewForDoctors(props) {
     const cancelClicked = () => {
         console.log(props);
         
-        appointmentService.deleteDataAppointmentViewForDoctors(props.id).then((response) => {
+        appointmentService.getAppointmentDetails(props.appointmentId).then((response) => {
             console.log(response);
-            appointmentService.getAppointmentDetails(props.id).then((res) => {
-                res.appointmentStatus = "CANCELLED";
+            response.data.appointmentStatus = "CANCELLED";
+            appointmentService.updateStatus(response.data).then((res) => {
+                console.log(res);
+                props.refreshApi();
             })
-            props.refreshApi()
         })
 
     }
@@ -36,9 +37,13 @@ function CardAppointmentVIewForDoctors(props) {
         socket.emit("me");
         createMeeting();
         console.log(me)
+        let meetingObject = {
+            appointmentId: props.appointmentId,
+            meetingId: me
+        }
         if (me) {
             navigate('/video')
-            VideoChatService.StartMeetingID(me)
+            VideoChatService.StartMeetingID(meetingObject)
                 .then(res => navigate('/video'))
                 .catch(err => console.log(err))
         }
@@ -106,7 +111,7 @@ function CardAppointmentVIewForDoctors(props) {
                     <div className="row">
                         <div className="col text-center" >
                             {
-                                props.appointmentStatus !== "CANCELED" && props.appointmentStatus !== "PAST" &&
+                                props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
                                 <Tooltip
                                     title="Cancel Appointment"
                                     placement="top">
@@ -117,7 +122,7 @@ function CardAppointmentVIewForDoctors(props) {
                         </div>
                         <div className="col text-center">
                             {
-                                props.appointmentStatus !== "CANCELED" && props.appointmentStatus !== "PAST" &&
+                                props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
                                 <Tooltip
                                     title="Call Doctor"
                                     placement="top">

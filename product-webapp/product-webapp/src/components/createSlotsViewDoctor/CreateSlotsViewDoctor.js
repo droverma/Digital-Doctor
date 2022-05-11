@@ -17,9 +17,14 @@ function CreateSlotViewDoctor() {
     const [fields, setfields] = useState({ slotDate: '', slotStartTime: '', slotEndTime: '' });
     const [specialization, setspecialization] = useState('');
 
+    let appointmentService = new AppointmentService();
+
     function changeDate(value, event) {
-        let momentDate = moment(value).format('DD/MM/YYYY');
+        let momentDate = moment(value).format('YYYY-MM-DD');
         console.log(momentDate);
+        appointmentService.getAppointmentUsingDate(momentDate).then((response) =>{
+            console.log(response);
+        })
         setDate(momentDate);
 
     }
@@ -73,10 +78,7 @@ function CreateSlotViewDoctor() {
             }
         })
 
-    }
-
-    let appointmentService = new AppointmentService();
-    
+    }    
 
     useEffect(() => {
         getSlots();

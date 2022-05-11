@@ -41,8 +41,8 @@ public class DoctorSlotImpl implements DoctorSlotService {
     }
 
     @Override
-    public DoctorSlot updateStatus(String slotId, DoctorSlot doctorSlot) {
-        Optional<DoctorSlot> slotList =doctorSlotRepository.findById(slotId);
+    public DoctorSlot updateStatus(DoctorSlot doctorSlot) {
+        Optional<DoctorSlot> slotList =doctorSlotRepository.findById(doctorSlot.getSlotId());
         if (slotList.isPresent()){
             if (doctorSlot.getSlotStatus() != null){
                 slotList.get().setSlotStatus(doctorSlot.getSlotStatus());

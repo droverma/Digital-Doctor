@@ -50,9 +50,9 @@ public class SlotController {
 
 // Put request to update the slot status by slotid
 
-    @PutMapping("/doctor/slot/status/{slotId}")
-    public DoctorSlot updateStatus(@PathVariable String slotId,@RequestBody DoctorSlot doctorSlot){
-        return  doctorSlotImpl.updateStatus(slotId,doctorSlot);
+    @PutMapping("/doctor/slot/status")
+    public DoctorSlot updateStatus(@RequestBody DoctorSlot doctorSlot){
+        return  doctorSlotImpl.updateStatus(doctorSlot);
 
     }
 
