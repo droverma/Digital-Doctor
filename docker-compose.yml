@@ -11,7 +11,7 @@ services:
 
   eureka-server:
     container_name: eureka-server
-    build: eureka-server
+    build: eureka-server/
     restart: always
     network_mode: host
     hostname: localhost
@@ -22,7 +22,7 @@ services:
 
   api-gateway:
     container_name: api-gateway
-    build: api-gateway
+    build: api-gateway/
     depends_on:
       - eureka-server
       - config-server
