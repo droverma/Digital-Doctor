@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.acf39267.css",
-    "main.js": "/static/js/main.878396cc.js",
+    "main.js": "/static/js/main.50e4b47f.js",
     "static/media/pexels-rodnae-productions-6129507.jpg": "/static/media/pexels-rodnae-productions-6129507.520cf34949911bb25bee.jpg",
     "static/media/child_image.png": "/static/media/child_image.2b2b1435caae2e47f430.png",
     "static/media/orthopedician_image.png": "/static/media/orthopedician_image.9ef83b4194705b88d9b7.png",
@@ -21,10 +21,10 @@
     "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/index.html",
     "main.acf39267.css.map": "/static/css/main.acf39267.css.map",
-    "main.878396cc.js.map": "/static/js/main.878396cc.js.map"
+    "main.50e4b47f.js.map": "/static/js/main.50e4b47f.js.map"
   },
   "entrypoints": [
     "static/css/main.acf39267.css",
-    "static/js/main.878396cc.js"
+    "static/js/main.50e4b47f.js"
   ]
 }
