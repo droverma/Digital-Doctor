@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = 'http://localhost:8080/appointmentservice';
+const apiUrl = 'https://digitaldoctor.stackroute.io/appointmentservice';
 
 class VideoChat {
   

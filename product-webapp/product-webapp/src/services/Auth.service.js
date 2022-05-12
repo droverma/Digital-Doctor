@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = 'http://localhost:8080';
+const apiUrl = 'https://digitaldoctor.stackroute.io';
 class AuthService {
 
     // const apiUrl = 'http://localhost:8080';
