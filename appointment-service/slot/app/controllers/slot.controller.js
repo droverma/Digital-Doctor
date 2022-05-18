@@ -1,10 +1,12 @@
 const Slots = require("../models/slot.model");
+const uuid = require('uuid');
+const { response } = require('express');
 
 exports.getSlotDetails = (req, res) => {
-    let slotId = req.params.slotId;
-   Slots.findById(slotId)
-    .then((slots) => {
-      res.send(slots);
+  let slotId = req.params.slotId
+  Slots.find({ slotId: slotId })
+    .then((response) => {
+      res.send(response);
     })
     .catch((err) => {
       res.status(500).send({
@@ -14,10 +16,10 @@ exports.getSlotDetails = (req, res) => {
 };
 
 exports.getByDate = (req, res) => {
-    let slotDate = req.params.slotDate;
-   Slots.findById(slotDate)
-    .then((slots) => {
-      res.send(slots);
+  let slotDate = req.params.slotDate
+  Slots.find({ slotDate: slotDate })
+    .then((response) => {
+      res.send(response);
     })
     .catch((err) => {
       res.status(500).send({
@@ -28,10 +30,10 @@ exports.getByDate = (req, res) => {
 
 
 exports.getAllSlotsByDoctor = (req, res) => {
-    let doctorEmailId = req.params.doctorEmailId;
-   Slots.findById(doctorEmailId)
-    .then((slots) => {
-      res.send(slots);
+  let doctorEmail = req.params.doctorEmailId
+  Slots.find({ doctorEmail: doctorEmail })
+    .then((response) => {
+      res.send(response);
     })
     .catch((err) => {
       res.status(500).send({
@@ -47,21 +49,29 @@ exports.createSlot = (req, res) => {
     });
   }
 
-  const doctorSlot = new  Slots({
+  const doctorSlot = new Slots({
+    slotId: uuid.v1(),
     doctorEmail: req.body.doctorEmail,
     specialization: req.body.specialization,
-    yearsOfExperience: req.body.yearsOfExperience,
-    doctorMobileNumber: req.body.doctorMobileNumber,
-    doctorName: req.body.doctorName,
-    password: req.body.password,
-    city: req.body.city,
-    doctorImage: req.body.doctorImage
+    slotDate: req.body.slotDate,
+    slotStartTime: req.body.slotStartTime,
+    slotEndTime: req.body.slotEndTime,
+    slotStatus: req.body.slotStatus,
   });
+
+  if (doctorSlot.slotId === null|| doctorSlot.slotId === '' || doctorSlot.doctorEmail === null ||
+    doctorSlot.doctorEmail === '' || doctorSlot.slotDate === '' || doctorSlot.slotDate === null ||
+    doctorSlot.slotStartTime === null || doctorSlot.slotStartTime === '' || doctorSlot.slotEndTime === ''
+    || doctorSlot.slotEndTime === null || doctorSlot.slotStatus === null
+    || doctorSlot.slotStatus === '') {
+    return res.status(401).send({ msg: 'Slot data inappropriate' })
+  }
+
 
   doctorSlot
     .save()
-    .then((data) => {
-      res.send(data);
+    .then((response) => {
+      res.send(response);
     })
     .catch((err) => {
       res.status(500).send({
@@ -76,25 +86,35 @@ exports.updateStatus = (req, res) => {
       message: "Data to update can not be empty!",
     });
   }
-  let slotId = req.params.slotId;
-   Slots.findByIdAndUpdate(slotId, req.body, { useFindAndModify: false })
+  let slotId = req.body.slotId;
+  Slots.find({slotId: slotId}).then((response) =>{
+    Slots.findByIdAndUpdate(response[0]._id, { $set: req.body }, { new: true })
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update  Slots with id=${slotId}. Maybe Tutorial was not found!`,
+          message: `Cannot update  Slots with id=${slotId}!!!`,
         });
-      } else res.send({ message: " Slots was updated successfully." });
+      } else {
+        res.send(data);
+      }
     })
     .catch((err) => {
       res.status(500).send({
         message: "Error updating  Slots with id=" + slotId,
       });
     });
+  }).catch((err) => {
+    res.status(500).send({
+      message: "Error updating  Slots with id=" + slotId,
+    });
+  });
+ 
 };
 
 exports.deleteSlotById = (req, res) => {
-  const slotId = req.params.slotId;
-   Slots.findByIdAndRemove(slotId)
+  let slotId = req.params.slotId;
+  Slots.find({slotId: slotId}).then((response) =>{
+    Slots.findByIdAndRemove(response[0]._id)
     .then((data) => {
       if (!data) {
         res.status(404).send({
@@ -102,7 +122,7 @@ exports.deleteSlotById = (req, res) => {
         });
       } else {
         res.send({
-          message: " Slots was deleted successfully!",
+          message: " Slot was deleted successfully!",
         });
       }
     })
@@ -111,4 +131,10 @@ exports.deleteSlotById = (req, res) => {
         message: "Could not delete  Slots with id=" + slotId,
       });
     });
+  }).catch((err) => {
+    res.status(500).send({
+      message: "Cannot delete Slot with id=" + slotId,
+    });
+  });
+  
 };

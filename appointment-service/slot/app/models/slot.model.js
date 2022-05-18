@@ -1,15 +1,13 @@
 const mongoose = require("mongoose");
 
 const doctorSlotSchema = mongoose.Schema({
-        doctorEmail: String, // primary key
+        slotId: String, // Auto generated primary key
+        doctorEmail: String,
         specialization: String,
-        yearsOfExperience: Number,
-        doctorMobileNumber: Number,//optional
-        doctorName: String,
-        password: String,
-        city: String,
-        doctorImage: String
-    
+        slotDate: Date,//optional
+        slotStartTime: Date,
+        slotEndTime: Date,
+        slotStatus: String  
 });
 
 module.exports = mongoose.model("doctorSlot", doctorSlotSchema);
