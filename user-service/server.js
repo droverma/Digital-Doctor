@@ -2,33 +2,26 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dbConfig = require("./config/database.config");
 const { mongoose } = require("mongoose");
-
 mongoose.Promise = global.Promise;
-
-const PORT = 8080;
+const PORT = 8888;
 const app = express();
-
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(bodyParser.json());
-
 mongoose
-  .connect(dbConfig.url, {
-    useNewUrlParser: true,
-  })
+  .connect(dbConfig.url, { useNewUrlParser: true })
   .then(() => {
-    console.log("successfully connected to the DB");
+    console.log("successfully connected to the database...");
   })
   .catch((err) => {
-    console.log("could not connect top DB");
+    console.log("could not Connect with DB.");
     process.exit();
   });
 
 app.get("/", (req, res) => {
-  res.json({ message: "welcometo nodejs apis" });
+  res.json({ message: "Welcome to User-Service APIs...." });
 });
 
-require("./app/routes/laptop.routes")(app);
+require("./app/routes/user.route.js")(app);
 app.listen(PORT, () => {
   console.log(`Server is running on port http://127.0.0.1:${PORT}`);
 });
