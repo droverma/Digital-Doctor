@@ -1,6 +1,5 @@
 const Appointment = require('../models/appointment.model');
 const uuid = require('uuid');
-const moment = require('moment');
 
 exports.bookAppointment = (req, res) => {
     if (!req.body) {
