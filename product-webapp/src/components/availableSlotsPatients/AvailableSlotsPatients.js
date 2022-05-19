@@ -35,6 +35,7 @@ function AvailableSlotsPatients() {
         let momentDate = moment(value).format('YYYY-MM-DD');
         console.log(momentDate);
         appointmentService.getSlotsUsingDate(momentDate).then((response)=>{
+            setresult(response.data);
             console.log(response);
         })
         setDate(momentDate);
@@ -149,7 +150,7 @@ function AvailableSlotsPatients() {
             <div className="row button-container">
                 <div>
                     {
-                        result.filter(x => x.slotDate === date).length === 0 &&
+                        result.filter(x => moment(x.slotDate).format('YYYY-MM-DD') === date).length === 0 &&
                         <div className="no-slots-available-for-patients">
                             <p>No Slots Available</p>
                         </div>
@@ -158,7 +159,7 @@ function AvailableSlotsPatients() {
                 {
                     result.map((response) => {
 
-                        if (response.slotDate === date) {
+                        if (moment(response.slotDate).format('YYYY-MM-DD') === date) {
                             return (
                                 <AvailableSlotschips
                                     slotStartTime={response.slotStartTime}
