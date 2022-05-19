@@ -1,6 +1,6 @@
 const Appointment = require('../models/appointment.model');
 const uuid = require('uuid');
-const { response } = require('express');
+const moment = require('moment');
 
 exports.bookAppointment = (req, res) => {
     if (!req.body) {
@@ -67,10 +67,30 @@ exports.appointmentDetails = (req, res) => {
     })
 }
 
+exports.appointmentListBySpecialization = (req, res) => {
+    Appointment.find({ specialization: req.params.specialization }).then(response => {
+        res.send(response);
+    }).catch(err => {
+        res.status(500).send({
+            msg: "Appointment not found"
+        })
+    })
+}
+exports.appointmentListByDate = (req, res) => {
+    console.log(req.params.date)
+    Appointment.find({ appointmentDate: req.params.date }).then(response => {
+        res.send(response);
+    }).catch(err => {
+        res.status(500).send({
+            msg: "Appointment not found"
+        })
+    })
+}
+
 exports.updateAppointmentStatus = (req, res) => {
     Appointment.find({ appointmentId: req.body.appointmentId }).then(response => {
-        console.log(response[0]._id ,'user')
-        if (response.length>0)
+        console.log(response[0]._id, 'user')
+        if (response.length > 0)
             Appointment.findByIdAndUpdate(response[0]._id, { $set: req.body }, { new: true }).then(users => {
                 res.send(users)
             }).catch(err => {
