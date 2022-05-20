@@ -144,7 +144,7 @@ const DoctorsList = () => {
               <Col key={index} style={{ width: "auto " }} md={3}>
                 <Card
                   doctorName={e.doctorName}
-                  doctorEmail={e.emailId}
+                  doctorEmail={e._id}
                   image={e.image ? e.image : ""}
                   doctorMobileNumber={
                     e.doctorMobileNumber ? e.doctorMobileNumber : "NA"

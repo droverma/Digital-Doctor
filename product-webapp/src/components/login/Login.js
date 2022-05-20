@@ -55,27 +55,40 @@ const Login = (props) => {
     if (data.role === "doctor") {
       AuthService.loginDoctor(data)
         .then((res) => {
-          localStorage.setItem("userEmail", data.emailId);
-          localStorage.setItem("jwt-token", res.data.token);
-          localStorage.setItem("role", data.role);
+          console.log(res)
+          debugger
+          if (res.data && res.data.error) {
+            alert('not found')
+          }
+          else {
+            localStorage.setItem("userEmail", data.emailId);
+            localStorage.setItem("jwt-token", res.data.token);
+            localStorage.setItem("role", data.role);
 
-          console.log("doctor logged in");
-          navigate("/updatedoctor");
+            console.log("doctor logged in");
+            navigate("/updatedoctor");
 
-          props.handleModal();
+            props.handleModal();
+          }
         })
         .catch((err) => console.log(err));
     } else {
       AuthService.loginPatient(data)
         .then((res) => {
-          localStorage.setItem("userEmail", data.emailId);
-          localStorage.setItem("jwt-token", res.data.token);
-          localStorage.setItem("role", data.role);
+          console.log(res)
+          if (res.data && res.data.error) {
+            alert('not found')
+          }
+          else {
+            localStorage.setItem("userEmail", data.emailId);
+            localStorage.setItem("jwt-token", res.data.token);
+            localStorage.setItem("role", data.role);
 
-          console.log("patient logged in");
-          navigate("/updatepatient");
+            console.log("patient logged in");
+            navigate("/updatepatient");
 
-          props.handleModal();
+            props.handleModal();
+          }
         })
         .catch((err) => console.log(err));
     }
@@ -96,6 +109,7 @@ const Login = (props) => {
     // }).catch(err => console.log(err))
   };
   const onHide = () => {
+    debugger
     setData({
       emailId: "",
       password: "",

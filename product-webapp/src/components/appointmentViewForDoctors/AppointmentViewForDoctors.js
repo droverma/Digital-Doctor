@@ -11,8 +11,6 @@ import CardAppointmentVIewForDoctors from "./CardAppointmentVIewForDoctors";
 
 function AppointmentViewForDoctors() {
 
-    let appointmentService = new AppointmentService();
-
     const [result, setresult] = useState([]);
     const [defaultData, setDefaultData] = useState([]);
     const [activetab, setactivetab] = useState("UPCOMING");
@@ -30,7 +28,7 @@ function AppointmentViewForDoctors() {
 
     useEffect(() => {
         let loggedInEmail = localStorage.getItem("userEmail");
-        appointmentService.appointmentsForDoctor(loggedInEmail).then((response) => {
+        AppointmentService.appointmentsForDoctor(loggedInEmail).then((response) => {
             let data = response.data;
             // setresult(data);
             setDefaultData(data);
@@ -40,7 +38,7 @@ function AppointmentViewForDoctors() {
     const refreshApi = () => {
         let docEmail = localStorage.getItem("userEmail");
         setdoctorEmail(docEmail);
-        appointmentService.appointmentsForDoctor(docEmail).then((response) => {
+        AppointmentService.appointmentsForDoctor(docEmail).then((response) => {
             let data = response.data;
             setDefaultData(data);
         })

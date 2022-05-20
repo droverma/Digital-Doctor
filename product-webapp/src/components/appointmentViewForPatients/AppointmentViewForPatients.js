@@ -26,6 +26,7 @@ function AppointmentViewForPatients() {
     const [filters, setFilters] = useState({ specialization: '', date: moment().format('YYYY-MM-DD') });
 
     useEffect(() => {
+        debugger
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
         AppointmentService.appointmentsForPatient(email).then((response) => {
@@ -205,7 +206,6 @@ function AppointmentViewForPatients() {
                     <div className="tab-pane fade show active row" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         {
                             result.map((response) => {
-                                console.log(response, 'dataaaaaaa')
                                 return (
                                     <CardAppointmentVIewForPatients
                                         doctorEmail={response.doctorEmail}

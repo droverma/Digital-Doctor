@@ -32,7 +32,7 @@ function AvailableSlotsPatients() {
         let momentDate = moment(value).format('YYYY-MM-DD');
         AppointmentService.getSlotsUsingDate(momentDate).then((response) => {
             setresult(response.data);
-         })
+        })
         setDate(momentDate);
     }
 
@@ -42,25 +42,26 @@ function AvailableSlotsPatients() {
         AppointmentService.getSlots(state).then((response) => {
             let data = response.data;
             setresult(data);
-            ProfileDetailsService.doctorProfileDetails(data[0].doctorEmailId).then((response) => {
+            debugger
+            ProfileDetailsService.doctorProfileAvailableSlots(data[0].doctorEmail).then((response) => {
                 setDetails(response.data)
+                debugger
             })
         });
 
-    }, [state]);
+    }, []);
 
-    const currentTimings = (startTime, endTime, slotId, doctorEmailId) => {
+    const currentTimings = (startTime, endTime, slotId) => {
         setstartTime(startTime);
         setendTime(endTime);
         setslotId(slotId);
     }
 
     const bookAppointment = () => {
-        debugger
         let data = {
             slotId: slotId,
             patientEmail: patientEmail,
-            doctorEmail: details.emailId,
+            doctorEmail: details._id,
             specialization: details.specialization ? details.specialization : '',
             appointmentDate: date,
             appointmentStartTime: startTime,
@@ -68,6 +69,7 @@ function AvailableSlotsPatients() {
             appointmentStatus: "UPCOMING",
             bookedOn: value,
         }
+        debugger
         if (startTime && endTime) {
             AppointmentService.getBookedAppointment(data).then((response) => {
                 if (response) {
@@ -84,9 +86,23 @@ function AvailableSlotsPatients() {
                 }
 
             })
+            
             AppointmentService.getSlotDetails(slotId).then((response) => {
-                response.data.slotStatus = "BOOKED";
-                AppointmentService.updateSlotStatus(response.data).then((res) => {
+               
+                let data = {
+                    doctorEmail: response.data[0].doctorEmail,
+                    slotDate: response.data[0].slotDate,
+                    slotEndTime: response.data[0].slotEndTime,
+                    slotId: response.data[0].slotId,
+                    slotStartTime: response.data[0].slotStartTime,
+                    slotStatus: "BOOKED",
+                    specialization: response.data[0].specialization,
+                    __v: response.data[0].__v,
+                    _id: response.data[0]._id
+                }
+                console.log(response.data)
+                AppointmentService.updateSlotStatus(data).then((res) => {
+                    console.log(res, 'update')
                 })
             })
 
@@ -113,7 +129,7 @@ function AvailableSlotsPatients() {
                             {details.specialization ? details.specialization : 'No Specialization'}
                         </div>
                         <div className="col mb-4">
-                            Email: {details.emailId ? details.emailId : 'No Email'}
+                            Email: {details._id ? details._id : 'No Email'}
                         </div>
                         <div className="col mb-4">
                             Experience: {details.yearsOfExperience ? details.yearsOfExperience : '0'} years
@@ -144,7 +160,7 @@ function AvailableSlotsPatients() {
                                     slotStatus={response.slotStatus}
                                     currentTimings={currentTimings}
                                     slotId={response.slotId}
-                                    doctorEmailId={response.doctorEmailId}
+                                    doctorEmailId={response.doctorEmail}
                                 />
                             )
                         } else {

@@ -19,13 +19,12 @@ class AppointmentService {
     }
 
     appointmentsForPatient(email) {
-        let e = 'jatingmail.com';
         return axios.get(`http://localhost:8081/api/v1/appointments/patients/${email}`)
         // return axios.get(`${apiUrl}/api/v1/appointmentSlot/patient/` + email)
     }
 
     appointmentsForDoctor(email) {
-        return axios.get(`http://localhost:8081//api/v1/appointments/${email}`)
+        return axios.get(`http://localhost:8081/api/v1/appointments/${email}`)
         // return axios.get(`${apiUrl}/api/v1/appointmentSlot/` + docEmail)
     }
 
@@ -59,10 +58,12 @@ class AppointmentService {
         return axios.get("http://localhost:8080/slotDetails/doctor/" + slotDate)
     }
     updateSlotStatus(slotObject) {
+        debugger
         return axios.put("http://localhost:8080/doctor/slot/status", slotObject)
     }
     getSlotDetails(slotId) {
-        return axios.get("http://localhost:8080/doctor/slot" + slotId);
+        debugger
+        return axios.get("http://localhost:8080/doctor/slot/" + slotId);
     }
 }
 export default new AppointmentService();

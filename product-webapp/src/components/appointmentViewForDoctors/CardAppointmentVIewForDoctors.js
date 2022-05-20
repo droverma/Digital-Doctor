@@ -21,13 +21,11 @@ function CardAppointmentVIewForDoctors(props) {
 
     let navigate = useNavigate();
 
-    let appointmentService = new AppointmentService();
-
     const cancelClicked = () => {
         
-        appointmentService.appointmentDetails(props.appointmentId).then((response) => {
+        AppointmentService.appointmentDetails(props.appointmentId).then((response) => {
             response.data.appointmentStatus = "CANCELLED";
-            appointmentService.updateStatusForApmt(response.data).then((res) => {
+            AppointmentService.updateStatusForApmt(response.data).then((res) => {
                 props.refreshApi();
             })
         })
