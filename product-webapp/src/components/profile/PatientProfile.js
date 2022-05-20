@@ -163,7 +163,7 @@ const PatientProfile = (props) => {
   useEffect(() => {
     props.setisAuthenticated(true);
     getPatientData();
-  }, []);
+  }, [props]);
 
   const submitHandler = (e) => {
     e.preventDefault();
