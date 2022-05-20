@@ -11,17 +11,13 @@ const DoctorProfile = (props) => {
 
   const saveChangeHandler = (e) => {
     e.preventDefault();
-    // console.log(updateDoctorData);
     ProfileDetailsService.addDoctorProfile(updateDoctorData)
       .then((res) => {
         navigate("/createSlotViewDoctor");
       })
       .catch((err) => console.log(err));
-    // alert("Doctor's Profile Update Submitted");
-    // console.log(updateDoctorData);
   };
   const [validated, setValidated] = useState({});
-  // const [page, setPage] = useState(0);
 
   let doctorEmail = localStorage.getItem("userEmail");
   const [updateDoctorData, setUpdateDoctorData] = useState({
@@ -36,11 +32,7 @@ const DoctorProfile = (props) => {
   const getDoctorData = () => {
     ProfileDetailsService.doctorProfile()
       .then((res) => {
-        console.log();
-        // console.log(res.data);
-
         const da = res.data;
-        // console.log("da", da);
         setUpdateDoctorData({
           emailId: da.emailId,
           specialization: da.specialization,

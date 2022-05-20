@@ -7,8 +7,8 @@ const bookAppointmentSchema = mongoose.Schema({
     doctorEmail: String,
     specialization: String,
     appointmentDate: Date,
-    appointmentStartTime: Date,
-    appointmentEndTime: Date,
+    appointmentStartTime: String,
+    appointmentEndTime: String,
     appointmentStatus: String,
     bookedOn: Date,
 })

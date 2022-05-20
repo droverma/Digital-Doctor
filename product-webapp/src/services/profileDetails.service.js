@@ -7,7 +7,7 @@ class ProfileDetailsService {
     let doctorEmail = localStorage.getItem("userEmail");
     return axios.get(`${apiUrl}/api/v1/doctor/` + doctorEmail);
   }
-  doctorProfileAvailableSlots(docEmail) {
+  doctorProfileDetails(docEmail) {
     return axios.get(`${apiUrl}/api/v1/doctor/` + docEmail);
   }
   // update the profile details of Doctor
@@ -30,18 +30,12 @@ class ProfileDetailsService {
   }
 
   doctorsList(...patientData) {
-    console.log(patientData[0]);
-    console.log(patientData[1]);
-    console.log(patientData[0].length);
-    console.log(patientData[1].length);
-    let patientCity = patientData[0];
+   let patientCity = patientData[0];
     let specialization = patientData[1];
     let apiUrls = `${apiUrl}/api/v1/doctorcity/` + patientCity;
-    console.log(apiUrls);
     if (patientData[1].length) {
       apiUrls = `${apiUrl}/api/v1/doctor/${patientCity}/` + specialization;
     }
-    console.log(apiUrls);
     return axios.get(apiUrls);
   }
 }

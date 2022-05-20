@@ -35,40 +35,40 @@ const Login = (props) => {
             else {
                 delete validated.pass;
             }
-        console.log(data, validated)
     }
 
     const submit = (event) => {
         event.preventDefault();
 
-        // localStorage.setItem("jwt-token", 'token');
-        // localStorage.setItem("role", data.role);
-        // props.handleModal();
-        // if (data.role === "doctor") {
-        //     console.log("doctor logged in");
-        //     navigate('/updatedoctor')
-        // }
-        // else if (data.role === "patient") {
-        //     console.log("patient logged in");
-        //     navigate('/updatepatient')
-        // }
+        localStorage.setItem("jwt-token", 'token');
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("userEmail", data.emailId);
+        props.handleModal();
+        if (data.role === "doctor") {
+            console.log("doctor logged in");
+            navigate('/updatedoctor')
+        }
+        else if (data.role === "patient") {
+            console.log("patient logged in");
+            navigate('/updatepatient')
+        }
 
         setValidated(true)
-        AuthService.login(data).then(res => {
-            localStorage.setItem("userEmail", data.emailId);
-            localStorage.setItem("jwt-token", res.data.token);
-            localStorage.setItem("role", data.role);
-            if (data.role === "doctor") {
-                console.log("doctor logged in");
-                navigate('/updatedoctor')
-            }
-            else if (data.role === "patient") {
-                console.log("patient logged in");
-                navigate('/updatepatient')
-            }
-            props.handleModal();
+        // AuthService.login(data).then(res => {
+        //     localStorage.setItem("userEmail", data.emailId);
+        //     localStorage.setItem("jwt-token", res.data.token);
+        //     localStorage.setItem("role", data.role);
+        //     if (data.role === "doctor") {
+        //         console.log("doctor logged in");
+        //         navigate('/updatedoctor')
+        //     }
+        //     else if (data.role === "patient") {
+        //         console.log("patient logged in");
+        //         navigate('/updatepatient')
+        //     }
+        //     props.handleModal();
 
-        }).catch(err => console.log(err))
+        // }).catch(err => console.log(err))
 
     }
 

@@ -17,28 +17,21 @@ function CardAppointmentVIewForPatients(props) {
     const [doctorBasicDetails, setdoctorBasicDetails] = useState({});
 
     let navigate = useNavigate();
-    let appointmentService = new AppointmentService();
 
     const cancelClicked = () => {
-        console.log(props);
-        appointmentService.getAppointmentDetails(props.appointmentId).then((res) => {
+        AppointmentService.appointmentDetails(props.appointmentId).then((res) => {
             res.data.appointmentStatus = "CANCELLED";
-            console.log(res);
-            appointmentService.updateStatus(res.data).then((response)=>{
-                console.log(response);
+            AppointmentService.updateStatusForApmt(res.data).then((response)=>{
                 props.refreshApi();
             })
         })
-            // console.log(response);
-
     }
+
     const joinMeeting = () => {
         socket.emit("me");
         createMeeting();
-        // navigate('/video', { state: 'I5QpnN6eyMXKMge5AAAt' })
         VideoChatService.joinMeetingID(props.appointmentId)
             .then(res => {
-                console.log(res)
                 navigate('/video', { state: res.data.meetingId })
             })
             .catch(err => console.log(err))
@@ -46,10 +39,10 @@ function CardAppointmentVIewForPatients(props) {
     }
 
     useEffect(()=>{
-        ProfileDetailsService.doctorProfileAvailableSlots(props.doctorEmail).then((response)=>{
-            console.log(response.data);
-            setdoctorBasicDetails(response.data);  
-        })
+        // ProfileDetailsService.doctorProfileDetails(props.doctorEmail).then((response)=>{
+        //     console.log(response.data);
+        //     setdoctorBasicDetails(response.data);  
+        // })
     },[])
 
     return (

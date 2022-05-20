@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProfileDetailsService from "../../services/profileDetails.service";
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import DoctorImage from '../../assets/images/Doctor_image.jpg'
 
 
@@ -26,59 +26,37 @@ function AvailableSlotsPatients() {
     const [startTime, setstartTime] = useState('');
     const [endTime, setendTime] = useState('');
     const [slotId, setslotId] = useState('');
-    const [doctorEmailId, setdoctorEmailId] = useState('');
     const { state } = useLocation();
 
-    // const [bookedAppointments, setbookedAppointments] = useState([]);
-
-    function changeDate(value, event) {
+    function changeDate(value) {
         let momentDate = moment(value).format('YYYY-MM-DD');
-        console.log(momentDate);
-        appointmentService.getSlotsUsingDate(momentDate).then((response)=>{
+        AppointmentService.getSlotsUsingDate(momentDate).then((response) => {
             setresult(response.data);
-            console.log(response);
-        })
+         })
         setDate(momentDate);
-
-        // let a = value.toString();
-        // let date = a.substring(4, 15);
-        // setDate(date);
     }
-
-    let appointmentService = new AppointmentService();
 
     useEffect(() => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getSlots(state).then((response) => {
+        AppointmentService.getSlots(state).then((response) => {
             let data = response.data;
             setresult(data);
-            // setDetails(response.data[1]);
-            console.log(response.data);
-            console.log(response.data[0].doctorEmailId);
-            ProfileDetailsService.doctorProfileAvailableSlots(response.data[0].doctorEmailId).then((response)=>{
-                console.log(response);
+            ProfileDetailsService.doctorProfileDetails(data[0].doctorEmailId).then((response) => {
                 setDetails(response.data)
             })
         });
-        
-    }, []);
 
-    const currentTimings = (startTime, endTime, slotId,doctorEmailId) => {
+    }, [state]);
+
+    const currentTimings = (startTime, endTime, slotId, doctorEmailId) => {
         setstartTime(startTime);
         setendTime(endTime);
         setslotId(slotId);
-        setdoctorEmailId(doctorEmailId);
-        
     }
-    // const doctorsDetails = (doctorEmail) =>{
-    //     ProfileDetailsService.doctorProfile(doctorEmail).then((response)=>{
-    //         console.log(response);
-    //         setDetails(response.data)
-    //     })
-    // }
 
     const bookAppointment = () => {
+        debugger
         let data = {
             slotId: slotId,
             patientEmail: patientEmail,
@@ -91,7 +69,7 @@ function AvailableSlotsPatients() {
             bookedOn: value,
         }
         if (startTime && endTime) {
-            appointmentService.getBookedAppointment(data).then((response) => {
+            AppointmentService.getBookedAppointment(data).then((response) => {
                 if (response) {
                     toast.success('Appointment Booked Successfully!', {
                         position: "top-right",
@@ -102,17 +80,16 @@ function AvailableSlotsPatients() {
                         draggable: true,
                         progress: undefined,
                     });
-                    setTimeout(()=>{navigate('/appointmentViewForPatients', { state: state })},2000)   
+                    setTimeout(() => { navigate('/appointmentViewForPatients', { state: state }) }, 2000)
                 }
 
             })
-            appointmentService.getSlotDetails(slotId).then((response)=>{
+            AppointmentService.getSlotDetails(slotId).then((response) => {
                 response.data.slotStatus = "BOOKED";
-                appointmentService.updateSlotStatus(response.data).then((res)=>{
-                        console.log(res);
+                AppointmentService.updateSlotStatus(response.data).then((res) => {
                 })
             })
-            
+
         }
 
     }
@@ -127,7 +104,7 @@ function AvailableSlotsPatients() {
                 <div className="col-md-4 col-sm-12">
                     <div className="doctors-details">
                         <div className="col mb-1 mt-4">
-                            <img src={details.image ? details.image : DoctorImage } className="doctor-image" alt="" />
+                            <img src={details.image ? details.image : DoctorImage} className="doctor-image" alt="" />
                         </div>
                         <div className="col mb-4">
                             <h6>{details.doctorName ? details.doctorName : 'No name'}</h6>

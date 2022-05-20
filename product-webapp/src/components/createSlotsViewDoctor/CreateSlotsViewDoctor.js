@@ -15,15 +15,11 @@ function CreateSlotViewDoctor() {
     const [value] = useState(new Date());
     const [date, setDate] = useState('');
     const [fields, setfields] = useState({ slotDate: '', slotStartTime: '', slotEndTime: '' });
-    const [specialization, setspecialization] = useState('');
-
     let appointmentService = new AppointmentService();
 
     function changeDate(value, event) {
         let momentDate = moment(value).format('YYYY-MM-DD');
-        console.log(momentDate);
-        appointmentService.getDoctorSlotsUsingDate(momentDate).then((response) =>{
-            console.log(response);
+        appointmentService.getSlotsUsingDate(momentDate).then((response) => {
             setresult(response.data);
         })
         setDate(momentDate);
@@ -33,11 +29,10 @@ function CreateSlotViewDoctor() {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        console.log(name, value);
-        setfields({ ...fields, [name]: value });
+         setfields({ ...fields, [name]: value });
     }
 
-    const handleSubmit = (event) => { 
+    const handleSubmit = (event) => {
         let doctorEmail = localStorage.getItem("userEmail");
         var doctorSpecialization = "";
         profileDetailsService.doctorProfile(doctorEmail).then((res) => {
@@ -46,7 +41,6 @@ function CreateSlotViewDoctor() {
 
         })
         event.preventDefault();
-        console.log(fields);
         let slotDate = moment(fields.slotDate).format('YYYY-MM-DD');
         let slotStartTime = fields.slotStartTime;
         let slotEndTime = fields.slotEndTime;
@@ -60,7 +54,7 @@ function CreateSlotViewDoctor() {
             slotStatus: slotStatus
 
         }
-        
+
         appointmentService.addSlots(data).then((response) => {
             if (response) {
                 // debugger
@@ -79,11 +73,11 @@ function CreateSlotViewDoctor() {
             }
         })
 
-    }    
+    }
 
     useEffect(() => {
         getSlots();
-    }, []);
+    });
 
     const getSlots = () => {
         let email = localStorage.getItem("userEmail");

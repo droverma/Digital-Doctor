@@ -106,9 +106,9 @@ const LandingPage = () => {
                             >
                                 {Specialists.length && Specialists.map((img, index) => {
                                     return <div className='card card-properties' key={index}>
-                                        <img src={img.img} class="w-60 h-20" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">{img.title}</h5>
+                                        <img src={img.img} className="w-60 h-20" alt="..." />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{img.title}</h5>
                                         </div>
                                     </div>
                                 })}
@@ -137,9 +137,9 @@ const LandingPage = () => {
                             >
                                 {commonSymptoms.length && commonSymptoms.map((img, index) => {
                                     return <div className='card card-properties' key={index}>
-                                        <img src={img.img} class="w-60 h-20" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">{img.title}</h5>
+                                        <img src={img.img} className="w-60 h-20" alt="..." />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{img.title}</h5>
                                         </div>
                                     </div>
                                 })}
@@ -183,18 +183,18 @@ const LandingPage = () => {
                 </div>
 
             </div>
-            <footer class="bg-dark">
-                <div class="ps-3 pe-3 pt-3 text-start text-white ">
+            <footer className="bg-dark">
+                <div className="ps-3 pe-3 pt-3 text-start text-white ">
                     <div className='col-md-8'>
                         <div className='row'>
                             <div className='col-md-7'>
                                 <img src="../Digital_doctor_logo.png" style={{ height: '100%' }} />
                             </div>
                             <div className='col-md-4'>
-                                <a class="mx-2 text-white" href="#candidates">About</a>
-                                <a class="mx-2 text-white" href="#companies">Contact</a>
-                                <a class="mx-2 text-white" href="#about">Login</a>
-                                <a class="mx-2 text-white" href="#contact">Register</a>
+                                <a className="mx-2 text-white" href="#candidates">About</a>
+                                <a className="mx-2 text-white" href="#companies">Contact</a>
+                                <a className="mx-2 text-white" href="#about">Login</a>
+                                <a className="mx-2 text-white" href="#contact">Register</a>
                             </div>
                         </div>
                     </div>
@@ -202,36 +202,36 @@ const LandingPage = () => {
                     {/* <span className='img'>
                         </span>
 
-                        <a class="mx-2 text-white" href="#candidates">About</a>
-                        <a class="mx-2 text-white" href="#companies">Contact</a>
-                        <a class="mx-2 text-white" href="#about">Login</a>
-                        <a class="mx-2 text-white" href="#contact">Register</a> */}
+                        <a className="mx-2 text-white" href="#candidates">About</a>
+                        <a className="mx-2 text-white" href="#companies">Contact</a>
+                        <a className="mx-2 text-white" href="#about">Login</a>
+                        <a className="mx-2 text-white" href="#contact">Register</a> */}
                 </div>
-                <div class="text-end text-white ps-3 pe-3" >
+                <div className="text-end text-white ps-3 pe-3" >
                     <div className='col-md-12'>
                         <div className='row'>
                             <div className='col-md-7'>
                                 © 2022 Health Service
                             </div>
                             <div className='col-md-5'>
-                                <section class="mb-4">
-                                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                                        class="fa fa-facebook"></i></a>
+                                <section className="mb-4">
+                                    <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                        className="fa fa-facebook"></i></a>
 
-                                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                                        class="fa fa-twitter"></i></a>
+                                    <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                        className="fa fa-twitter"></i></a>
 
-                                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                                        class="fa fa-google"></i></a>
+                                    <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                        className="fa fa-google"></i></a>
 
-                                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                                        class="fa fa-instagram"></i></a>
+                                    <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                        className="fa fa-instagram"></i></a>
 
-                                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                                        class="fa fa-linkedin"></i></a>
+                                    <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                        className="fa fa-linkedin"></i></a>
 
-                                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                                        class="fa fa-github"></i></a>
+                                    <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                                        className="fa fa-github"></i></a>
                                 </section>
                             </div>
                         </div>

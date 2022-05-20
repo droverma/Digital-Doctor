@@ -11,10 +11,8 @@ function CreateSlotChips(props) {
     let appointmentService = new AppointmentService();
 
     const cancelClicked = () => {
-        console.log(props);
-        appointmentService.deleteDataAppointmentViewForDoctors(props.slotId).then((response) => {
-            console.log(response);
-            props.refreshApi()
+        appointmentService.cancelApmtsForDoctor(props.slotId).then((response) => {
+             props.refreshApi()
         })
 
     }
