@@ -7,6 +7,7 @@ const patientschema = new mongoose.Schema({
   password: String,
   city: String,
   patientImage: String,
+  role: String,
 });
 
 module.exports = mongoose.model("Patient", patientschema);

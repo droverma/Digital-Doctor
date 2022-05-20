@@ -9,6 +9,7 @@ const doctorschema = new mongoose.Schema({
   city: String,
   image: String,
   doctorMobileNumber: String,
+  role: String,
 });
 
 module.exports = mongoose.model("Doctor", doctorschema);

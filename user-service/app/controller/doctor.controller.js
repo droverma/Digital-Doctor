@@ -14,16 +14,24 @@ exports.registerDoctor = (req, res) => {
       message: "Doctor content cannot be empty...........",
     });
   }
+
+  console.log(req.body);
   const doctor = new Doctor({
-    id: req.body.id,
-    specialization: req.body.specialization,
-    yearsOfExperience: req.body.yearsOfExperience,
-    doctorName: req.body.doctorName,
-    password: req.body.password,
-    city: req.body.city,
-    image: req.body.image,
-    doctorMobileNumber: req.body.doctorMobileNumber,
+    _id: req.body.emailId,
+    role: req.body.role,
+    specialization: req.body.specializatione ? req.body.specializatione : "",
+    yearsOfExperience: req.body.yearsOfExperience
+      ? req.body.yearsOfExperience
+      : "",
+    doctorName: req.body.doctorName ? req.body.doctorName : "",
+    password: req.body.password ? req.body.password : "",
+    city: req.body.city ? req.body.city : "",
+    image: req.body.image ? req.body.image : "",
+    doctorMobileNumber: req.body.doctorMobileNumber
+      ? req.body.doctorMobileNumber
+      : "",
   });
+  console.log(doctor);
   doctor
     .save()
     .then((data) => {
@@ -47,18 +55,18 @@ exports.updateDoctor = (req, res) => {
       message: "Doctor Data to update can not be Empty..........",
     });
   }
-  let id = req.params.id;
-  Doctor.findByIdAndUpdate(id, req.body, { useFineAndModify: false })
+  let _id = req.params.id;
+  Doctor.findByIdAndUpdate(_id, req.body, { useFineAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Doctor With id = ${id}.may be the data not found! `,
+          message: `Cannot update Doctor With _id = ${_id}.may be the data not found! `,
         });
       } else res.send({ message: "Doctor was updated Successfully..." });
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error Update Doctor with id=" + id,
+        message: "Error Update Doctor with _id=" + _id,
       });
     });
 };
@@ -67,7 +75,8 @@ exports.updateDoctor = (req, res) => {
 exports.signInDoctor = (req, res) => {
   const normalPassword = req.body.password;
   console.log("received");
-  Doctor.findOne({ id: req.body.id }, "password", (err, doctor) => {
+  console.log("signin", req.body);
+  Doctor.findOne({ _id: req.body.emailId }, "password", (err, doctor) => {
     if (err) {
       res.send("Invalid Password");
     }
@@ -100,12 +109,13 @@ exports.getAllDoctor = (req, res) => {
 
 // Find the doctors on the basis of specific id(Email)
 exports.findDoctor = (req, res) => {
-  const id = req.params.id;
-  Doctor.findById(id)
+  const _id = req.params.id;
+  console.log("param doctor", req.params);
+  Doctor.findById(_id)
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot find Doctor with id=${id}. May be Doctor was not exist.... `,
+          message: `Cannot find Doctor with _id=${_id}. May be Doctor was not exist.... `,
         });
       } else {
         res.send(data);
@@ -113,7 +123,7 @@ exports.findDoctor = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not find Doctor with id = " + id,
+        message: "Could not find Doctor with _id = " + _id,
       });
     });
 };
@@ -140,8 +150,9 @@ exports.findDoctorCity = (req, res) => {
 
 // Find the doctors from the specific city and specialization
 exports.findDoctorCitySpec = (req, res) => {
-  const { specialization, city } = req.params;
-  Doctor.find({ specialization: specialization, city: city })
+  const { city, specialization } = req.params;
+  console.log(req.params);
+  Doctor.find({ city: city, specialization: specialization })
     .then((data) => {
       if (!data) {
         res.status(404).send({
