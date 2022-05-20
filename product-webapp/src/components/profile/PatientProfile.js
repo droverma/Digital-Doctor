@@ -144,9 +144,9 @@ const PatientProfile = (props) => {
       .then((res) => {
         // console.log(res.data);
         const da = res.data;
-        // console.log(da.password);
+        console.log(da);
         setUpdatePatientData({
-          emailId: da.emailId,
+          emailId: da._id,
           patientName: da.patientName,
           patientMobileNumber: da.patientMobileNumber,
           password: da.password,

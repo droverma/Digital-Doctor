@@ -15,12 +15,15 @@ exports.registerPatient = (req, res) => {
     });
   }
   const patient = new Patient({
-    id: req.body.id,
-    patientName: req.body.patientName,
-    patientMobileNumber: req.body.patientMobileNumber,
-    password: req.body.password,
-    city: req.body.city,
-    patientImage: req.body.patientImage,
+    _id: req.body.emailId,
+    role: req.body.role,
+    patientName: req.body.patientName ? req.body.patientName : "",
+    patientMobileNumber: req.body.patientMobileNumber
+      ? req.body.patientMobileNumber
+      : "",
+    password: req.body.password ? req.body.password : "",
+    city: req.body.city ? req.body.city : "",
+    patientImage: req.body.patientImage ? req.body.patientImage : "",
   });
   patient
     .save()
@@ -45,12 +48,12 @@ exports.updatePatient = (req, res) => {
       message: "Patient Data to update can not be Empty..........",
     });
   }
-  let id = req.params.id;
-  Patient.findByIdAndUpdate(id, req.body, { useFineAndModify: false })
+  let _id = req.params.id;
+  Patient.findByIdAndUpdate(_id, req.body, { useFineAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Patient With id = ${id}.may be the data not found! `,
+          message: `Cannot update Patient With _id = ${_id}.may be the data not found! `,
         });
       } else res.send({ message: "Patient was updated Successfully..." });
     })
@@ -65,7 +68,10 @@ exports.updatePatient = (req, res) => {
 exports.signInPatient = (req, res) => {
   const normalPassword = req.body.password;
   console.log("received");
-  Patient.findOne({ id: req.body.id }, "password", (err, patient) => {
+  // console.log("received1231");
+  // console.log("patient req body", req.body);
+  // res.json(req.body);
+  Patient.findOne({ _id: req.body.emailId }, "password", (err, patient) => {
     if (err) {
       res.send("Invalid Password");
     }
@@ -74,6 +80,7 @@ exports.signInPatient = (req, res) => {
     }
     bcrypt.compare(req.body.password, patient.password, (err, result) => {
       if (result == true) {
+        console.log("success");
         let jwtsecretKey = process.env.JWT_SECRET_KEY;
         let data = { time: Date(), userId: 100 };
         const token = jwt.sign(data, jwtsecretKey);
@@ -100,12 +107,13 @@ exports.getAllPatient = (req, res) => {
 
 //Fetchin Patient Based on id(EmailId)
 exports.findPatient = (req, res) => {
-  const id = req.params.id;
-  Patient.findById(id)
+  // console.log(req.params);
+  const _id = req.params.id;
+  Patient.findById(_id)
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot find Patient with id=${id}. May be Patient was not exist.... `,
+          message: `Cannot find Patient with _id=${_id}. May be Patient was not exist.... `,
         });
       } else {
         res.send(data);
@@ -113,7 +121,7 @@ exports.findPatient = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not find Patient with id = " + id,
+        message: "Could not find Patient with _id = " + _id,
       });
     });
 };

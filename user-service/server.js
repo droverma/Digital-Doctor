@@ -2,11 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dbConfig = require("./config/database.config");
 const { mongoose } = require("mongoose");
+const cors = require("cors");
 mongoose.Promise = global.Promise;
 const PORT = 8888;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 mongoose
   .connect(dbConfig.url, { useNewUrlParser: true })
   .then(() => {
