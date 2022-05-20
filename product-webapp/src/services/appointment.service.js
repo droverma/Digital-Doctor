@@ -4,13 +4,13 @@ const apiUrl = 'http://localhost:8080/appointmentservice';
 class AppointmentService {
     getSlots(email) {
         // return axios.get('http://localhost:3000/availableSlots');
-        return axios.get(`${apiUrl}/api/v1/doctor/slotDetails/`+email);
+        return axios.get("http://localhost:8080/doctor/slotDetails/"+email);
     }
     
 
     addSlots(data){
-        // return axios.post('http://localhost:3000/availableSlots',data);
-        return axios.post(`${apiUrl}/api/v1/doctor/slot`,data);
+        return axios.post('http://localhost:8080/doctor/slot',data);
+        // return axios.post(`${apiUrl}/api/v1/doctor/slot`,data);
     }
     
     getBookedAppointment(data) {
@@ -37,7 +37,7 @@ class AppointmentService {
     }
     deleteDataAppointmentViewForDoctors(id){
         // return axios.patch('http://localhost:3000/appointmentsViewForDoctors/'+id,{"appointmentStatus": "CANCELED"})
-        return axios.delete(`${apiUrl}/api/v1/user/appointment/`+id)
+        return axios.delete("http://localhost:8080/doctor/slot/"+id)
     }
 
     updateStatus(data) {
@@ -51,13 +51,16 @@ class AppointmentService {
         return axios.get(`${apiUrl}/api/v1/appointmentDetails/patient/`+appointmentDate)
     }
     getSlotsUsingDate(slotDate){
-        return axios.get(`${apiUrl}/api/v1/slotDetails/doctor/`+slotDate)
+        return axios.get("http://localhost:8080/slotDetails/doctor/"+slotDate)
     }
     updateSlotStatus(slotObject){
-        return axios.put(`${apiUrl}/api/v1/doctor/slot/status`, slotObject)
+        return axios.put("http://localhost:8080/doctor/slot/status", slotObject)
     }   
     getSlotDetails(slotId){
-        return axios.get(`${apiUrl}/api/v1/doctor/slot/`+slotId);
+        return axios.get("http://localhost:8080/doctor/slot"+slotId);
+    }
+    getDoctorSlotsUsingDate(slotDate){
+        return axios.get("http://localhost:8080/slotDetails/doctor/"+slotDate);
     }
 
 

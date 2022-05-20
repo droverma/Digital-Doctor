@@ -22,8 +22,9 @@ function CreateSlotViewDoctor() {
     function changeDate(value, event) {
         let momentDate = moment(value).format('YYYY-MM-DD');
         console.log(momentDate);
-        appointmentService.getAppointmentUsingDate(momentDate).then((response) =>{
+        appointmentService.getDoctorSlotsUsingDate(momentDate).then((response) =>{
             console.log(response);
+            setresult(response.data);
         })
         setDate(momentDate);
 
@@ -119,7 +120,7 @@ function CreateSlotViewDoctor() {
                         <div className="slots-container">
                             <div>
                                 {
-                                    result.filter(x => x.slotDate === date).length === 0 &&
+                                    result.filter(x => moment(x.slotDate).format('YYYY-MM-DD') === date).length === 0 &&
                                     <div className="no-slots">
                                         <p>No Slots Available</p>
                                     </div>
@@ -128,7 +129,7 @@ function CreateSlotViewDoctor() {
                             {
                                 result.map((response) => {
 
-                                    if (response.slotDate === date) {
+                                    if (moment(response.slotDate).format('YYYY-MM-DD') === date) {
                                         return (
                                             <CreateSlotChips
                                                 slotStartTime={response.slotStartTime}

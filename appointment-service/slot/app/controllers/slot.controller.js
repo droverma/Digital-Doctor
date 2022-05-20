@@ -1,6 +1,7 @@
 const Slots = require("../models/slot.model");
 const uuid = require('uuid');
 const { response } = require('express');
+var moment = require("moment") ;
 
 exports.getSlotDetails = (req, res) => {
   let slotId = req.params.slotId
@@ -48,12 +49,15 @@ exports.createSlot = (req, res) => {
       message: " Slots content connot be empty",
     });
   }
-
+  
+  // let slotStartTime = req.body.slotDate + "T" + req.body.slotStartTime + ":00.000Z"
+  // let slotEndTime =  req.body.slotDate + "T" + req.body.slotEndTime + ":00.000Z"
+  let slotDate = moment(req.body.slotDate).format("YYYY-MM-DD");
   const doctorSlot = new Slots({
     slotId: uuid.v1(),
     doctorEmail: req.body.doctorEmail,
     specialization: req.body.specialization,
-    slotDate: req.body.slotDate,
+    slotDate: slotDate,
     slotStartTime: req.body.slotStartTime,
     slotEndTime: req.body.slotEndTime,
     slotStatus: req.body.slotStatus,

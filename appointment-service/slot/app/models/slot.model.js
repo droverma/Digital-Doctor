@@ -5,8 +5,8 @@ const doctorSlotSchema = mongoose.Schema({
         doctorEmail: String,
         specialization: String,
         slotDate: Date,//optional
-        slotStartTime: Date,
-        slotEndTime: Date,
+        slotStartTime: String,
+        slotEndTime: String,
         slotStatus: String  
 });
 
