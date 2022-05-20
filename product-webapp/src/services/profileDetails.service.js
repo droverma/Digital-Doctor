@@ -38,11 +38,7 @@ class ProfileDetailsService {
   }
 
   doctorsList(...patientData) {
-    console.log(patientData[0]);
-    console.log(patientData[1]);
-    console.log(patientData[0].length);
-    console.log(patientData[1].length);
-    let patientCity = patientData[0];
+   let patientCity = patientData[0];
     let specialization = patientData[1];
     let apiUrls = `${apiUrl}/api/v1/doctorlist/${patientCity}`;
     // let apiUrls = `${apiUrl}/api/v1/doctorcity/${patientCity}`;
@@ -53,7 +49,6 @@ class ProfileDetailsService {
       console.log(apiUrls);
       // apiUrls = `${apiUrl}/api/v1/doctor/${patientCity}/${specialization}`;
     }
-    console.log(apiUrls);
     return axios.get(apiUrls);
   }
 }

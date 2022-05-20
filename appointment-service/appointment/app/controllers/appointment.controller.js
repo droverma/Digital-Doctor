@@ -21,11 +21,11 @@ exports.bookAppointment = (req, res) => {
         bookedOn: req.body.bookedOn,
     })
 
-    if (bookAppointment.slotId === null || bookAppointment.slotId === '' ||
-        bookAppointment.patientEmail === null || bookAppointment.patientEmail === '' ||
-        bookAppointment.doctorEmail === null || bookAppointment.doctorEmail === '') {
-        return res.status(401).send({ msg: 'Book Appointment data missing' })
-    }
+    // if (bookAppointment.slotId === null || bookAppointment.slotId === '' ||
+    //     bookAppointment.patientEmail === null || bookAppointment.patientEmail === '' ||
+    //     bookAppointment.doctorEmail === null || bookAppointment.doctorEmail === '') {
+    //     return res.status(401).send({ msg: 'Book Appointment data missing' })
+    // }
 
     bookAppointment.save().then(data => {
         res.send(data);
@@ -76,7 +76,6 @@ exports.appointmentListBySpecialization = (req, res) => {
     })
 }
 exports.appointmentListByDate = (req, res) => {
-    console.log(req.params.date)
     Appointment.find({ appointmentDate: req.params.date }).then(response => {
         res.send(response);
     }).catch(err => {
@@ -88,7 +87,6 @@ exports.appointmentListByDate = (req, res) => {
 
 exports.updateAppointmentStatus = (req, res) => {
     Appointment.find({ appointmentId: req.body.appointmentId }).then(response => {
-        console.log(response[0]._id, 'user')
         if (response.length > 0)
             Appointment.findByIdAndUpdate(response[0]._id, { $set: req.body }, { new: true }).then(users => {
                 res.send(users)

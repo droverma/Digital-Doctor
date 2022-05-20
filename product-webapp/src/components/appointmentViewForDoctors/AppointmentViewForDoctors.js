@@ -11,8 +11,6 @@ import CardAppointmentVIewForDoctors from "./CardAppointmentVIewForDoctors";
 
 function AppointmentViewForDoctors() {
 
-    let appointmentService = new AppointmentService();
-
     const [result, setresult] = useState([]);
     const [defaultData, setDefaultData] = useState([]);
     const [activetab, setactivetab] = useState("UPCOMING");
@@ -30,7 +28,7 @@ function AppointmentViewForDoctors() {
 
     useEffect(() => {
         let loggedInEmail = localStorage.getItem("userEmail");
-        appointmentService.getDataAppointmentViewForDoctors(loggedInEmail).then((response) => {
+        AppointmentService.appointmentsForDoctor(loggedInEmail).then((response) => {
             let data = response.data;
             // setresult(data);
             setDefaultData(data);
@@ -40,7 +38,7 @@ function AppointmentViewForDoctors() {
     const refreshApi = () => {
         let docEmail = localStorage.getItem("userEmail");
         setdoctorEmail(docEmail);
-        appointmentService.getDataAppointmentViewForDoctors(docEmail).then((response) => {
+        AppointmentService.appointmentsForDoctor(docEmail).then((response) => {
             let data = response.data;
             setDefaultData(data);
         })
@@ -67,14 +65,11 @@ function AppointmentViewForDoctors() {
 
 
     const filterData = (arr) => {
-        console.log(activetab);
-        console.log(arr);
         let filter = arr.filter((res) => res.appointmentStatus === activetab)
         setresult(filter);
         settotalPosts(filter.length);
         setpaginateData(filter);
         setactiveTabData(filter)
-        console.log(filter);
     }
 
     const handleSubmit = (event) => {
@@ -99,8 +94,6 @@ function AppointmentViewForDoctors() {
                     response.appointmentDate === date
             });
         }
-
-        console.log(filters.date);
         setresult(filteredData);
         settotalPosts(filteredData.length);
         setpaginateData(filteredData);
@@ -118,31 +111,17 @@ function AppointmentViewForDoctors() {
         filters.date = "";
     }
 
-    // const filterPaginate = (arr) => {
-
-    //     if (arr.length > postsPerPage) {
-
-    //         console.log(arr);
-    //         const indexOfLastPost = currentPage * postsPerPage;
-    //         const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    //         const currentPosts = arr.slice(indexOfFirstPost, indexOfLastPost);
-    //         setresult(currentPosts);
-    //     } else {
-    //         setresult(arr);
-    //     }
-    // }
-
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
-    const setPastTab = () =>{
+    const setPastTab = () => {
         setactivetab("PAST");
         setCurrentPage(1);
     }
-    const setUpcomingTab = () =>{
+    const setUpcomingTab = () => {
         setactivetab("UPCOMING");
         setCurrentPage(1);
     }
-    const setCancelledTab = () =>{
+    const setCancelledTab = () => {
         setactivetab("CANCELLED");
         setCurrentPage(1);
     }
@@ -151,12 +130,12 @@ function AppointmentViewForDoctors() {
         if (arr.length > postsPerPage) {
             const firstPageIndex = (currentPage - 1) * postsPerPage;
             const lastPageIndex = firstPageIndex + postsPerPage;
-            const currentPosts =  arr.slice(firstPageIndex, lastPageIndex);
+            const currentPosts = arr.slice(firstPageIndex, lastPageIndex);
             setresult(currentPosts);
-        }else{
+        } else {
             setresult(arr);
         }
-       
+
     }
 
     return (
@@ -179,12 +158,12 @@ function AppointmentViewForDoctors() {
                                     title="Reset Filters"
                                     placement="top">
                                     <button type="button" className="btn btn-secondary buttons"
-                                     onClick={resetData}>Reset</button></Tooltip>
-                                 <Tooltip
+                                        onClick={resetData}>Reset</button></Tooltip>
+                                <Tooltip
                                     title="Filter Results"
                                     placement="top">
-                                 <button type="submit" className="btn btn-secondary buttons ms-4"
-                                        >Filter</button>
+                                    <button type="submit" className="btn btn-secondary buttons ms-4"
+                                    >Filter</button>
                                 </Tooltip>
                             </div>
 
@@ -210,7 +189,7 @@ function AppointmentViewForDoctors() {
                     />
                 </div>
                 <div className="col mb-4">
-                <nav>
+                    <nav>
                         <div className="nav nav-tabs row" id="nav-tab" role="tablist">
                             <button className={`nav-link ${activetab === "UPCOMING" ? 'active' : ''} col`} id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"
                                 onClick={setUpcomingTab}>Upcoming Appointments</button>

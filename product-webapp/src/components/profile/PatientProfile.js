@@ -48,9 +48,7 @@ const PatientProfile = (props) => {
   };
 
   const onLoad = (fileString) => {
-    // console.log(fileString);
     setUpdatePatientData({ ...updatePatientData, patientImage: fileString });
-    // console.log(updatePatientData);
   };
 
   const patientChangeHandler = (e) => {
@@ -131,10 +129,9 @@ const PatientProfile = (props) => {
   };
   const submitPatientData = (e) => {
     setTimeout(() => {
-      console.log(updatePatientData);
       ProfileDetailsService.addPatientProfile(updatePatientData)
         .then((res) => {
-          console.log();
+          console.log(res);
         })
         .catch((err) => console.log(err));
       alert("Patient's Profile Update Submitted");

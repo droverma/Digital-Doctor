@@ -8,13 +8,9 @@ import AppointmentService from "../../services/appointment.service";
 
 function CreateSlotChips(props) {
 
-    let appointmentService = new AppointmentService();
-
     const cancelClicked = () => {
-        console.log(props);
-        appointmentService.deleteDataAppointmentViewForDoctors(props.slotId).then((response) => {
-            console.log(response);
-            props.refreshApi()
+        AppointmentService.cancelApmtsForDoctor(props.slotId).then((response) => {
+             props.refreshApi()
         })
 
     }

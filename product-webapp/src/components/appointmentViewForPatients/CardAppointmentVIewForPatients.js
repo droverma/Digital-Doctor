@@ -10,6 +10,7 @@ import VideoChatService from "../../services/VideoChat.service";
 import { SocketContext } from '../../context/Context';
 import ProfileDetailsService from "../../services/profileDetails.service";
 import DoctorAvatar from '../../assets/images/doctor_avatar.jpg';
+import moment from "moment";
 
 
 function CardAppointmentVIewForPatients(props) {
@@ -17,40 +18,47 @@ function CardAppointmentVIewForPatients(props) {
     const [doctorBasicDetails, setdoctorBasicDetails] = useState({});
 
     let navigate = useNavigate();
-    let appointmentService = new AppointmentService();
 
     const cancelClicked = () => {
-        console.log(props);
-        appointmentService.getAppointmentDetails(props.appointmentId).then((res) => {
-            res.data.appointmentStatus = "CANCELLED";
-            console.log(res);
-            appointmentService.updateStatus(res.data).then((response)=>{
-                console.log(response);
+        AppointmentService.appointmentDetails(props.appointmentId).then((res) => {
+            let data = {
+                appointmentDate: res.data[0].appointmentDate,
+                appointmentEndTime: res.data[0].appointmentEndTime,
+                appointmentId: res.data[0].appointmentId,
+                appointmentStartTime: res.data[0].appointmentStartTime,
+                appointmentStatus: "CANCELLED",
+                bookedOn: res.data[0].bookedOn,
+                patientEmail: res.data[0].patientEmail,
+                doctorEmail: res.data[0].doctorEmail,
+                slotId: res.data[0].slotId,
+                specialization: res.data[0].specialization,
+                __v: res.data[0].__v,
+                _id: res.data[0]._id
+            }
+            AppointmentService.updateStatusForApmt(data).then((response) => {
                 props.refreshApi();
             })
         })
-            // console.log(response);
-
     }
+
     const joinMeeting = () => {
         socket.emit("me");
         createMeeting();
-        // navigate('/video', { state: 'I5QpnN6eyMXKMge5AAAt' })
         VideoChatService.joinMeetingID(props.appointmentId)
             .then(res => {
-                console.log(res)
                 navigate('/video', { state: res.data.meetingId })
             })
             .catch(err => console.log(err))
 
     }
 
-    useEffect(()=>{
-        ProfileDetailsService.doctorProfileAvailableSlots(props.doctorEmail).then((response)=>{
+    useEffect(() => {
+        console.log(props)
+        ProfileDetailsService.doctorProfileAvailableSlots(props.doctorEmail).then((response) => {
             console.log(response.data);
-            setdoctorBasicDetails(response.data);  
+            setdoctorBasicDetails(response.data);
         })
-    },[])
+    }, [])
 
     return (
         <div className="col-md-6 mb-4">
@@ -67,7 +75,7 @@ function CardAppointmentVIewForPatients(props) {
                                 </div> */}
                                 <div className="col pt-2 pe-0 ps-0">
                                     {/* <h4>Kamal Anand</h4> */}
-                                   <h4>{doctorBasicDetails.doctorName ? doctorBasicDetails.doctorName : 'Dr. Doctor'}</h4> 
+                                    <h4>{doctorBasicDetails.doctorName ? doctorBasicDetails.doctorName : 'Dr. Doctor'}</h4>
                                 </div>
                             </div>
                             <div className="text-right">
@@ -93,7 +101,7 @@ function CardAppointmentVIewForPatients(props) {
                             <div className="col-9">
                                 <p>
 
-                                    {props.appointmentDate}
+                                    {moment(props.appointmentDate).format('YYYY-MM-DD')}
                                 </p>
                             </div>
                         </div>

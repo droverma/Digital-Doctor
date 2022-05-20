@@ -1,20 +1,15 @@
-import React, { useEffect, useMemo, useState } from "react";
-import '../../component.css';
-import CardAppointmentVIewForPatients from "./CardAppointmentVIewForPatients";
-import AppointmentService from "../../services/appointment.service";
-import moment from "moment";
-import Pagination from "../pagination/Pagination";
-import Posts from "../pagination/Posts";
 import { Tooltip } from "@material-ui/core";
-import '../pagination/Pagination.scss'
-import ReactPaginate from "react-paginate";
-import ProfileDetailsService from "../../services/profileDetails.service";
-import {useLocation} from 'react-router-dom'
+import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
+import '../../component.css';
+import AppointmentService from "../../services/appointment.service";
+import Pagination from "../pagination/Pagination";
+import '../pagination/Pagination.scss';
+import CardAppointmentVIewForPatients from "./CardAppointmentVIewForPatients";
 
 
 function AppointmentViewForPatients() {
-
-    let appointmentService = new AppointmentService();
 
     const [result, setresult] = useState([]);
     const [defaultData, setDefaultData] = useState([]);
@@ -22,8 +17,6 @@ function AppointmentViewForPatients() {
     const [postsPerPage, setpostsPerPage] = useState(4);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPosts, settotalPosts] = useState();
-    const [loading, setLoading] = useState(false);
-    const [currentPosts, setcurrentPosts] = useState([]);
     const [paginateData, setpaginateData] = useState([]);
     const [activeTabData, setactiveTabData] = useState([]);
     const [patientEmail, setpatientEmail] = useState('');
@@ -33,25 +26,21 @@ function AppointmentViewForPatients() {
     const [filters, setFilters] = useState({ specialization: '', date: moment().format('YYYY-MM-DD') });
 
     useEffect(() => {
+        debugger
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getDataAppointmentViewForPatients(email).then((response) => {
+        AppointmentService.appointmentsForPatient(email).then((response) => {
+            debugger
             let data = response.data;
-            // setresult(data);
             setDefaultData(data);
-            console.log(data[0].doctorEmail);
-            // data.map((res) => {
-                
-            // })
-           
-
+            setresult(data);
         })
     }, []);
 
     const refreshApi = () => {
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
-        appointmentService.getDataAppointmentViewForPatients(email).then((response) => {
+        AppointmentService.appointmentsForPatient(email).then((response) => {
             let data = response.data;
 
             setDefaultData(data);
@@ -79,14 +68,11 @@ function AppointmentViewForPatients() {
 
 
     const filterData = (arr) => {
-        console.log(activetab);
-        console.log(arr);
         let filter = arr.filter((res) => res.appointmentStatus === activetab)
         setresult(filter);
         settotalPosts(filter.length);
         setpaginateData(filter);
         setactiveTabData(filter)
-        console.log(filter);
     }
 
     const handleSubmit = (event) => {
@@ -111,8 +97,6 @@ function AppointmentViewForPatients() {
                     response.appointmentDate === date
             });
         }
-
-        console.log(filters.date);
         setresult(filteredData);
         settotalPosts(filteredData.length);
         setpaginateData(filteredData);
@@ -129,21 +113,6 @@ function AppointmentViewForPatients() {
         filters.specialization = "";
         filters.date = "";
     }
-
-    // const filterPaginate = (arr) => {
-
-    //     if (arr.length > postsPerPage) {
-
-    //         console.log(arr);
-    //         const indexOfLastPost = currentPage * postsPerPage;
-    //         const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    //         const currentPosts = arr.slice(indexOfFirstPost, indexOfLastPost);
-    //         setresult(currentPosts);
-    //     } else {
-    //         setresult(arr);
-    //     }
-    // }
-
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     const setPastTab = () => {
@@ -246,7 +215,7 @@ function AppointmentViewForPatients() {
                                         appointmentEndTime={response.appointmentEndTime}
                                         appointmentStatus={response.appointmentStatus}
                                         appointmentId={response.appointmentId}
-                
+
                                         id={response.id}
                                         refreshApi={refreshApi}
 

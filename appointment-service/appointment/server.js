@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const dbConfig = require("./config/database.config");
 const { mongoose } = require("mongoose");
 const cors = require("cors");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json')
 
 const PORT = 8081;
 const app = express();
@@ -29,6 +31,8 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/appointment.routes")(app);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://127.0.0.1:${PORT}`);

@@ -10,7 +10,6 @@ const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [stream, setStream] = useState();
-    const [userStream, setUserStream] = useState();
     const [chat, setChat] = useState([]);
     const [name, setName] = useState("");
     const [call, setCall] = useState({});
@@ -66,16 +65,12 @@ const ContextProvider = ({ children }) => {
     }, []);
 
     const createMeeting = async () => {
-
         await socket.on("me", async (id) => {
-
-            console.log(id, 'id')
             await setMe(id)
         }
         );
     }
     const getVideoAudio = async () => {
-        console.log(me, 'id')
         try {
             await navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
                 setStream(currentStream);
@@ -126,8 +121,6 @@ const ContextProvider = ({ children }) => {
         });
 
         peer.on("stream", (currentStream) => {
-
-            setUserStream(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
@@ -143,7 +136,6 @@ const ContextProvider = ({ children }) => {
         });
 
         connectionRef.current = peer;
-        console.log(connectionRef.current);
     };
 
     const answerCall = () => {
@@ -163,14 +155,12 @@ const ContextProvider = ({ children }) => {
         });
 
         peer.on("stream", (currentStream) => {
-            setUserStream(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
         peer.signal(call.signal);
 
         connectionRef.current = peer;
-        console.log(connectionRef.current);
     };
 
     const sendMessage = (value) => {

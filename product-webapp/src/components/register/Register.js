@@ -56,18 +56,14 @@ const Register = (props) => {
 
   const submit = (event) => {
     event.preventDefault();
-    console.log(registerData)
-    console.log("doctorData", doctorData);
     if (registerData.role === 'doctor') {
       AuthService.registerDoctor(doctorData).then(res => {
         openLoginModal();
-        console.log(res)
       }).catch(err => console.error(err))
     }
     else
       AuthService.registerPatient(doctorData).then(res => {
         openLoginModal();
-        console.log(res)
       })
       .catch(err => console.error(err))
   }

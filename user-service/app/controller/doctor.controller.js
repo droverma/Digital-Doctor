@@ -76,12 +76,13 @@ exports.signInDoctor = (req, res) => {
   const normalPassword = req.body.password;
   console.log("received");
   console.log("signin", req.body);
-  Doctor.findOne({ _id: req.body.emailId }, "password", (err, doctor) => {
+  Doctor.find({ _id: req.body.emailId }, "password", (err, doctor) => {
+    console.log(err,'-----',doctor,'doctor')
     if (err) {
-      res.send("Invalid Password");
+      return res.send({ error: "Invalid Password" });
     }
-    if (!doctor) {
-      res.send("user not found ");
+    if (doctor.length===0) {
+      return res.send({ error: "user not found " });
     }
     bcrypt.compare(req.body.password, doctor.password, (err, result) => {
       if (result == true) {
@@ -90,7 +91,7 @@ exports.signInDoctor = (req, res) => {
         const token = jwt.sign(data, jwtsecretKey);
         res.send(token);
       } else {
-        res.send(" invalid user or password");
+         res.send(" invalid user or password");
       }
     });
   });

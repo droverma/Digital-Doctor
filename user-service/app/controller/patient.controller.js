@@ -71,12 +71,13 @@ exports.signInPatient = (req, res) => {
   // console.log("received1231");
   // console.log("patient req body", req.body);
   // res.json(req.body);
-  Patient.findOne({ _id: req.body.emailId }, "password", (err, patient) => {
+  Patient.find({ _id: req.body.emailId }, "password", (err, patient) => {
+    console.log(err, '----', patient, patient.length)
     if (err) {
-      res.send("Invalid Password");
+      return res.send({ error: "Invalid Password" });
     }
-    if (!patient) {
-      res.send("user not found ");
+    if (patient.length === 0) {
+      return res.send({ error: "user not found " });
     }
     bcrypt.compare(req.body.password, patient.password, (err, result) => {
       if (result == true) {

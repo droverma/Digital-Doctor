@@ -16,22 +16,16 @@ import PatientAvatar from '../../assets/images/patient_avatar.jpg';
 
 
 function CardAppointmentVIewForDoctors(props) {
-    console.log(props);
     const { socket, me, createMeeting } = useContext(SocketContext);
     const [patientBasicDetails, setpatientBasicDetails] = useState({});
 
     let navigate = useNavigate();
 
-    let appointmentService = new AppointmentService();
-
     const cancelClicked = () => {
-        console.log(props);
         
-        appointmentService.getAppointmentDetails(props.appointmentId).then((response) => {
-            console.log(response);
+        AppointmentService.appointmentDetails(props.appointmentId).then((response) => {
             response.data.appointmentStatus = "CANCELLED";
-            appointmentService.updateStatus(response.data).then((res) => {
-                console.log(res);
+            AppointmentService.updateStatusForApmt(response.data).then((res) => {
                 props.refreshApi();
             })
         })
@@ -40,8 +34,7 @@ function CardAppointmentVIewForDoctors(props) {
     const startMeeting = () => {
         socket.emit("me");
         createMeeting();
-        console.log(me)
-        let meetingObject = {
+       let meetingObject = {
             appointmentId: props.appointmentId,
             meetingId: me
         }
@@ -55,7 +48,6 @@ function CardAppointmentVIewForDoctors(props) {
 
     useEffect(()=>{
         ProfileDetailsService.patientProfileForDoctorView(props.patientEmail).then((response)=>{
-            console.log(response.data);
             setpatientBasicDetails(response.data);  
         })
     },[])
