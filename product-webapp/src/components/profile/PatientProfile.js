@@ -4,6 +4,8 @@ import { Col, Form, Row } from "react-bootstrap";
 import ProfileDetailsService from "../../services/profileDetails.service";
 import "../../assets/style/style.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
@@ -134,8 +136,20 @@ const PatientProfile = (props) => {
           console.log(res);
         })
         .catch((err) => console.log(err));
-      alert("Patient's Profile Update Submitted");
+      // alert("Patient's Profile Update Submitted");
+      toast.success('Patients Profile Updated Submitted', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+    setTimeout(() => {
       navigate("/doctorslist");
+    }, 2000);
+      
     }, 1000);
   };
 
@@ -326,6 +340,19 @@ const PatientProfile = (props) => {
             </button>
           </div>
         </Form>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+        <ToastContainer />
       </div>
     </>
   );

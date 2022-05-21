@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Login from '../../components/login/Login';
 import { useNavigate } from "react-router-dom";
 import Register from '../../components/register/Register';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ProfileDetailsService from '../../services/profileDetails.service';
 import './Header.css';
-
 const Header = (props) => {
     let navigate = useNavigate();
 
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
+    const [name, setName] = useState('');
+
+
 
     const handleLoginModal = () => setShowLogin(!showLogin)
     const handleRegisterModal = () => setShowRegister(!showRegister);
+
+    useEffect(() => {
+        if (localStorage.getItem("role") === "patient") {
+            ProfileDetailsService.patientProfile().then((response) => {
+                setName(response.data.patientName);
+            })
+        } else if (localStorage.getItem("role") === "doctor") {
+            ProfileDetailsService.doctorProfile().then((response) => {
+                setName(response.data.doctorName);
+                console.log(response);
+            })
+        }
+    }, localStorage.getItem("role"))
 
     const logout = () => {
         localStorage.clear();
@@ -26,10 +41,11 @@ const Header = (props) => {
         <React.Fragment>
             <Navbar style={{ backgroundColor: '#2AD2D9' }}>
                 <Container>
-                {!localStorage.getItem('jwt-token') ?
-                    <Navbar.Brand href="/"><img src="../Digital_doctor_logo.png" /></Navbar.Brand>
-                    :null
+                    {!localStorage.getItem('jwt-token') ?
+                        <Navbar.Brand href="/"><img src="../Digital_doctor_logo.png" /></Navbar.Brand>
+                        : null
                     }
+                   
                     <Navbar.Collapse className="justify-content-end">
                         <Nav>
                             {!localStorage.getItem('jwt-token') ?
@@ -41,11 +57,11 @@ const Header = (props) => {
                                 </>
                                 :
                                 <>
-                                    {/* <Navbar.Brand className='ms-4 me-0  '>
-                                        <AccountCircleIcon />
-                                    </Navbar.Brand> */}
+                                    <Navbar.Brand className='ms-4 me-0 pe-4'>
+                                        <span className='fs-5 fw-bold'>Welcome back {localStorage.getItem("role") === "patient" ? name : `Dr. ${name}`} !!!</span>
+                                    </Navbar.Brand>
                                     {/* <NavDropdown title="Logout" id="collasible-nav-dropdown"> */}
-                                        {/* <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item> */}
+                                    {/* <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item> */}
                                     <Button variant="warning" onClick={logout} style={{ fontWeight: 'bold' }}>Logout</Button>
                                     {/* </NavDropdown> */}
                                 </>
@@ -57,7 +73,6 @@ const Header = (props) => {
             </Navbar>
             <Login show={showLogin} handleModal={handleLoginModal} openRegisterModal={handleRegisterModal} />
             <Register show={showRegister} handleModal={handleRegisterModal} openLoginModal={handleLoginModal} />
-
         </React.Fragment>
     );
 }

@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { SocketContext } from '../../context/Context';
 import VideoChatService from "../../services/VideoChat.service";
 import ProfileDetailsService from "../../services/profileDetails.service";
-import PatientAvatar from '../../assets/images/patient_avatar.jpg';
+import PatientAvatar from '../../assets/images/patient_img.png';
 import moment from "moment";
 
 
@@ -75,7 +75,7 @@ function CardAppointmentVIewForDoctors(props) {
                             <img src={patientBasicDetails.patientImage ? patientBasicDetails.patientImage : PatientAvatar} className="doctors-image" />
                         </div>
                         <div className="col">
-                            <div className="row mb-4">
+                            <div className="row">
                                 {/* <div className="col-3 text-right">
                                     <PersonIcon className="person-icon" />
                                 </div> */}
@@ -87,15 +87,15 @@ function CardAppointmentVIewForDoctors(props) {
                             <div className="text-right">
                                 <p>{patientBasicDetails.city}</p>
                             </div>
-                            <div className="text-right mb-4">
-                                <h6 className="card-title pe-4">M: {patientBasicDetails.patientMobileNumber ? patientBasicDetails.patientMobileNumber : 'NA'}</h6>
+                            <div className="text-right">
+                                <h6 className="card-title">M: {patientBasicDetails.patientMobileNumber ? patientBasicDetails.patientMobileNumber : 'NA'}</h6>
 
                             </div>
                         </div>
                     </div>
-                    <div className="row mb-4">
-                        <div className="row col">
-                            <div className="col-3">
+                    <div className="row">
+                        <div className="row col pe-0 ps-0">
+                            <div className="col-3 pe-0 ps-0">
                                 <Tooltip
                                     title="Appointment Date"
                                     placement="top">
@@ -103,15 +103,15 @@ function CardAppointmentVIewForDoctors(props) {
                                     />
                                 </Tooltip>
                             </div>
-                            <div className="col-9">
+                            <div className="col-9 pe-0 ps-0">
                                 <p>
 
                                     {moment(props.appointmentDate).format('YYYY-MM-DD') }
                                 </p>
                             </div>
                         </div>
-                        <div className="row col">
-                            <div className="col-3">
+                        <div className="row col pe-0 ps-0">
+                            <div className="col-3 pe-0 ps-0">
                                 <Tooltip
                                     title="Appointment Time"
                                     placement="top">
@@ -119,7 +119,7 @@ function CardAppointmentVIewForDoctors(props) {
                                     />
                                 </Tooltip>
                             </div>
-                            <div className="col-9 appointment-date">
+                            <div className="col-9 pe-0 ps-0 appointment-date">
                                 <p>
                                     {props.appointmentStartTime} - {props.appointmentEndTime}
                                 </p>
