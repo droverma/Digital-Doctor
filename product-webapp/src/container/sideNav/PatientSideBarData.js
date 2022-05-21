@@ -4,24 +4,20 @@ import React from "react";
   
 export const PatientSidebarData = [
   
+  
   {
     title: "Profile",
     path: "/updatepatient",
     icon: <PersonIcon />,
   },
   {
+    title: "Search Doctors",
+    path: "/doctorslist",
+    icon: <CalendarMonthIcon />,
+  },
+  {
     title: "Appointments",
     path: "/appointmentViewForPatients",
-    icon: <CalendarMonthIcon />,
-  },
-  {
-    title: "Available Slots",
-    path: "/availableSlotsPatients",
-    icon: <CalendarMonthIcon />,
-  },
-  {
-    title: "Dashboard",
-    path: "/doctorslist",
     icon: <CalendarMonthIcon />,
   }
 ];

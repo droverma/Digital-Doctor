@@ -30,7 +30,7 @@ function AvailableSlotsPatients() {
 
     function changeDate(value) {
         let momentDate = moment(value).format('YYYY-MM-DD');
-        AppointmentService.getSlotsUsingDate(momentDate).then((response) => {
+        AppointmentService.getSlotsUsingDate(momentDate, state).then((response) => {
             setresult(response.data);
         })
         setDate(momentDate);

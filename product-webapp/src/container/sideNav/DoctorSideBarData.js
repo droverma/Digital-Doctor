@@ -10,13 +10,14 @@ export const DoctorSidebarData = [
         icon: <PersonIcon />,
     },
     {
+        title: "Create Slots",
+        path: "/createSlotViewDoctor",
+        icon: <TimerIcon />,
+    },
+    {
         title: "Appointments",
         path: "/appointmentViewForDoctors",
         icon: <CalendarMonthIcon />,
     },
-    {
-        title: "Create Slots",
-        path: "/createSlotViewDoctor",
-        icon: <TimerIcon />,
-    }
+    
 ];

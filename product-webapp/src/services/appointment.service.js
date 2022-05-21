@@ -54,8 +54,8 @@ class AppointmentService {
         // return axios.get(`${apiUrl}/api/v1/appointmentDetails/patient/` + appointmentDate)
         return axios.get(`http://localhost:8081/api/v1/appointmentByDate/${appointmentDate}`);
     }
-    getSlotsUsingDate(slotDate) {
-        return axios.get("http://localhost:8080/slotDetails/doctor/" + slotDate)
+    getSlotsUsingDate(slotDate, email) {
+        return axios.get("http://localhost:8080/slotDetails/doctor/" + slotDate + "/" + email)
     }
     updateSlotStatus(slotObject) {
         debugger

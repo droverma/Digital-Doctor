@@ -17,8 +17,9 @@ function CreateSlotViewDoctor() {
     const [fields, setfields] = useState({ slotDate: '', slotStartTime: '', slotEndTime: '' });
 
     function changeDate(value, event) {
+        let doctorEmail = localStorage.getItem("userEmail");
         let momentDate = moment(value).format('YYYY-MM-DD');
-        AppointmentService.getSlotsUsingDate(momentDate).then((response) => {
+        AppointmentService.getSlotsUsingDate(momentDate, doctorEmail).then((response) => {
             setresult(response.data);
         })
         setDate(momentDate);
