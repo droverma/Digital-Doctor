@@ -12,6 +12,7 @@ import { SocketContext } from '../../context/Context';
 import VideoChatService from "../../services/VideoChat.service";
 import ProfileDetailsService from "../../services/profileDetails.service";
 import PatientAvatar from '../../assets/images/patient_avatar.jpg';
+import moment from "moment";
 
 
 
@@ -23,9 +24,22 @@ function CardAppointmentVIewForDoctors(props) {
 
     const cancelClicked = () => {
         
-        AppointmentService.appointmentDetails(props.appointmentId).then((response) => {
-            response.data.appointmentStatus = "CANCELLED";
-            AppointmentService.updateStatusForApmt(response.data).then((res) => {
+        AppointmentService.appointmentDetails(props.appointmentId).then((res) => {
+            let data = {
+                appointmentDate: res.data[0].appointmentDate,
+                appointmentEndTime: res.data[0].appointmentEndTime,
+                appointmentId: res.data[0].appointmentId,
+                appointmentStartTime: res.data[0].appointmentStartTime,
+                appointmentStatus: "CANCELLED",
+                bookedOn: res.data[0].bookedOn,
+                patientEmail: res.data[0].patientEmail,
+                doctorEmail: res.data[0].doctorEmail,
+                slotId: res.data[0].slotId,
+                specialization: res.data[0].specialization,
+                __v: res.data[0].__v,
+                _id: res.data[0]._id
+            }
+            AppointmentService.updateStatusForApmt(data).then((res) => {
                 props.refreshApi();
             })
         })
@@ -50,7 +64,7 @@ function CardAppointmentVIewForDoctors(props) {
         ProfileDetailsService.patientProfileForDoctorView(props.patientEmail).then((response)=>{
             setpatientBasicDetails(response.data);  
         })
-    },[])
+    },[props])
 
     return (
         <div className="col-md-6 mb-4">
@@ -92,7 +106,7 @@ function CardAppointmentVIewForDoctors(props) {
                             <div className="col-9">
                                 <p>
 
-                                    {props.appointmentDate}
+                                    {moment(props.appointmentDate).format('YYYY-MM-DD') }
                                 </p>
                             </div>
                         </div>

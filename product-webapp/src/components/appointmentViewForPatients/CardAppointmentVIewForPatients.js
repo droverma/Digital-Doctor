@@ -53,12 +53,11 @@ function CardAppointmentVIewForPatients(props) {
     }
 
     useEffect(() => {
-        console.log(props)
         ProfileDetailsService.doctorProfileAvailableSlots(props.doctorEmail).then((response) => {
             console.log(response.data);
             setdoctorBasicDetails(response.data);
         })
-    }, [])
+    }, [props])
 
     return (
         <div className="col-md-6 mb-4">
@@ -100,7 +99,6 @@ function CardAppointmentVIewForPatients(props) {
                             </div>
                             <div className="col-9">
                                 <p>
-
                                     {moment(props.appointmentDate).format('YYYY-MM-DD')}
                                 </p>
                             </div>

@@ -23,7 +23,7 @@ function AppointmentViewForPatients() {
     const { state } = useLocation();
 
 
-    const [filters, setFilters] = useState({ specialization: '', date: moment().format('YYYY-MM-DD') });
+    const [filters, setFilters] = useState({ specialization: '', date: '' });
 
     useEffect(() => {
         debugger
@@ -42,10 +42,20 @@ function AppointmentViewForPatients() {
         setpatientEmail(email);
         AppointmentService.appointmentsForPatient(email).then((response) => {
             let data = response.data;
-
+            setresult(data);
             setDefaultData(data);
         })
     }
+    // const appoinmentList = ()=>{
+    //     let email = localStorage.getItem("userEmail");
+    //     setpatientEmail(email);
+    //     AppointmentService.appointmentsForPatient(email).then((response) => {
+    //         debugger
+    //         let data = response.data;
+    //         setDefaultData(data);
+    //         setresult(data);
+    //     })
+    // }
 
     useEffect(() => {
         setresult(defaultData);
@@ -84,22 +94,31 @@ function AppointmentViewForPatients() {
 
         setCurrentPage(1);
 
-        filters.date = moment(filters.date).format('YYYY-MM-DD');
+        // filters.date = moment(filters.date).format('YYYY-MM-DD');
         let date = moment(filters.date).format('YYYY-MM-DD');
         let filteredData;
         if (filters.specialization === "" && date !== "Invalid date") {
-            filteredData = activeTabData.filter((response) => { return response.appointmentDate === date });
+            // filteredData = activeTabData.filter((response) => response.appointmentDate === date);
+            AppointmentService.appointmentByDate(date,activetab).then(res => {
+                setresult(res.data);
+            })
         } else if (filters.specialization !== "" && date === "Invalid date") {
-            filteredData = activeTabData.filter((response) => { return response.specialization === filters.specialization });
+            AppointmentService.appointmentBySpec(filters.specialization,activetab).then(res => {
+                setresult(res.data);
+            })
+            // filteredData = activeTabData.filter((response) => response.specialization === filters.specialization);
         } else if (filters.specialization !== "" && date !== "Invalid date") {
-            filteredData = activeTabData.filter((response) => {
-                return response.specialization === filters.specialization &&
-                    response.appointmentDate === date
-            });
+            // filteredData = activeTabData.filter((response) =>
+            //     response.specialization === filters.specialization &&
+            //     response.appointmentDate === date
+            // );
+            const filter = `spec=${filters.specialization}&date=${date}&status=${activetab}`
+            AppointmentService.appointmentByFilter(filter).then(res => {
+                setresult(res.data);
+            })
         }
-        setresult(filteredData);
-        settotalPosts(filteredData.length);
-        setpaginateData(filteredData);
+        settotalPosts(result.length);
+        setpaginateData(result);  
     }
 
     const handleChange = (event) => {
@@ -152,7 +171,7 @@ function AppointmentViewForPatients() {
                         <form onSubmit={handleSubmit}>
                             <input type="search" className="form-control mb-4" placeholder="Search by Specialization"
                                 name="specialization" value={filters.specialization} onChange={handleChange}
-                                autoComplete="off   " />
+                                autoComplete="off" />
                             <input type="date" className="form-control mb-4"
                                 name="date" value={filters.date} onChange={handleChange} />
                             <div className="text-end">

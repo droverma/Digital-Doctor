@@ -26,3 +26,7 @@
         margin-right: unset !important;
     }
 }
+
+.bg-color {
+    background-color: black;
+}

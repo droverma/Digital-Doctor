@@ -24,13 +24,13 @@ function AppointmentViewForDoctors() {
     const [doctorEmail, setdoctorEmail] = useState('');
 
 
-    const [filters, setFilters] = useState({ specialization: '', date: moment().format('YYYY-MM-DD') });
+    const [filters, setFilters] = useState({ specialization: '', date: "" });
 
     useEffect(() => {
         let loggedInEmail = localStorage.getItem("userEmail");
         AppointmentService.appointmentsForDoctor(loggedInEmail).then((response) => {
             let data = response.data;
-            // setresult(data);
+            setresult(data);
             setDefaultData(data);
         })
     }, []);
@@ -41,6 +41,7 @@ function AppointmentViewForDoctors() {
         AppointmentService.appointmentsForDoctor(docEmail).then((response) => {
             let data = response.data;
             setDefaultData(data);
+            setresult(data);
         })
     }
 
@@ -81,22 +82,31 @@ function AppointmentViewForDoctors() {
 
         setCurrentPage(1);
 
-        filters.date = moment(filters.date).format('YYYY-MM-DD');
+        // filters.date = moment(filters.date).format('YYYY-MM-DD');
         let date = moment(filters.date).format('YYYY-MM-DD');
         let filteredData;
         if (filters.specialization === "" && date !== "Invalid date") {
-            filteredData = activeTabData.filter((response) => { return response.appointmentDate === date });
+            // filteredData = activeTabData.filter((response) => { return response.appointmentDate === date });
+            AppointmentService.appointmentByDate(date, activetab).then(res => {
+                setresult(res.data);
+            })
         } else if (filters.specialization !== "" && date === "Invalid date") {
-            filteredData = activeTabData.filter((response) => { return response.specialization === filters.specialization });
+            // filteredData = activeTabData.filter((response) => { return response.specialization === filters.specialization });
+            AppointmentService.appointmentBySpec(filters.specialization, activetab).then(res => {
+                setresult(res.data);
+            })
         } else if (filters.specialization !== "" && date !== "Invalid date") {
-            filteredData = activeTabData.filter((response) => {
-                return response.specialization === filters.specialization &&
-                    response.appointmentDate === date
-            });
+            // filteredData = activeTabData.filter((response) => {
+            //     return response.specialization === filters.specialization &&
+            //         response.appointmentDate === date
+            // });
+            const filter = `spec=${filters.specialization}&date=${date}&status=${activetab}`
+            AppointmentService.appointmentByFilter(filter).then(res => {
+                setresult(res.data);
+            })
         }
-        setresult(filteredData);
-        settotalPosts(filteredData.length);
-        setpaginateData(filteredData);
+        settotalPosts(result.length);
+        setpaginateData(result);  
     }
 
     const handleChange = (event) => {
@@ -148,9 +158,9 @@ function AppointmentViewForDoctors() {
                     <div class="card-body search-fields-Doctor-view">
                         <h5 class="card-title mb-4">Search Fields</h5>
                         <form onSubmit={handleSubmit}>
-                            <input type="search" className="form-control mb-4" placeholder="Search by Specialization"
+                            {/* <input type="search" className="form-control mb-4" placeholder="Search by Specialization"
                                 name="specialization" value={filters.specialization} onChange={handleChange}
-                                autoComplete="off   " />
+                                autoComplete="off   " /> */}
                             <input type="date" className="form-control mb-4"
                                 name="date" value={filters.date} onChange={handleChange} />
                             <div className="text-end">
