@@ -93,7 +93,7 @@ const DoctorProfile = (props) => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0">
       <Form>
         <div className="form-container">
           <Row className="Title-Bar areaHei">

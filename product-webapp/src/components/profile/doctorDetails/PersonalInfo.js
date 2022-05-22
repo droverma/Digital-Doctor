@@ -201,6 +201,7 @@ function PersonalInfo({
                   onChange={doctorChangeHandler}
                   required
                   isInvalid={validated.doctorName}
+                  autoComplete="off"
                 />
 
                 <Form.Control.Feedback type="invalid">
@@ -225,6 +226,7 @@ function PersonalInfo({
                   onChange={doctorChangeHandler}
                   required
                   isInvalid={validated.doctorMobileNumber}
+                  autoComplete="off"
                 />
 
                 <Form.Control.Feedback type="invalid">
@@ -249,6 +251,7 @@ function PersonalInfo({
                   onChange={doctorChangeHandler}
                   required
                   isInvalid={validated.city}
+                  autoComplete="off"
                 />
 
                 <Form.Control.Feedback type="invalid">
@@ -290,6 +293,7 @@ function PersonalInfo({
                   onChange={doctorChangeHandler}
                   required
                   isInvalid={validated.yearsOfExperience}
+                  autoComplete="off"
                 />
 
                 <Form.Control.Feedback type="invalid">

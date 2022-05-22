@@ -58,7 +58,7 @@ const Header = (props) => {
                                 :
                                 <>
                                     <Navbar.Brand className='ms-4 me-0 pe-4'>
-                                        <span className='fs-5 fw-bold'>Welcome back {localStorage.getItem("role") === "patient" ? name : `Dr. ${name}`} !!!</span>
+                                        <span className='fs-6 fw-bold name-properties'>Welcome back {localStorage.getItem("role") === "patient" ? name : `Doctor ${name}`} !!!</span>
                                     </Navbar.Brand>
                                     {/* <NavDropdown title="Logout" id="collasible-nav-dropdown"> */}
                                     {/* <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item> */}

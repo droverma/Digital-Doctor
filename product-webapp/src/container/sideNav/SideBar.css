@@ -27,6 +27,6 @@
     }
 }
 
-.bg-color {
-    background-color: black;
+.bg-color:focus{
+    background-color: #5db5c3 !important;
 }

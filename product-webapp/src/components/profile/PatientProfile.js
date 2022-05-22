@@ -16,6 +16,7 @@ const PatientProfile = (props) => {
   let navigate = useNavigate();
   const [validated, setValidated] = useState({});
   let patientEmailId = localStorage.getItem("userEmail");
+  const FormTitles = "Personal Info";
 
   const [updatePatientData, setUpdatePatientData] = useState({
     emailId: patientEmailId,
@@ -182,8 +183,21 @@ const PatientProfile = (props) => {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid p-0">
         <Form onSubmit={submitHandler}>
+        <Row className="Title-Bar areaHei">
+            <Col
+              md={12}
+              style={{
+                border: "1px solid lightgray",
+                backgroundColor: "lightblue",
+                textAlign: "center",
+              }}
+            >
+              <h1 className="fSize">{FormTitles}</h1>
+            </Col>
+            <hr />
+          </Row>
           <Row className="outerRow">
             <Col md={4} className=" mb-3 ms-1 imgshow">
               {" "}
@@ -212,6 +226,7 @@ const PatientProfile = (props) => {
                       isInvalid={validated.patientName}
                       value={updatePatientData.patientName}
                       onChange={patientChangeHandler}
+                      autoComplete="off"
                       required
                     />
                     <Form.Control.Feedback type="invalid">
@@ -236,6 +251,7 @@ const PatientProfile = (props) => {
                       onChange={patientChangeHandler}
                       readOnly
                       isInvalid={validated.emailId}
+                      autoComplete="off"
                     />
 
                     <Form.Control.Feedback type="invalid">
@@ -260,6 +276,7 @@ const PatientProfile = (props) => {
                       onChange={patientChangeHandler}
                       required
                       isInvalid={validated.city}
+                      autoComplete="off"
                     />
 
                     <Form.Control.Feedback type="invalid">
@@ -305,6 +322,7 @@ const PatientProfile = (props) => {
                       onChange={patientChangeHandler}
                       required
                       isInvalid={validated.patientMobileNumber}
+                      autoComplete="off"
                     />
                     <Form.Control.Feedback type="invalid">
                       Please enter the valid Mobile Number.

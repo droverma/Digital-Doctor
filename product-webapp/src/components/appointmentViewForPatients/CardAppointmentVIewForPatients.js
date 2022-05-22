@@ -74,7 +74,7 @@ function CardAppointmentVIewForPatients(props) {
                                 </div> */}
                                 <div className="col pt-2 pe-0 ps-0">
                                     {/* <h4>Kamal Anand</h4> */}
-                                    <h4>{doctorBasicDetails.doctorName ? doctorBasicDetails.doctorName : 'Dr. Doctor'}</h4>
+                                    <h5 className="fw-bold">{doctorBasicDetails.doctorName ? doctorBasicDetails.doctorName : 'Dr. Doctor'}</h5>
                                 </div>
                             </div>
                             <div className="text-right">

@@ -26,11 +26,9 @@ function AppointmentViewForPatients() {
     const [filters, setFilters] = useState({ specialization: '', date: '' });
 
     useEffect(() => {
-        debugger
         let email = localStorage.getItem("userEmail");
         setpatientEmail(email);
         AppointmentService.appointmentsForPatient(email).then((response) => {
-            debugger
             let data = response.data;
             setDefaultData(data);
             setresult(data);
@@ -50,7 +48,6 @@ function AppointmentViewForPatients() {
     //     let email = localStorage.getItem("userEmail");
     //     setpatientEmail(email);
     //     AppointmentService.appointmentsForPatient(email).then((response) => {
-    //         debugger
     //         let data = response.data;
     //         setDefaultData(data);
     //         setresult(data);

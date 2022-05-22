@@ -62,11 +62,9 @@ class AppointmentService {
         return axios.get("http://localhost:8080/slotDetails/doctor/" + slotDate + "/" + email)
     }
     updateSlotStatus(slotObject) {
-        debugger
         return axios.put("http://localhost:8080/doctor/slot/status", slotObject)
     }
     getSlotDetails(slotId) {
-        debugger
         return axios.get("http://localhost:8080/doctor/slot/" + slotId);
     }
 }

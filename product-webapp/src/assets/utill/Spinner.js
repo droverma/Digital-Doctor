@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/style.css";
 
-import loding from "./loading.gif";
+import loding from "./Loading_icon.gif";
 
 const Spinner = () => {
   return (
