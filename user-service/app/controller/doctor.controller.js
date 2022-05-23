@@ -84,8 +84,7 @@ exports.signInDoctor = (req, res) => {
         const token = jwt.sign(data, jwtsecretKey);
         res.send(token);
       } else {
-        // return res.status(501).send({ error: "Invalid Password" });
-        return res.send({ error: "invalid user or password" });
+        return res.status(502).send({ error: "invalid user or password" });
       }
     });
   });
