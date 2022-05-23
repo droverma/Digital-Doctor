@@ -3,6 +3,8 @@ import { Button, Col, Form, Image, Modal, NavLink, Row } from "react-bootstrap";
 import loginImage from "../../assets/images/loginImage.jpg";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../services/Auth.service";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
 const Login = (props) => {
@@ -53,13 +55,43 @@ const Login = (props) => {
 
     setValidated(true);
     if (data.role === "doctor") {
+      // console.log(data);
       AuthService.loginDoctor(data)
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.data && res.data.error) {
-            alert('not found')
-          }
-          else {
+            if (res.status === 500) {
+              toast.warning("User not found", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            } else if (res.status === 501) {
+              toast.warning("Invalid Password", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            } else {
+              toast.warning("Invalid user or password", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            }
+          } else {
             localStorage.setItem("userEmail", data.emailId);
             localStorage.setItem("jwt-token", res.data.token);
             localStorage.setItem("role", data.role);
@@ -70,15 +102,58 @@ const Login = (props) => {
             props.handleModal();
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          if (err.response.status === 502) {
+            toast.warning("Invalid user or password", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        });
     } else {
       AuthService.loginPatient(data)
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.data && res.data.error) {
-            alert('not found')
-          }
-          else {
+            console.log(res.response);
+            if (res.status === 500) {
+              toast.warning("User not found", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            } else if (res.status === 501) {
+              toast.warning("Invalid Password", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            } else {
+              toast.warning("Invalid user or password", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            }
+          } else {
             localStorage.setItem("userEmail", data.emailId);
             localStorage.setItem("jwt-token", res.data.token);
             localStorage.setItem("role", data.role);
@@ -89,7 +164,20 @@ const Login = (props) => {
             props.handleModal();
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err, "error");
+          if (err.response.status === 502) {
+            toast.warning("Invalid user or password", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        });
     }
     // AuthService.login(data).then(res => {
     //     localStorage.setItem("userEmail", data.emailId);
@@ -195,6 +283,18 @@ const Login = (props) => {
                   </NavLink>
                 </Form.Text>
               </Form>
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
+              <ToastContainer />
             </Col>
           </Row>
         </Modal.Body>

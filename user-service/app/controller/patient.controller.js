@@ -38,7 +38,7 @@ exports.registerPatient = (req, res) => {
 
 //Update Patient Profile Details
 exports.updatePatient = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   if (!req.body) {
     return res.status(400).send({
       message: "Patient Data to update can not be Empty..........",
@@ -62,27 +62,15 @@ exports.updatePatient = (req, res) => {
 
 //Patient Sign in and JWT Token Generation
 exports.signInPatient = (req, res) => {
-  // const normalPassword = "kamal123";
   const normalPassword = req.body.password;
-  console.log("received");
-  console.log("patient req body", req.body);
-  // res.json(req.body);
   Patient.findOne({ _id: req.body.emailId }, "password", (err, patient) => {
-    console.log(err, "----", patient, patient.length);
-    console.log("length", patient.length);
-    console.log("password", patient.password);
     if (err) {
-      console.log("inside err");
-      return res.send({ error: "Invalid Password" });
+      return res.status(501).send({ error: "Invalid Password" });
     }
     if (patient.length === 0) {
-      console.log("inside patient length");
-
-      return res.send({ error: "user not found " });
+      return res.status(500).send({ error: "user not found " });
     }
-    console.log("now");
     bcrypt.compare(normalPassword, patient.password, (err, result) => {
-      console.log("inside com");
       if (result == true) {
         console.log("Success");
         let jwtsecretKey = process.env.JWT_SECRET_KEY;
@@ -90,7 +78,7 @@ exports.signInPatient = (req, res) => {
         const token = jwt.sign(data, jwtsecretKey);
         res.send(token);
       } else {
-        res.send(" invalid user or password");
+        return res.status(502).send({ error: "invalid user or password" });
       }
     });
   });
