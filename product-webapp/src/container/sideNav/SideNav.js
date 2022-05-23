@@ -24,11 +24,19 @@ const drawerWidth = 240;
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState("Profile");
+
   const navigate = useNavigate();
 
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleTab = (path, title) => {
+    setActiveTab(title)
+    navigate(path)
+
   };
 
   const drawer = (
@@ -43,22 +51,24 @@ function ResponsiveDrawer(props) {
           {localStorage.getItem('role') === 'patient' ?
 
             PatientSidebarData.map((text, index) => (
-              <ListItem button key={index}>
+                <ListItem button key={index} onClick={(e) => handleTab(text.path, text.title)} className={activeTab ?'bg-color': ''}>
+                {console.log(activeTab,text.title)}
                 <ListItemIcon className='icon'>
                   {text.icon}
                 </ListItemIcon>
-                <ListItemText primary={text.title} onClick={() => { return navigate(text.path) }}
+                <ListItemText primary={text.title}
                   className="text" />
               </ListItem>
+              
             ))
             :
 
             DoctorSidebarData.map((text, index) => (
-              <ListItem button key={index}>
+              <ListItem button key={index} onClick={(e) => handleTab(text.path, text.title) } className={activeTab?'bg-color': ''}>
                 <ListItemIcon className='icon'>
                   {text.icon}
                 </ListItemIcon>
-                <ListItemText primary={text.title} onClick={() => { return navigate(text.path) }}
+                <ListItemText primary={text.title}
                   className="text" />
               </ListItem>
             ))

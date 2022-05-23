@@ -13,7 +13,7 @@
     text-align: center;
     border: 1px solid grey;
     border-radius: 40px;
-    background: #E6E6E6;
+    background: #abe3e9;
 }
 
 .card:hover {
@@ -21,9 +21,9 @@
 }
 
 .doctor-image {
-    width: 248px;
-    height: 190px;
-    border-radius: 100px;
+    width: 70%;
+    height: 170px;
+    border-radius: 25px;
 }
 
 .calender-doctor-details {
@@ -275,8 +275,8 @@
 }
 
 .doctors-image {
-    height: 130px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
     border-radius: 12px;
 }
 
@@ -303,10 +303,10 @@
 }
 
 @media screen and (min-width:768px) and (max-width: 992px) {
-    .doctor-image {
+    /* .doctor-image {
         width: 180px;
         height: 150px;
-    }
+    } */
     .doctors-details {
         margin-left: 20px;
     }
@@ -342,10 +342,10 @@
     .react-calendar__month-view__weekdays {
         font-size: 12px;
     }
-    .doctor-image {
+    /* .doctor-image {
         width: 180px;
         height: 150px;
-    }
+    } */
 }
 
 .footer {

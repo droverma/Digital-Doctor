@@ -4,6 +4,8 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PersonalInfo from "./doctorDetails/PersonalInfo";
 import "../../assets/style/style.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DoctorProfile = (props) => {
 
@@ -13,10 +15,35 @@ const DoctorProfile = (props) => {
     e.preventDefault();
     ProfileDetailsService.addDoctorProfile(updateDoctorData)
       .then((res) => {
-        navigate("/createSlotViewDoctor");
+        if(res){
+          toast.success('Patients Profile Updated Submitted', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        setTimeout(() => {
+          navigate("/createSlotViewDoctor");
+        }, 2000);
+        }
+        
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => {
+        console.log(err)
+        toast.success('Error updating Profile', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+      }
+  )};
   const [validated, setValidated] = useState({});
 
   let doctorEmail = localStorage.getItem("userEmail");
@@ -66,7 +93,7 @@ const DoctorProfile = (props) => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0">
       <Form>
         <div className="form-container">
           <Row className="Title-Bar areaHei">
@@ -104,6 +131,19 @@ const DoctorProfile = (props) => {
           </div>
         </div>
       </Form>
+      <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+      <ToastContainer />
     </div>
   );
 };

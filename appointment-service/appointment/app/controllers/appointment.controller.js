@@ -47,7 +47,7 @@ exports.appointmentListByPatient = (req, res) => {
 }
 
 exports.appointmentListByDoctor = (req, res) => {
-    Appointment.find({ appointmentId: req.params.id }).then(response => {
+    Appointment.find({ doctorEmail: req.params.email }).then(response => {
         res.send(response)
     }).catch(err => {
         res.status(500).send({
@@ -67,7 +67,7 @@ exports.appointmentDetails = (req, res) => {
 }
 
 exports.appointmentListBySpecialization = (req, res) => {
-    Appointment.find({ specialization: req.params.specialization }).then(response => {
+    Appointment.find({ specialization: req.params.specialization, appointmentStatus: req.params.activeTab }).then(response => {
         res.send(response);
     }).catch(err => {
         res.status(500).send({
@@ -76,13 +76,30 @@ exports.appointmentListBySpecialization = (req, res) => {
     })
 }
 exports.appointmentListByDate = (req, res) => {
-    Appointment.find({ appointmentDate: req.params.date }).then(response => {
+    Appointment.find({ appointmentDate: req.params.date, appointmentStatus: req.params.activeTab }).then(response => {
         res.send(response);
     }).catch(err => {
         res.status(500).send({
             msg: "Appointment not found"
         })
     })
+}
+
+exports.appointmentListByFilter = (req, res) => {
+    console.log(req.query);
+    console.log(req.query.spec, req.query.date);
+    if (req.query.date)
+        Appointment.find({
+            appointmentDate: req.query.date,
+            specialization: req.query.spec,
+            appointmentStatus: req.query.status,
+        }).then(response => {
+            res.send(response);
+        }).catch(err => {
+            res.status(500).send({
+                msg: "Appointment not found"
+            })
+        })
 }
 
 exports.updateAppointmentStatus = (req, res) => {

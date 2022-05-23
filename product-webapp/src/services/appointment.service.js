@@ -46,23 +46,25 @@ class AppointmentService {
         // return axios.get(`${apiUrl}/api/v1/appointmentDetails/` + appointmentId)
         return axios.get(`http://localhost:8081/api/v1/appointmentDetails/${appointmentId}`)
     }
-    appointmentBySpec(spec) {
+    appointmentBySpec(spec, activeTab) {
         // return axios.get(`${apiUrl}/api/v1/appointmentDetails/patient/` + appointmentDate)
-        return axios.get(`http://localhost:8081/api/v1/appointmentBySpec/${spec}`);
+        return axios.get(`http://localhost:8081/api/v1/appointmentBySpec/${spec}/${activeTab}`);
     }
-    appointmentByDate(appointmentDate) {
+    appointmentByDate(appointmentDate, activeTab) {
         // return axios.get(`${apiUrl}/api/v1/appointmentDetails/patient/` + appointmentDate)
-        return axios.get(`http://localhost:8081/api/v1/appointmentByDate/${appointmentDate}`);
+        return axios.get(`http://localhost:8081/api/v1/appointmentByDate/${appointmentDate}/${activeTab}`);
     }
-    getSlotsUsingDate(slotDate) {
-        return axios.get("http://localhost:8080/slotDetails/doctor/" + slotDate)
+    appointmentByFilter(filter) {
+        // return axios.get(`${apiUrl}/api/v1/appointmentDetails/patient/` + appointmentDate)
+        return axios.get(`http://localhost:8081/api/v1/appointmentFilter?${filter}`);
+    }
+    getSlotsUsingDate(slotDate, email) {
+        return axios.get("http://localhost:8080/slotDetails/doctor/" + slotDate + "/" + email)
     }
     updateSlotStatus(slotObject) {
-        debugger
         return axios.put("http://localhost:8080/doctor/slot/status", slotObject)
     }
     getSlotDetails(slotId) {
-        debugger
         return axios.get("http://localhost:8080/doctor/slot/" + slotId);
     }
 }

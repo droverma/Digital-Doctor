@@ -53,12 +53,11 @@ function CardAppointmentVIewForPatients(props) {
     }
 
     useEffect(() => {
-        console.log(props)
         ProfileDetailsService.doctorProfileAvailableSlots(props.doctorEmail).then((response) => {
             console.log(response.data);
             setdoctorBasicDetails(response.data);
         })
-    }, [])
+    }, [props])
 
     return (
         <div className="col-md-6 mb-4">
@@ -69,28 +68,28 @@ function CardAppointmentVIewForPatients(props) {
                             <img src={doctorBasicDetails.image ? doctorBasicDetails.image : DoctorAvatar} className="doctors-image" />
                         </div>
                         <div className="col">
-                            <div className="row mb-4">
+                            <div className="row">
                                 {/* <div className="col-3 text-right">
                                     <PersonIcon className="person-icon" />
                                 </div> */}
                                 <div className="col pt-2 pe-0 ps-0">
                                     {/* <h4>Kamal Anand</h4> */}
-                                    <h4>{doctorBasicDetails.doctorName ? doctorBasicDetails.doctorName : 'Dr. Doctor'}</h4>
+                                    <h5 className="fw-bold">{doctorBasicDetails.doctorName ? doctorBasicDetails.doctorName : 'Dr. Doctor'}</h5>
                                 </div>
                             </div>
                             <div className="text-right">
                                 <p>{props.specialization}</p>
                             </div>
-                            <div className="text-right mb-4">
+                            <div className="text-right">
                                 {/* <h6 className="card-title pe-4">Age: 32</h6> */}
                                 <h6 className="card-title pe-4">Exp: {doctorBasicDetails.yearsOfExperience ? doctorBasicDetails.yearsOfExperience : '0'} yrs</h6>
 
                             </div>
                         </div>
                     </div>
-                    <div className="row mb-4">
-                        <div className="row col">
-                            <div className="col-3">
+                    <div className="row">
+                        <div className="row col pe-0 ps-0">
+                            <div className="col-3 pe-0 ps-0">
                                 <Tooltip
                                     title="Appointment Date"
                                     placement="top">
@@ -98,15 +97,14 @@ function CardAppointmentVIewForPatients(props) {
                                     />
                                 </Tooltip>
                             </div>
-                            <div className="col-9">
+                            <div className="col-9 pe-0 ps-0">
                                 <p>
-
                                     {moment(props.appointmentDate).format('YYYY-MM-DD')}
                                 </p>
                             </div>
                         </div>
-                        <div className="row col">
-                            <div className="col-3">
+                        <div className="row col pe-0 ps-0">
+                            <div className="col-3 pe-0 ps-0">
                                 <Tooltip
                                     title="Appointment Time"
                                     placement="top">
@@ -114,7 +112,7 @@ function CardAppointmentVIewForPatients(props) {
                                     />
                                 </Tooltip>
                             </div>
-                            <div className="col-9 appointment-date">
+                            <div className="col-9 pe-0 ps-0 appointment-date">
                                 <p>
                                     {props.appointmentStartTime} - {props.appointmentEndTime}
                                 </p>

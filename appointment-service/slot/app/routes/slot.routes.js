@@ -6,6 +6,6 @@ module.exports = (app) => {
   app.get("/doctor/slotDetails/:doctorEmailId", slots.getAllSlotsByDoctor);
   app.put("/doctor/slot/status", slots.updateStatus);
   app.delete("/doctor/slot/:slotId", slots.deleteSlotById);
-  app.get("/slotDetails/doctor/:slotDate", slots.getByDate);
+  app.get("/slotDetails/doctor/:slotDate/:doctorEmailId", slots.getByDate);
 
 };

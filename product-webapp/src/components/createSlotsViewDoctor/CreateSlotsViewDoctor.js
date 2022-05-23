@@ -12,13 +12,15 @@ import profileDetailsService from "../../services/profileDetails.service";
 function CreateSlotViewDoctor() {
 
     const [result, setresult] = useState([]);
+    const [validate, setValidate] = useState(true);
     const [value] = useState(new Date());
     const [date, setDate] = useState('');
     const [fields, setfields] = useState({ slotDate: '', slotStartTime: '', slotEndTime: '' });
 
     function changeDate(value, event) {
+        let doctorEmail = localStorage.getItem("userEmail");
         let momentDate = moment(value).format('YYYY-MM-DD');
-        AppointmentService.getSlotsUsingDate(momentDate).then((response) => {
+        AppointmentService.getSlotsUsingDate(momentDate, doctorEmail).then((response) => {
             setresult(response.data);
         })
         setDate(momentDate);
@@ -28,6 +30,61 @@ function CreateSlotViewDoctor() {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
+
+        switch (name) {
+            case "slotDate":
+                if (moment(new Date()).format('yyyy-MM-DD') <= value)
+                    setValidate(false)
+                else {
+                    setValidate(true)
+                    toast.warning('Slot date must be greater than and equal to today.', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+                break;
+            case "slotEndTime":
+                if (value > fields.slotStartTime)
+                    setValidate(false)
+                else {
+                    setValidate(true)
+                    toast.warning('Slot end time must be greater than slot start time.', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+                break;
+            case "slotStartTime":
+                if (fields.slotEndTime !== '')
+                    if (value < fields.slotEndTime)
+                        setValidate(false)
+                    else {
+                        console.log(fields.slotEndTime);
+                        setValidate(true)
+                        toast.warning('Slot Start time must be less than slot end time.', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }
+                break;
+            default: console.log('default')
+                break;
+        }
         setfields({ ...fields, [name]: value });
     }
 
@@ -52,7 +109,7 @@ function CreateSlotViewDoctor() {
 
             AppointmentService.addSlots(data).then((response) => {
                 if (response) {
-                    // debugger
+
                     toast.success('Slot Created Successfully!', {
                         position: "top-right",
                         autoClose: 5000,
@@ -63,6 +120,8 @@ function CreateSlotViewDoctor() {
                         progress: undefined,
                     });
                     getSlots();
+                    setfields({ slotDate: '', slotStartTime: '', slotEndTime: '' })
+
                 } else {
                     console.log('No data found');
                 }
@@ -172,7 +231,8 @@ function CreateSlotViewDoctor() {
                                     <div className="col">
                                         <input type="date" placeholder="Select Slot Date"
                                             name="slotDate" value={fields.slotDate} onChange={handleChange}
-                                            className="create-slot-input-fields" />
+                                            className="create-slot-input-fields"
+                                            min={moment(new Date()).format('yyyy-MM-DD')} />
                                     </div>
 
                                 </div>
@@ -201,7 +261,7 @@ function CreateSlotViewDoctor() {
 
                                 </div>
                                 <div className="mb-2 column col">
-                                    <button type="submit" className="btn btn-primary">Create Slot</button>
+                                    <button type="submit" className="btn btn-primary" disabled={validate || !fields.slotDate || !fields.slotEndTime}>Create Slot</button>
                                 </div>
                                 <ToastContainer
                                     position="top-right"
@@ -214,7 +274,6 @@ function CreateSlotViewDoctor() {
                                     draggable
                                     pauseOnHover
                                 />
-                                {/* Same as */}
                                 <ToastContainer />
                             </div>
 

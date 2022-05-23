@@ -16,6 +16,7 @@ import Header from "./container/header/Header";
 import ResponsiveDrawer from "./container/sideNav/SideNav";
 // import ResponsiveDrawer from "./container/sideNav/Sidebar";
 import { ContextProvider } from './context/Context';
+import ProtectedRoute from "./ProtectedRoute";
 function App() {
     const [isAuthenticated, setisAuthenticated] = useState(false);
     useEffect(() => {
@@ -41,7 +42,7 @@ function App() {
                             <Route path="/about" element={<About />} />
                             <Route path="/contact" element={<Contact />} />
                             <Route path="/doctorslist" element={<DoctorsList />} />
-                            <Route path="/updatedoctor" element={<DoctorProfile setisAuthenticated={(token) => setisAuthenticated(token)} />} />
+                            <Route path="/updatedoctor" element={<ProtectedRoute> <DoctorProfile setisAuthenticated={(token) => setisAuthenticated(token)} /></ProtectedRoute>} />
                             <Route path="/updatepatient" element={<PatientProfile setisAuthenticated={(token) => setisAuthenticated(token)} />} />
                             <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
                             <Route path="/video" element={<ContextProvider><VideoChat /></ContextProvider>} />

@@ -56,7 +56,6 @@ const Login = (props) => {
       AuthService.loginDoctor(data)
         .then((res) => {
           console.log(res)
-          debugger
           if (res.data && res.data.error) {
             alert('not found')
           }
@@ -109,7 +108,6 @@ const Login = (props) => {
     // }).catch(err => console.log(err))
   };
   const onHide = () => {
-    debugger
     setData({
       emailId: "",
       password: "",

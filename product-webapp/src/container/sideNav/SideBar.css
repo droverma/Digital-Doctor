@@ -26,3 +26,7 @@
         margin-right: unset !important;
     }
 }
+
+.bg-color:focus{
+    background-color: #5db5c3 !important;
+}

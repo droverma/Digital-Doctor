@@ -18,7 +18,8 @@ exports.getSlotDetails = (req, res) => {
 
 exports.getByDate = (req, res) => {
   let slotDate = req.params.slotDate
-  Slots.find({ slotDate: slotDate })
+  let doctorEmail = req.params.doctorEmailId
+  Slots.find({ slotDate: slotDate, doctorEmail: doctorEmail})
     .then((response) => {
       res.send(response);
     })
