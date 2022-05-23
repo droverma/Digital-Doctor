@@ -12,7 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProfileDetailsService from "../../services/profileDetails.service";
 import { useLocation } from 'react-router-dom';
-import DoctorImage from '../../assets/images/Doctor_image.jpg'
+import DoctorImage from '../../assets/images/doctor_avatar.jpg'
 
 
 function AvailableSlotsPatients() {
@@ -42,10 +42,8 @@ function AvailableSlotsPatients() {
         AppointmentService.getSlots(state).then((response) => {
             let data = response.data;
             setresult(data);
-            debugger
             ProfileDetailsService.doctorProfileAvailableSlots(data[0].doctorEmail).then((response) => {
                 setDetails(response.data)
-                debugger
             })
         });
 
@@ -69,7 +67,6 @@ function AvailableSlotsPatients() {
             appointmentStatus: "UPCOMING",
             bookedOn: value,
         }
-        debugger
         if (startTime && endTime) {
             AppointmentService.getBookedAppointment(data).then((response) => {
                 if (response) {

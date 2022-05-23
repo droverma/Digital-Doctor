@@ -105,6 +105,7 @@ const DoctorsList = () => {
               placeholder="Search City"
               value={filterData.city}
               onChange={listChangeHandler}
+              autoComplete="off"
               required
             />
             <Form.Select

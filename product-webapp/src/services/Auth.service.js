@@ -6,10 +6,12 @@ class AuthService {
   // const apiUrl = 'http://localhost:8080';
   //actual end-points
   loginDoctor(data) {
+    // console.log(data);
+
     return axios.post(`${apiUrl}/api/v1/doctor/login`, data);
   }
   loginPatient(data) {
-    console.log(data);
+    // console.log(data);
     return axios.post(`${apiUrl}/api/v1/patient/login`, data);
   }
   //login(data) {

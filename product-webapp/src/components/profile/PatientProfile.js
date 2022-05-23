@@ -4,6 +4,8 @@ import { Col, Form, Row } from "react-bootstrap";
 import ProfileDetailsService from "../../services/profileDetails.service";
 import "../../assets/style/style.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
@@ -14,6 +16,7 @@ const PatientProfile = (props) => {
   let navigate = useNavigate();
   const [validated, setValidated] = useState({});
   let patientEmailId = localStorage.getItem("userEmail");
+  const FormTitles = "Personal Info";
 
   const [updatePatientData, setUpdatePatientData] = useState({
     emailId: patientEmailId,
@@ -134,8 +137,19 @@ const PatientProfile = (props) => {
           console.log(res);
         })
         .catch((err) => console.log(err));
-      alert("Patient's Profile Update Submitted");
-      navigate("/doctorslist");
+      // alert("Patient's Profile Update Submitted");
+      toast.success("Patients Profile Updated Submitted", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        navigate("/doctorslist");
+      }, 2000);
     }, 1000);
   };
 
@@ -144,7 +158,7 @@ const PatientProfile = (props) => {
       .then((res) => {
         // console.log(res.data);
         const da = res.data;
-        console.log(da);
+        // console.log(da);
         setUpdatePatientData({
           emailId: da._id,
           patientName: da.patientName,
@@ -160,7 +174,7 @@ const PatientProfile = (props) => {
   useEffect(() => {
     props.setisAuthenticated(true);
     getPatientData();
-  }, []);
+  }, [props]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -168,8 +182,21 @@ const PatientProfile = (props) => {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid p-0">
         <Form onSubmit={submitHandler}>
+          <Row className="Title-Bar areaHei">
+            <Col
+              md={12}
+              style={{
+                border: "1px solid lightgray",
+                backgroundColor: "lightblue",
+                textAlign: "center",
+              }}
+            >
+              <h1 className="fSize">{FormTitles}</h1>
+            </Col>
+            <hr />
+          </Row>
           <Row className="outerRow">
             <Col md={4} className=" mb-3 ms-1 imgshow">
               {" "}
@@ -198,6 +225,7 @@ const PatientProfile = (props) => {
                       isInvalid={validated.patientName}
                       value={updatePatientData.patientName}
                       onChange={patientChangeHandler}
+                      autoComplete="off"
                       required
                     />
                     <Form.Control.Feedback type="invalid">
@@ -222,6 +250,7 @@ const PatientProfile = (props) => {
                       onChange={patientChangeHandler}
                       readOnly
                       isInvalid={validated.emailId}
+                      autoComplete="off"
                     />
 
                     <Form.Control.Feedback type="invalid">
@@ -246,6 +275,7 @@ const PatientProfile = (props) => {
                       onChange={patientChangeHandler}
                       required
                       isInvalid={validated.city}
+                      autoComplete="off"
                     />
 
                     <Form.Control.Feedback type="invalid">
@@ -291,6 +321,7 @@ const PatientProfile = (props) => {
                       onChange={patientChangeHandler}
                       required
                       isInvalid={validated.patientMobileNumber}
+                      autoComplete="off"
                     />
                     <Form.Control.Feedback type="invalid">
                       Please enter the valid Mobile Number.
@@ -326,6 +357,19 @@ const PatientProfile = (props) => {
             </button>
           </div>
         </Form>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+        <ToastContainer />
       </div>
     </>
   );

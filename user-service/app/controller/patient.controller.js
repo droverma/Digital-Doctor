@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 dotenv.config();
-
 // Patient Registration
 exports.registerPatient = (req, res) => {
   const pwd = req.body.password;
@@ -39,10 +38,7 @@ exports.registerPatient = (req, res) => {
 
 //Update Patient Profile Details
 exports.updatePatient = (req, res) => {
-  const pwd = req.body.password;
-  const salt = bcrypt.genSaltSync(10);
-  req.body.password = bcrypt.hashSync(pwd, salt);
-
+  // console.log(req.body);
   if (!req.body) {
     return res.status(400).send({
       message: "Patient Data to update can not be Empty..........",
@@ -67,27 +63,22 @@ exports.updatePatient = (req, res) => {
 //Patient Sign in and JWT Token Generation
 exports.signInPatient = (req, res) => {
   const normalPassword = req.body.password;
-  console.log("received");
-  // console.log("received1231");
-  // console.log("patient req body", req.body);
-  // res.json(req.body);
-  Patient.find({ _id: req.body.emailId }, "password", (err, patient) => {
-    console.log(err, '----', patient, patient.length)
+  Patient.findOne({ _id: req.body.emailId }, "password", (err, patient) => {
     if (err) {
-      return res.send({ error: "Invalid Password" });
+      return res.status(501).send({ error: "Invalid Password" });
     }
     if (patient.length === 0) {
-      return res.send({ error: "user not found " });
+      return res.status(500).send({ error: "user not found " });
     }
-    bcrypt.compare(req.body.password, patient.password, (err, result) => {
+    bcrypt.compare(normalPassword, patient.password, (err, result) => {
       if (result == true) {
-        console.log("success");
+        console.log("Success");
         let jwtsecretKey = process.env.JWT_SECRET_KEY;
-        let data = { time: Date(), userId: 100 };
+        let data = { time: Date(), userId: 101 };
         const token = jwt.sign(data, jwtsecretKey);
         res.send(token);
       } else {
-        res.send(" invalid user or password");
+        return res.status(502).send({ error: "invalid user or password" });
       }
     });
   });

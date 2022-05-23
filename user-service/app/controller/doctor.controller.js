@@ -15,7 +15,7 @@ exports.registerDoctor = (req, res) => {
     });
   }
 
-  console.log(req.body);
+  // console.log(req.body);
   const doctor = new Doctor({
     _id: req.body.emailId,
     role: req.body.role,
@@ -31,7 +31,7 @@ exports.registerDoctor = (req, res) => {
       ? req.body.doctorMobileNumber
       : "",
   });
-  console.log(doctor);
+  // console.log(doctor);
   doctor
     .save()
     .then((data) => {
@@ -46,10 +46,6 @@ exports.registerDoctor = (req, res) => {
 
 //update the Doctor list
 exports.updateDoctor = (req, res) => {
-  const pwd = req.body.password;
-  const salt = bcrypt.genSaltSync(10);
-  req.body.password = bcrypt.hashSync(pwd, salt);
-
   if (!req.body) {
     return res.status(400).send({
       message: "Doctor Data to update can not be Empty..........",
@@ -74,24 +70,22 @@ exports.updateDoctor = (req, res) => {
 //Doctor Sign in and Generate the JWT token
 exports.signInDoctor = (req, res) => {
   const normalPassword = req.body.password;
-  console.log("received");
-  console.log("signin", req.body);
-  Doctor.find({ _id: req.body.emailId }, "password", (err, doctor) => {
-    console.log(err,'-----',doctor,'doctor')
+  Doctor.findOne({ _id: req.body.emailId }, "password", (err, doctor) => {
     if (err) {
-      return res.send({ error: "Invalid Password" });
+      return res.status(501).send({ error: "Invalid Password" });
     }
-    if (doctor.length===0) {
-      return res.send({ error: "user not found " });
+    if (doctor.length === 0) {
+      return res.status(500).send({ error: "user not found " });
     }
-    bcrypt.compare(req.body.password, doctor.password, (err, result) => {
+    bcrypt.compare(normalPassword, doctor.password, (err, result) => {
       if (result == true) {
         let jwtsecretKey = process.env.JWT_SECRET_KEY;
         let data = { time: Date(), userId: 101 };
         const token = jwt.sign(data, jwtsecretKey);
         res.send(token);
       } else {
-         res.send(" invalid user or password");
+        // return res.status(501).send({ error: "Invalid Password" });
+        return res.send({ error: "invalid user or password" });
       }
     });
   });
@@ -111,7 +105,6 @@ exports.getAllDoctor = (req, res) => {
 // Find the doctors on the basis of specific id(Email)
 exports.findDoctor = (req, res) => {
   const _id = req.params.id;
-  console.log("param doctor", req.params);
   Doctor.findById(_id)
     .then((data) => {
       if (!data) {
@@ -152,7 +145,7 @@ exports.findDoctorCity = (req, res) => {
 // Find the doctors from the specific city and specialization
 exports.findDoctorCitySpec = (req, res) => {
   const { city, specialization } = req.params;
-  console.log(req.params);
+  // console.log(req.params);
   Doctor.find({ city: city, specialization: specialization })
     .then((data) => {
       if (!data) {
