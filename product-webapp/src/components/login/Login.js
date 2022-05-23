@@ -58,7 +58,7 @@ const Login = (props) => {
       // console.log(data);
       AuthService.loginDoctor(data)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data && res.data.error) {
             if (res.status === 500) {
               toast.warning("User not found", {
@@ -119,7 +119,7 @@ const Login = (props) => {
     } else {
       AuthService.loginPatient(data)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data && res.data.error) {
             console.log(res.response);
             if (res.status === 500) {

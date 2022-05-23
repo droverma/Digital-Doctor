@@ -4,8 +4,8 @@ import { Col, Form, Row } from "react-bootstrap";
 import ProfileDetailsService from "../../services/profileDetails.service";
 import "../../assets/style/style.css";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const emailExpresion = RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/);
 
@@ -138,7 +138,7 @@ const PatientProfile = (props) => {
         })
         .catch((err) => console.log(err));
       // alert("Patient's Profile Update Submitted");
-      toast.success('Patients Profile Updated Submitted', {
+      toast.success("Patients Profile Updated Submitted", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -146,11 +146,10 @@ const PatientProfile = (props) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-    });
-    setTimeout(() => {
-      navigate("/doctorslist");
-    }, 2000);
-      
+      });
+      setTimeout(() => {
+        navigate("/doctorslist");
+      }, 2000);
     }, 1000);
   };
 
@@ -159,7 +158,7 @@ const PatientProfile = (props) => {
       .then((res) => {
         // console.log(res.data);
         const da = res.data;
-        console.log(da);
+        // console.log(da);
         setUpdatePatientData({
           emailId: da._id,
           patientName: da.patientName,
@@ -185,7 +184,7 @@ const PatientProfile = (props) => {
     <>
       <div className="container-fluid p-0">
         <Form onSubmit={submitHandler}>
-        <Row className="Title-Bar areaHei">
+          <Row className="Title-Bar areaHei">
             <Col
               md={12}
               style={{
