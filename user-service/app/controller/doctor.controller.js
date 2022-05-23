@@ -46,10 +46,6 @@ exports.registerDoctor = (req, res) => {
 
 //update the Doctor list
 exports.updateDoctor = (req, res) => {
-  const pwd = req.body.password;
-  const salt = bcrypt.genSaltSync(10);
-  req.body.password = bcrypt.hashSync(pwd, salt);
-
   if (!req.body) {
     return res.status(400).send({
       message: "Doctor Data to update can not be Empty..........",
@@ -74,14 +70,14 @@ exports.updateDoctor = (req, res) => {
 //Doctor Sign in and Generate the JWT token
 exports.signInDoctor = (req, res) => {
   const normalPassword = req.body.password;
-  console.log("received");
-  console.log("signin", req.body);
+  // console.log("received");
+  // console.log("signin", req.body);
   Doctor.find({ _id: req.body.emailId }, "password", (err, doctor) => {
-    console.log(err,'-----',doctor,'doctor')
+    // console.log(err,'-----',doctor,'doctor')
     if (err) {
       return res.send({ error: "Invalid Password" });
     }
-    if (doctor.length===0) {
+    if (doctor.length === 0) {
       return res.send({ error: "user not found " });
     }
     bcrypt.compare(req.body.password, doctor.password, (err, result) => {
@@ -91,7 +87,7 @@ exports.signInDoctor = (req, res) => {
         const token = jwt.sign(data, jwtsecretKey);
         res.send(token);
       } else {
-         res.send(" invalid user or password");
+        res.send(" invalid user or password");
       }
     });
   });

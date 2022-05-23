@@ -38,9 +38,6 @@ exports.registerPatient = (req, res) => {
 
 //Update Patient Profile Details
 exports.updatePatient = (req, res) => {
-  const pwd = req.body.password;
-  const salt = bcrypt.genSaltSync(10);
-  req.body.password = bcrypt.hashSync(pwd, salt);
   console.log(req.body);
   if (!req.body) {
     return res.status(400).send({
