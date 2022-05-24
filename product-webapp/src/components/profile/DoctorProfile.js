@@ -33,7 +33,7 @@ const DoctorProfile = (props) => {
       })
       .catch((err) => {
         console.log(err)
-        toast.success('Error updating Profile', {
+        toast.warn('Error updating Profile', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -131,18 +131,6 @@ const DoctorProfile = (props) => {
           </div>
         </div>
       </Form>
-      <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        {/* Same as */}
       <ToastContainer />
     </div>
   );

@@ -46,6 +46,7 @@ function CardAppointmentVIewForPatients(props) {
         createMeeting();
         VideoChatService.joinMeetingID(props.appointmentId)
             .then(res => {
+                console.log(res)
                 navigate('/video', { state: res.data.meetingId })
             })
             .catch(err => console.log(err))

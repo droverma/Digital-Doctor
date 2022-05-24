@@ -263,17 +263,6 @@ function CreateSlotViewDoctor() {
                                 <div className="mb-2 column col">
                                     <button type="submit" className="btn btn-primary" disabled={validate || !fields.slotDate || !fields.slotEndTime}>Create Slot</button>
                                 </div>
-                                <ToastContainer
-                                    position="top-right"
-                                    autoClose={5000}
-                                    hideProgressBar={false}
-                                    newestOnTop={false}
-                                    closeOnClick
-                                    rtl={false}
-                                    pauseOnFocusLoss
-                                    draggable
-                                    pauseOnHover
-                                />
                                 <ToastContainer />
                             </div>
 

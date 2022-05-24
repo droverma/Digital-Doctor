@@ -1,16 +1,14 @@
 import axios from "axios";
 
-const apiUrl = 'http://localhost:8080/appointmentservice';
-
+const apiUrl = 'http://localhost:8083/api/v1/';
 class VideoChat {
-  
-   StartMeetingID(data) {
-    // return axios.post(`http://localhost:3000/doctors/`, data);
-    return axios.post(`${apiUrl}/api/v1/meeting`,data);
+
+  StartMeetingID(data) {
+    return axios.post(`${apiUrl}meeting`, data);
   }
-  joinMeetingID(path) {
-    // return axios.get(`http://localhost:3000/doctors/`, id);
-    return axios.get(`${apiUrl}/api/v1/meeting/`+ path)
+  joinMeetingID(Id) {
+    return axios.get(`${apiUrl}meetings/${Id}`)
   }
 }
+
 export default new VideoChat();

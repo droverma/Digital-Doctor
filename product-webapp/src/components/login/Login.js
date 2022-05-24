@@ -55,42 +55,10 @@ const Login = (props) => {
 
     setValidated(true);
     if (data.role === "doctor") {
-      // console.log(data);
       AuthService.loginDoctor(data)
         .then((res) => {
-          // console.log(res);
           if (res.data && res.data.error) {
-            if (res.status === 500) {
-              toast.warning("User not found", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            } else if (res.status === 501) {
-              toast.warning("Invalid Password", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            } else {
-              toast.warning("Invalid user or password", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            }
+            toast.error("Error");
           } else {
             localStorage.setItem("userEmail", data.emailId);
             localStorage.setItem("jwt-token", res.data.token);
@@ -104,16 +72,12 @@ const Login = (props) => {
         })
         .catch((err) => {
           console.log(err);
-          if (err.response.status === 502) {
-            toast.warning("Invalid user or password", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+          if (err.response.status === 500) {
+            toast.error("User not found");
+          } else if (err.response.status === 501) {
+            toast.warning("Invalid Password");
+          } else {
+            toast.warning("Invalid user or password");
           }
         });
     } else {
@@ -121,38 +85,8 @@ const Login = (props) => {
         .then((res) => {
           // console.log(res);
           if (res.data && res.data.error) {
-            console.log(res.response);
-            if (res.status === 500) {
-              toast.warning("User not found", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            } else if (res.status === 501) {
-              toast.warning("Invalid Password", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            } else {
-              toast.warning("Invalid user or password", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            }
+            toast.Error("Error");
+
           } else {
             localStorage.setItem("userEmail", data.emailId);
             localStorage.setItem("jwt-token", res.data.token);
@@ -166,16 +100,12 @@ const Login = (props) => {
         })
         .catch((err) => {
           console.log(err, "error");
-          if (err.response.status === 502) {
-            toast.warning("Invalid user or password", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+          if (err.response.status === 500) {
+            toast.error("User not found");
+          } else if (err.response.status === 501) {
+            toast.warning("Invalid Password");
+          } else {
+            toast.warning("Invalid user or password");
           }
         });
     }
@@ -283,17 +213,6 @@ const Login = (props) => {
                   </NavLink>
                 </Form.Text>
               </Form>
-              <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
               <ToastContainer />
             </Col>
           </Row>
