@@ -11,11 +11,11 @@ const server = gateway({
       target: "http://localhost:8888",
     },
     {
-      prefix: "/slot",
+      prefix: "/slot-service",
       target: "http://localhost:8080",
     },
     {
-      prefix: "/appointment",
+      prefix: "/appointment-service",
       target: "http://localhost:8081",
     },
     {
