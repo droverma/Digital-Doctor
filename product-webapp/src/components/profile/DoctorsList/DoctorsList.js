@@ -56,23 +56,23 @@ const DoctorsList = () => {
   const searchHandler = (e) => {
     getDoctorsList(filterData.city, filterData.specialization);
   };
-  const getPatientCity = () => {
-    ProfileDetailsService.patientProfile()
-      .then((res) => {
-        console.log(res.data);
-        const patientCity = res.data.city;
-        // console.log(da.password);
-        console.log("details", patientCity);
-        setFilterData({ ...filterData, city: patientCity });
-        getDoctorsList(patientCity);
-      })
-      .catch((err) => console.log(err));
+  // const getPatientCity = () => {
+  //   ProfileDetailsService.patientProfile()
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       const patientCity = res.data.city;
+  //       // console.log(da.password);
+  //       console.log("details", patientCity);
+  //       setFilterData({ ...filterData, city: patientCity });
+  //       getDoctorsList(patientCity);
+  //     })
+  //     .catch((err) => console.log(err));
 
-    console.log(filterData);
-  };
+  //   console.log(filterData);
+  // };
   useEffect(() => {
     // console.log("useEffect");
-    getPatientCity();
+    // getPatientCity();
   }, []);
 
   const getDoctorsList = (patientCity) => {
@@ -103,7 +103,7 @@ const DoctorsList = () => {
               id="city"
               name="city"
               placeholder="Search City"
-              value={filterData.city}
+              // value={filterData.city}
               onChange={listChangeHandler}
               autoComplete="off"
               required
