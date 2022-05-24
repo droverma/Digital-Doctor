@@ -1,5 +1,7 @@
 const Appointment = require('../models/appointment.model');
 const uuid = require('uuid');
+var amqp = require('amqplib/callback_api');
+const queue = 'tasks';
 
 exports.bookAppointment = (req, res) => {
     if (!req.body) {
@@ -29,6 +31,22 @@ exports.bookAppointment = (req, res) => {
 
     bookAppointment.save().then(data => {
         res.send(data);
+        amqp.connect('amqp://localhost', function (error0, connection) {
+            if (error0) {
+                throw error0;
+            }
+            connection.createChannel(function(error1, channel) {
+                if (error1) {
+                  throw error1;
+                }
+            
+                channel.assertQueue(queue);
+            
+                channel.sendToQueue(queue, Buffer.from(JSON.stringify(data)));
+                console.log(" [x] Sent %s", JSON.stringify(data));
+              });
+        });
+
     }).catch(err => {
         res.status(500).send({
             msg: "Error"
