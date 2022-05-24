@@ -27,7 +27,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.json({ message: "welcometo nodejs apis" });
+  res.json({ message: "welcometo nodejs slot apis" });
 });
 
 require("./app/routes/slot.routes")(app);
