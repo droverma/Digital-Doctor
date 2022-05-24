@@ -53,19 +53,17 @@ const Register = (props) => {
   const submit = (event) => {
     event.preventDefault();
     if (registerData.role === "doctor") {
-      console.log(doctorData);
       AuthService.registerDoctor(doctorData)
         .then((res) => {
           openLoginModal();
         })
         .catch((err) => console.error(err));
-    } else console.log(doctorData);
-
-    AuthService.registerPatient(doctorData)
-      .then((res) => {
-        openLoginModal();
-      })
-      .catch((err) => console.error(err));
+    } else
+      AuthService.registerPatient(doctorData)
+        .then((res) => {
+          openLoginModal();
+        })
+        .catch((err) => console.error(err));
   };
 
   const openLoginModal = () => {
