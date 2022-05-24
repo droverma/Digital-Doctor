@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const apiUrl1 = "http://localhost:8080/slot-service";
-const apiUrl2 = "http://localhost:8081/appointment-service";
+const apiUrl1 = "http://localhost:9999/slot-service";
+const apiUrl2 = "http://localhost:9999/appointment-service";
 
 class AppointmentService {
   getSlots(email) {
