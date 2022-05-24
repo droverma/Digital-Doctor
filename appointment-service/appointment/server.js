@@ -27,7 +27,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.json({ message: "welcometo nodejs apis" });
+  res.json({ message: "welcometo nodejs appointment apis" });
 });
 
 require("./app/routes/appointment.routes")(app);
