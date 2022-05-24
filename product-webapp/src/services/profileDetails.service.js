@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const apiUrl = "http://localhost:8080/userservice";
-const apiUrl = "http://localhost:8888/user-service";
+const apiUrl = "http://localhost:9999/user-service";
 class ProfileDetailsService {
   // get the profile details for doctor
 
