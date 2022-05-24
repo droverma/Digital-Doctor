@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const apiUrl = 'http://localhost:8080';
-const apiUrl = "http://localhost:8888";
+const apiUrl = "http://localhost:8888/user-service";
 class AuthService {
   // const apiUrl = 'http://localhost:8080';
   //actual end-points
