@@ -17,6 +17,7 @@ class ProfileDetailsService {
 
   // update the profile details of Doctor
   addDoctorProfile(data) {
+    console.log(data);
     let userId = localStorage.getItem("userEmail");
     return axios.put(`${apiUrl}/api/v1/doctor/profile/${userId} `, data);
   }
