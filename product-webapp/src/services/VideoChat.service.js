@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:9999/video-chat-service/api/v1/";
+const apiUrl = "http://localhost:8080/video-chat-service/api/v1/";
 class VideoChat {
   StartMeetingID(data) {
     return axios.post(`${apiUrl}meeting`, data);

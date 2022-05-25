@@ -4,7 +4,7 @@ const dbConfig = require("./config/database.config");
 const { mongoose } = require("mongoose");
 const cors = require("cors");
 mongoose.Promise = global.Promise;
-const PORT = 8888;
+const PORT = 8085;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
