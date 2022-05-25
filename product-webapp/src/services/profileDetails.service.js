@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const apiUrl = "http://localhost:8080/userservice";
-const apiUrl = "http://localhost:8888";
+const apiUrl = "http://localhost:9999/user-service";
 class ProfileDetailsService {
   // get the profile details for doctor
 
@@ -17,6 +17,7 @@ class ProfileDetailsService {
 
   // update the profile details of Doctor
   addDoctorProfile(data) {
+    console.log(data);
     let userId = localStorage.getItem("userEmail");
     return axios.put(`${apiUrl}/api/v1/doctor/profile/${userId} `, data);
   }
@@ -38,7 +39,7 @@ class ProfileDetailsService {
   }
 
   doctorsList(...patientData) {
-   let patientCity = patientData[0];
+    let patientCity = patientData[0];
     let specialization = patientData[1];
     let apiUrls = `${apiUrl}/api/v1/doctorlist/${patientCity}`;
     // let apiUrls = `${apiUrl}/api/v1/doctorcity/${patientCity}`;

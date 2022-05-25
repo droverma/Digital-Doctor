@@ -4,37 +4,37 @@ import "../../../assets/style/style.css";
 
 const SpecializationList = [
   { spV: "", spN: "None" },
-  { spV: "physician", spN: "Physician" },
+  { spV: "Physician", spN: "Physician" },
   {
-    spV: "gynecologist",
+    spV: "Gynecologist",
     spN: "Gynecologist",
   },
   {
-    spV: "pediatrician",
+    spV: "Pediatrician",
     spN: "Pediatrician",
   },
   {
-    spV: "orthopedician",
+    spV: "Orthopedician",
     spN: "Orthopedician",
   },
   {
-    spV: "eye Specialist",
+    spV: "Eye Specialist",
     spN: "Eye Specialist",
   },
   {
-    spV: "psychotherapist",
+    spV: "Psychotherapist",
     spN: "Psychotherapist",
   },
   {
-    spV: "dentist",
+    spV: "Dentist",
     spN: "Dentist",
   },
   {
-    spV: "neurosurgeon",
+    spV: "Neurosurgeon",
     spN: "Neurosurgeon",
   },
   {
-    spV: "general Surgeon",
+    spV: "General Surgeon",
     spN: "General Surgeon",
   },
 ];

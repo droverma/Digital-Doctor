@@ -4,19 +4,19 @@ import { Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PersonalInfo from "./doctorDetails/PersonalInfo";
 import "../../assets/style/style.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DoctorProfile = (props) => {
-
   let navigate = useNavigate();
 
   const saveChangeHandler = (e) => {
     e.preventDefault();
+    console.log(updateDoctorData);
     ProfileDetailsService.addDoctorProfile(updateDoctorData)
       .then((res) => {
-        if(res){
-          toast.success('Patients Profile Updated Submitted', {
+        if (res) {
+          toast.success("Patients Profile Updated Submitted", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -24,16 +24,15 @@ const DoctorProfile = (props) => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-        });
-        setTimeout(() => {
-          navigate("/createSlotViewDoctor");
-        }, 2000);
+          });
+          setTimeout(() => {
+            navigate("/createSlotViewDoctor");
+          }, 2000);
         }
-        
       })
       .catch((err) => {
-        console.log(err)
-        toast.warn('Error updating Profile', {
+        console.log(err);
+        toast.warn("Error updating Profile", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -41,9 +40,9 @@ const DoctorProfile = (props) => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
+        });
       });
-      }
-  )};
+  };
   const [validated, setValidated] = useState({});
 
   let doctorEmail = localStorage.getItem("userEmail");
@@ -76,7 +75,7 @@ const DoctorProfile = (props) => {
   };
 
   useEffect(() => {
-    props.setisAuthenticated(true)
+    props.setisAuthenticated(true);
     getDoctorData();
   }, []);
 

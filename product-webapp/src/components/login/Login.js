@@ -56,6 +56,7 @@ const Login = (props) => {
     if (data.role === "doctor") {
       AuthService.loginDoctor(data)
         .then((res) => {
+          console.log(res);
           if (res.data && res.data.error) {
             toast.error("Error");
           } else {
@@ -82,10 +83,9 @@ const Login = (props) => {
     } else {
       AuthService.loginPatient(data)
         .then((res) => {
-          // console.log(res);
+          console.log(res);
           if (res.data && res.data.error) {
             toast.Error("Error");
-
           } else {
             localStorage.setItem("userEmail", data.emailId);
             localStorage.setItem("jwt-token", res.data.token);

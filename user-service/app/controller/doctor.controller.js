@@ -46,6 +46,8 @@ exports.registerDoctor = (req, res) => {
 
 //update the Doctor list
 exports.updateDoctor = (req, res) => {
+  console.log("req_param", req.params);
+  console.log("req_body", req.body);
   if (!req.body) {
     return res.status(400).send({
       message: "Doctor Data to update can not be Empty..........",

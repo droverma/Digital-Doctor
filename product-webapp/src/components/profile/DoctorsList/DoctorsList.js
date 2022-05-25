@@ -79,7 +79,7 @@ const DoctorsList = () => {
       .then((res) => {
         // console.log(res);
         const detailsList = res.data;
-        console.log("detailsList", detailsList);
+        // console.log("detailsList", detailsList);
         setList(detailsList);
         setLoading(false);
       })
@@ -125,7 +125,7 @@ const DoctorsList = () => {
               type="button"
               onClick={searchHandler}
             >
-              <i className="fas fa-search"> Search </i>
+              <i className="fas "> Search </i>
             </button>
           </Form>
         </Col>
