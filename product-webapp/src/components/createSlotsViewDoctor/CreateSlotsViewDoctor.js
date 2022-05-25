@@ -69,7 +69,6 @@ function CreateSlotViewDoctor() {
                     if (value < fields.slotEndTime)
                         setValidate(false)
                     else {
-                        console.log(fields.slotEndTime);
                         setValidate(true)
                         toast.warning('Slot Start time must be less than slot end time.', {
                             position: "top-right",
@@ -93,7 +92,6 @@ function CreateSlotViewDoctor() {
 
         let doctorEmail = localStorage.getItem("userEmail");
         profileDetailsService.doctorProfile(doctorEmail).then((res) => {
-            console.log(res)
             let slotDate = moment(fields.slotDate).format('YYYY-MM-DD');
             let slotStartTime = fields.slotStartTime;
             let slotEndTime = fields.slotEndTime;
@@ -122,9 +120,7 @@ function CreateSlotViewDoctor() {
                     getSlots();
                     setfields({ slotDate: '', slotStartTime: '', slotEndTime: '' })
 
-                } else {
-                    console.log('No data found');
-                }
+                } 
             })
         })
     }
@@ -188,11 +184,7 @@ function CreateSlotViewDoctor() {
                                                 refreshApi={refreshApi}
                                             />
                                         )
-                                    } else {
-                                        return (
-                                            console.log('No slots found')
-                                        )
-                                    }
+                                    } 
                                 })
 
                             }

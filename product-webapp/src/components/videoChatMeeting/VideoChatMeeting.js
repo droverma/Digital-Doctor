@@ -1,13 +1,14 @@
 import { Tooltip } from "@material-ui/core";
-import { Send, Mic, MicOff, Videocam, VideocamOff } from "@mui/icons-material";
-
+import { Mic, MicOff, Send, Videocam, VideocamOff } from "@mui/icons-material";
 import { Button, FilledInput, FormControl, IconButton, InputAdornment, InputLabel } from "@mui/material";
 import { red } from "@mui/material/colors";
+import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Modal, Row } from 'react-bootstrap';
 import { useLocation } from "react-router-dom";
 import { SocketContext } from '../../context/Context';
 import { JoiningScreen } from "./JoiningScreen";
+
 
 const VideoChat = () => {
   const {
@@ -21,7 +22,6 @@ const VideoChat = () => {
     callEnded,
     me,
     leaveCall,
-    leaveCall1,
     answerCall,
     sendMessage,
     chat,
@@ -46,37 +46,40 @@ const VideoChat = () => {
   const { state } = useLocation();
   const [currentMessage, setCurrentMessage] = useState("");
   const [isMeetingStarted, setMeetingStarted] = useState(false);
+  const [appointmentId, setAppointmentId] = useState("");
 
   useEffect(() => {
-    // createMeeting();
     if (myVdoStatus)
       getVideoAudio();
   }, [myVdoStatus])
-  // useEffect(() => {
-  //   createMeeting();
-  // }, [])
-
+  useEffect(() => {
+    if (state.appointmentId)
+      setAppointmentId(state.appointmentId)
+  }, [appointmentId])
   socket.on("msgRcv", ({ name, msg: value, sender }) => {
+
     let msg = {};
-    msg.msg = value;
+    msg.msg = value.msg;
     msg.type = "rcv";
     msg.sender = sender;
-    msg.timestamp = Date.now();
+    msg.time = value.time;
+    msg.name = name;
+    msg.appointmentId = appointmentId;
+    msg.role = localStorage.getItem('role');
     setChat([...chat, msg]);
   });
 
   const sendMsg = async () => {
+    if (state.appointmentId)
+      setAppointmentId(state.appointmentId)
     if (currentMessage !== "") {
       const messageData = {
         to: me,
         name: name,
         msg: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
-      };
-
+        appointmentId: appointmentId,
+        time: moment(new Date()).format('LT')
+      }
       sendMessage(messageData);
       setCurrentMessage("");
     }
@@ -85,21 +88,10 @@ const VideoChat = () => {
   return (
     isMeetingStarted ?
       <Row className="m-md-0" style={{ backgroundColor: '#161616' }}>
-         {callAccepted && !callEnded && (
+        {callAccepted && !callEnded && (
           <Col md={7}>
             <div
-              className={userMicStatus ? 'namebutton' : 'mutebutton'}
-            // style={{
-            //   color: 'white',
-            //   // opacity: `${userVdoStatus ? "-1" : "2"}`,
-            //   position: 'absolute',
-            //   marginLeft: "0%",
-            //   marginTop: `${!userMicStatus ? "19.5rem" : "19.7rem"}`,
-            //   fontSize: 'small',
-            //   backgroundColor: 'grey',
-            //   padding: '1.5px',
-            // }}
-            >
+              className={userMicStatus ? 'namebutton' : 'mutebutton'}>
               {!userMicStatus && <MicOff style={{ color: 'red' }} />}
 
               {userName || call.name}
@@ -111,6 +103,7 @@ const VideoChat = () => {
               autoPlay
               height={"100%"}
               width={"100%"}
+              muted
               style={{
                 opacity: `${userVdoStatus ? "1" : "0"}`,
               }}
@@ -144,7 +137,7 @@ const VideoChat = () => {
           }
         </Col>
 
-       
+
         {receivingCall && !callAccepted ? (
           <Modal size='sm' show={receivingCall && !callAccepted} onHide={!receivingCall && callAccepted}>
 
@@ -173,8 +166,8 @@ const VideoChat = () => {
                       <div
                         className={msg.type === "sent" ? "msg_sent" : "msg_rcv"}
                       >
-                        <h5>{msg.msg.name}</h5>
-                        {msg.msg.msg}
+                        <h5>{msg.sender}</h5>
+                        {msg.msg}
                       </div>
                     ))}
                   </div>
@@ -294,7 +287,7 @@ const VideoChat = () => {
                     </div> */}
             </div>
             <div className="footer-leave-btn-container">
-              <Button variant="contained" color="error" onClick={leaveCall1}>
+              <Button variant="contained" color="error" onClick={leaveCall}>
                 Leave
               </Button>
             </div>
@@ -312,8 +305,8 @@ const VideoChat = () => {
           setMeetingStarted(true);
           getVideoAudio();
 
-          if (state) {
-            callUser(state);
+          if (state && state.id) {
+            callUser(state.id);
           }
         }}
         startMeeting={isMeetingStarted}

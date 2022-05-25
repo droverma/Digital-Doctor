@@ -52,7 +52,6 @@ function ResponsiveDrawer(props) {
 
             PatientSidebarData.map((text, index) => (
                 <ListItem button key={index} onClick={(e) => handleTab(text.path, text.title)} className={activeTab ?'bg-color': ''}>
-                {console.log(activeTab,text.title)}
                 <ListItemIcon className='icon'>
                   {text.icon}
                 </ListItemIcon>

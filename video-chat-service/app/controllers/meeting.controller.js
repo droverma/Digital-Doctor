@@ -1,4 +1,5 @@
-const Meeting = require('../models/meeting.model');
+const VideoMeeting = require('../models/videoMeeting.model');
+const ChatMeeting = require('../models/chatMeeting.model');
 const uuid = require('uuid');
 
 exports.meetingIdByAppointment = (req, res) => {
@@ -8,19 +9,17 @@ exports.meetingIdByAppointment = (req, res) => {
         });
     }
 
-    const meeting = new Meeting({
+    const meeting = new VideoMeeting({
         appointmentId: req.body.appointmentId,
         meetingId: req.body.meetingId,
     })
-    Meeting.find({ appointmentId: req.body.appointmentId }).then(response => {
+    VideoMeeting.find({ appointmentId: req.body.appointmentId }).then(response => {
         if (response.length > 0)
-            Meeting.findOneAndUpdate(response[0]._id, { $set: req.body }, { new: true }).then(response => {
-                console.log(response)
+            VideoMeeting.findOneAndUpdate(response[0]._id, { $set: req.body }, { new: true }).then(response => {
                 res.send('Meeting Id saved successfully!!');
             });
         else
             meeting.save().then(data => {
-                console.log(data)
                 res.send('Meeting Id saved successfully!!');
             }).catch(err => {
                 res.status(500).send({
@@ -31,7 +30,33 @@ exports.meetingIdByAppointment = (req, res) => {
 }
 
 exports.meetingsByAppointment = (req, res) => {
-    Meeting.findOne({ appointmentId: req.params.id }).then(response => {
+    VideoMeeting.findOne({ appointmentId: req.params.id }).then(response => {
+        res.send(response)
+    }).catch(err => {
+        res.status(500).send({
+            msg: "error"
+        })
+    })
+}
+
+exports.chatMeetingByAppointment = (req, res) => {
+    console.log(req.body, 'body')
+    if (!req.body) {
+        return res.status(400).send({
+            messsage: 'The content can not be empty'
+        });
+    }
+    var data = req.body;
+
+    ChatMeeting.create(data, (err, response) => {
+        if (err)
+            return res.send('Error');
+        res.send(response);
+    });
+}
+
+exports.chatListByAppointment = (req, res) => {
+    ChatMeeting.find({ appointmentId: req.params.id }).then(response => {
         res.send(response)
     }).catch(err => {
         res.status(500).send({

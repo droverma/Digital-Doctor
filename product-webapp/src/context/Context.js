@@ -1,9 +1,10 @@
-import React, { createContext, useState, useRef, useEffect } from 'react';
-import { io } from 'socket.io-client';
+import React, { createContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Peer from 'simple-peer';
+import { io } from 'socket.io-client';
+import VideoChatService from '../services/VideoChat.service';
 
 const SocketContext = createContext();
-
 const socket = io('http://localhost:5000');
 
 const ContextProvider = ({ children }) => {
@@ -23,13 +24,12 @@ const ContextProvider = ({ children }) => {
     const [msgRcv, setMsgRcv] = useState("");
     const [receivingCall, setReceivingCall] = useState(false)
 
-
     const myVideo = useRef(null);
     const userVideo = useRef(null);
     const connectionRef = useRef();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // createMeeting()
         socket.on("endCall", () => {
             window.location.reload();
         });
@@ -55,21 +55,14 @@ const ContextProvider = ({ children }) => {
             setReceivingCall(true)
             setCall({ isReceivingCall: true, from, name: callerName, signal });
         });
-
-        socket.on("msgRcv", ({ name, msg: value, sender }) => {
-            setMsgRcv({ value, sender });
-            setTimeout(() => {
-                setMsgRcv({});
-            }, 2000);
-        });
     }, []);
 
     const createMeeting = async () => {
         await socket.on("me", async (id) => {
             await setMe(id)
-        }
-        );
+        });
     }
+
     const getVideoAudio = async () => {
         try {
             await navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
@@ -166,24 +159,28 @@ const ContextProvider = ({ children }) => {
     const sendMessage = (value) => {
         socket.emit("msgUser", { name, to: otherUser, msg: value, sender: name });
         let msg = {};
-        msg.msg = value;
+        msg.msg = value.msg;
         msg.type = "sent";
-        msg.timestamp = Date.now();
         msg.sender = name;
+        msg.time = value.time
+        msg.name = name;
+        msg.appointmentId = value.appointmentId;
+        msg.role = localStorage.getItem('role');
         setChat([...chat, msg]);
+        VideoChatService.chatMeeting(msg)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     };
 
     const leaveCall = () => {
         setCallEnded(true);
-
         connectionRef.current.destroy();
         socket.emit("endCall", { id: otherUser });
-        window.location.reload();
-    };
+        if (localStorage.getItem('role') === 'doctor')
+            navigate('/appointmentViewForDoctors')
+        else
+            navigate('/appointmentViewForPatients')
 
-    const leaveCall1 = () => {
-        socket.emit("endCall", { id: otherUser });
-        window.location.reload();
     };
 
     return (
@@ -207,7 +204,6 @@ const ContextProvider = ({ children }) => {
                 setChat,
                 setMsgRcv,
                 setOtherUser,
-                leaveCall1,
                 userName,
                 myVdoStatus,
                 setMyVdoStatus,

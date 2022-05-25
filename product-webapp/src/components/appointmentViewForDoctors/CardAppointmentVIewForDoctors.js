@@ -1,18 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
-import PersonIcon from '@mui/icons-material/Person';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import CancelIcon from '@mui/icons-material/Cancel';
-import AddIcCallIcon from '@mui/icons-material/AddIcCall';
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import AppointmentService from "../../services/appointment.service";
 import { Tooltip } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
-import { SocketContext } from '../../context/Context';
-import VideoChatService from "../../services/VideoChat.service";
-import ProfileDetailsService from "../../services/profileDetails.service";
-import PatientAvatar from '../../assets/images/patient_img.png';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import AddIcCallIcon from '@mui/icons-material/AddIcCall';
+import ChatIcon from '@mui/icons-material/Chat';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import moment from "moment";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PatientAvatar from '../../assets/images/patient_img.png';
+import { SocketContext } from '../../context/Context';
+import AppointmentService from "../../services/appointment.service";
+import ProfileDetailsService from "../../services/profileDetails.service";
+import VideoChatService from "../../services/VideoChat.service";
+import Chat from "@mui/icons-material/Chat";
+import ChatMeeting from "../videoChatMeeting/ChatMeeting";
 
 
 
@@ -23,7 +24,7 @@ function CardAppointmentVIewForDoctors(props) {
     let navigate = useNavigate();
 
     const cancelClicked = () => {
-        
+
         AppointmentService.appointmentDetails(props.appointmentId).then((res) => {
             let data = {
                 appointmentDate: res.data[0].appointmentDate,
@@ -48,23 +49,29 @@ function CardAppointmentVIewForDoctors(props) {
     const startMeeting = () => {
         socket.emit("me");
         createMeeting();
-       let meetingObject = {
+        let meetingObject = {
             appointmentId: props.appointmentId,
             meetingId: me
         }
         if (me) {
             // navigate('/video')
             VideoChatService.StartMeetingID(meetingObject)
-                .then(res => navigate('/video'))
+                .then(res => navigate('/video', { state: { appointmentId: props.appointmentId } }))
                 .catch(err => console.log(err))
         }
     }
+    const showChat = () => {
+        // VideoChatService.chatMeetingDetails(props.appointmentId).then(res => console.log(res))
+        //     .catch(err => console.log(err))
 
-    useEffect(()=>{
-        ProfileDetailsService.patientProfileForDoctorView(props.patientEmail).then((response)=>{
-            setpatientBasicDetails(response.data);  
+        navigate('/chat', { state: props.appointmentId })
+    }
+
+    useEffect(() => {
+        ProfileDetailsService.patientProfileForDoctorView(props.patientEmail).then((response) => {
+            setpatientBasicDetails(response.data);
         })
-    },[props])
+    }, [props])
 
     return (
         <div className="col-md-6 mb-4">
@@ -106,7 +113,7 @@ function CardAppointmentVIewForDoctors(props) {
                             <div className="col-9 pe-0 ps-0">
                                 <p>
 
-                                    {moment(props.appointmentDate).format('YYYY-MM-DD') }
+                                    {moment(props.appointmentDate).format('YYYY-MM-DD')}
                                 </p>
                             </div>
                         </div>
@@ -142,9 +149,19 @@ function CardAppointmentVIewForDoctors(props) {
                             {
                                 props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
                                 <Tooltip
-                                    title="Call Doctor"
+                                    title="Call Patient"
                                     placement="top">
                                     <AddIcCallIcon className="call-icon" onClick={startMeeting} />
+                                </Tooltip>
+                            }
+                        </div>
+                        <div className="col text-center">
+                            {
+                                props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
+                                <Tooltip
+                                    title="Chats"
+                                    placement="top">
+                                    <ChatIcon className="call-icon" onClick={showChat} />
                                 </Tooltip>
                             }
                         </div>

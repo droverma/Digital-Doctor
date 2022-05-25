@@ -11,7 +11,8 @@ import LandingPage from "./components/landingPage/LandingPage/LandingPage";
 import DoctorProfile from "./components/profile/DoctorProfile";
 import DoctorsList from "./components/profile/DoctorsList/DoctorsList";
 import PatientProfile from "./components/profile/PatientProfile";
-import VideoChat from "./components/videoMeeting/VideoChat";
+import ChatMeeting from "./components/videoChatMeeting/ChatMeeting";
+import VideoChat from "./components/videoChatMeeting/VideoChatMeeting";
 import Header from "./container/header/Header";
 import ResponsiveDrawer from "./container/sideNav/SideNav";
 // import ResponsiveDrawer from "./container/sideNav/Sidebar";
@@ -41,14 +42,16 @@ function App() {
                             <Route path="/" element={<LandingPage />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/contact" element={<Contact />} />
-                            <Route path="/doctorslist" element={<DoctorsList />} />
+                            <Route path="/doctorslist" element={<ProtectedRoute><DoctorsList /></ProtectedRoute>} />
                             <Route path="/updatedoctor" element={<ProtectedRoute> <DoctorProfile setisAuthenticated={(token) => setisAuthenticated(token)} /></ProtectedRoute>} />
-                            <Route path="/updatepatient" element={<PatientProfile setisAuthenticated={(token) => setisAuthenticated(token)} />} />
-                            <Route path="/availableSlotsPatients" element={<AvailableSlotsPatients />} />
-                            <Route path="/video" element={<ContextProvider><VideoChat /></ContextProvider>} />
-                            <Route path="/appointmentViewForPatients" element={<ContextProvider><AppointmentViewForPatients /></ContextProvider>} />
-                            <Route path="/appointmentViewForDoctors" element={<ContextProvider><AppointmentViewForDoctors /></ContextProvider>} />
-                            <Route path="/createSlotViewDoctor" element={<CreateSlotViewDoctor />} />
+                            <Route path="/updatepatient" element={<ProtectedRoute><PatientProfile setisAuthenticated={(token) => setisAuthenticated(token)} /></ProtectedRoute>} />
+                            <Route path="/availableSlotsPatients" element={<ProtectedRoute><AvailableSlotsPatients /></ProtectedRoute>} />
+                            <Route path="/video" element={<ContextProvider><ProtectedRoute><VideoChat /></ProtectedRoute></ContextProvider>} />
+                            <Route path="/appointmentViewForPatients" element={<ContextProvider><ProtectedRoute><AppointmentViewForPatients /></ProtectedRoute></ContextProvider>} />
+                            <Route path="/appointmentViewForDoctors" element={<ContextProvider><ProtectedRoute><AppointmentViewForDoctors /></ProtectedRoute></ContextProvider>} />
+                            <Route path="/createSlotViewDoctor" element={<ProtectedRoute><CreateSlotViewDoctor /></ProtectedRoute>} />
+                            <Route path="/createSlotViewDoctor" element={<ProtectedRoute><CreateSlotViewDoctor /></ProtectedRoute>} />
+                            <Route path="/chat" element={<ProtectedRoute><ChatMeeting /></ProtectedRoute>} />
                         </Routes>
                     </div>
                 </div>

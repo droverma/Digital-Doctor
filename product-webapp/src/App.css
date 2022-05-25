@@ -2,23 +2,32 @@
     text-align: center;
 }
 
+h5 {
+    font-weight: bolder !important;
+}
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;
 }
-.app-margin{
+
+.app-margin {
     margin: 0px !important;
 }
-.app-container{
+
+.app-container {
     display: flex;
     flex-direction: row;
 }
-.app-side-bar{
+
+.app-side-bar {
     width: 240px;
 }
-.app-content{
+
+.app-content {
     width: calc(100% - 240px);
 }
+
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;
@@ -52,16 +61,61 @@
         transform: rotate(360deg);
     }
 }
-@media screen and (max-width:600px){
-    .app-side-bar{
+
+@media screen and (max-width:600px) {
+    .app-side-bar {
         width: unset;
     }
-    .app-content{
+    .app-content {
         width: unset;
     }
 }
+
 @media screen and (min-width:600px) and (max-width: 768px) {
-    .app-content{
+    .app-content {
         width: 100%;
     }
+}
+
+.chat-messages-show-container {
+    background: #c3c3c32e;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.chat-messages-show-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-messages-create-container {
+    background: #616161;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-messages-create-input {
+    padding: 12px;
+    margin: 29px 30px;
+    flex: 2
+}
+
+.chat-messages-create-button {
+    height: 50px;
+    margin: auto 40px;
+    width: 100px;
+}
+
+.time {
+    align-self: center;
+    text-align: end;
+    color: slategrey;
+}
+
+.text-size {
+    font-weight: bolder;
 }

@@ -5,4 +5,4 @@ const meetingSchema = mongoose.Schema({
     meetingId: String
 })
 
-module.exports = mongoose.model('meetingDetails', meetingSchema)
+module.exports = mongoose.model('videoMeetingDetails', meetingSchema)

@@ -35,7 +35,6 @@ const Login = (props) => {
       else {
         delete validated.pass;
       }
-    console.log(data, validated);
   };
 
   const submit = (event) => {

@@ -104,9 +104,7 @@ exports.appointmentListByDate = (req, res) => {
 }
 
 exports.appointmentListByFilter = (req, res) => {
-    console.log(req.query);
-    console.log(req.query.spec, req.query.date);
-    if (req.query.date)
+   if (req.query.date)
         Appointment.find({
             appointmentDate: req.query.date,
             specialization: req.query.spec,
@@ -135,8 +133,7 @@ exports.updateAppointmentStatus = (req, res) => {
                 msg: "Appointment not found"
             })
     }).catch(err => {
-        console.log(err, 'err')
-        res.status(500).send({
+       res.status(500).send({
             msg: "Appointment not found"
         })
     })

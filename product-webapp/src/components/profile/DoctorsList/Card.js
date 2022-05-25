@@ -7,8 +7,6 @@ const Card = (props) => {
   const navigate = useNavigate();
   const bookAppointmentHandler = (e, doctorEmail) => {
     e.preventDefault();
-    console.log(doctorEmail,'doctor email');
-    // navigate(`/availableSlotsPatients/${doctorEmail}`);
     navigate("/availableSlotsPatients", { state: doctorEmail });
   };
   return (

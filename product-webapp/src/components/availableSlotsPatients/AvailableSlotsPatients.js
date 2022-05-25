@@ -97,7 +97,6 @@ function AvailableSlotsPatients() {
                     __v: response.data[0].__v,
                     _id: response.data[0]._id
                 }
-                console.log(response.data)
                 AppointmentService.updateSlotStatus(data).then((res) => {
                     console.log(res, 'update')
                 })
@@ -170,11 +169,7 @@ function AvailableSlotsPatients() {
                                     doctorEmailId={response.doctorEmail}
                                 />
                             )
-                        } else {
-                            return (
-                                console.log('No slots found')
-                            )
-                        }
+                        } 
                     })
 
                 }

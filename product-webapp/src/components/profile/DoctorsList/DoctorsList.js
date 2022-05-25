@@ -59,19 +59,14 @@ const DoctorsList = () => {
   const getPatientCity = () => {
     ProfileDetailsService.patientProfile()
       .then((res) => {
-        console.log(res.data);
         const patientCity = res.data.city;
-        // console.log(da.password);
-        console.log("details", patientCity);
-        setFilterData({ ...filterData, city: patientCity });
+       setFilterData({ ...filterData, city: patientCity });
         getDoctorsList(patientCity);
       })
       .catch((err) => console.log(err));
 
-    console.log(filterData);
   };
   useEffect(() => {
-    // console.log("useEffect");
     getPatientCity();
   }, []);
 
