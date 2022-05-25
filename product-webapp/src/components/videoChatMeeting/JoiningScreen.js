@@ -2,10 +2,10 @@ import MicIcon from '@mui/icons-material/Mic';
 import MicOffIcon from '@mui/icons-material/MicOff';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import VideocamOffIcon from '@mui/icons-material/VideocamOff';
-import { TextField } from '@mui/material';
-import { red, grey } from "@mui/material/colors";
+import { grey, red } from "@mui/material/colors";
 import React, { useEffect, useRef, useState } from "react";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import appointmentService from '../../services/appointment.service';
 
 export function JoiningScreen({
     setWebcamOn,
@@ -13,8 +13,7 @@ export function JoiningScreen({
     micOn,
     webcamOn,
     onClickStartMeeting,
-    name,
-    setName
+    appointmentId
 }) {
 
     const videoPlayerRef = useRef();
@@ -24,6 +23,7 @@ export function JoiningScreen({
         if (webcamOn && !videoTrack) {
             getVideo();
         }
+
     }, [webcamOn, videoTrack])
 
     const getVideo = async () => {
@@ -59,6 +59,31 @@ export function JoiningScreen({
         }
         setWebcamOn(!webcamOn);
     };
+
+    const changeApmtStatus = () => {
+        debugger
+        if (localStorage.getItem('role') === 'patient')
+            appointmentService.appointmentDetails(appointmentId).then((res) => {
+                let data = {
+                    appointmentDate: res.data[0].appointmentDate,
+                    appointmentEndTime: res.data[0].appointmentEndTime,
+                    appointmentId: res.data[0].appointmentId,
+                    appointmentStartTime: res.data[0].appointmentStartTime,
+                    appointmentStatus: "PAST",
+                    bookedOn: res.data[0].bookedOn,
+                    patientEmail: res.data[0].patientEmail,
+                    doctorEmail: res.data[0].doctorEmail,
+                    slotId: res.data[0].slotId,
+                    specialization: res.data[0].specialization,
+                    __v: res.data[0].__v,
+                    _id: res.data[0]._id
+                }
+                appointmentService.updateStatusForApmt(data).then((response) => {
+                    console.log(response)
+                })
+            })
+    }
+
     return (
         <Container>
             <Row>
@@ -145,6 +170,7 @@ export function JoiningScreen({
                                 videoTrack.stop();
                                 setVideoTrack(null);
                             }
+                            changeApmtStatus();
                             onClickStartMeeting();
                         }}
                         style={{ width: '17%' }}>
@@ -155,23 +181,6 @@ export function JoiningScreen({
                             'Join'
                         }
                     </Button>
-                </Col>
-            </Row>
-            <Row>
-                <Col style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    display: 'flex',
-                    marginTop: '1rem'
-                }}>
-                    <TextField
-                        label="Name"
-                        variant="filled"
-                        value={name}
-                        onChange={(event) => {
-                            setName(event.target.value);
-                        }}
-                    />
                 </Col>
             </Row>
         </Container>

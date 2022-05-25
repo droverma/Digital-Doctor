@@ -56,25 +56,26 @@ const DoctorsList = () => {
   const searchHandler = (e) => {
     getDoctorsList(filterData.city, filterData.specialization);
   };
-  const getPatientCity = () => {
-    ProfileDetailsService.patientProfile()
-      .then((res) => {
-        const patientCity = res.data.city;
-       setFilterData({ ...filterData, city: patientCity });
-        getDoctorsList(patientCity);
-      })
-      .catch((err) => console.log(err));
+  // const getPatientCity = () => {
+  //   ProfileDetailsService.patientProfile()
+  //     .then((res) => {
+  //       const patientCity = res.data.city;
+  //      setFilterData({ ...filterData, city: patientCity });
+  //       getDoctorsList(patientCity);
+  //     })
+  //     .catch((err) => console.log(err));
 
-  };
-  useEffect(() => {
-    getPatientCity();
-  }, []);
+  // };
+  // useEffect(() => {
+  //   getPatientCity();
+  // }, []);
 
   const getDoctorsList = (patientCity) => {
     setLoading(true);
     // console.log(filterData);
     // console.log(filterData.specialization);
-    ProfileDetailsService.doctorsList(patientCity, filterData.specialization)
+    debugger
+    ProfileDetailsService.doctorsList(filterData.city, filterData.specialization)
 
       .then((res) => {
         // console.log(res);

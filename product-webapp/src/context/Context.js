@@ -24,12 +24,18 @@ const ContextProvider = ({ children }) => {
     const [msgRcv, setMsgRcv] = useState("");
     const [receivingCall, setReceivingCall] = useState(false)
 
-    const myVideo = useRef(null);
-    const userVideo = useRef(null);
+    let myVideo = useRef(null);
+    let userVideo = useRef(null);
     const connectionRef = useRef();
     const navigate = useNavigate();
 
     useEffect(() => {
+        const name = localStorage.getItem('name')
+        if (localStorage.getItem('role') === 'doctor')
+            setName('Dr. ' + name);
+        else
+            setName(name);
+
         socket.on("endCall", () => {
             window.location.reload();
         });
@@ -175,6 +181,9 @@ const ContextProvider = ({ children }) => {
     const leaveCall = () => {
         setCallEnded(true);
         connectionRef.current.destroy();
+        myVideo = (null);
+        userVideo =  (null);
+        setStream(myVideo)
         socket.emit("endCall", { id: otherUser });
         if (localStorage.getItem('role') === 'doctor')
             navigate('/appointmentViewForDoctors')
@@ -182,6 +191,15 @@ const ContextProvider = ({ children }) => {
             navigate('/appointmentViewForPatients')
 
     };
+
+    // useEffect(() => {
+    //     console.log(callEnded)
+    //     if (callEnded)
+    //         if (localStorage.getItem('role') === 'doctor')
+    //             navigate('/appointmentViewForDoctors')
+    //         else
+    //             navigate('/appointmentViewForPatients')
+    // }, [callEnded])
 
     return (
         <SocketContext.Provider

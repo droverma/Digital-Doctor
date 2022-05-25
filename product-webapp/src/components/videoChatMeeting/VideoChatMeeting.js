@@ -40,7 +40,6 @@ const VideoChat = () => {
     setMyMicStatus,
     setMyVdoStatus,
     callUser,
-    createMeeting
   } = useContext(SocketContext);
 
   const { state } = useLocation();
@@ -52,12 +51,13 @@ const VideoChat = () => {
     if (myVdoStatus)
       getVideoAudio();
   }, [myVdoStatus])
+
   useEffect(() => {
     if (state.appointmentId)
       setAppointmentId(state.appointmentId)
   }, [appointmentId])
-  socket.on("msgRcv", ({ name, msg: value, sender }) => {
 
+  socket.on("msgRcv", ({ name, msg: value, sender }) => {
     let msg = {};
     msg.msg = value.msg;
     msg.type = "rcv";
@@ -87,7 +87,9 @@ const VideoChat = () => {
 
   return (
     isMeetingStarted ?
+
       <Row className="m-md-0" style={{ backgroundColor: '#161616' }}>
+
         {callAccepted && !callEnded && (
           <Col md={7}>
             <div
@@ -166,8 +168,8 @@ const VideoChat = () => {
                       <div
                         className={msg.type === "sent" ? "msg_sent" : "msg_rcv"}
                       >
-                        <h5>{msg.sender}</h5>
-                        {msg.msg}
+                        <h5>{msg.sender}</h5>{msg.msg}
+                        <div className="time">{msg.time}</div>
                       </div>
                     ))}
                   </div>
@@ -294,23 +296,24 @@ const VideoChat = () => {
           </div>
         </div>
       </Row> :
-      <JoiningScreen
-        setMicOn={setMyMicStatus}
-        micOn={myMicStatus}
-        webcamOn={myVdoStatus}
-        setWebcamOn={setMyVdoStatus}
-        setName={setName}
-        name={name}
-        onClickStartMeeting={() => {
-          setMeetingStarted(true);
-          getVideoAudio();
+        <JoiningScreen
+          setMicOn={setMyMicStatus}
+          micOn={myMicStatus}
+          webcamOn={myVdoStatus}
+          setWebcamOn={setMyVdoStatus}
+          setName={setName}
+          name={name}
+          appointmentId={appointmentId}
+          onClickStartMeeting={() => {
+            setMeetingStarted(true);
+            getVideoAudio();
 
-          if (state && state.id) {
-            callUser(state.id);
-          }
-        }}
-        startMeeting={isMeetingStarted}
-      />
+            if (state && state.id) {
+              callUser(state.id);
+            }
+          }}
+          startMeeting={isMeetingStarted}
+        />
   );
 };
 

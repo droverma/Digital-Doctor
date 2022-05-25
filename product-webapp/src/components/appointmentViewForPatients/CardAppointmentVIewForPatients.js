@@ -53,9 +53,6 @@ function CardAppointmentVIewForPatients(props) {
 
     }
     const showChat = () => {
-        // VideoChatService.chatMeetingDetails(props.appointmentId).then(res => console.log(res))
-        //     .catch(err => console.log(err))
-
         navigate('/chat', { state: props.appointmentId })
     }
     useEffect(() => {
@@ -74,11 +71,7 @@ function CardAppointmentVIewForPatients(props) {
                         </div>
                         <div className="col">
                             <div className="row">
-                                {/* <div className="col-3 text-right">
-                                    <PersonIcon className="person-icon" />
-                                </div> */}
                                 <div className="col pt-2 pe-0 ps-0">
-                                    {/* <h4>Kamal Anand</h4> */}
                                     <h5 className="fw-bold">{doctorBasicDetails.doctorName ? doctorBasicDetails.doctorName : 'Dr. Doctor'}</h5>
                                 </div>
                             </div>
@@ -86,8 +79,7 @@ function CardAppointmentVIewForPatients(props) {
                                 <p>{props.specialization}</p>
                             </div>
                             <div className="text-right">
-                                {/* <h6 className="card-title pe-4">Age: 32</h6> */}
-                                <h6 className="card-title pe-4">Exp: {doctorBasicDetails.yearsOfExperience ? doctorBasicDetails.yearsOfExperience : '0'} yrs</h6>
+                               <h6 className="card-title pe-4">Exp: {doctorBasicDetails.yearsOfExperience ? doctorBasicDetails.yearsOfExperience : '0'} yrs</h6>
 
                             </div>
                         </div>
@@ -125,37 +117,37 @@ function CardAppointmentVIewForPatients(props) {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col text-center" >
-                            {
-                                props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
+                    {
+                            props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
+                            <div className="col text-center" >
                                 <Tooltip
                                     title="Cancel Appointment"
                                     placement="top">
                                     <ClearOutlinedIcon className="cancel-icon" onClick={cancelClicked}
                                     />
                                 </Tooltip>
-                            }
-                        </div>
-                        <div className="col text-center">
-                            {
-                                props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
-                                <Tooltip
-                                    title="Call Doctor"
-                                    placement="top">
-                                    <AddIcCallIcon className="call-icon" onClick={joinMeeting} />
-                                </Tooltip>
-                            }
-                        </div>
-                        <div className="col text-center">
-                            {
-                                props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
+                            </div>
+                        }
+                        {
+                            props.appointmentStatus !== "CANCELLED" && props.appointmentStatus !== "PAST" &&
+
+                            <div className="col text-center"> <Tooltip
+                                title="Call Patient"
+                                placement="top">
+                                <AddIcCallIcon className="call-icon" onClick={joinMeeting} />
+                            </Tooltip>
+                            </div>
+                        }
+                        {
+                            props.appointmentStatus !== "CANCELLED" && <div className="col text-center">
+
                                 <Tooltip
                                     title="Chats"
                                     placement="top">
                                     <ChatIcon className="call-icon" onClick={showChat} />
                                 </Tooltip>
-                            }
-                        </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

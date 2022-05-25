@@ -13,6 +13,7 @@ const DoctorProfile = (props) => {
   const saveChangeHandler = (e) => {
     e.preventDefault();
     console.log(updateDoctorData);
+    localStorage.setItem('name',updateDoctorData.doctorName)
     ProfileDetailsService.addDoctorProfile(updateDoctorData)
       .then((res) => {
         if (res) {

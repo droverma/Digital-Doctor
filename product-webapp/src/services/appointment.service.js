@@ -14,7 +14,7 @@ class AppointmentService {
     // return axios.post(`${apiUrl}/api/v1/doctor/slot`,data);
   }
 
-  getBookedAppointment(data) {
+  bookAppointment(data) {
     return axios.post(`${apiUrl2}/api/v1/appointments/add`, data);
     // return axios.post(`${apiUrl}/api/v1/patient/appointmentSlots`, data);
   }

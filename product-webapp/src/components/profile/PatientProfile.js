@@ -131,6 +131,7 @@ const PatientProfile = (props) => {
     }
   };
   const submitPatientData = (e) => {
+    localStorage.setItem('name',updatePatientData.patientName)
     setTimeout(() => {
       ProfileDetailsService.addPatientProfile(updatePatientData)
         .then((res) => {

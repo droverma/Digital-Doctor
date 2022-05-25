@@ -68,7 +68,7 @@ function AvailableSlotsPatients() {
             bookedOn: value,
         }
         if (startTime && endTime) {
-            AppointmentService.getBookedAppointment(data).then((response) => {
+            AppointmentService.bookAppointment(data).then((response) => {
                 if (response) {
                     toast.success('Appointment Booked Successfully!', {
                         position: "top-right",
