@@ -22,10 +22,10 @@ const server = gateway({
       prefix: "/video-chat-service",
       target: "http://localhost:8083",
     },
-    // {
-    //   prefix: "/email-service",
-    //   target: "http://localhost:8082",
-    // },
+    {
+      prefix: "/email-service",
+      target: "http://localhost:8082",
+    },
   ],
 });
 
