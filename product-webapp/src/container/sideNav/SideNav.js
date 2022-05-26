@@ -119,6 +119,12 @@ function ResponsiveDrawer(props) {
                 display: { xs: 'block', sm: 'none' },
                 '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
               }}
+              PaperProps={{
+                sx: {
+                  backgroundColor: "rgb(42, 210, 217)",
+                  color: "red",
+                }
+              }}
             >
               {drawer}
             </Drawer>
@@ -129,6 +135,12 @@ function ResponsiveDrawer(props) {
                 '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
               }}
               open
+              PaperProps={{
+                sx: {
+                  backgroundColor: "rgb(42, 210, 217)",
+                  color: "red",
+                }
+              }}
             >
               {drawer}
             </Drawer>
