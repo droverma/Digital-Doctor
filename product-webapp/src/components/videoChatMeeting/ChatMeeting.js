@@ -12,7 +12,7 @@ const ChatMeeting = () => {
                 setChat(res.data)
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [state])
 
     useEffect(() => {
         setChat(chat)

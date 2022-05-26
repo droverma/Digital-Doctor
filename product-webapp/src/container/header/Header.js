@@ -16,6 +16,7 @@ const Header = (props) => {
     const handleRegisterModal = () => setShowRegister(!showRegister);
 
     useEffect(() => {
+        debugger
         if (localStorage.getItem("role") === "patient") {
             ProfileDetailsService.patientProfile().then((response) => {
                 setName(response.data.patientName);
@@ -28,6 +29,7 @@ const Header = (props) => {
                 localStorage.setItem("username", response.data.doctorName)
             })
         }
+        // eslint-disable-next-line
     }, localStorage.getItem("role"))
 
     const logout = () => {
@@ -41,7 +43,7 @@ const Header = (props) => {
             <Navbar style={{ backgroundColor: '#2AD2D9' }}>
                 <Container>
                     {!localStorage.getItem('jwt-token') ?
-                        <Navbar.Brand href="/"><img src="../Digital_doctor_logo.png" /></Navbar.Brand>
+                        <Navbar.Brand href="/"><img src="../Digital_doctor_logo.png" alt='not found' /></Navbar.Brand>
                         : null
                     }
 

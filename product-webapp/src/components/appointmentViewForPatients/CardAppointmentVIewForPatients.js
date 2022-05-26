@@ -15,7 +15,7 @@ import VideoChatService from "../../services/VideoChat.service";
 
 
 function CardAppointmentVIewForPatients(props) {
-    const { socket, me, createMeeting } = useContext(SocketContext);
+    const { socket, createMeeting } = useContext(SocketContext);
     const [doctorBasicDetails, setdoctorBasicDetails] = useState({});
 
     let navigate = useNavigate();
@@ -68,7 +68,7 @@ function CardAppointmentVIewForPatients(props) {
                 <div className="card-body">
                     <div className="row">
                         <div className="col mb-3">
-                            <img src={doctorBasicDetails.image ? doctorBasicDetails.image : DoctorAvatar} className="doctors-image" />
+                            <img src={doctorBasicDetails.image ? doctorBasicDetails.image : DoctorAvatar} alt="doctor" className="doctors-image" />
                         </div>
                         <div className="col">
                             <div className="row">

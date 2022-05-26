@@ -1,11 +1,9 @@
+import { Tooltip } from "@material-ui/core";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import '../../component.css';
 import AppointmentService from "../../services/appointment.service";
-import moment from "moment";
 import Pagination from "../pagination/Pagination";
-import Posts from "../pagination/Posts";
-import { Tooltip } from "@material-ui/core";
-import CardAppointmentVIewForPatients from "../appointmentViewForPatients/CardAppointmentVIewForPatients";
 import CardAppointmentVIewForDoctors from "./CardAppointmentVIewForDoctors";
 
 
@@ -14,11 +12,8 @@ function AppointmentViewForDoctors() {
     const [result, setresult] = useState([]);
     const [defaultData, setDefaultData] = useState([]);
     const [activetab, setactivetab] = useState("UPCOMING");
-    const [postsPerPage, setpostsPerPage] = useState(4);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPosts, settotalPosts] = useState();
-    const [loading, setLoading] = useState(false);
-    const [currentPosts, setcurrentPosts] = useState([]);
     const [paginateData, setpaginateData] = useState([]);
     const [activeTabData, setactiveTabData] = useState([]);
     const [doctorEmail, setdoctorEmail] = useState('');
@@ -48,20 +43,22 @@ function AppointmentViewForDoctors() {
     useEffect(() => {
         setresult(defaultData);
         filterData(defaultData);
+        //eslint-disable-next-line
     }, [activetab])
 
     useEffect(() => {
         filterData(defaultData);
+        //eslint-disable-next-line
     }, [defaultData])
 
     useEffect(() => {
         settotalPosts(activeTabData.length);
-        // setpaginateData(activeTabData);
         // filterPaginate(activeTabData);
     }, [activeTabData])
 
     useEffect(() => {
         filterPaginate(paginateData)
+        //eslint-disable-next-line
     }, [currentPage, paginateData])
 
 
@@ -82,7 +79,7 @@ function AppointmentViewForDoctors() {
 
         setCurrentPage(1);
         let date = moment(filters.date).format('YYYY-MM-DD');
-        const filter = `appointmentDate=${date}&appointmentStatus=${activetab}&doctorEmail=${localStorage.getItem('userEmail')}`
+        const filter = `appointmentDate=${date}&appointmentStatus=${activetab}&doctorEmail=${doctorEmail}`
         AppointmentService.appointmentByFilter(filter).then(res => {
             setresult(res.data);
         })
@@ -102,8 +99,6 @@ function AppointmentViewForDoctors() {
         filters.date = "";
     }
 
-    const paginate = pageNumber => setCurrentPage(pageNumber);
-
     const setPastTab = () => {
         setactivetab("PAST");
         setCurrentPage(1);
@@ -118,9 +113,9 @@ function AppointmentViewForDoctors() {
     }
 
     const filterPaginate = (arr) => {
-        if (arr.length > postsPerPage) {
-            const firstPageIndex = (currentPage - 1) * postsPerPage;
-            const lastPageIndex = firstPageIndex + postsPerPage;
+        if (arr.length > 4) {
+            const firstPageIndex = (currentPage - 1) * 4;
+            const lastPageIndex = firstPageIndex + 4;
             const currentPosts = arr.slice(firstPageIndex, lastPageIndex);
             setresult(currentPosts);
         } else {
@@ -165,17 +160,11 @@ function AppointmentViewForDoctors() {
             </div>
             <div className="col-lg-8 column m-2 appointments">
                 <div className="text-end mb-4">
-                    {/* <Posts posts={currentPosts} loading={loading} />
-                    <Pagination
-                        postsPerPage={postsPerPage}
-                        totalPosts={totalPosts}
-                        paginate={paginate}
-                    /> */}
                     <Pagination
                         className="pagination-bar"
                         currentPage={currentPage}
                         totalCount={totalPosts ? totalPosts : 4}
-                        pageSize={postsPerPage}
+                        pageSize={4}
                         onPageChange={(page) => setCurrentPage(page)}
                     />
                 </div>

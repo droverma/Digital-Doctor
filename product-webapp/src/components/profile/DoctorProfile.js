@@ -77,7 +77,7 @@ const DoctorProfile = (props) => {
   useEffect(() => {
     props.setisAuthenticated(true);
     getDoctorData();
-  }, []);
+  }, [props]);
 
   const FormTitles = "Personal Info";
   const PageDisplay = () => {

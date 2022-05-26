@@ -1,5 +1,4 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,14 +9,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { PatientSidebarData } from "./PatientSideBarData";
-import { DoctorSidebarData } from "./DoctorSideBarData";
+import * as React from 'react';
 import { useNavigate } from "react-router-dom";
-import './SideBar.css'
-import Header from '../header/Header';
+import { DoctorSidebarData } from "./DoctorSideBarData";
+import { PatientSidebarData } from "./PatientSideBarData";
+import './SideBar.css';
 
 const drawerWidth = 240;
 
@@ -42,7 +39,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div>
-        <img src="../Digital_doctor_logo.png" className='image' onClick={() => navigate('/')} />
+        <img src="../Digital_doctor_logo.png" alt='not found' className='image' onClick={() => navigate('/')} />
       </div>
       <Toolbar />
       <Divider />
@@ -51,19 +48,19 @@ function ResponsiveDrawer(props) {
           {localStorage.getItem('role') === 'patient' ?
 
             PatientSidebarData.map((text, index) => (
-                <ListItem button key={index} onClick={(e) => handleTab(text.path, text.title)} className={activeTab ?'bg-color': ''}>
+              <ListItem button key={index} onClick={(e) => handleTab(text.path, text.title)} className={activeTab ? 'bg-color' : ''}>
                 <ListItemIcon className='icon'>
                   {text.icon}
                 </ListItemIcon>
                 <ListItemText primary={text.title}
                   className="text" />
               </ListItem>
-              
+
             ))
             :
 
             DoctorSidebarData.map((text, index) => (
-              <ListItem button key={index} onClick={(e) => handleTab(text.path, text.title) } className={activeTab?'bg-color': ''}>
+              <ListItem button key={index} onClick={(e) => handleTab(text.path, text.title)} className={activeTab ? 'bg-color' : ''}>
                 <ListItemIcon className='icon'>
                   {text.icon}
                 </ListItemIcon>

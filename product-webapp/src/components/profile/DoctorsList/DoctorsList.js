@@ -67,7 +67,8 @@ const DoctorsList = () => {
   };
   useEffect(() => {
     getPatientCity();
-  }, []);
+    //eslint-disable-next-line
+  },[]);
 
   const getDoctorsList = (patientCity) => {
     setLoading(true);

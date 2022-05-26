@@ -50,12 +50,13 @@ const VideoChat = () => {
   useEffect(() => {
     if (myVdoStatus)
       getVideoAudio();
+    //eslint-disable-next-line
   }, [myVdoStatus])
 
   useEffect(() => {
     if (state.appointmentId)
       setAppointmentId(state.appointmentId)
-  }, [appointmentId])
+  }, [state])
 
   socket.on("msgRcv", ({ name, msg: value, sender }) => {
     let msg = {};
@@ -296,24 +297,24 @@ const VideoChat = () => {
           </div>
         </div>
       </Row> :
-        <JoiningScreen
-          setMicOn={setMyMicStatus}
-          micOn={myMicStatus}
-          webcamOn={myVdoStatus}
-          setWebcamOn={setMyVdoStatus}
-          setName={setName}
-          name={name}
-          appointmentId={appointmentId}
-          onClickStartMeeting={() => {
-            setMeetingStarted(true);
-            getVideoAudio();
+      <JoiningScreen
+        setMicOn={setMyMicStatus}
+        micOn={myMicStatus}
+        webcamOn={myVdoStatus}
+        setWebcamOn={setMyVdoStatus}
+        setName={setName}
+        name={name}
+        appointmentId={appointmentId}
+        onClickStartMeeting={() => {
+          setMeetingStarted(true);
+          getVideoAudio();
 
-            if (state && state.id) {
-              callUser(state.id);
-            }
-          }}
-          startMeeting={isMeetingStarted}
-        />
+          if (state && state.id) {
+            callUser(state.id);
+          }
+        }}
+        startMeeting={isMeetingStarted}
+      />
   );
 };
 

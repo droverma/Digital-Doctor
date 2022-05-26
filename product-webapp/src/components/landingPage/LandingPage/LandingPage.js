@@ -82,7 +82,7 @@ const LandingPage = () => {
             <div className='conatiner-fluid margin-container'>
                 <div className='column'>
                     <div className='col'>
-                        <img src={landingPageImage} className='landing-page-image' />
+                        <img src={landingPageImage} className='landing-page-image' alt='landingPage'/>
                     </div>
                     <div className='col column'>
                         <div className='col text-center fw-bold fs-3 mt-4 mb-4'>
@@ -188,7 +188,7 @@ const LandingPage = () => {
                     <div className='col-md-8'>
                         <div className='row'>
                             <div className='col-md-7'>
-                                <img src="../Digital_doctor_logo.png" style={{ height: '100%' }} />
+                                <img src="../Digital_doctor_logo.png" style={{ height: '100%' }} alt="digital doctor"/>
                             </div>
                             <div className='col-md-4'>
                                 <a className="mx-2 text-white" href="#candidates">About</a>
