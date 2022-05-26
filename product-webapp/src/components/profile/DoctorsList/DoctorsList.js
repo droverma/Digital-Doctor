@@ -64,7 +64,6 @@ const DoctorsList = () => {
         getDoctorsList(patientCity);
       })
       .catch((err) => console.log(err));
-
   };
   useEffect(() => {
     getPatientCity();
@@ -73,6 +72,7 @@ const DoctorsList = () => {
   const getDoctorsList = (patientCity) => {
     setLoading(true);
     ProfileDetailsService.doctorsList(patientCity, filterData.specialization)
+
       .then((res) => {
         const detailsList = res.data;
         setList(detailsList);

@@ -1,0 +1,91 @@
+version: "3"
+services:
+
+  api-gateway:
+    container_name: api-gateway
+    build: api-gateway
+    restart: always
+    network_mode: host
+    hostname: localhost
+    ports:
+      - 8080:8080
+
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongo-container
+    network_mode: host
+    hostname: localhost
+    ports:
+      - 27017:27017
+
+
+  user-service:
+    container_name: user-service
+    build: user-service/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8085:8085
+    depends_on:
+      - mongodb
+    restart: always
+
+  appointment:
+    container_name: appointment
+    build: appointment/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongodb
+    restart: always
+
+  slot:
+    container_name: slot
+    build: slot/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8084:8084
+    depends_on:
+      - mongodb
+    restart: always
+
+  email-service:
+    container_name: email-service
+    build: email-service/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8082:8082
+    restart: always
+
+  # product-webapp:
+  #   container_name: product-webapp
+  #   build: product-webapp/
+  #   hostname: localhost
+  #   restart: always
+  #   network_mode: host
+  #   ports:
+  #     - 3000:3000
+
+  video-chat-service:
+    container_name: video-chat-service
+    build: video-chat-service/
+    hostname: localhost
+    network_mode: host
+    ports:
+      - 8083:8083
+    restart: always
+   
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: "root"
+      RABBITMQ_DEFAULT_PASS: "root123"

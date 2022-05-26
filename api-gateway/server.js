@@ -2,17 +2,17 @@ const gateway = require("fast-gateway");
 
 // const cors = require("cors");
 // app.use(cors());
-const PORT = 9999;
+const PORT = 8080;
 
 const server = gateway({
   routes: [
     {
       prefix: "/user-service",
-      target: "http://localhost:8888",
+      target: "http://localhost:8085",
     },
     {
       prefix: "/slot-service",
-      target: "http://localhost:8080",
+      target: "http://localhost:8084",
     },
     {
       prefix: "/appointment-service",

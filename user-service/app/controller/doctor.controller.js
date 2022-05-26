@@ -73,6 +73,7 @@ exports.updateDoctor = (req, res) => {
 exports.signInDoctor = (req, res) => {
   const normalPassword = req.body.password;
   Doctor.findOne({ _id: req.body.emailId }, "password", (err, doctor) => {
+    // console.log("doctor data", doctor._id);
     if (err) {
       return res.status(501).send({ error: "Invalid Password" });
     }
