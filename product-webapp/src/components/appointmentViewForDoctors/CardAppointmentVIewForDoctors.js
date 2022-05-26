@@ -66,7 +66,7 @@ function CardAppointmentVIewForDoctors(props) {
     }, [props])
 
     return (
-        <div className="col-md-6 mb-4">
+        <div className="col-md-6 mb-4" >
             <div className="card ">
                 <div className="card-body">
                     <div className="row">

@@ -26,6 +26,10 @@ const server = gateway({
       prefix: "/email-service",
       target: "http://localhost:8082",
     },
+    {
+      prefix: "/socket-service",
+      target: "http://localhost:5000",
+    },
   ],
 });
 
