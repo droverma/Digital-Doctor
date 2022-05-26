@@ -131,14 +131,9 @@ const PatientProfile = (props) => {
     }
   };
   const submitPatientData = (e) => {
-    localStorage.setItem('name',updatePatientData.patientName)
+    localStorage.setItem('username',updatePatientData.patientName)
     setTimeout(() => {
-      ProfileDetailsService.addPatientProfile(updatePatientData)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => console.log(err));
-      // alert("Patient's Profile Update Submitted");
+      ProfileDetailsService.addPatientProfile(updatePatientData);
       toast.success("Patients Profile Updated Submitted", {
         position: "top-right",
         autoClose: 5000,
@@ -157,9 +152,7 @@ const PatientProfile = (props) => {
   const getPatientData = () => {
     ProfileDetailsService.patientProfile()
       .then((res) => {
-        // console.log(res.data);
-        const da = res.data;
-        // console.log(da);
+       const da = res.data;
         setUpdatePatientData({
           emailId: da._id,
           patientName: da.patientName,

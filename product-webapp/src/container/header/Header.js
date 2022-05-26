@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import Login from '../../components/login/Login';
-import { useNavigate } from "react-router-dom";
 import Register from '../../components/register/Register';
 import ProfileDetailsService from '../../services/profileDetails.service';
 import './Header.css';
@@ -13,8 +12,6 @@ const Header = (props) => {
     const [showRegister, setShowRegister] = useState(false);
     const [name, setName] = useState('');
 
-
-
     const handleLoginModal = () => setShowLogin(!showLogin)
     const handleRegisterModal = () => setShowRegister(!showRegister);
 
@@ -22,11 +19,13 @@ const Header = (props) => {
         if (localStorage.getItem("role") === "patient") {
             ProfileDetailsService.patientProfile().then((response) => {
                 setName(response.data.patientName);
+                localStorage.setItem("username", response.data.patientName)
             })
-        } else if (localStorage.getItem("role") === "doctor") {
+        }
+        else if (localStorage.getItem("role") === "doctor") {
             ProfileDetailsService.doctorProfile().then((response) => {
                 setName(response.data.doctorName);
-                console.log(response);
+                localStorage.setItem("username", response.data.doctorName)
             })
         }
     }, localStorage.getItem("role"))
@@ -45,7 +44,7 @@ const Header = (props) => {
                         <Navbar.Brand href="/"><img src="../Digital_doctor_logo.png" /></Navbar.Brand>
                         : null
                     }
-                   
+
                     <Navbar.Collapse className="justify-content-end">
                         <Nav>
                             {!localStorage.getItem('jwt-token') ?
@@ -60,10 +59,7 @@ const Header = (props) => {
                                     <Navbar.Brand className='ms-4 me-0 pe-4'>
                                         <span className='fs-6 fw-bold name-properties'>Welcome back {localStorage.getItem("role") === "patient" ? name : `Doctor ${name}`} !!!</span>
                                     </Navbar.Brand>
-                                    {/* <NavDropdown title="Logout" id="collasible-nav-dropdown"> */}
-                                    {/* <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item> */}
                                     <Button variant="warning" onClick={logout} style={{ fontWeight: 'bold' }}>Logout</Button>
-                                    {/* </NavDropdown> */}
                                 </>
                             }
 

@@ -97,9 +97,7 @@ function AvailableSlotsPatients() {
                     __v: response.data[0].__v,
                     _id: response.data[0]._id
                 }
-                AppointmentService.updateSlotStatus(data).then((res) => {
-                    console.log(res, 'update')
-                })
+                AppointmentService.updateSlotStatus(data);
             })
 
         }else{

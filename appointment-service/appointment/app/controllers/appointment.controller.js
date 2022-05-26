@@ -23,11 +23,11 @@ exports.bookAppointment = (req, res) => {
         bookedOn: req.body.bookedOn,
     })
 
-    // if (bookAppointment.slotId === null || bookAppointment.slotId === '' ||
-    //     bookAppointment.patientEmail === null || bookAppointment.patientEmail === '' ||
-    //     bookAppointment.doctorEmail === null || bookAppointment.doctorEmail === '') {
-    //     return res.status(401).send({ msg: 'Book Appointment data missing' })
-    // }
+    if (bookAppointment.slotId === null || bookAppointment.slotId === '' ||
+        bookAppointment.patientEmail === null || bookAppointment.patientEmail === '' ||
+        bookAppointment.doctorEmail === null || bookAppointment.doctorEmail === '') {
+        return res.status(401).send({ msg: 'Book Appointment data missing' })
+    }
 
     bookAppointment.save().then(data => {
         res.send(data);
@@ -35,16 +35,16 @@ exports.bookAppointment = (req, res) => {
             if (error0) {
                 throw error0;
             }
-            connection.createChannel(function(error1, channel) {
+            connection.createChannel(function (error1, channel) {
                 if (error1) {
-                  throw error1;
+                    throw error1;
                 }
-            
+
                 channel.assertQueue(queue);
-            
+
                 channel.sendToQueue(queue, Buffer.from(JSON.stringify(data)));
                 console.log(" [x] Sent %s", JSON.stringify(data));
-              });
+            });
         });
 
     }).catch(err => {
@@ -54,68 +54,12 @@ exports.bookAppointment = (req, res) => {
     });
 }
 
-exports.appointmentListByPatient = (req, res) => {
-    Appointment.find({ patientEmail: req.params.email }).then(response => {
-        res.send(response)
-    }).catch(err => {
-        res.status(500).send({
-            msg: "error"
-        })
-    })
-}
-
-exports.appointmentListByDoctor = (req, res) => {
-    Appointment.find({ doctorEmail: req.params.email }).then(response => {
-        res.send(response)
-    }).catch(err => {
-        res.status(500).send({
-            msg: "error"
-        })
-    })
-}
-
-exports.appointmentDetails = (req, res) => {
-    Appointment.find({ appointmentId: req.params.id }).then(response => {
-        res.send(response);
-    }).catch(err => {
-        res.status(500).send({
-            msg: "Appointment not found"
-        })
-    })
-}
-
-exports.appointmentListBySpecialization = (req, res) => {
-    Appointment.find({ specialization: req.params.specialization, appointmentStatus: req.params.activeTab }).then(response => {
-        res.send(response);
-    }).catch(err => {
-        res.status(500).send({
-            msg: "Appointment not found"
-        })
-    })
-}
-exports.appointmentListByDate = (req, res) => {
-    Appointment.find({ appointmentDate: req.params.date, appointmentStatus: req.params.activeTab }).then(response => {
-        res.send(response);
-    }).catch(err => {
-        res.status(500).send({
-            msg: "Appointment not found"
-        })
-    })
-}
-
 exports.appointmentListByFilter = (req, res) => {
-   if (req.query.date)
-        Appointment.find({
-            appointmentDate: req.query.date,
-            specialization: req.query.spec,
-            appointmentStatus: req.query.status,
-        }).then(response => {
-            res.send(response);
-        }).catch(err => {
-            res.status(500).send({
-                msg: "Appointment not found"
-            })
-        })
+    var query = req.query;
+    Appointment.find(query, (err, result) => {
+        res.send(result);
+    });
+
 }
 
 exports.updateAppointmentStatus = (req, res) => {
@@ -133,7 +77,7 @@ exports.updateAppointmentStatus = (req, res) => {
                 msg: "Appointment not found"
             })
     }).catch(err => {
-       res.status(500).send({
+        res.status(500).send({
             msg: "Appointment not found"
         })
     })

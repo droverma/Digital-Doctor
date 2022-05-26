@@ -26,33 +26,8 @@ function AppointmentViewForPatients() {
     const [filters, setFilters] = useState({ specialization: '', date: '' });
 
     useEffect(() => {
-        let email = localStorage.getItem("userEmail");
-        setpatientEmail(email);
-        AppointmentService.appointmentsForPatient(email).then((response) => {
-            let data = response.data;
-            setDefaultData(data);
-            setresult(data);
-        })
+       appoinmentList();
     }, []);
-
-    const refreshApi = () => {
-        let email = localStorage.getItem("userEmail");
-        setpatientEmail(email);
-        AppointmentService.appointmentsForPatient(email).then((response) => {
-            let data = response.data;
-            setresult(data);
-            setDefaultData(data);
-        })
-    }
-    // const appoinmentList = ()=>{
-    //     let email = localStorage.getItem("userEmail");
-    //     setpatientEmail(email);
-    //     AppointmentService.appointmentsForPatient(email).then((response) => {
-    //         let data = response.data;
-    //         setDefaultData(data);
-    //         setresult(data);
-    //     })
-    // }
 
     useEffect(() => {
         setresult(defaultData);
@@ -65,14 +40,25 @@ function AppointmentViewForPatients() {
 
     useEffect(() => {
         settotalPosts(activeTabData.length);
-        // setpaginateData(activeTabData);
-        // filterPaginate(activeTabData);
     }, [activeTabData])
 
     useEffect(() => {
         filterPaginate(paginateData)
     }, [currentPage, paginateData])
+    const refreshApi = () => {
+       appoinmentList();
+    }
 
+    const appoinmentList = ()=>{
+        let email = localStorage.getItem("userEmail");
+        setpatientEmail(email);
+        const filter = `patientEmail=${email}`
+        AppointmentService.appointmentByFilter(filter).then(res => {
+            let data = res.data;
+            setDefaultData(data);
+            setresult(data);
+        })
+    }
 
     const filterData = (arr) => {
         let filter = arr.filter((res) => res.appointmentStatus === activetab)
@@ -91,31 +77,27 @@ function AppointmentViewForPatients() {
 
         setCurrentPage(1);
 
-        // filters.date = moment(filters.date).format('YYYY-MM-DD');
         let date = moment(filters.date).format('YYYY-MM-DD');
-        let filteredData;
         if (filters.specialization === "" && date !== "Invalid date") {
-            // filteredData = activeTabData.filter((response) => response.appointmentDate === date);
-            AppointmentService.appointmentByDate(date,activetab).then(res => {
+            const filter = `appointmentDate=${date}&appointmentStatus=${activetab}&patientEmail=${localStorage.getItem('userEmail')}`
+            AppointmentService.appointmentByFilter(filter).then(res => {
                 setresult(res.data);
             })
         } else if (filters.specialization !== "" && date === "Invalid date") {
-            AppointmentService.appointmentBySpec(filters.specialization,activetab).then(res => {
+            const filter = `specialization=${filters.specialization}&appointmentStatus=${activetab}&patientEmail=${localStorage.getItem('userEmail')}`
+
+            AppointmentService.appointmentByFilter(filter).then(res => {
                 setresult(res.data);
             })
-            // filteredData = activeTabData.filter((response) => response.specialization === filters.specialization);
         } else if (filters.specialization !== "" && date !== "Invalid date") {
-            // filteredData = activeTabData.filter((response) =>
-            //     response.specialization === filters.specialization &&
-            //     response.appointmentDate === date
-            // );
-            const filter = `spec=${filters.specialization}&date=${date}&status=${activetab}`
+
+            const filter = `specialization=${filters.specialization}&appointmentDate=${date}&appointmentStatus=${activetab}&patientEmail=${localStorage.getItem('userEmail')}`
             AppointmentService.appointmentByFilter(filter).then(res => {
                 setresult(res.data);
             })
         }
         settotalPosts(result.length);
-        setpaginateData(result);  
+        setpaginateData(result);
     }
 
     const handleChange = (event) => {
@@ -129,7 +111,6 @@ function AppointmentViewForPatients() {
         filters.specialization = "";
         filters.date = "";
     }
-    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     const setPastTab = () => {
         setactivetab("PAST");

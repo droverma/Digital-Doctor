@@ -81,7 +81,7 @@ function CreateSlotViewDoctor() {
                         });
                     }
                 break;
-            default: console.log('default')
+            default: setValidate(false);
                 break;
         }
         setfields({ ...fields, [name]: value });

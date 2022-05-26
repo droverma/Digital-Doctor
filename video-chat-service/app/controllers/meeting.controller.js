@@ -40,7 +40,6 @@ exports.meetingsByAppointment = (req, res) => {
 }
 
 exports.chatMeetingByAppointment = (req, res) => {
-    console.log(req.body, 'body')
     if (!req.body) {
         return res.status(400).send({
             messsage: 'The content can not be empty'

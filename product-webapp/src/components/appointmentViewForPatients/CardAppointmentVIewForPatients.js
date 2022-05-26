@@ -21,7 +21,8 @@ function CardAppointmentVIewForPatients(props) {
     let navigate = useNavigate();
 
     const cancelClicked = () => {
-        AppointmentService.appointmentDetails(props.appointmentId).then((res) => {
+        const filter = `appointmentId=${props.appointmentId}&patientEmail=${localStorage.getItem('userEmail')}`
+        AppointmentService.appointmentByFilter(filter).then(res => {
             let data = {
                 appointmentDate: res.data[0].appointmentDate,
                 appointmentEndTime: res.data[0].appointmentEndTime,
@@ -36,7 +37,7 @@ function CardAppointmentVIewForPatients(props) {
                 __v: res.data[0].__v,
                 _id: res.data[0]._id
             }
-            AppointmentService.updateStatusForApmt(data).then((response) => {
+            AppointmentService.updateStatusForApmt(data).then((res) => {
                 props.refreshApi();
             })
         })

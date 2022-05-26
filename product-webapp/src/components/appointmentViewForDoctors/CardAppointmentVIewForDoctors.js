@@ -24,8 +24,8 @@ function CardAppointmentVIewForDoctors(props) {
     let navigate = useNavigate();
 
     const cancelClicked = () => {
-
-        AppointmentService.appointmentDetails(props.appointmentId).then((res) => {
+        const filter = `appointmentId=${props.appointmentId}&doctorEmail=${localStorage.getItem('userEmail')}`
+        AppointmentService.appointmentByFilter(filter).then(res => {
             let data = {
                 appointmentDate: res.data[0].appointmentDate,
                 appointmentEndTime: res.data[0].appointmentEndTime,
@@ -44,8 +44,8 @@ function CardAppointmentVIewForDoctors(props) {
                 props.refreshApi();
             })
         })
-
     }
+    
     const startMeeting = () => {
         socket.emit("me");
         createMeeting();

@@ -49,9 +49,7 @@ function PersonalInfo({
   validated,
   setValidated,
 }) {
-  // const [validated, setValidated] = useState({});
-  // console.log(updateDoctorData);
-  const imageChangeHandler = (e) => {
+   const imageChangeHandler = (e) => {
     const files = e.target.files;
     const file = files[0];
     getBase64(file);
@@ -66,9 +64,7 @@ function PersonalInfo({
   };
 
   const onLoad = (fileString) => {
-    // console.log(fileString);
-    setUpdateDoctorData({ ...updateDoctorData, image: fileString });
-    // console.log(updateDoctorData);
+   setUpdateDoctorData({ ...updateDoctorData, image: fileString });
   };
 
   const doctorChangeHandler = (e) => {
@@ -164,7 +160,6 @@ function PersonalInfo({
         break;
     }
 
-    // console.log(updateDoctorData);
   };
   return (
     <div className="Personal-Info-container">
@@ -172,7 +167,6 @@ function PersonalInfo({
         <Col
           md={4}
           className=" mb-3 ms-1 imgshow"
-          // style={{ border: "1px solid red" }}
         >
           {" "}
           <div className="ms-1 imgdiv">
