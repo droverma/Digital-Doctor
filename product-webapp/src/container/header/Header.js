@@ -15,8 +15,7 @@ const Header = (props) => {
     const handleLoginModal = () => setShowLogin(!showLogin)
     const handleRegisterModal = () => setShowRegister(!showRegister);
 
-    useEffect(() => {
-        debugger
+    useEffect(() => {        
         if (localStorage.getItem("role") === "patient") {
             ProfileDetailsService.patientProfile().then((response) => {
                 setName(response.data.patientName);
