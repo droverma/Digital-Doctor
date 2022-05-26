@@ -1,11 +1,9 @@
+import { Tooltip } from "@material-ui/core";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import '../../component.css';
 import AppointmentService from "../../services/appointment.service";
-import moment from "moment";
 import Pagination from "../pagination/Pagination";
-import Posts from "../pagination/Posts";
-import { Tooltip } from "@material-ui/core";
-import CardAppointmentVIewForPatients from "../appointmentViewForPatients/CardAppointmentVIewForPatients";
 import CardAppointmentVIewForDoctors from "./CardAppointmentVIewForDoctors";
 
 
@@ -14,11 +12,8 @@ function AppointmentViewForDoctors() {
     const [result, setresult] = useState([]);
     const [defaultData, setDefaultData] = useState([]);
     const [activetab, setactivetab] = useState("UPCOMING");
-    const [postsPerPage, setpostsPerPage] = useState(4);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPosts, settotalPosts] = useState();
-    const [loading, setLoading] = useState(false);
-    const [currentPosts, setcurrentPosts] = useState([]);
     const [paginateData, setpaginateData] = useState([]);
     const [activeTabData, setactiveTabData] = useState([]);
     const [doctorEmail, setdoctorEmail] = useState('');
@@ -27,19 +22,19 @@ function AppointmentViewForDoctors() {
     const [filters, setFilters] = useState({ specialization: '', date: "" });
 
     useEffect(() => {
-        let loggedInEmail = localStorage.getItem("userEmail");
-        AppointmentService.appointmentsForDoctor(loggedInEmail).then((response) => {
-            let data = response.data;
-            setresult(data);
-            setDefaultData(data);
-        })
+        appoinmentList();
     }, []);
 
     const refreshApi = () => {
-        let docEmail = localStorage.getItem("userEmail");
-        setdoctorEmail(docEmail);
-        AppointmentService.appointmentsForDoctor(docEmail).then((response) => {
-            let data = response.data;
+        appoinmentList();
+    }
+
+    const appoinmentList = () => {
+        let email = localStorage.getItem("userEmail");
+        setdoctorEmail(email);
+        const filter = `doctorEmail=${email}`
+        AppointmentService.appointmentByFilter(filter).then(res => {
+            let data = res.data;
             setDefaultData(data);
             setresult(data);
         })
@@ -48,20 +43,22 @@ function AppointmentViewForDoctors() {
     useEffect(() => {
         setresult(defaultData);
         filterData(defaultData);
+        //eslint-disable-next-line
     }, [activetab])
 
     useEffect(() => {
         filterData(defaultData);
+        //eslint-disable-next-line
     }, [defaultData])
 
     useEffect(() => {
         settotalPosts(activeTabData.length);
-        // setpaginateData(activeTabData);
         // filterPaginate(activeTabData);
     }, [activeTabData])
 
     useEffect(() => {
         filterPaginate(paginateData)
+        //eslint-disable-next-line
     }, [currentPage, paginateData])
 
 
@@ -81,32 +78,13 @@ function AppointmentViewForDoctors() {
     const filterResult = () => {
 
         setCurrentPage(1);
-
-        // filters.date = moment(filters.date).format('YYYY-MM-DD');
         let date = moment(filters.date).format('YYYY-MM-DD');
-        let filteredData;
-        if (filters.specialization === "" && date !== "Invalid date") {
-            // filteredData = activeTabData.filter((response) => { return response.appointmentDate === date });
-            AppointmentService.appointmentByDate(date, activetab).then(res => {
-                setresult(res.data);
-            })
-        } else if (filters.specialization !== "" && date === "Invalid date") {
-            // filteredData = activeTabData.filter((response) => { return response.specialization === filters.specialization });
-            AppointmentService.appointmentBySpec(filters.specialization, activetab).then(res => {
-                setresult(res.data);
-            })
-        } else if (filters.specialization !== "" && date !== "Invalid date") {
-            // filteredData = activeTabData.filter((response) => {
-            //     return response.specialization === filters.specialization &&
-            //         response.appointmentDate === date
-            // });
-            const filter = `spec=${filters.specialization}&date=${date}&status=${activetab}`
-            AppointmentService.appointmentByFilter(filter).then(res => {
-                setresult(res.data);
-            })
-        }
+        const filter = `appointmentDate=${date}&appointmentStatus=${activetab}&doctorEmail=${doctorEmail}`
+        AppointmentService.appointmentByFilter(filter).then(res => {
+            setresult(res.data);
+        })
         settotalPosts(result.length);
-        setpaginateData(result);  
+        setpaginateData(result);
     }
 
     const handleChange = (event) => {
@@ -120,8 +98,6 @@ function AppointmentViewForDoctors() {
         filters.specialization = "";
         filters.date = "";
     }
-
-    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     const setPastTab = () => {
         setactivetab("PAST");
@@ -137,9 +113,9 @@ function AppointmentViewForDoctors() {
     }
 
     const filterPaginate = (arr) => {
-        if (arr.length > postsPerPage) {
-            const firstPageIndex = (currentPage - 1) * postsPerPage;
-            const lastPageIndex = firstPageIndex + postsPerPage;
+        if (arr.length > 4) {
+            const firstPageIndex = (currentPage - 1) * 4;
+            const lastPageIndex = firstPageIndex + 4;
             const currentPosts = arr.slice(firstPageIndex, lastPageIndex);
             setresult(currentPosts);
         } else {
@@ -151,12 +127,12 @@ function AppointmentViewForDoctors() {
     return (
         <div className="container-fluid row">
             <div className="col-lg-4 col-sm-12 filter-container-box">
-                <div class="card card-with-image">
+                <div className="card card-with-image">
                     <div>
-                        <img src="https://cdn.dribbble.com/users/2025439/screenshots/4062776/ml_gif4.gif" class="card-img-top" alt="..." />
+                        <img src="https://cdn.dribbble.com/users/2025439/screenshots/4062776/ml_gif4.gif" className="card-img-top" alt="..." />
                     </div>
-                    <div class="card-body search-fields-Doctor-view">
-                        <h5 class="card-title mb-4">Search Fields</h5>
+                    <div className="card-body search-fields-Doctor-view">
+                        <h5 className="card-title mb-4">Search Fields</h5>
                         <form onSubmit={handleSubmit}>
                             {/* <input type="search" className="form-control mb-4" placeholder="Search by Specialization"
                                 name="specialization" value={filters.specialization} onChange={handleChange}
@@ -184,17 +160,11 @@ function AppointmentViewForDoctors() {
             </div>
             <div className="col-lg-8 column m-2 appointments">
                 <div className="text-end mb-4">
-                    {/* <Posts posts={currentPosts} loading={loading} />
-                    <Pagination
-                        postsPerPage={postsPerPage}
-                        totalPosts={totalPosts}
-                        paginate={paginate}
-                    /> */}
                     <Pagination
                         className="pagination-bar"
                         currentPage={currentPage}
                         totalCount={totalPosts ? totalPosts : 4}
-                        pageSize={postsPerPage}
+                        pageSize={4}
                         onPageChange={(page) => setCurrentPage(page)}
                     />
                 </div>
@@ -212,24 +182,20 @@ function AppointmentViewForDoctors() {
                 </div>
                 <div className="tab-content" id="nav-tabContent">
                     <div className="tab-pane fade show active row" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        {
-                            result.map((response) => {
-                                return (
-                                    <CardAppointmentVIewForDoctors
-                                        patientEmail={response.patientEmail}
-                                        appointmentDate={response.appointmentDate}
-                                        appointmentStartTime={response.appointmentStartTime}
-                                        appointmentEndTime={response.appointmentEndTime}
-                                        appointmentStatus={response.appointmentStatus}
-                                        appointmentId={response.appointmentId}
-                                        doctorImage={response.doctorImage}
-                                        id={response.id}
-                                        refreshApi={refreshApi}
-                                    />
-                                )
-                            })
-
-                        }
+                        {result.map((response,i) =>
+                            <CardAppointmentVIewForDoctors
+                                patientEmail={response.patientEmail}
+                                appointmentDate={response.appointmentDate}
+                                appointmentStartTime={response.appointmentStartTime}
+                                appointmentEndTime={response.appointmentEndTime}
+                                appointmentStatus={response.appointmentStatus}
+                                appointmentId={response.appointmentId}
+                                doctorImage={response.doctorImage}
+                                id={response.id}
+                                refreshApi={refreshApi}
+                                key={i}
+                            />
+                        )}
 
                     </div>
                 </div>

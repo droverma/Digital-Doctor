@@ -7,13 +7,12 @@ const ChatMeeting = () => {
     const [chat, setChat] = useState([]);
 
     useEffect(() => {
-        console.log(state)
         VideoChatService.chatMeetingDetails(state)
             .then(res => {
                 setChat(res.data)
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [state])
 
     useEffect(() => {
         setChat(chat)
@@ -43,17 +42,7 @@ const ChatMeeting = () => {
                 <ul className="chat-container__chat-list">
                     <div className="msg_flex">
                         {chat && chat.map((msg, i) =>
-
-                            // <div className="chat-msg" key={i} >
-                            //     {console.log(data.role !== localStorage.getItem('role'))}
-                            //     <div id={data.role === localStorage.getItem('role') ? 'msg_sent' : 'msg_rcv'} className='text-size'>{data.sender}</div>
-
-                            //     <div id={data.role === localStorage.getItem('role') ? 'msg_sent' : 'msg_rcv'}>{data.msg}{data.role}</div>
-
-                            // </div>
-                            <  div
-                                className={msg.role === localStorage.getItem('role') ? "msg_sent" : "msg_rcv"}
-                            >
+                            <div key={i} className={msg.role === localStorage.getItem('role') ? "msg_sent" : "msg_rcv"}>
                                 <h5>{msg.sender}</h5>{msg.msg}
                                 <div className="time">{msg.time}</div>
                             </div>

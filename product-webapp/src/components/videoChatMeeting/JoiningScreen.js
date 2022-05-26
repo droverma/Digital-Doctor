@@ -61,9 +61,9 @@ export function JoiningScreen({
     };
 
     const changeApmtStatus = () => {
-        debugger
-        if (localStorage.getItem('role') === 'patient')
-            appointmentService.appointmentDetails(appointmentId).then((res) => {
+        if (localStorage.getItem('role') === 'patient') {
+            const filter = `appointmentId=${appointmentId}`
+            appointmentService.appointmentByFilter(filter).then(res => {
                 let data = {
                     appointmentDate: res.data[0].appointmentDate,
                     appointmentEndTime: res.data[0].appointmentEndTime,
@@ -78,10 +78,9 @@ export function JoiningScreen({
                     __v: res.data[0].__v,
                     _id: res.data[0]._id
                 }
-                appointmentService.updateStatusForApmt(data).then((response) => {
-                    console.log(response)
-                })
+                appointmentService.updateStatusForApmt(data);
             })
+        }
     }
 
     return (

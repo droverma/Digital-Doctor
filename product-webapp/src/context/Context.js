@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 import VideoChatService from '../services/VideoChat.service';
 
 const SocketContext = createContext();
-const socket = io('http://localhost:5000');
+const socket = io('http://localhost:8080/socket-service');
 
 const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
@@ -30,7 +30,7 @@ const ContextProvider = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const name = localStorage.getItem('name')
+        const name = localStorage.getItem('username')
         if (localStorage.getItem('role') === 'doctor')
             setName('Dr. ' + name);
         else

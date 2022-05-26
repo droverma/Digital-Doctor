@@ -39,34 +39,17 @@ const Login = (props) => {
 
   const submit = (event) => {
     event.preventDefault();
-
-    // localStorage.setItem("jwt-token", 'token');
-    // localStorage.setItem("role", data.role);
-    // props.handleModal();
-    // if (data.role === "doctor") {
-    //     console.log("doctor logged in");
-    //     navigate('/updatedoctor')
-    // }
-    // else if (data.role === "patient") {
-    //     console.log("patient logged in");
-    //     navigate('/updatepatient')
-    // }
-
     setValidated(true);
     if (data.role === "doctor") {
       AuthService.loginDoctor(data)
         .then((res) => {
-          console.log(res);
           if (res.data && res.data.error) {
             toast.error("Error");
           } else {
             localStorage.setItem("userEmail", data.emailId);
-            localStorage.setItem("jwt-token", res.data.token);
+            localStorage.setItem("jwt-token", res.data);
             localStorage.setItem("role", data.role);
-
-            console.log("doctor logged in");
             navigate("/updatedoctor");
-
             props.handleModal();
           }
         })
@@ -83,17 +66,13 @@ const Login = (props) => {
     } else {
       AuthService.loginPatient(data)
         .then((res) => {
-          console.log(res);
           if (res.data && res.data.error) {
             toast.Error("Error");
           } else {
             localStorage.setItem("userEmail", data.emailId);
-            localStorage.setItem("jwt-token", res.data.token);
+            localStorage.setItem("jwt-token", res.data);
             localStorage.setItem("role", data.role);
-
-            console.log("patient logged in");
             navigate("/updatepatient");
-
             props.handleModal();
           }
         })
@@ -108,21 +87,6 @@ const Login = (props) => {
           }
         });
     }
-    // AuthService.login(data).then(res => {
-    //     localStorage.setItem("userEmail", data.emailId);
-    //     localStorage.setItem("jwt-token", res.data.token);
-    //     localStorage.setItem("role", data.role);
-    //     if (data.role === "doctor") {
-    //         console.log("doctor logged in");
-    //         navigate('/updatedoctor')
-    //     }
-    //     else if (data.role === "patient") {
-    //         console.log("patient logged in");
-    //         navigate('/updatepatient')
-    //     }
-    //     props.handleModal();
-
-    // }).catch(err => console.log(err))
   };
   const onHide = () => {
     setData({

@@ -81,7 +81,7 @@ function CreateSlotViewDoctor() {
                         });
                     }
                 break;
-            default: console.log('default')
+            default: setValidate(false);
                 break;
         }
         setfields({ ...fields, [name]: value });
@@ -120,7 +120,7 @@ function CreateSlotViewDoctor() {
                     getSlots();
                     setfields({ slotDate: '', slotStartTime: '', slotEndTime: '' })
 
-                } 
+                }
             })
         })
     }
@@ -170,24 +170,19 @@ function CreateSlotViewDoctor() {
                                     </div>
                                 }
                             </div>
-                            {
-                                result.map((response) => {
-
-                                    if (moment(response.slotDate).format('YYYY-MM-DD') === date) {
-                                        return (
-                                            <CreateSlotChips
-                                                slotStartTime={response.slotStartTime}
-                                                slotEndTime={response.slotEndTime}
-                                                slotStatus={response.slotStatus}
-                                                id={response.id}
-                                                slotId={response.slotId}
-                                                refreshApi={refreshApi}
-                                            />
-                                        )
-                                    } 
-                                })
-
-                            }
+                            {result.map((response) => moment(response.slotDate).format('YYYY-MM-DD') === date
+                                ?
+                                <CreateSlotChips
+                                    slotStartTime={response.slotStartTime}
+                                    slotEndTime={response.slotEndTime}
+                                    slotStatus={response.slotStatus}
+                                    id={response.id}
+                                    slotId={response.slotId}
+                                    refreshApi={refreshApi}
+                                />
+                                :
+                                null
+                            )}
                         </div>
                         <div className="column bookedAvailableButton">
                             <div className="col-lg-6 row">

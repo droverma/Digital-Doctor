@@ -47,7 +47,7 @@ function AvailableSlotsPatients() {
             })
         });
 
-    }, []);
+    }, [state]);
 
     const currentTimings = (startTime, endTime, slotId) => {
         setstartTime(startTime);
@@ -83,9 +83,9 @@ function AvailableSlotsPatients() {
                 }
 
             })
-            
+
             AppointmentService.getSlotDetails(slotId).then((response) => {
-               
+
                 let data = {
                     doctorEmail: response.data[0].doctorEmail,
                     slotDate: response.data[0].slotDate,
@@ -97,12 +97,10 @@ function AvailableSlotsPatients() {
                     __v: response.data[0].__v,
                     _id: response.data[0]._id
                 }
-                AppointmentService.updateSlotStatus(data).then((res) => {
-                    console.log(res, 'update')
-                })
+                AppointmentService.updateSlotStatus(data);
             })
 
-        }else{
+        } else {
             toast.warning('Please select slot date!', {
                 position: "top-right",
                 autoClose: 5000,
@@ -155,24 +153,20 @@ function AvailableSlotsPatients() {
                         </div>
                     }
                 </div>
-                {
-                    result.map((response) => {
-
-                        if (moment(response.slotDate).format('YYYY-MM-DD') === date) {
-                            return (
-                                <AvailableSlotschips
-                                    slotStartTime={response.slotStartTime}
-                                    slotEndTime={response.slotEndTime}
-                                    slotStatus={response.slotStatus}
-                                    currentTimings={currentTimings}
-                                    slotId={response.slotId}
-                                    doctorEmailId={response.doctorEmail}
-                                />
-                            )
-                        } 
-                    })
-
-                }
+                {result.map((response,i) => moment(response.slotDate).format('YYYY-MM-DD') === date
+                    ?
+                    <AvailableSlotschips
+                        slotStartTime={response.slotStartTime}
+                        slotEndTime={response.slotEndTime}
+                        slotStatus={response.slotStatus}
+                        currentTimings={currentTimings}
+                        slotId={response.slotId}
+                        key={i}
+                        doctorEmailId={response.doctorEmail}
+                    />
+                    :
+                    null
+                )}
             </div>
             <div className="row">
                 <div className="col row bookedAvailableButton">

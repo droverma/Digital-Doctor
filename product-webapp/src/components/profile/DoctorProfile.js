@@ -12,8 +12,7 @@ const DoctorProfile = (props) => {
 
   const saveChangeHandler = (e) => {
     e.preventDefault();
-    console.log(updateDoctorData);
-    localStorage.setItem('name',updateDoctorData.doctorName)
+    localStorage.setItem('username',updateDoctorData.doctorName)
     ProfileDetailsService.addDoctorProfile(updateDoctorData)
       .then((res) => {
         if (res) {
@@ -78,7 +77,7 @@ const DoctorProfile = (props) => {
   useEffect(() => {
     props.setisAuthenticated(true);
     getDoctorData();
-  }, []);
+  }, [props]);
 
   const FormTitles = "Personal Info";
   const PageDisplay = () => {

@@ -1,8 +1,8 @@
 import { Tooltip } from "@material-ui/core";
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
-import ChatIcon from '@mui/icons-material/Chat';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ChatIcon from '@mui/icons-material/Chat';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
@@ -12,10 +12,6 @@ import { SocketContext } from '../../context/Context';
 import AppointmentService from "../../services/appointment.service";
 import ProfileDetailsService from "../../services/profileDetails.service";
 import VideoChatService from "../../services/VideoChat.service";
-import Chat from "@mui/icons-material/Chat";
-import ChatMeeting from "../videoChatMeeting/ChatMeeting";
-
-
 
 function CardAppointmentVIewForDoctors(props) {
     const { socket, me, createMeeting } = useContext(SocketContext);
@@ -24,8 +20,8 @@ function CardAppointmentVIewForDoctors(props) {
     let navigate = useNavigate();
 
     const cancelClicked = () => {
-
-        AppointmentService.appointmentDetails(props.appointmentId).then((res) => {
+        const filter = `appointmentId=${props.appointmentId}&doctorEmail=${localStorage.getItem('userEmail')}`
+        AppointmentService.appointmentByFilter(filter).then(res => {
             let data = {
                 appointmentDate: res.data[0].appointmentDate,
                 appointmentEndTime: res.data[0].appointmentEndTime,
@@ -44,8 +40,8 @@ function CardAppointmentVIewForDoctors(props) {
                 props.refreshApi();
             })
         })
-
     }
+
     const startMeeting = () => {
         socket.emit("me");
         createMeeting();
@@ -70,20 +66,16 @@ function CardAppointmentVIewForDoctors(props) {
     }, [props])
 
     return (
-        <div className="col-md-6 mb-4">
+        <div className="col-md-6 mb-4" >
             <div className="card ">
                 <div className="card-body">
                     <div className="row">
                         <div className="col mb-3">
-                            <img src={patientBasicDetails.patientImage ? patientBasicDetails.patientImage : PatientAvatar} className="doctors-image" />
+                            <img src={patientBasicDetails.patientImage ? patientBasicDetails.patientImage : PatientAvatar} alt="patient" className="doctors-image" />
                         </div>
                         <div className="col">
                             <div className="row">
-                                {/* <div className="col-3 text-right">
-                                    <PersonIcon className="person-icon" />
-                                </div> */}
                                 <div className="col pe-0 ps-0">
-                                    {/* <h4>Kamal Anand</h4> */}
                                     <h4>{patientBasicDetails.patientName ? patientBasicDetails.patientName : 'Patient'}</h4>
                                 </div>
                             </div>

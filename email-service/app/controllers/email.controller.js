@@ -15,10 +15,8 @@ amqp.connect('amqp://localhost', function (error0, connection) {
         }
         channel.assertQueue(queue);
         channel.consume(queue, function (msg) {
-            console.log(" [x] Received %s", msg.content.toString());
-            let messageFromSource = msg.content.toString();
+           let messageFromSource = msg.content.toString();
             message = JSON.parse(messageFromSource);
-            console.log(message.patientEmail);
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
@@ -53,11 +51,3 @@ amqp.connect('amqp://localhost', function (error0, connection) {
     });
 });
 
-exports.emailSender = (req, res) => {
-    console.log(req.body, 'body')
-    if (!req.body) {
-        return res.status(400).send({
-            messsage: 'The content can not be empty'
-        });
-    }
-}
