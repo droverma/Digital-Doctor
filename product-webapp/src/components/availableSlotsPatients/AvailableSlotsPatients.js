@@ -153,7 +153,7 @@ function AvailableSlotsPatients() {
                         </div>
                     }
                 </div>
-                {result.map((response) => moment(response.slotDate).format('YYYY-MM-DD') === date
+                {result.map((response,i) => moment(response.slotDate).format('YYYY-MM-DD') === date
                     ?
                     <AvailableSlotschips
                         slotStartTime={response.slotStartTime}
@@ -161,6 +161,7 @@ function AvailableSlotsPatients() {
                         slotStatus={response.slotStatus}
                         currentTimings={currentTimings}
                         slotId={response.slotId}
+                        key={i}
                         doctorEmailId={response.doctorEmail}
                     />
                     :

@@ -17,7 +17,6 @@ class ProfileDetailsService {
 
   // update the profile details of Doctor
   addDoctorProfile(data) {
-    console.log(data);
     let userId = localStorage.getItem("userEmail");
     return axios.put(`${apiUrl}/api/v1/doctor/profile/${userId} `, data);
   }
@@ -42,13 +41,8 @@ class ProfileDetailsService {
     let patientCity = patientData[0];
     let specialization = patientData[1];
     let apiUrls = `${apiUrl}/api/v1/doctorlist/${patientCity}`;
-    // let apiUrls = `${apiUrl}/api/v1/doctorcity/${patientCity}`;
-    console.log(apiUrls);
     if (patientData[1].length) {
-      // api/v1/doctorlist/:city/:specialization
       apiUrls = `${apiUrl}/api/v1/doctorlist/${patientCity}/${specialization}`;
-      console.log(apiUrls);
-      // apiUrls = `${apiUrl}/api/v1/doctor/${patientCity}/${specialization}`;
     }
     return axios.get(apiUrls);
   }

@@ -29,7 +29,7 @@ const Header = (props) => {
             })
         }
         // eslint-disable-next-line
-    }, localStorage.getItem("role"))
+    }, [localStorage.getItem("role")])
 
     const logout = () => {
         localStorage.clear();

@@ -139,12 +139,12 @@ function AppointmentViewForPatients() {
     return (
         <div className="container-fluid row">
             <div className="col-lg-4 col-sm-12 filter-container-box">
-                <div class="card card-with-image">
+                <div className="card card-with-image">
                     <div>
-                        <img src="https://media2.giphy.com/media/EAkvNkimgOxvIryUzE/giphy.gif" class="card-img-top" alt="..." />
+                        <img src="https://media2.giphy.com/media/EAkvNkimgOxvIryUzE/giphy.gif" className="card-img-top" alt="..." />
                     </div>
-                    <div class="card-body search-fields">
-                        <h5 class="card-title mb-4">Search Fields</h5>
+                    <div className="card-body search-fields">
+                        <h5 className="card-title mb-4">Search Fields</h5>
                         <form onSubmit={handleSubmit}>
                             <input type="search" className="form-control mb-4" placeholder="Search by Specialization"
                                 name="specialization" value={filters.specialization} onChange={handleChange}
@@ -194,26 +194,21 @@ function AppointmentViewForPatients() {
                 </div>
                 <div className="tab-content" id="nav-tabContent">
                     <div className="tab-pane fade show active row" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        {
-                            result.map((response) => {
-                                return (
-                                    <CardAppointmentVIewForPatients
-                                        doctorEmail={response.doctorEmail}
-                                        specialization={response.specialization}
-                                        appointmentDate={response.appointmentDate}
-                                        appointmentStartTime={response.appointmentStartTime}
-                                        appointmentEndTime={response.appointmentEndTime}
-                                        appointmentStatus={response.appointmentStatus}
-                                        appointmentId={response.appointmentId}
+                        {result.map((response,i) =>
+                            <CardAppointmentVIewForPatients
+                                doctorEmail={response.doctorEmail}
+                                specialization={response.specialization}
+                                appointmentDate={response.appointmentDate}
+                                appointmentStartTime={response.appointmentStartTime}
+                                appointmentEndTime={response.appointmentEndTime}
+                                appointmentStatus={response.appointmentStatus}
+                                appointmentId={response.appointmentId}
+                                key={i}
+                                id={response.id}
+                                refreshApi={refreshApi}
 
-                                        id={response.id}
-                                        refreshApi={refreshApi}
-
-                                    />
-                                )
-                            })
-
-                        }
+                            />
+                        )}
 
                     </div>
                 </div>
