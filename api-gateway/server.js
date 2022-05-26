@@ -7,6 +7,10 @@ const PORT = 8080;
 const server = gateway({
   routes: [
     {
+      prefix: "",
+      target: "http://localhost:3000",
+    },
+    {
       prefix: "/user-service",
       target: "http://localhost:8085",
     },
