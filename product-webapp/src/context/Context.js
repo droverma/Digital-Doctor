@@ -30,7 +30,7 @@ const ContextProvider = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const name = localStorage.getItem('username')
+        const name = localStorage.getItem('name')
         if (localStorage.getItem('role') === 'doctor')
             setName('Dr. ' + name);
         else
