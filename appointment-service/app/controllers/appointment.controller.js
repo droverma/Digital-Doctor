@@ -31,7 +31,7 @@ exports.bookAppointment = (req, res) => {
 
     bookAppointment.save().then(data => {
         res.send(data);
-        amqp.connect('amqp://localhost', function (error0, connection) {
+        amqp.connect('amqp://rabbitmq', function (error0, connection) {
             if (error0) {
                 throw error0;
             }
