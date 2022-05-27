@@ -5,17 +5,13 @@ services:
     container_name: api-gateway
     build: api-gateway
     restart: always
-    network_mode: host
-    hostname: localhost
     ports:
       - 8080:8080
 
 
   mongodb:
     image: mongo:latest
-    container_name: mongo-container
-    network_mode: host
-    hostname: localhost
+    container_name: mongodb
     ports:
       - 27017:27017
 
@@ -23,59 +19,47 @@ services:
   user-service:
     container_name: user-service
     build: user-service/
-    hostname: localhost
-    network_mode: host
     ports:
       - 8085:8085
-    depends_on:
+    links:
       - mongodb
     restart: always
 
   appointment:
     container_name: appointment
-    build: appointment/
-    hostname: localhost
-    network_mode: host
+    build: appointment-service/appointment
     ports:
       - 8081:8081
-    depends_on:
+    links:
       - mongodb
     restart: always
 
   slot:
     container_name: slot
-    build: slot/
-    hostname: localhost
-    network_mode: host
+    build: appointment-service/slot/
     ports:
       - 8084:8084
-    depends_on:
+    links:
       - mongodb
     restart: always
 
   email-service:
     container_name: email-service
     build: email-service/
-    hostname: localhost
-    network_mode: host
     ports:
       - 8082:8082
     restart: always
 
-  # product-webapp:
-  #   container_name: product-webapp
-  #   build: product-webapp/
-  #   hostname: localhost
-  #   restart: always
-  #   network_mode: host
-  #   ports:
-  #     - 3000:3000
+  product-webapp:
+    container_name: product-webapp
+    build: product-webapp/
+    restart: always
+    ports:
+      - 3000:3000
 
   video-chat-service:
     container_name: video-chat-service
     build: video-chat-service/
-    hostname: localhost
-    network_mode: host
     ports:
       - 8083:8083
     restart: always

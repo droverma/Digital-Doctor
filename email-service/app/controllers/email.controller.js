@@ -51,3 +51,11 @@ amqp.connect('amqp://localhost', function (error0, connection) {
     });
 });
 
+exports.emailSender = (req, res) => {
+    console.log(req.body, 'body')
+    if (!req.body) {
+        return res.status(400).send({
+            messsage: 'The content can not be empty'
+        });
+    }
+}
