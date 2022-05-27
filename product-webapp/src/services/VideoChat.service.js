@@ -3,7 +3,8 @@ import environment from "../environment";
 
 
 // const apiUrl = "http://localhost:8080/video-chat-service/api/v1/";
-  const apiUrl = environment.apiUrl;
+  // const apiUrl = environment.apiUrl;
+  const apiUrl = "https://digitaldoctor.stackroute.io/video-chat-service/api/v1/"
 
 class VideoChat {
   StartMeetingID(data) {

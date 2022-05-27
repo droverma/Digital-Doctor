@@ -4,7 +4,8 @@ import environment from "../environment";
 // const apiUrl = "http://localhost:8080/userservice";
 // const apiUrl = "http://localhost:8080/user-service";
 
-const apiUrl = environment.apiUrl;
+// const apiUrl = environment.apiUrl;
+const apiUrl = "https://digitaldoctor.stackroute.io/user-service";
 
 class ProfileDetailsService {
   // get the profile details for doctor
