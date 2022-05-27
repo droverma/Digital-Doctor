@@ -4,6 +4,8 @@ services:
   api-gateway:
     container_name: api-gateway
     build: api-gateway
+    hostname: localhost
+    network_mode: host
     restart: always
     ports:
       - 8080:8080
