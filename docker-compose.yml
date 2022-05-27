@@ -50,9 +50,16 @@ services:
       - 8082:8082
     restart: always
 
-  product-webapp-service:
-    container_name: product-webapp-service
-    build: product-webapp-service/
+  # product-webapp-service:
+  #   container_name: product-webapp-service
+  #   build: product-webapp-service/
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+
+  product-webapp:
+    container_name: product-webapp
+    build: product-webapp/
     restart: always
     ports:
       - 3000:3000
