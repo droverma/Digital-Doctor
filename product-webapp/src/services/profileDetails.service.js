@@ -1,7 +1,11 @@
 import axios from "axios";
+import environment from "../environment";
 
 // const apiUrl = "http://localhost:8080/userservice";
-const apiUrl = "http://localhost:8080/user-service";
+// const apiUrl = "http://localhost:8080/user-service";
+
+const apiUrl = environment.apiUrl;
+
 class ProfileDetailsService {
   // get the profile details for doctor
 

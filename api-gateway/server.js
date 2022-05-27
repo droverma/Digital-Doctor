@@ -27,7 +27,7 @@ const server = gateway({
       target: "http://localhost:8082",
     },
     {
-      prefix: "socket-service",
+      prefix: "socket-server",
       target: "http://localhost:5000",
     },
     {

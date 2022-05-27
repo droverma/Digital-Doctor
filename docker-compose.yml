@@ -50,9 +50,9 @@ services:
       - 8082:8082
     restart: always
 
-  product-webapp:
-    container_name: product-webapp
-    build: product-webapp/
+  product-webapp-service:
+    container_name: product-webapp-service
+    build: product-webapp-service/
     restart: always
     ports:
       - 3000:3000
@@ -63,7 +63,13 @@ services:
     ports:
       - 8083:8083
     restart: always
-   
+
+  socket-server:
+    container_name: socket-server
+    build: socket-server/
+    ports:
+      - 5000:5000
+    restart: always
 
   rabbitmq:
     image: rabbitmq:3-management
