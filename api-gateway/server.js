@@ -7,10 +7,6 @@ const PORT = 8080;
 const server = gateway({
   routes: [
     {
-      prefix: "/socket-service",
-      target: "http://localhost:5000",
-    },
-    {
       prefix: "/user-service",
       target: "http://localhost:8085",
     },
@@ -29,6 +25,10 @@ const server = gateway({
     {
       prefix: "/email-service",
       target: "http://localhost:8082",
+    },
+    {
+      prefix: "/socket-service",
+      target: "http://localhost:5000",
     },
     {
       prefix: "",

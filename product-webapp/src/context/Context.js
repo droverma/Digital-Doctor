@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 import VideoChatService from '../services/VideoChat.service';
 
 const SocketContext = createContext();
-const socket = io('http://localhost:8080/socket-service');
+const socket = io('http://localhost:5000');
 
 const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
