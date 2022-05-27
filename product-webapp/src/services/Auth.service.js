@@ -1,7 +1,8 @@
 import axios from "axios";
 
-// const apiUrl = 'http://localhost:8080';
-const apiUrl = "http://localhost:8080/user-service";
+const apiUrl = "https://digitaldoctor.stackroute.io"
+
+// const apiUrl = "http://localhost:8080/user-service";
 class AuthService {
   loginDoctor(data) {
       return axios.post(`${apiUrl}/api/v1/doctor/login`, data);

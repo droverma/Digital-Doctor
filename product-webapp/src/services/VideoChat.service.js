@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:8080/video-chat-service/api/v1/";
+// const apiUrl = "http://localhost:8080/video-chat-service/api/v1/";
+
+const apiUrl = "https://digitaldoctor.stackroute.io"
+
 class VideoChat {
   StartMeetingID(data) {
     return axios.post(`${apiUrl}meeting`, data);

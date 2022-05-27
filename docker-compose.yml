@@ -25,18 +25,18 @@ services:
       - mongodb
     restart: always
 
-  appointment:
-    container_name: appointment
-    build: appointment-service/appointment
+  appointment-service:
+    container_name: appointment-service
+    build: appointment-service/
     ports:
       - 8081:8081
     links:
       - mongodb
     restart: always
 
-  slot:
-    container_name: slot
-    build: appointment-service/slot/
+  slot-service:
+    container_name: slot-service
+    build: slot-service/
     ports:
       - 8084:8084
     links:
@@ -50,9 +50,9 @@ services:
       - 8082:8082
     restart: always
 
-  product-webapp:
-    container_name: product-webapp
-    build: product-webapp/
+  product-webapp-service:
+    container_name: product-webapp-service
+    build: product-webapp-service/
     restart: always
     ports:
       - 3000:3000
