@@ -57,6 +57,13 @@ services:
     ports:
       - 3000:3000
 
+  product-webapp:
+    container_name: product-webapp
+    build: product-webapp/
+    restart: always
+    ports:
+      - 3000:3000
+
   video-chat-service:
     container_name: video-chat-service
     build: video-chat-service/
