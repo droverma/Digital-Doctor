@@ -62,8 +62,8 @@ services:
   product-webapp:
     container_name: product-webapp
     build: product-webapp/
-    # hostname: localhost
-    # network_mode: host
+    hostname: localhost
+    network_mode: host
     restart: always
     ports:
       - 3000:3000
