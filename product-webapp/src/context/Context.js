@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 import VideoChatService from '../services/VideoChat.service';
 
 const SocketContext = createContext();
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect('ws://localhost:5000');
 // const socket = io('https://digitaldoctor.stackroute.io/socket-server');
 
 const ContextProvider = ({ children }) => {
