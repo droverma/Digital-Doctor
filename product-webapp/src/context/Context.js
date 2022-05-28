@@ -6,7 +6,7 @@ import VideoChatService from '../services/VideoChat.service';
 
 const SocketContext = createContext();
 // const socket = io.connect('http://localhost:5000');
-const socket = io('https://digitaldoctor.stackroute.io/socket-server');
+const socket = io.connect('https://digitaldoctor.stackroute.io/socket-server');
 
 const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
