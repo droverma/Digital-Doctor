@@ -78,8 +78,8 @@ services:
   socket-server:
     container_name: socket-server
     build: socket-server/
-    # hostname: localhost
-    # network_mode: host
+    hostname: localhost
+    network_mode: host
     ports:
       - 5000:5000
     restart: always
