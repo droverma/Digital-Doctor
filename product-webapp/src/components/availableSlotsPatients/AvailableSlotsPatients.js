@@ -127,7 +127,7 @@ function AvailableSlotsPatients() {
                             <img src={details.image ? details.image : DoctorImage} className="doctor-image" alt="" />
                         </div>
                         <div className="col mb-4">
-                            <h6>{details.doctorName ? details.doctorName : 'No name'}</h6>
+                            <h6><span>Dr. </span>{details.doctorName ? details.doctorName : 'No name'}</h6>
                         </div>
                         <div className="col mb-4">
                             {details.specialization ? details.specialization : 'No Specialization'}
