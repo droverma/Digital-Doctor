@@ -182,6 +182,15 @@ function AppointmentViewForDoctors() {
                 </div>
                 <div className="tab-content" id="nav-tabContent">
                     <div className="tab-pane fade show active row" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div>
+                        {
+                          result.length === 0 &&
+                          <div className="no-slots">
+                              <p>No Appointments Available</p>
+                          </div>
+
+                        }
+                    </div>
                         {result.map((response,i) =>
                             <CardAppointmentVIewForDoctors
                                 patientEmail={response.patientEmail}

@@ -16,7 +16,7 @@ const DoctorProfile = (props) => {
     ProfileDetailsService.addDoctorProfile(updateDoctorData)
       .then((res) => {
         if (res) {
-          toast.success("Patients Profile Updated Submitted", {
+          toast.success("Doctors Profile Updated Submitted", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
