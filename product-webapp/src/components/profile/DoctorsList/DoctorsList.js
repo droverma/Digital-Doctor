@@ -6,39 +6,30 @@ import Spinner from "../../../assets/utill/Spinner";
 import Card from "./Card";
 
 const specializationList = [
-  { spV: "", spN: "Select specialization" },
-  { spV: "physician", spN: "Physician" },
+  { spV: "Physician"},
   {
-    spV: "gynecologist",
-    spN: "Gynecologist",
+    spV: "Gynecologist",
   },
   {
-    spV: "pediatrician",
-    spN: "Pediatrician",
+    spV: "Pediatrician",
   },
   {
-    spV: "orthopedician",
-    spN: "Orthopedician",
+    spV: "Orthopedician",
   },
   {
-    spV: "eye Specialist",
-    spN: "Eye Specialist",
+    spV: "Eye Specialist",
   },
   {
-    spV: "psychotherapist",
-    spN: "Psychotherapist",
+    spV: "Psychotherapist",
   },
   {
-    spV: "dentist",
-    spN: "Dentist",
+    spV: "Dentist",
   },
   {
-    spV: "neurosurgeon",
-    spN: "Neurosurgeon",
+    spV: "Neurosurgeon",
   },
   {
-    spV: "general Surgeon",
-    spN: "General Surgeon",
+    spV: "General Surgeon",
   },
 ];
 const DoctorsList = () => {
@@ -108,10 +99,11 @@ const DoctorsList = () => {
               onChange={listChangeHandler}
               required
             >
+            <option value="">Select Specialization</option>
               {specializationList.map((e) => {
                 return (
                   <option key={e.spV} value={e.spV}>
-                    {e.spN}
+                    {e.spV}
                   </option>
                 );
               })}
