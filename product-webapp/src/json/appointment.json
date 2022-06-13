@@ -1,0 +1,176 @@
+{
+    "availableSlots": [
+        {
+            "slotId" : "1", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "14/04/2022",
+            "slotStartTime" : "9:00 AM",
+            "slotEndTime" : "10:00 AM",
+            "slotStatus" : "BOOKED"
+        },
+        {
+            "slotId" : "2", 
+            "doctorEmail" : "harshVardhan@gmail.com" ,
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "14/04/2022",
+            "slotStartTime" : "10:00 AM",
+            "slotEndTime" : "11:00 AM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "3", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "14/04/2022",
+            "slotStartTime" : "12:00 AM",
+            "slotEndTime" : "12:00 PM",
+            "slotStatus" : "BOOKED"
+        },
+        {
+            "slotId" : "4", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "14/04/2022",
+            "slotStartTime" : "5:00 PM",
+            "slotEndTime" : "6:00 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "5", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "14/04/2022",
+            "slotStartTime" : "7:00 PM",
+            "slotEndTime" : "8:00 PM",
+            "slotStatus" : "BOOKED"
+        },
+        {
+            "slotId" : "6", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "15/04/2022",
+            "slotStartTime" : "9:30 AM",
+            "slotEndTime" : "10:30 AM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "7", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "15/04/2022",
+            "slotStartTime" : "10:30 AM",
+            "slotEndTime" : "11:30 AM",
+            "slotStatus" : "BOOKED"
+        },
+        {
+            "slotId" : "9", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "15/04/2022",
+            "slotStartTime" : "5:30 PM",
+            "slotEndTime" : "6:30 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "10", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "15/04/2022",
+            "slotStartTime" : "7:30 PM",
+            "slotEndTime" : "8:30 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "12", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "16/04/2022",
+            "slotStartTime" : "9:45 AM",
+            "slotEndTime" : "10:45 AM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "12", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "16/04/2022",
+            "slotStartTime" : "10:45 AM",
+            "slotEndTime" : "11:45 AM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "13", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "16/04/2022",
+            "slotStartTime" : "11:45 AM",
+            "slotEndTime" : "12:45 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "14", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "16/04/2022",
+            "slotStartTime" : "5:45 PM",
+            "slotEndTime" : "6:45 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "15", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "16/04/2022",
+            "slotStartTime" : "6:45 PM",
+            "slotEndTime" : "7:45 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "15", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "16/04/2022",
+            "slotStartTime" : "7:45 PM",
+            "slotEndTime" : "8:45 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "15", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "16/04/2022",
+            "slotStartTime" : "8:45 PM",
+            "slotEndTime" : "9:45 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "16", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "01/04/2022",
+            "slotStartTime" : "5:15 PM",
+            "slotEndTime" : "6:15 PM",
+            "slotStatus" : "AVAILABLE"
+        },
+        {
+            "slotId" : "17", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "01/04/2022",
+            "slotStartTime" : "6:15 PM",
+            "slotEndTime" : "7:15 PM",
+            "slotStatus" : "BOOKED"
+        },
+        {
+            "slotId" : "18", 
+            "doctorEmail" : "harshVardhan@gmail.com",
+            "specialization" : "MBBS, MD Optimologist",
+            "slotDate" : "01/04/2022",
+            "slotStartTime" : "7:15 PM",
+            "slotEndTime" : "8:15 PM",
+            "slotStatus" : "AVAILABLE"
+        }
+    ]
+
+}

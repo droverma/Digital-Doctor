@@ -1,0 +1,12 @@
+.modal-header {
+  border-bottom: 0px !important;
+}
+
+.areaHei {
+  height: 3rem;
+}
+.fSize {
+  font-size: 1.4rem !important;
+  line-height: 2;
+  font-family: "Times New Roman", Times, serif;
+}
